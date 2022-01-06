@@ -21,7 +21,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  * - ask to use a dependency from npm if it exists
  */
 async function getApplyable(name) {
-  const applyable = await import(path.join(__dirname, '..', '..', 'applyables', name));
+  const applyable = await import(path.join(__dirname, '..', '..', 'applyables', name, 'index.js'));
 
   return applyable.default;
 }

@@ -5,6 +5,19 @@ import fse from 'fs-extra';
 // import execa from 'execa';
 
 /**
+ * @param {Record<string, string>} packages map of package names to package versions
+ */
+export async function addDevDependencies(packages) {
+  let filePath = path.join(process.cwd(), 'package.json');
+  let jsonString = (await fse.readFile(filePath)).toString();
+  let json = JSON.parse(jsonString);
+
+  json.devDependencies = { ...json.devDependencies, ...packages };
+
+  await fse.writeJson(filePath, json, { spaces: 2 });
+}
+
+/**
  * Adds a script entry to package.json
  *
  * @param {string} name the name of the script

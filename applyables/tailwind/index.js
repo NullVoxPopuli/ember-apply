@@ -1,6 +1,16 @@
 // @ts-check
-import path from 'path';
-import { addScripts, addDevDependencies, gitIgnore, applyFolder, addHTML } from 'ember-apply';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+import {
+  addScripts,
+  addDevDependencies,
+  gitIgnore,
+  applyFolder,
+  addHTML,
+} from '../../src/index.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * @param {string} workingDirectory - the directory `npx ember-apply` was invoked fromm

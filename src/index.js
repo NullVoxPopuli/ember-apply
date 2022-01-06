@@ -1,6 +1,6 @@
 // @ts-check
 
-export { gitIgnore, addScript, addScripts } from './-private/project-utils.js';
+export { gitIgnore, addScript, addScripts, addDevDependencies } from './-private/project-utils.js';
 
 export { transformHTML, addHTML } from './-private/transform-html.js';
 

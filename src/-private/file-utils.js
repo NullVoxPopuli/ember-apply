@@ -20,9 +20,9 @@ export async function applyFolder(folder) {
   let files = await fs.readdir(folder);
 
   for (let file of files) {
-    let fileName = path.basename(file);
+    let filePath = path.join(folder, file);
 
-    await copyFileTo(fileName, { source: file });
+    await copyFileTo(file, { source: filePath });
   }
 }
 
