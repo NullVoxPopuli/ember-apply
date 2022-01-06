@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "declarationDir": "./declarations",
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "strict": true,
+    "baseUrl": "./src",
+    "paths": {
+      "ember-apply": ["."],
+      "ember-apply/*": ["./*"]
+    }
+  },
+  "include": ["src/**/*", "applyables/**/*"]
+}
