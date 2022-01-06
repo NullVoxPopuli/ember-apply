@@ -46,3 +46,41 @@ Known working capabilities:
   within this function, you may import form `ember-apply` to use any of the utility functions.
   the only argument passed to this function is the working directory `npx ember-apply` was invoked from.
   how the `<your-applyable>` folder is managed is totally up to whomever implements and maintains that code.
+
+### For Transforming JS
+
+[JSCodeShift](https://github.com/facebook/jscodeshift) is used
+
+### For Transforming Ember Templates
+
+[ember-template-recast](https://github.com/ember-template-lint/ember-template-recast) is used
+
+### For Transforming HTML
+
+[posthtml](https://github.com/posthtml/posthtml) is used
+
+## Public API
+
+While these public APIs aren't "needed", and could indeed be used with ember's blueprint system, or some other ecosystem
+
+### `transformScript`
+### `transformTemplate`
+### `transformHTML`
+### `addHTML`
+### `gitIgnore`
+### `addScript`
+### `addScripts`
+### `applyFolder`
+### `copyFileTo`
+
+
+## Related Projects
+
+- [preset](https://github.com/preset/preset)
+    GOAL (tbd): be compatible with `npx apply`
+
+    - `preset` does not provide codemodding tools, but
+      it does provide basic pattern-based transforming
+      utilities, so it's a solid option. It also does
+      not have built-in support for template transforms.
+

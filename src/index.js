@@ -6,6 +6,7 @@ export {
   addHTML,
   gitIgnore,
   addScript,
-} from './transform-utils.js';
+  addScripts,
+} from './-private/transform-utils.js';
 
-export { applyFolder, copyFileTo } from './file-utils.js';
+export { applyFolder, copyFileTo } from './-private/file-utils.js';
