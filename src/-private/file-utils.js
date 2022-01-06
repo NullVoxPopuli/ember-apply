@@ -1,5 +1,12 @@
 // @ts-check
 
+/**
+ *
+ * @typedef {object} CopyOptions
+ * @property {string} [ source ]
+ * @property {string} [ content ]
+ *
+ */
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -24,7 +31,7 @@ export async function applyFolder(folder) {
  * only one of `source` or `content` is needed.
  *
  * @param {string} destination
- * @param {object} options
+ * @param {CopyOptions} options
  *
  */
 export async function copyFileTo(destination, options = {}) {
