@@ -1,0 +1,25 @@
+{
+  "name": "ember-apply",
+  "version": "0.0.0",
+  "description": "automatic integration and configuration from the community",
+  "main": "src/index.js",
+  "type": "module",
+  "author": "NullVoxPopuli",
+  "license": "MIT",
+  "private": false,
+  "bin": {
+    "ember-apply": "src/cli/index.js"
+  },
+  "scripts": {
+    "lint:js": "eslint ."
+  },
+  "dependencies": {
+    "ember-template-recast": "^6.1.2",
+    "execa": "^6.0.0",
+    "jscodeshift": "^0.13.0"
+  },
+  "devDependencies": {
+    "@nullvoxpopuli/eslint-configs": "^2.1.16",
+    "eslint": "^8.6.0"
+  }
+}
