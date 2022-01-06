@@ -37,3 +37,12 @@ npx ember-apply ssr
 
 Known working capabilities:
  - tbd
+
+## Adding a new applyable
+
+- clone this repository
+- create a `applyables/<your-applyable>/index.js` file
+- have a function exported as the default export.
+  within this function, you may import form `ember-apply` to use any of the utility functions.
+  the only argument passed to this function is the working directory `npx ember-apply` was invoked from.
+  how the `<your-applyable>` folder is managed is totally up to whomever implements and maintains that code.

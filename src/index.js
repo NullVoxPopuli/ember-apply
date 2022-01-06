@@ -1,2 +1,8 @@
 // @ts-check
-export { copyFileTo, transformScript, transformTemplate, gitIgnore } from './transform-utils.js';
+export {
+  copyFileTo,
+  transformScript,
+  transformTemplate,
+  gitIgnore,
+  addScript,
+} from './transform-utils.js';

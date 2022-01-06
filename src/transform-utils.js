@@ -39,6 +39,22 @@ export async function copyFileTo(destination, options = {}) {
 }
 
 /**
+ * Adds a script entry to package.json
+ *
+ * @param {string} name the name of the script
+ * @param {string} command the command to run
+ */
+export async function addScript(name, command) {}
+
+/**
+ * Adds multiple scripts to package.json.
+ * If there is an existing script with a name provided to `addScripts`, it will be replaced.
+ *
+ * @param {Record<string, string>} scripts
+ */
+export async function addScripts(scripts) {}
+
+/**
  * Transforms an ember-template file using ember-template-recast.
  * The script at the `filePath` is read, transformed via the provided
  * `plugin`, and then written back to the same file.
