@@ -11,6 +11,7 @@
     "ember-apply": "src/cli/index.js"
   },
   "scripts": {
+    "build:types": "tsc --build",
     "lint": "yarn lint:js",
     "lint:js": "eslint ."
   },
