@@ -1,27 +1,35 @@
-import { copyFileTo, addScripts, addDevDependencies } from 'ember-apply';
+// @ts-check
+import path from 'path';
+import { addScripts, addDevDependencies, gitIgnore, applyFolder, addHTML } from 'ember-apply';
 
 /**
  * @param {string} workingDirectory - the directory `npx ember-apply` was invoked fromm
  */
 export default async function run(workingDirectory) {
-  await addDevDependencies(
-    {
-      autoprefixer: '^10.0.0',
-      postcss: '^8.0.0',
-      tailwindcss: '^3.0.0',
-    },
-    { cwd: workingDirectory }
-  );
-  await transformFiles(workingDirectory);
-  await addScripts(
-    {
-      'tailwind:build': 'npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css',
-      'tailwind:watch':
-        'npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css --watch',
-      build: 'npm run tailwind:build && ember build --environment=production',
-    },
-    { cwd: workingDirectory }
-  );
-}
+  await addDevDependencies({
+    autoprefixer: '^10.0.0',
+    postcss: '^8.0.0',
+    tailwindcss: '^3.0.0',
+  });
 
-async function transformFiles(workingDirectory) {}
+  await applyFolder(path.join(__dirname, 'files'));
+  await addHTML(
+    'app/index.html',
+    `<link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">`,
+    { before: 'link' }
+  );
+  await addHTML(
+    'tests/index.html',
+    `<link rel="stylesheet" href="{{rootURL}}assets/tailwind.css">`,
+    { before: 'link' }
+  );
+
+  await addScripts({
+    'tailwind:build': 'npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css',
+    'tailwind:watch':
+      'npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css --watch',
+    build: 'npm run tailwind:build && ember build --environment=production',
+  });
+
+  await gitIgnore('public/assets/tailwind.css', '# compiled output');
+}

@@ -1,9 +1,11 @@
 // @ts-check
 import fs from 'fs/promises';
 import path from 'path';
+import fse from 'fs-extra';
 // import execa from 'execa';
 import recast from 'ember-template-recast';
 import jscodeshift from 'jscodeshift';
+import posthtml from 'posthtml';
 
 /**
  *
@@ -21,30 +23,14 @@ import jscodeshift from 'jscodeshift';
  */
 
 /**
- * Copy a file to some `destination`. In the `options` object,
- * only one of `source` or `content` is needed.
- *
- * @param {string} destination
- * @param {object} options
- *
- */
-export async function copyFileTo(destination, options = {}) {
-  const { source, content } = options;
-
-  if (source) {
-    return await fs.copyFile(source, destination);
-  }
-
-  return await fs.writeFile(destination, content);
-}
-
-/**
  * Adds a script entry to package.json
  *
  * @param {string} name the name of the script
  * @param {string} command the command to run
  */
-export async function addScript(name, command) {}
+export async function addScript(name, command) {
+  await addScripts({ [name]: command });
+}
 
 /**
  * Adds multiple scripts to package.json.
@@ -52,7 +38,15 @@ export async function addScript(name, command) {}
  *
  * @param {Record<string, string>} scripts
  */
-export async function addScripts(scripts) {}
+export async function addScripts(scripts) {
+  let filePath = path.join(process.cwd(), 'package.json');
+  let jsonString = (await fse.readFile(filePath)).toString();
+  let json = JSON.parse(jsonString);
+
+  json.scripts = { ...json.scripts, ...scripts };
+
+  await fse.writeJson(filePath, json, { spaces: 2 });
+}
 
 /**
  * Transforms an ember-template file using ember-template-recast.
@@ -97,12 +91,67 @@ export async function transformScript(filePath, callback) {
 }
 
 /**
+ * @param {string} filePath
+ */
+export async function transformHTML(filePath, plugin) {
+  let code = (await fs.readFile(filePath)).toString();
+
+  let transformed = await posthtml([plugin]).process(code /*, options */);
+
+  await fs.writeFile(filePath, transformed.html);
+}
+
+/**
+ * @param {string} filePath
+ * @param {string} html the HTML to inject
+ * @param {AddHTMLOptions} options
+ */
+export async function addHTML(filePath, html, { before = '' } = {}) {
+  let code = (await fs.readFile(filePath)).toString();
+
+  if (code.includes(html)) {
+    return;
+  }
+
+  await transformHTML(filePath, (tree) => {
+    tree.match({ tag: 'link' }, (node) => {});
+  });
+}
+
+/**
  * Adds an entry to the project's .gitignore file.
+ * Will create a .gitignore file if it doesn't exist.
+ * Will insert the `pattern` under the `heading` and create the
+ * `heading` if it doesn't exist.
  *
  * @param {string} pattern the pattern to add to the .gitignore file
  * @param {string} [heading] optional heading to place the `pattern` under
  */
-export function gitIgnore(pattern, heading) {
-  console.log('todo', pattern, heading);
-  // return fs.appendFile('.gitignore', `\n${filePath}`);
+export async function gitIgnore(pattern, heading) {
+  let filePath = path.join(process.cwd(), '.gitignore');
+
+  let hasFile = fse.existsSync(filePath);
+
+  if (!hasFile) {
+    await fs.writeFile(filePath, heading + '\n' + pattern);
+  }
+
+  let fileContents = await fs.readFile(filePath);
+  let fileString = fileContents.toString();
+
+  if (fileString.includes(pattern)) {
+    return;
+  }
+
+  let [before, after] = fileString.split(heading);
+
+  let newFile;
+
+  if (!after) {
+    newFile = `${heading}\n${pattern}\n${before}`;
+  } else {
+    newFile = `${before}\n${heading}\n${pattern}\n${after}`;
+  }
+
+  await fs.writeFile(filePath, newFile);
 }
