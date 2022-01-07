@@ -41,5 +41,9 @@ export async function copyFileTo(destination, options = {}) {
     return await fs.copyFile(source, destination);
   }
 
-  return await fs.writeFile(destination, content);
+  if (content) {
+    return await fs.writeFile(destination, content);
+  }
+
+  throw new Error(`copyFileTo requires either a source or content option`);
 }

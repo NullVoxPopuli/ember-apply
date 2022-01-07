@@ -1,8 +1,16 @@
 // @ts-check
 /**
  *
- * @typedef {typeof jscodeshift} JSCodeshift;
+ * @typedef {import('jscodeshift')} JSCodeshift;
  * @typedef {ReturnType<JSCodeshift>} jAST;
+ *
+ * @typedef {object} CallbackApi
+ * @property {jAST} root
+ * @property {JSCodeshift} j
+ *
+ * @callback TransformCallback
+ * @param {CallbackApi} callbackApi
+ * @return {Promise<void>} return
  *
  */
 import fs from 'fs/promises';
@@ -13,7 +21,7 @@ import jscodeshift from 'jscodeshift';
  * reads a script from source and transforms it with jscodeshift and then writes the file.
  *
  * @param {string} filePath to the file to transform
- * @param {({ root: jAST, j: JSCodeshift }) => void} callback
+ * @param {TransformCallback} callback
  * @returns void
  */
 export async function transformScript(filePath, callback) {

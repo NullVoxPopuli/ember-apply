@@ -68,6 +68,12 @@ export async function gitIgnore(pattern, heading) {
     return;
   }
 
+  if (!heading) {
+    await fs.writeFile(filePath, `${fileString}\n${pattern}`);
+
+    return;
+  }
+
   let [before, after] = fileString.split(heading);
 
   let newFile;
