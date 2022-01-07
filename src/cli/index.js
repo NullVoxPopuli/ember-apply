@@ -23,7 +23,21 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  * @param {string} name of the feature to find
  */
 async function getApplyable(name) {
-  const applyable = await import(path.join(__dirname, '..', '..', 'applyables', name, 'index.js'));
+  try {
+    const applyable = await import(
+      path.join(__dirname, '..', '..', 'applyables', name, 'index.js')
+    );
 
-  return applyable.default;
+    return applyable.default;
+  } catch (error) {
+    // TODO: need verbose mode
+  }
+
+  try {
+    const applyable = await import(`https://cdn.skypack.dev/${name}`);
+
+    return applyable.default;
+  } catch (error) {
+    // TODO: need verbose mode
+  }
 }

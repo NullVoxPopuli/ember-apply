@@ -38,6 +38,14 @@ npx ember-apply ssr
 Known working capabilities:
  - tbd
 
+### any package published as ESM with a default export
+
+when using a package name for the `<feature-name>`, an ESM version of the package
+will attempt to be loaded and used, invoking the default export.
+```shell
+npx ember-apply @scope/feature-name
+```
+
 ## Adding a new applyable
 
 - clone this repository
@@ -83,4 +91,6 @@ While these public APIs aren't "needed", and could indeed be used with ember's b
       it does provide basic pattern-based transforming
       utilities, so it's a solid option. It also does
       not have built-in support for template transforms.
+    - currently, `preset` forces the install of `esbuild` which fails due to having the security feature `ignore-scripts` enabled, so `preset` is a non-option for folks who care
+      about security. (or who don't mind adding an allow-list for `preset`)
 
