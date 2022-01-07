@@ -3,6 +3,8 @@
 /**
  * @typedef {object} AddHTMLOptions
  * @property {string} before which tag to insert text before
+ *
+ * @typedef {import('posthtml').Plugin<unknown>} Plugin
  */
 
 import fs from 'fs/promises';
@@ -10,6 +12,7 @@ import posthtml from 'posthtml';
 
 /**
  * @param {string} filePath
+ * @param {Plugin} plugin
  */
 export async function transformHTML(filePath, plugin) {
   let code = (await fs.readFile(filePath)).toString();
@@ -32,6 +35,8 @@ export async function addHTML(filePath, html, { before = '' }) {
   }
 
   await transformHTML(filePath, (tree) => {
-    tree.match({ tag: 'link' }, (node) => {});
+    tree.match({ tag: 'link' }, (node) => {
+      return node;
+    });
   });
 }
