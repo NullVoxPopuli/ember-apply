@@ -13,7 +13,8 @@
   "scripts": {
     "build:types": "tsc --build",
     "lint": "yarn lint:js",
-    "lint:js": "eslint ."
+    "lint:js": "eslint .",
+    "lint:fix": "yarn lint:js --fix"
   },
   "dependencies": {
     "ember-template-recast": "^6.1.2",

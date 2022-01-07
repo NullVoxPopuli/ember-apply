@@ -19,9 +19,9 @@
       // no paths, only relative imports
       // TODO: remove paths
       "ember-apply": ["."],
-      "ember-apply/*": ["./*"],
+      "ember-apply/*": ["./*"]
     }
   },
-  "include": ["src/**/*", "applyables/**/*"],
+  "include": ["src/**/*", "applyables/**/*"]
   // "exclude": ["node_modules/**/*"]
 }

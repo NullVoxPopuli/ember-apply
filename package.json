@@ -6,5 +6,41 @@
   ],
   "license": "MIT",
   "author": "NullVoxPopuli",
-  "devDependencies": {}
+  "scripts": {
+    "build:types": "tsc --build",
+    "lint:fix": "yarn turbo run lint:fix",
+    "lint": "yarn turbo run lint:js"
+  },
+  "devDependencies": {
+    "turbo": "^1.0.24"
+  },
+  "turbo": {
+    "baseBranch": "origin/main",
+    "pipeline": {
+      "dev": {
+        "dependsOn": [
+          "^dev"
+        ]
+      },
+      "start": {
+        "dependsOn": [
+          "^build"
+        ],
+        "cache": false
+      },
+      "build": {
+        "dependsOn": [
+          "^build"
+        ]
+      },
+      "lint": {
+        "dependsOn": [
+          "^lint:js"
+        ]
+      },
+      "lint:fix": {},
+      "lint:js": {},
+      "test": {}
+    }
+  }
 }
