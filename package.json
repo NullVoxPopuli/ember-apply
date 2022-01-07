@@ -9,7 +9,7 @@
   "scripts": {
     "build:types": "tsc --build",
     "lint:fix": "yarn turbo run lint:fix",
-    "lint": "yarn turbo run lint:js"
+    "lint:js": "yarn turbo run lint:js"
   },
   "devDependencies": {
     "turbo": "^1.0.24"
