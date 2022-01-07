@@ -1,0 +1,8 @@
+{
+  "name": "@apply/ember-tailwind",
+  "type": "module",
+  "preset": "index.js",
+  "dependencies": {
+    "ember-apply": "*"
+  }
+}

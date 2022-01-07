@@ -15,11 +15,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 })();
 
 /**
- * TODO:
- * - read local package.json for "ember-apply" entries
- * - gracefully error when something can't be found
- * - ask to use a dependency from npm if it exists
- *
  * @param {string} name of the feature to find
  */
 async function getApplyable(name) {
@@ -35,6 +30,9 @@ async function getApplyable(name) {
 
   try {
     const applyable = await import(`https://cdn.skypack.dev/${name}`);
+
+    // TODO: prompt user before running this code
+    //       (any package can be placed here)
 
     return applyable.default;
   } catch (error) {
