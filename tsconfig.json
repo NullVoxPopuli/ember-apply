@@ -21,5 +21,6 @@
       "*": ["*"]
     }
   },
-  "include": ["src/**/*", "applyables/**/*", "types/*"]
+  "include": ["src/**/*", "applyables/**/*", "types/*"],
+  "exclude": ["node_modules/**/*"]
 }

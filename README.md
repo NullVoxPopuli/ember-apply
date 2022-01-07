@@ -57,7 +57,7 @@ Known working capabilities:
 
 ### For Transforming HTML
 
-[posthtml](https://github.com/posthtml/posthtml) is used
+[rehype](https://github.com/rehypejs/rehype) is used
 
 ## Public API
 

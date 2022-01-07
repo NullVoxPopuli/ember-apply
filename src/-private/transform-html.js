@@ -1,30 +1,51 @@
 // @ts-check
 
 /**
+ *
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('unist').Parent} Parent
+ *
  * @typedef {object} AddHTMLOptions
  * @property {string} before which tag to insert text before
  *
- * @typedef {import('posthtml').Plugin<unknown>} Plugin
+ * @typedef {import('hast').Root} Root
+ * @typedef {import('unified').Plugin<Array<void>, Root, Root>} Plugin
+ *
+ * @typedef {import('unified').CompilerFunction<Node, string>} CompilerFunction
  */
 
 import fs from 'fs/promises';
-import posthtml from 'posthtml';
+import { unified } from 'unified';
+import rehypeParse from 'rehype-parse';
+import rehypeStringify from 'rehype-stringify';
+import { visit } from 'unist-util-visit';
+import rehypeRaw from 'rehype-raw';
 
 /**
+ * Transform HTML with rehype
+ *
  * @param {string} filePath
- * @param {Plugin} plugin
+ * @param {CompilerFunction} plugin
  */
 export async function transformHTML(filePath, plugin) {
   let code = (await fs.readFile(filePath)).toString();
 
-  let transformed = await posthtml([plugin]).process(code /*, options */);
+  let transformed = await unified()
+    .use(rehypeParse, { emitParseErrors: true, duplicateAttribute: false })
+    .use(() => plugin)
+    .use(rehypeRaw, { passThrough: ['text', 'html'] })
+    .use(rehypeStringify, {
+      upperDoctype: true,
+      allowDangerousHtml: true,
+    })
+    .process(code);
 
-  await fs.writeFile(filePath, transformed.html);
+  await fs.writeFile(filePath, transformed.value);
 }
 
 /**
  * @param {string} filePath
- * @param {string} html the HTML to inject
+ * @param {string} html the HTML to inject before the first tag matching `before`
  * @param {AddHTMLOptions} options
  */
 export async function addHTML(filePath, html, { before = '' }) {
@@ -34,9 +55,32 @@ export async function addHTML(filePath, html, { before = '' }) {
     return;
   }
 
+  /**
+   * @type {Node[]}
+   */
+  let targetAST = [];
+
+  await unified()
+    .use(rehypeParse, { fragment: true })
+    .use(() => (tree) => {
+      targetAST = tree.children;
+    })
+    .use(rehypeStringify, { fragment: true })
+    .process(html);
+
   await transformHTML(filePath, (tree) => {
-    tree.match({ tag: 'link' }, (node) => {
-      return node;
+    let found = false;
+
+    visit(tree, { type: 'element', tagName: before }, (_node, index, parent) => {
+      if (found) {
+        return;
+      }
+
+      found = true;
+
+      let trailing = parent.children.splice(index);
+
+      parent.children = [...parent.children, ...targetAST, ...trailing];
     });
   });
 }

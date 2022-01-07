@@ -41,6 +41,18 @@
       ]
     },
     {
+      "groupName": "HTML Packages",
+      "schedule": ["after 9pm on sunday"],
+      "packageNames": [
+        "rehype",
+        "unified"
+      ],
+      "packagePatterns": [
+        "rehype-.*",
+        "unist-*"
+      ]
+    },
+    {
       "groupName": "Testing Dependencies",
       "schedule": ["after 9pm on sunday"],
       "packageNames": [
