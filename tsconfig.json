@@ -16,11 +16,12 @@
     // Strictness / Correctness
     "strict": true,
     "paths": {
+      // no paths, only relative imports
+      // TODO: remove paths
       "ember-apply": ["."],
       "ember-apply/*": ["./*"],
-      "*": ["*"]
     }
   },
-  "include": ["src/**/*", "applyables/**/*", "types/*"],
-  "exclude": ["node_modules/**/*"]
+  "include": ["src/**/*", "applyables/**/*"],
+  // "exclude": ["node_modules/**/*"]
 }
