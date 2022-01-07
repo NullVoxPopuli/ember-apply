@@ -1,7 +1,9 @@
 {
-  "name": "@apply/ember-tailwind",
+  "name": "@ember-apply/tailwind",
+  "version": "0.0.1",
   "type": "module",
   "preset": "index.js",
+  "author": "NullVoxPopuli",
   "dependencies": {
     "ember-apply": "*"
   }
