@@ -3,3 +3,4 @@ declarations/
 yarn-error.log
 .turbo
 /out/
+coverage/

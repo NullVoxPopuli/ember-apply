@@ -2,7 +2,7 @@
 
 const { configs } = require('@nullvoxpopuli/eslint-configs');
 
-const config = configs.node();
+const config = configs.nodeTS();
 
 module.exports = {
   ...config,

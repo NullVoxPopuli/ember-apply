@@ -2,13 +2,7 @@
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import {
-  addScripts,
-  addDevDependencies,
-  gitIgnore,
-  applyFolder,
-  addHTML,
-} from '../../src/index.js';
+import { addScripts, addDevDependencies, gitIgnore, applyFolder, addHTML } from 'ember-apply';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
