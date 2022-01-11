@@ -37,3 +37,5 @@ export default async function run(workingDirectory) {
 
   await gitIgnore('public/assets/tailwind.css', '# compiled output');
 }
+
+run.path = __dirname;

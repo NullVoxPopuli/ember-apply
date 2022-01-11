@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "automatic integration and configuration from the community",
   "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./test-utils": "./src/test-utils.js"
+  },
   "type": "module",
   "author": "NullVoxPopuli",
   "license": "MIT",
