@@ -46,7 +46,6 @@ async function getApplyable(name) {
 
     // TODO: prompt user before running this code
     //       (any package can be placed here)
-
   } catch (error) {
     // TODO: need verbose mode
   }
