@@ -9,7 +9,7 @@
     "lint": "yarn lint:js",
     "lint:js": "eslint .",
     "lint:fix": "yarn lint:js --fix",
-    "test": "vitest --coverage",
+    "test": "vitest --coverage --no-watch",
     "test:watch": "vitest --watch"
   },
   "dependencies": {

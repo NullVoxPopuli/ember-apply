@@ -8,6 +8,7 @@
   "author": "NullVoxPopuli",
   "scripts": {
     "build:types": "tsc --build",
+    "test": "yarn turbo run test",
     "lint:fix": "yarn turbo run lint:fix",
     "lint:js": "yarn turbo run lint:js"
   },
