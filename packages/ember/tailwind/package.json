@@ -1,7 +1,7 @@
 {
   "name": "@ember-apply/tailwind",
   "description": "ember-apply plugin for tailwind",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "license": "MIT",
   "preset": "index.js",
