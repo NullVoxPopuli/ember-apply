@@ -85,6 +85,8 @@ async function resolvePackage(options) {
   // TODO: prompt user before running this code
   //       (any package can be placed here)
 
+  // https://www.skypack.dev/view/@ember-apply/tailwind
+  // import emberApplyTailwind from 'https://cdn.skypack.dev/@ember-apply/tailwind';
   return await tryResolve(`https://cdn.skypack.dev/${name}`, options);
 }
 

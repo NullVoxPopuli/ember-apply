@@ -24,7 +24,7 @@ export async function apply(appPath, applyablePath) {
   let cli = path.join(__dirname, 'cli/index.js');
   let target = path.resolve(applyablePath);
 
-  await execa('node', [cli, target], {
+  await execa('node', [cli, '--verbose', target], {
     cwd: appPath,
   });
 }
