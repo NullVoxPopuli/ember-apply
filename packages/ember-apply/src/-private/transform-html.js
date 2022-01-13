@@ -25,7 +25,7 @@ import rehypeRaw from 'rehype-raw';
  * Transform HTML with rehype
  *
  * @param {string} filePath
- * @param {CompilerFunction} plugin
+ * @param {(tree: Node) => void} plugin
  */
 export async function transformHTML(filePath, plugin) {
   let code = (await fs.readFile(filePath)).toString();
@@ -65,22 +65,35 @@ export async function addHTML(filePath, html, { before = '' }) {
     .use(() => (tree) => {
       targetAST = tree.children;
     })
-    .use(rehypeStringify, { fragment: true })
+    .use(
+      rehypeStringify,
+      // @ts-expect-error
+      { fragment: true }
+    )
     .process(html);
 
   await transformHTML(filePath, (tree) => {
     let found = false;
 
-    visit(tree, { type: 'element', tagName: before }, (_node, index, parent) => {
-      if (found) {
-        return;
+    visit(
+      tree,
+      { type: 'element', tagName: before },
+      /**
+       * @param {Node} node
+       * @param {number} index
+       * @param {Parent} parent
+       */
+      (_node, index, parent) => {
+        if (found) {
+          return;
+        }
+
+        found = true;
+
+        let trailing = parent.children.splice(index);
+
+        parent.children = [...parent.children, ...targetAST, ...trailing];
       }
-
-      found = true;
-
-      let trailing = parent.children.splice(index);
-
-      parent.children = [...parent.children, ...targetAST, ...trailing];
-    });
+    );
   });
 }

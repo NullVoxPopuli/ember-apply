@@ -7,13 +7,12 @@
   "license": "MIT",
   "author": "NullVoxPopuli",
   "scripts": {
-    "build:types": "tsc --build",
     "test": "yarn turbo run test",
     "lint:fix": "yarn turbo run lint:fix",
     "lint:js": "yarn turbo run lint:js"
   },
   "devDependencies": {
-    "turbo": "^1.0.24"
+    "turbo": "^1.0.26"
   },
   "turbo": {
     "baseBranch": "origin/main",

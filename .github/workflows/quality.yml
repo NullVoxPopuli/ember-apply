@@ -58,4 +58,5 @@ jobs:
         path: ${{ env.CACHE_PATH }}
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - run: yarn install
-    - run: yarn build:types
+    # running with yarn causes tsc to hang
+    - run: tsc --build

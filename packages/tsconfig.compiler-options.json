@@ -10,9 +10,11 @@
     // Build settings
     "module": "ESNext",
     "target": "ESNext",
+    "composite": true,
     // Features
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     // Strictness / Correctness
     "strict": true
   }
