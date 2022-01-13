@@ -15,7 +15,7 @@
     "ember-apply": "src/cli/index.js"
   },
   "files": [
-    "src",
+    "src/**/*",
     "README.md"
   ],
   "scripts": {
