@@ -1,0 +1,6 @@
+{
+  "references": [
+    { "path": "./packages/ember-apply" },
+    { "path": "./packages/ember/tailwind" }
+  ]
+}

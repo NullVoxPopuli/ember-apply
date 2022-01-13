@@ -1,0 +1,74 @@
+name: "Quality"
+on:
+  pull_request:
+  push:
+    # filtering branches here prevents duplicate builds from pull_request and push
+    branches:
+      - main
+      - master
+
+env:
+  CI: true
+  CACHE_PATH: '**/node_modules'
+
+jobs:
+  install_dependencies:
+    name: Install Dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: volta-cli/action@v1
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.CACHE_PATH }}
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: "${{ runner.os }}-modules-"
+    - run: yarn install
+
+  lint_source:
+    name: Lint Source
+    runs-on: ubuntu-latest
+    needs: [install_dependencies]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - uses: actions/cache@v2.1.7
+        with:
+          path: ${{ env.CACHE_PATH }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install
+      - name: Lints
+        run: yarn lint
+
+  commits:
+    name: Commit Messages
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - uses: volta-cli/action@v1
+    - uses: wagoid/commitlint-github-action@v4.1.9
+
+  # types:
+  #   name: "Type Correctness"
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 2
+  #   needs: [install_dependencies]
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: volta-cli/action@v1
+  #   - uses: actions/cache@v2
+  #     with:
+  #       path: ${{ env.CACHE_PATH }}
+  #       key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+  #   - run: yarn install
+  #   # running with yarn causes tsc to hang
+  #   - run: tsc --build --clean && tsc --build
+  #     continue-on-error: true

@@ -1,25 +1,56 @@
 {
-  "name": "ember-apply",
-  "version": "0.0.0",
-  "description": "automatic integration and configuration from the community",
-  "main": "src/index.js",
-  "type": "module",
-  "author": "NullVoxPopuli",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "packages/ember/*"
+  ],
   "license": "MIT",
-  "private": false,
-  "bin": {
-    "ember-apply": "src/cli/index.js"
-  },
+  "author": "NullVoxPopuli",
   "scripts": {
-    "lint:js": "eslint ."
-  },
-  "dependencies": {
-    "ember-template-recast": "^6.1.2",
-    "execa": "^6.0.0",
-    "jscodeshift": "^0.13.0"
+    "publish": "turbo run publish",
+    "publish:dry-run": "turbo run publish:dry-run",
+    "test": "turbo run test",
+    "lint:fix": "turbo run lint:fix",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
-    "@nullvoxpopuli/eslint-configs": "^2.1.16",
-    "eslint": "^8.6.0"
+    "@commitlint/cli": "^16.0.2",
+    "@commitlint/config-conventional": "^16.0.0",
+    "turbo": "^1.0.26"
+  },
+  "turbo": {
+    "baseBranch": "origin/main",
+    "pipeline": {
+      "dev": {
+        "dependsOn": [
+          "^dev"
+        ]
+      },
+      "start": {
+        "dependsOn": [
+          "^build"
+        ],
+        "cache": false
+      },
+      "build": {
+        "dependsOn": [
+          "^build"
+        ]
+      },
+      "lint": {
+        "dependsOn": [
+          "^lint:js"
+        ]
+      },
+      "lint:fix": {},
+      "lint:js": {},
+      "test": {},
+      "publish": {},
+      "publish:dry-run": {}
+    }
+  },
+  "volta": {
+    "node": "16.13.2",
+    "yarn": "1.22.17"
   }
 }

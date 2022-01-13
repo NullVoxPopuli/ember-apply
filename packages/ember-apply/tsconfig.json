@@ -1,0 +1,4 @@
+{
+  "extends": "../tsconfig.compiler-options.json",
+  "include": ["src/**/*"]
+}
