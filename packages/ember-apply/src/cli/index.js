@@ -79,67 +79,52 @@ async function resolveApplyable(options) {
 /**
  * @param {Options} options
  */
-async function resolvePackage({ name, verbose }) {
-  try {
-    // TODO: prompt user before running this code
-    //       (any package can be placed here)
+async function resolvePackage(options) {
+  let { name } = options;
 
+  // TODO: prompt user before running this code
+  //       (any package can be placed here)
 
-    let modulePath = `https://cdn.skypack.dev/${name}`;
-
-    if (verbose) {
-      console.info(chalk.gray(`Checking ${modulePath}`));
-    }
-
-    return await import(modulePath);
-  } catch (error) {
-    if (verbose) {
-      console.error(chalk.red(error));
-    }
-  }
+  return await tryResolve(`https://cdn.skypack.dev/${name}`, options);
 }
 
 /**
  * @param {Options} options
  */
-async function resolvePath({ name, verbose }) {
+async function resolvePath(options) {
   let cwd = process.cwd();
+  let { name, verbose } = options;
 
   assert(name, 'name is required');
 
+  return (
+    // local, but specified index.js
+    (await tryResolve(path.join(cwd, name), options)) ||
+    // local, but without index.js
+    (await tryResolve(path.join(cwd, name, 'index.js'), options)) ||
+    // local, but absolute path
+    (await tryResolve(path.join(name), options)) ||
+    // local, but absolute path without specifying index.js
+    (await tryResolve(path.join(name, 'index.js'), options))
+  );
+}
+
+/**
+ * @param {string} url - the path to import
+ * @param {Options} [options]
+ */
+async function tryResolve(url, options = {}) {
   try {
-    if (name.endsWith('index.js')) {
-      if (!name.startsWith('/')) {
-        if (verbose) {
-          console.info(chalk.gray(`Checking ${path.join(cwd, name)}`));
-        }
-
-        return await import(path.join(cwd, name));
-      }
-
-      if (verbose) {
-        console.error(chalk.gray(`Checking ${name}`));
-      }
-
-      return await import(name);
+    if (options.verbose) {
+      console.info(chalk.gray(`Checking ${url}`));
     }
 
-    if (!name.startsWith('/')) {
-      if (verbose) {
-        console.info(chalk.gray(`Checking ${path.join(cwd, name, 'index.js')}`));
-      }
-
-      return await import(path.join(cwd, name, 'index.js'));
-    }
-
-    if (verbose) {
-      console.info(chalk.gray(`Checking ${path.join(name, 'index.js')}`));
-    }
-
-    return await import(path.join(name, 'index.js'));
+    return await import(url);
   } catch (error) {
-    if (verbose) {
+    if (options.verbose) {
       console.error(chalk.red(error));
     }
+
+    return;
   }
 }
