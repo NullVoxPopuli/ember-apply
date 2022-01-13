@@ -1,3 +1,10 @@
+# [ember-apply-v1.0.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v1.0.0...ember-apply-v1.0.1) (2022-01-13)
+
+
+### Bug Fixes
+
+* **ember-apply:** local paths are always relative to cwd ([37889df](https://github.com/NullVoxPopuli/ember-apply/commit/37889dfccb17e7224921ebf8b8720b8ba6bc894d))
+
 # ember-apply-v1.0.0 (2022-01-13)
 
 
