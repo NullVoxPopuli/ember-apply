@@ -7,7 +7,7 @@
   "license": "MIT",
   "author": "NullVoxPopuli",
   "scripts": {
-    "publish": "turbo run publish",
+    "publish:release": "turbo run publish",
     "publish:dry-run": "turbo run publish:dry-run",
     "test": "turbo run test",
     "lint:fix": "turbo run lint:fix",
