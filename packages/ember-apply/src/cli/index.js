@@ -3,61 +3,143 @@
 import assert from 'assert';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import yargs from 'yargs';
+import chalk from 'chalk';
+import { hideBin } from 'yargs/helpers';
+
+/**
+ * @typedef {object} Options
+ * @property {string} [ name ]
+ * @property {boolean} [ verbose ]
+ *
+ */
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-(async function main() {
-  const [, , ...args] = process.argv;
-  const [feature, ...options] = args;
+process.on('uncaughtException', function (err) {
+  console.error(chalk.red(err));
+});
 
-  const applyable = await getApplyable(feature);
+yargs(hideBin(process.argv))
+  .command(
+    '$0 <name>',
+    'Apply a feature to the current project',
+    (yargs) => {
+      return yargs.positional('name', {
+        describe: 'Name of the feature to apply',
+        type: 'string',
+      });
+    },
+    async (argv) => {
+      /** @type {Options} */
+      let args = argv;
 
-  assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
-  assert(typeof applyable === 'function', 'applyable must be a function');
+      assert(args.name, 'name is required');
 
-  await applyable();
-})();
+      const applyable = await getApplyable(args);
+
+      assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
+      assert(typeof applyable === 'function', 'applyable must be a function');
+
+      await applyable();
+    }
+  )
+  .option('verbose', {
+    alias: 'v',
+    type: 'boolean',
+    description: 'Run with verbose logging',
+  })
+  .demandCommand(1)
+  .parse();
 
 /**
- * @param {string} name of the feature to find
+ * @param {Options} options
+ *
  */
-async function getApplyable(name) {
-  let applyableModule;
+async function getApplyable(options) {
+  let applyableModule = await resolveApplyable(options);
+
+  assert(applyableModule, 'Could not find an applyable feature. Does it have a default export?');
+
+  return applyableModule.default;
+}
+
+/**
+ * @param {Options} options
+ */
+async function resolveApplyable(options) {
+  return (
+    // Could be a local path on the file system
+    (await resolvePath(options)) ||
+    // Could be a npm package
+    (await resolvePackage(options))
+  );
+}
+
+/**
+ * @param {Options} options
+ */
+async function resolvePackage({ name, verbose }) {
+  try {
+    // TODO: prompt user before running this code
+    //       (any package can be placed here)
+
+
+    let modulePath = `https://cdn.skypack.dev/${name}`;
+
+    if (verbose) {
+      console.info(chalk.gray(`Checking ${modulePath}`));
+    }
+
+    return await import(modulePath);
+  } catch (error) {
+    if (verbose) {
+      console.error(chalk.red(error));
+    }
+  }
+}
+
+/**
+ * @param {Options} options
+ */
+async function resolvePath({ name, verbose }) {
   let cwd = process.cwd();
 
-  /**
-   * Could be a local path on the file system
-   */
+  assert(name, 'name is required');
+
   try {
     if (name.endsWith('index.js')) {
       if (!name.startsWith('/')) {
-        applyableModule = await import(path.join(cwd, name));
-      } else {
-        applyableModule = await import(name);
+        if (verbose) {
+          console.info(chalk.gray(`Checking ${path.join(cwd, name)}`));
+        }
+
+        return await import(path.join(cwd, name));
       }
-    } else {
-      if (!name.startsWith('/')) {
-        applyableModule = await import(path.join(cwd, name, 'index.js'));
-      } else {
-        applyableModule = await import(path.join(name, 'index.js'));
+
+      if (verbose) {
+        console.error(chalk.gray(`Checking ${name}`));
       }
+
+      return await import(name);
     }
+
+    if (!name.startsWith('/')) {
+      if (verbose) {
+        console.info(chalk.gray(`Checking ${path.join(cwd, name, 'index.js')}`));
+      }
+
+      return await import(path.join(cwd, name, 'index.js'));
+    }
+
+    if (verbose) {
+      console.info(chalk.gray(`Checking ${path.join(name, 'index.js')}`));
+    }
+
+    return await import(path.join(name, 'index.js'));
   } catch (error) {
-    console.error(error);
-    // TODO: need verbose mode
+    if (verbose) {
+      console.error(chalk.red(error));
+    }
   }
-
-  /**
-   * Could be a npm package
-   */
-  try {
-    applyableModule = await import(`https://cdn.skypack.dev/${name}`);
-
-    // TODO: prompt user before running this code
-    //       (any package can be placed here)
-  } catch (error) {
-    // TODO: need verbose mode
-  }
-
-  return applyableModule.default;
 }
