@@ -44,3 +44,43 @@ jobs:
           yarn global add ember-cli
       - name: Tests
         run: yarn test
+
+  tooling:
+    name: Tooling
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
+    needs: [install_dependencies]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - uses: actions/cache@v2.1.7
+        with:
+          path: ${{ env.CACHE_PATH }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - run: yarn install
+      - name: Semantic Release
+        run: yarn publish:dry-run
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [tests]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - uses: volta-cli/action@v1
+      - run: yarn install
+
+      - name: Release
+        run: yarn publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

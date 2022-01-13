@@ -40,9 +40,20 @@ jobs:
           path: ${{ env.CACHE_PATH }}
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install
-      - name: ESLint
-        run: yarn lint:js
+      - name: Lints
+        run: yarn lint
 
+  commits:
+    name: Commit Messages
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - uses: volta-cli/action@v1
+    - uses: wagoid/commitlint-github-action@v4.1.9
 
   # types:
   #   name: "Type Correctness"
