@@ -23,16 +23,25 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  */
 async function getApplyable(name) {
   let applyableModule;
+  let cwd = process.cwd();
 
   /**
    * Could be a local path on the file system
    */
   try {
     if (name.endsWith('index.js')) {
-      applyableModule = await import(name);
+      if (!name.startsWith('/')) {
+        applyableModule = await import(path.join(cwd, name));
+      } else {
+        applyableModule = await import(name);
+      }
+    } else {
+      if (!name.startsWith('/')) {
+        applyableModule = await import(path.join(cwd, name, 'index.js'));
+      } else {
+        applyableModule = await import(path.join(name, 'index.js'));
+      }
     }
-
-    applyableModule = await import(path.join(name, 'index.js'));
   } catch (error) {
     console.error(error);
     // TODO: need verbose mode
