@@ -59,4 +59,4 @@ jobs:
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - run: yarn install
     # running with yarn causes tsc to hang
-    - run: tsc --build
+    - run: tsc --build --clean && tsc --build
