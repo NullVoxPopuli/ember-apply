@@ -5,6 +5,10 @@
   "license": "MIT",
   "preset": "index.js",
   "author": "NullVoxPopuli",
+  "files": [
+    "index.js",
+    "files"
+  ],
   "scripts": {
     "publish": "semantic-release -e semantic-release-monorepo",
     "publish:dry-run": "yarn publish --dry-run",
