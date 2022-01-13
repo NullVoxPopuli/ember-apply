@@ -7,9 +7,9 @@
   "license": "MIT",
   "author": "NullVoxPopuli",
   "scripts": {
-    "test": "yarn turbo run test",
-    "lint:fix": "yarn turbo run lint:fix",
-    "lint:js": "yarn turbo run lint:js"
+    "test": "turbo run test",
+    "lint:fix": "turbo run lint:fix",
+    "lint:js": "turbo run lint:js"
   },
   "devDependencies": {
     "turbo": "^1.0.26"
