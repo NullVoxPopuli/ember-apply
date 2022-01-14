@@ -22,7 +22,7 @@ export async function newEmberApp() {
  */
 export async function apply(appPath, applyablePath) {
   let cli = path.join(__dirname, 'cli/index.js');
-  let target = path.resolve(applyablePath);
+  let target = applyablePath.startsWith('@') ? applyablePath : path.resolve(applyablePath);
 
   await execa('node', [cli, '--verbose', target], {
     cwd: appPath,

@@ -6,14 +6,14 @@ import { apply, diff, diffSummary, newEmberApp } from '../src/test-utils';
 describe('CLI', () => {
   describe('default command', () => {
     describe('using Tailwind as an example', () => {
-      it.skip('package: @ember-apply/tailwind', async () => {
+      it('package: @ember-apply/tailwind', async () => {
         let appLocation = await newEmberApp();
 
         await apply(appLocation, '@ember-apply/tailwind');
 
         expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
-      });
+      }, 60_000);
 
       it('local relative path', async () => {
         let appLocation = await newEmberApp();

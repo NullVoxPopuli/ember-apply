@@ -1,8 +1,15 @@
 #!/usr/bin/env node
 // @ts-check
+// To use with https loader
+//
+// ❯ node --experimental-loader ../../NullVoxPopuli/ember-apply/packages/ember-apply/src/cli/node-https-loader.js ../../NullVoxPopuli/ember-apply/packages/ember-apply/src/cli/index.js --verbose tailwind
+import fs from 'fs/promises';
 import assert from 'assert';
+import os from 'os';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import pacote from 'pacote';
+import { execa } from 'execa';
 import yargs from 'yargs';
 import chalk from 'chalk';
 import { hideBin } from 'yargs/helpers';
@@ -32,7 +39,7 @@ yargs(hideBin(process.argv))
     },
     async (argv) => {
       /** @type {Options} */
-      let args = argv;
+      let args = Object.freeze(argv);
 
       assert(args.name, 'name is required');
 
@@ -42,6 +49,8 @@ yargs(hideBin(process.argv))
       assert(typeof applyable === 'function', 'applyable must be a function');
 
       await applyable();
+
+      console.info(chalk.green(`✔︎ Applied feature: ${args.name}`));
     }
   )
   .option('verbose', {
@@ -72,8 +81,41 @@ async function resolveApplyable(options) {
     // Could be a local path on the file system
     (await resolvePath(options)) ||
     // Could be a npm package
-    (await resolvePackage(options))
+    (await resolvePackage(options)) ||
+    // Might need to be installed because skypack is not working
+    // (why can't they just be a CDN?)
+    (await downloadFromNpm(options))
   );
+}
+
+/**
+ * This is the super slow lost-resort thing to do
+ * @param {Options} options
+ */
+async function downloadFromNpm(options) {
+  let { name } = options;
+
+  assert(name, 'name is required');
+
+  let packageName =
+    ((await tryNpmInfo(`@ember-apply/${name}`)) ? `@ember-apply/${name}` : null) ||
+    ((await tryNpmInfo(name)) ? name : null);
+
+  let dir = await fs.mkdtemp(path.join(os.tmpdir(), 'ember-apply-runtime---'));
+
+  assert(packageName, `Could not find @ember-apply/${name} or ${name} on npm`);
+
+  await pacote.extract(packageName, dir);
+
+  let infoBuffer = await fs.readFile(path.join(dir, 'package.json'));
+  let info = JSON.parse(infoBuffer.toString());
+  let main = info.exports?.import;
+
+  assert(main, `${packageName}'s package.json does not have an exports.import`);
+
+  await execa('npm', ['install'], { cwd: dir });
+
+  return await tryResolve(path.join(dir, main), options);
 }
 
 /**
@@ -85,9 +127,19 @@ async function resolvePackage(options) {
   // TODO: prompt user before running this code
   //       (any package can be placed here)
 
+  //  We cannot use Skypack until they stop trying to be clever
+  //    https://github.com/skypackjs/skypack-cdn/issues/258
+  //
+  //   A lot more things would work if they just wouldn't build packages
+  //
   // https://www.skypack.dev/view/@ember-apply/tailwind
   // import emberApplyTailwind from 'https://cdn.skypack.dev/@ember-apply/tailwind';
-  return await tryResolve(`https://cdn.skypack.dev/${name}`, options);
+  return (
+    // shorthand
+    (await tryResolve(`https://cdn.skypack.dev/@ember-apply/${name}`, options)) ||
+    // if full package is specified
+    (await tryResolve(`https://cdn.skypack.dev/${name}`, options))
+  );
 }
 
 /**
@@ -122,6 +174,28 @@ async function tryResolve(url, options = {}) {
     }
 
     return await import(url);
+  } catch (error) {
+    if (options.verbose) {
+      console.error(chalk.red(error));
+    }
+
+    return;
+  }
+}
+
+/**
+ * @param {string} name - package name
+ * @param {Options} [options]
+ */
+async function tryNpmInfo(name, options = {}) {
+  let { verbose } = options;
+
+  try {
+    if (options.verbose) {
+      console.info(chalk.gray(`NPM Info: ${name}`));
+    }
+
+    return await execa('npm', ['view', name]);
   } catch (error) {
     if (options.verbose) {
       console.error(chalk.red(error));
