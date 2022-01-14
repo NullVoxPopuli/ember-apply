@@ -1,3 +1,10 @@
+# [ember-apply-v1.1.0](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.0.1...ember-apply-v1.1.0) (2022-01-14)
+
+
+### Features
+
+* use yargs for a better CLI experience ([faf7551](https://github.com/NullVoxPopuli/ember-apply//commit/faf7551b64da3e28dd5dc0f40f2d90667ee002e2))
+
 # [ember-apply-v1.0.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v1.0.0...ember-apply-v1.0.1) (2022-01-13)
 
 
