@@ -1,3 +1,10 @@
+# [ember-apply-v1.3.0](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.2.0...ember-apply-v1.3.0) (2022-01-14)
+
+
+### Features
+
+* **ember-apply:** add spinners ([daf6037](https://github.com/NullVoxPopuli/ember-apply//commit/daf6037c985f65688110a2e6e9f9b1570cc0d8b5))
+
 # [ember-apply-v1.2.0](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.1.0...ember-apply-v1.2.0) (2022-01-14)
 
 
