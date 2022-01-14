@@ -64,7 +64,7 @@ index 2398775..f038aae 100644
 +</body></html>
 \\\\ No newline at end of file
 diff --git a/package.json b/package.json
-index 976763c..e14a6d4 100644
+index 976763c..511752d 100644
 --- a/package.json
 +++ b/package.json
 @@ -11,7 +11,7 @@
@@ -82,8 +82,8 @@ index 976763c..e14a6d4 100644
      \\"test\\": \\"npm-run-all lint test:*\\",
 -    \\"test:ember\\": \\"ember test\\"
 +    \\"test:ember\\": \\"ember test\\",
-+    \\"tailwind:build\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css\\",
-+    \\"tailwind:watch\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
++    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
++    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
    },
    \\"devDependencies\\": {
      \\"@ember/optional-features\\": \\"^2.0.0\\",
@@ -218,7 +218,7 @@ index 2398775..f038aae 100644
 +</body></html>
 \\\\ No newline at end of file
 diff --git a/package.json b/package.json
-index 976763c..e14a6d4 100644
+index 976763c..511752d 100644
 --- a/package.json
 +++ b/package.json
 @@ -11,7 +11,7 @@
@@ -236,8 +236,8 @@ index 976763c..e14a6d4 100644
      \\"test\\": \\"npm-run-all lint test:*\\",
 -    \\"test:ember\\": \\"ember test\\"
 +    \\"test:ember\\": \\"ember test\\",
-+    \\"tailwind:build\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css\\",
-+    \\"tailwind:watch\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
++    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
++    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
    },
    \\"devDependencies\\": {
      \\"@ember/optional-features\\": \\"^2.0.0\\",
@@ -372,7 +372,7 @@ index 2398775..f038aae 100644
 +</body></html>
 \\\\ No newline at end of file
 diff --git a/package.json b/package.json
-index 976763c..e14a6d4 100644
+index 976763c..511752d 100644
 --- a/package.json
 +++ b/package.json
 @@ -11,7 +11,7 @@
@@ -390,8 +390,8 @@ index 976763c..e14a6d4 100644
      \\"test\\": \\"npm-run-all lint test:*\\",
 -    \\"test:ember\\": \\"ember test\\"
 +    \\"test:ember\\": \\"ember test\\",
-+    \\"tailwind:build\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css\\",
-+    \\"tailwind:watch\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
++    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
++    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
    },
    \\"devDependencies\\": {
      \\"@ember/optional-features\\": \\"^2.0.0\\",
@@ -526,7 +526,7 @@ index 2398775..f038aae 100644
 +</body></html>
 \\\\ No newline at end of file
 diff --git a/package.json b/package.json
-index 976763c..e14a6d4 100644
+index 976763c..511752d 100644
 --- a/package.json
 +++ b/package.json
 @@ -11,7 +11,7 @@
@@ -544,8 +544,8 @@ index 976763c..e14a6d4 100644
      \\"test\\": \\"npm-run-all lint test:*\\",
 -    \\"test:ember\\": \\"ember test\\"
 +    \\"test:ember\\": \\"ember test\\",
-+    \\"tailwind:build\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css\\",
-+    \\"tailwind:watch\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
++    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
++    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
    },
    \\"devDependencies\\": {
      \\"@ember/optional-features\\": \\"^2.0.0\\",
@@ -680,7 +680,7 @@ index 2398775..f038aae 100644
 +</body></html>
 \\\\ No newline at end of file
 diff --git a/package.json b/package.json
-index 976763c..e14a6d4 100644
+index 976763c..511752d 100644
 --- a/package.json
 +++ b/package.json
 @@ -11,7 +11,7 @@
@@ -698,8 +698,8 @@ index 976763c..e14a6d4 100644
      \\"test\\": \\"npm-run-all lint test:*\\",
 -    \\"test:ember\\": \\"ember test\\"
 +    \\"test:ember\\": \\"ember test\\",
-+    \\"tailwind:build\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css\\",
-+    \\"tailwind:watch\\": \\"npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
++    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
++    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
    },
    \\"devDependencies\\": {
      \\"@ember/optional-features\\": \\"^2.0.0\\",
