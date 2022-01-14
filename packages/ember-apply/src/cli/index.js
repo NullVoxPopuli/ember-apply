@@ -8,6 +8,8 @@ import assert from 'assert';
 import os from 'os';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+
+import ora from 'ora';
 import pacote from 'pacote';
 import { execa } from 'execa';
 import yargs from 'yargs';
@@ -22,6 +24,7 @@ import { hideBin } from 'yargs/helpers';
  */
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const spinner = ora();
 
 process.on('uncaughtException', function (err) {
   console.error(chalk.red(err));
@@ -43,14 +46,18 @@ yargs(hideBin(process.argv))
 
       assert(args.name, 'name is required');
 
+      spinner.start(`Locating feature: ${args.name}`);
+
       const applyable = await getApplyable(args);
 
       assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
       assert(typeof applyable === 'function', 'applyable must be a function');
 
+      spinner.text = `Applying: ${args.name}`;
+      spinner.info();
       await applyable();
 
-      console.info(chalk.green(`✔︎ Applied feature: ${args.name}`));
+      spinner.succeed(`Applied feature: ${args.name}`)
     }
   )
   .option('verbose', {
@@ -97,6 +104,9 @@ async function downloadFromNpm(options) {
 
   assert(name, 'name is required');
 
+  spinner.text = `Skypack unavailable, downloading from npm`;
+  spinner.info();
+
   let packageName =
     ((await tryNpmInfo(`@ember-apply/${name}`)) ? `@ember-apply/${name}` : null) ||
     ((await tryNpmInfo(name)) ? name : null);
@@ -113,6 +123,8 @@ async function downloadFromNpm(options) {
 
   assert(main, `${packageName}'s package.json does not have an exports.import`);
 
+  spinner.text = `Installing dependencies for ${packageName}`;
+  spinner.info();
   await execa('npm', ['install'], { cwd: dir });
 
   return await tryResolve(path.join(dir, main), options);
