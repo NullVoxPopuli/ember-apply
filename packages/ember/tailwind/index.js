@@ -16,7 +16,7 @@ export default async function run(workingDirectory) {
     tailwindcss: '^3.0.0',
   });
 
-  await applyFolder(path.join(__dirname, 'files'));
+  await applyFolder(path.join(__dirname, 'files'), 'config/tailwind');
   await addHTML(
     'app/index.html',
     `<link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">`,
@@ -29,9 +29,17 @@ export default async function run(workingDirectory) {
   );
 
   await addScripts({
-    'tailwind:build': 'npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css',
+    'tailwind:build':
+      'npx tailwindcss' +
+      ' -c ./config/tailwind/tailwind.config.js' +
+      ' -i ./config/tailwind/tailwind-input.css' +
+      ' -o ./public/assets/tailwind.css',
     'tailwind:watch':
-      'npx tailwindcss -i ./tailwind-input.css -o ./public/assets/tailwind.css --watch',
+      'npx tailwindcss' +
+      ' -c ./config/tailwind/tailwind.config.js' +
+      ' -i ./config/tailwind/tailwind-input.css' +
+      ' -o ./public/assets/tailwind.css' +
+      ' --watch',
     build: 'npm run tailwind:build && ember build --environment=production',
   });
 
