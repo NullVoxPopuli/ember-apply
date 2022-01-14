@@ -1,3 +1,15 @@
+# [ember-apply-v1.2.0](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.1.0...ember-apply-v1.2.0) (2022-01-14)
+
+
+### Bug Fixes
+
+* **ember-apply:** declare engines support ([d448a13](https://github.com/NullVoxPopuli/ember-apply//commit/d448a13615a93f66710825d694a940b6bfffa479))
+
+
+### Features
+
+* **ember-apply:** support installing from npm package ref ([3800100](https://github.com/NullVoxPopuli/ember-apply//commit/38001000754fa7629a3e0ef49c1331c5d31f0d75))
+
 # [ember-apply-v1.1.0](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.0.1...ember-apply-v1.1.0) (2022-01-14)
 
 
