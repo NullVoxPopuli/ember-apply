@@ -1,3 +1,10 @@
+# [ember-apply-v1.4.0](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.3.0...ember-apply-v1.4.0) (2022-01-14)
+
+
+### Features
+
+* **ember-apply:** applyFolder improvements ([07bb90e](https://github.com/NullVoxPopuli/ember-apply//commit/07bb90ed90eabc3c5a15b728c193e4e9d8b722bd))
+
 # [ember-apply-v1.3.0](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.2.0...ember-apply-v1.3.0) (2022-01-14)
 
 
