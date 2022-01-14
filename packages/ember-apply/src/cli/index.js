@@ -3,61 +3,130 @@
 import assert from 'assert';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import yargs from 'yargs';
+import chalk from 'chalk';
+import { hideBin } from 'yargs/helpers';
+
+/**
+ * @typedef {object} Options
+ * @property {string} [ name ]
+ * @property {boolean} [ verbose ]
+ *
+ */
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-(async function main() {
-  const [, , ...args] = process.argv;
-  const [feature, ...options] = args;
+process.on('uncaughtException', function (err) {
+  console.error(chalk.red(err));
+});
 
-  const applyable = await getApplyable(feature);
+yargs(hideBin(process.argv))
+  .command(
+    '$0 <name>',
+    'Apply a feature to the current project',
+    (yargs) => {
+      return yargs.positional('name', {
+        describe: 'Name of the feature to apply',
+        type: 'string',
+      });
+    },
+    async (argv) => {
+      /** @type {Options} */
+      let args = argv;
 
-  assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
-  assert(typeof applyable === 'function', 'applyable must be a function');
+      assert(args.name, 'name is required');
 
-  await applyable();
-})();
+      const applyable = await getApplyable(args);
+
+      assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
+      assert(typeof applyable === 'function', 'applyable must be a function');
+
+      await applyable();
+    }
+  )
+  .option('verbose', {
+    alias: 'v',
+    type: 'boolean',
+    description: 'Run with verbose logging',
+  })
+  .demandCommand(1)
+  .parse();
 
 /**
- * @param {string} name of the feature to find
+ * @param {Options} options
+ *
  */
-async function getApplyable(name) {
-  let applyableModule;
-  let cwd = process.cwd();
+async function getApplyable(options) {
+  let applyableModule = await resolveApplyable(options);
 
-  /**
-   * Could be a local path on the file system
-   */
-  try {
-    if (name.endsWith('index.js')) {
-      if (!name.startsWith('/')) {
-        applyableModule = await import(path.join(cwd, name));
-      } else {
-        applyableModule = await import(name);
-      }
-    } else {
-      if (!name.startsWith('/')) {
-        applyableModule = await import(path.join(cwd, name, 'index.js'));
-      } else {
-        applyableModule = await import(path.join(name, 'index.js'));
-      }
-    }
-  } catch (error) {
-    console.error(error);
-    // TODO: need verbose mode
-  }
-
-  /**
-   * Could be a npm package
-   */
-  try {
-    applyableModule = await import(`https://cdn.skypack.dev/${name}`);
-
-    // TODO: prompt user before running this code
-    //       (any package can be placed here)
-  } catch (error) {
-    // TODO: need verbose mode
-  }
+  assert(applyableModule, 'Could not find an applyable feature. Does it have a default export?');
 
   return applyableModule.default;
+}
+
+/**
+ * @param {Options} options
+ */
+async function resolveApplyable(options) {
+  return (
+    // Could be a local path on the file system
+    (await resolvePath(options)) ||
+    // Could be a npm package
+    (await resolvePackage(options))
+  );
+}
+
+/**
+ * @param {Options} options
+ */
+async function resolvePackage(options) {
+  let { name } = options;
+
+  // TODO: prompt user before running this code
+  //       (any package can be placed here)
+
+  // https://www.skypack.dev/view/@ember-apply/tailwind
+  // import emberApplyTailwind from 'https://cdn.skypack.dev/@ember-apply/tailwind';
+  return await tryResolve(`https://cdn.skypack.dev/${name}`, options);
+}
+
+/**
+ * @param {Options} options
+ */
+async function resolvePath(options) {
+  let cwd = process.cwd();
+  let { name, verbose } = options;
+
+  assert(name, 'name is required');
+
+  return (
+    // local, but specified index.js
+    (await tryResolve(path.join(cwd, name), options)) ||
+    // local, but without index.js
+    (await tryResolve(path.join(cwd, name, 'index.js'), options)) ||
+    // local, but absolute path
+    (await tryResolve(path.join(name), options)) ||
+    // local, but absolute path without specifying index.js
+    (await tryResolve(path.join(name, 'index.js'), options))
+  );
+}
+
+/**
+ * @param {string} url - the path to import
+ * @param {Options} [options]
+ */
+async function tryResolve(url, options = {}) {
+  try {
+    if (options.verbose) {
+      console.info(chalk.gray(`Checking ${url}`));
+    }
+
+    return await import(url);
+  } catch (error) {
+    if (options.verbose) {
+      console.error(chalk.red(error));
+    }
+
+    return;
+  }
 }

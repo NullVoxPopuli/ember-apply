@@ -6,6 +6,21 @@
   "license": "MIT",
   "preset": "index.js",
   "author": "NullVoxPopuli",
+  "repository": {
+    "url": "https://github.com/NullVoxPopuli/ember-apply/",
+    "type": "https",
+    "directory": "packages/ember/tailwind"
+  },
+  "keywords": [
+    "ember",
+    "tailwind",
+    "css",
+    "ember-apply",
+    "blueprint"
+  ],
+  "exports": {
+    "import": "./index.js"
+  },
   "files": [
     "index.js",
     "files/**/*"
