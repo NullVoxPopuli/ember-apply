@@ -57,7 +57,7 @@ yargs(hideBin(process.argv))
       spinner.info();
       await applyable();
 
-      spinner.succeed(`Applied feature: ${args.name}`)
+      spinner.succeed(`Applied feature: ${args.name}`);
     }
   )
   .option('verbose', {
