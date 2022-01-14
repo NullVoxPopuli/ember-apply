@@ -15,14 +15,21 @@ import path from 'path';
  * All paths will be merged / created for you.
  *
  * @param {string} folder the location of the folder to copy the contents of
+ * @param {string} [to] sub folder within the target project to copy the contents to
  */
-export async function applyFolder(folder) {
+export async function applyFolder(folder, to) {
   let files = await fs.readdir(folder);
 
   for (let file of files) {
     let filePath = path.join(folder, file);
+    let targetPath = to ? path.join(to, file) : file;
+    let directory = path.dirname(targetPath);
 
-    await copyFileTo(file, { source: filePath });
+    if (directory) {
+      await fs.mkdir(directory, { recursive: true });
+    }
+
+    await copyFileTo(targetPath, { source: filePath });
   }
 }
 
