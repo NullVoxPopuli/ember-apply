@@ -20,6 +20,27 @@ import jscodeshift from 'jscodeshift';
 /**
  * reads a script from source and transforms it with jscodeshift and then writes the file.
  *
+ * The https://astexplorer.net/ REPL can be used to inspect and test out how
+ * to transform javascript and typescript files.
+ *
+ * For javascript, the `babel` parser is used.
+ * For typescript, the `ts` parser is used.
+ *
+ * @example
+ * ```js
+ * import { transformScript } from 'ember-apply';
+ *
+ * await transformScript('path/to/file.js', ({ root, j }) => {
+ *   root
+ *    .find(j.Identifier)
+ *    .forEach(path => {
+ *       j(path).replaceWith(
+ *         j.identifier(path.node.name.split('').reverse().join(''))
+ *       );
+ *     })
+ *   });
+ * ```
+ *
  * @param {string} filePath to the file to transform
  * @param {TransformCallback} callback
  * @returns void

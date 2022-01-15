@@ -14,6 +14,26 @@ import path from 'path';
  * Copy the entire contents of a directory to the target location.
  * All paths will be merged / created for you.
  *
+ * @example
+ * if this script is located as a sibling to the "files" directory,
+ * this will copy each file in the "files" directory to the process.cwd() directory.
+ * ```js
+ * import { applyFolder } from 'ember-apply';
+ *
+ * await applyFolder(path.resolve(__dirname, 'files'));
+ * ```
+ *
+ * @example
+ * if this script is located as a sibling to the "files" directory,
+ * this will copy each file in the "files" directory to the `${process.cwd()}/target/subfolder` directory.
+ *
+ * ```js
+ * import { applyFolder } from 'ember-apply';
+ *
+ * await applyFolder(path.resolve(__dirname, 'files'), 'target/subfolder');
+ * ```
+ *
+ *
  * @param {string} folder the location of the folder to copy the contents of
  * @param {string} [to] sub folder within the target project to copy the contents to
  */
@@ -36,6 +56,20 @@ export async function applyFolder(folder, to) {
 /**
  * Copy a file to some `destination`. In the `options` object,
  * only one of `source` or `content` is needed.
+ *
+ * @example
+ * ```js
+ * import { copyFileTo } from 'ember-apply';
+ *
+ * await copyFileTo('destination/file.js', { source: 'source/file.js' });
+ * ```
+ *
+ * @example
+ * ```js
+ * import { copyFileTo } from 'ember-apply';
+ *
+ * await copyFileTo('destination/file.js', { content: 'file contents' });
+ * ```
  *
  * @param {string} destination
  * @param {CopyOptions} options

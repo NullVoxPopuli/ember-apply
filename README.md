@@ -1,11 +1,26 @@
 # ember-apply
+[![npm version](https://badge.fury.io/js/ember-apply.svg)](https://badge.fury.io/js/ember-apply)
+[![CI](https://github.com/NullVoxPopuli/ember-apply/actions/workflows/ci.yml/badge.svg)](https://github.com/NullVoxPopuli/ember-apply/actions/workflows/ci.yml)
+
 
 _Automatic integration and configuration from the community._
 
-This is a collection of recommended configurations provided via
-transformation (codemods and other utilities) that work both on
-existing apps as well as new apps to help make setting things
-up a bit easier.
+This is a framework and ecosystem agnostic collection of recommended configurations,
+applied via automation, that is compatible with any kind of project, new and old.
+
+Individual configurations may have conventions specific to a an ecosystem, but `ember-apply`,
+itself, can be used with [Svelte](http://svelte.dev/), [React](https://reactjs.org/), or
+whatever you want. The tools provided by `ember-apply` only require Node 16+.
+
+Maybe most importantly, is that `ember-apply` can be used for any tool that wishes
+to use high-level project-management and transformation utilities.
+See [#Public API](#public-api).
+
+
+![npm (tag)](https://img.shields.io/npm/v/@ember-apply/tailwind/latest?label=%40ember-apply%2Ftailwind)
+
+
+_NOTE:_ this package is a slightly experimental and prone to some API or organizational changes -- but is committed to strictly following semver.
 
 ## Usage
 
@@ -13,7 +28,14 @@ up a bit easier.
 npx ember-apply <feature-name>
 ```
 
-where `<feature-name>` is one of the following:
+where `<feature-name>` is one of the options under [#Features](#features)
+
+## Compatibility
+
+* Node 16 +
+* ESM
+
+## Features
 
 ### `tailwind`
 
@@ -27,6 +49,11 @@ Known working capabilities:
  - JIT
  - Rebuilding during development
 
+**Assumptions**
+- entrypoint for your app is located at `app/index.html`
+- entrypoint for your tests is located at `tests/index.html`
+- tailwind files are placed in `config/tailwind/`
+
 ### `ssr`
 
 implementation tbd (pr's welcome!)
@@ -38,18 +65,32 @@ npx ember-apply ssr
 Known working capabilities:
  - tbd
 
-### any package published as ESM with a default export
+### any package with as ESM with a default export
 
 when using a package name for the `<feature-name>`, an ESM version of the package
 will attempt to be loaded and used, invoking the default export.
+
 ```shell
 npx ember-apply @scope/feature-name
 ```
 
-## Adding a new applyable
+Local scripts may also be used. An example of this is maybe in a private monorepo
+where some scripts or packages aren't published to npm.
+
+```shell
+npx ember-apply ../../path/to/some/script.js # ESM required
+# or
+npx ember-apply ../../path/to/some/script.mjs
+```
+
+
+## Adding a new applyable to this repository
 
 - clone this repository
-- create a `applyables/<your-applyable>/index.js` file
+- create a `packages/<ecosystem>/<feature>index.js` file
+  examples:
+   - `packages/ember/tailwind/index.js`
+   - `packages/sveltekit/tailwind/index.js`
 - have a function exported as the default export.
   within this function, you may import form `ember-apply` to use any of the utility functions.
   the only argument passed to this function is the working directory `npx ember-apply` was invoked from.
@@ -66,20 +107,6 @@ npx ember-apply @scope/feature-name
 ### For Transforming HTML
 
 [rehype](https://github.com/rehypejs/rehype) is used
-
-## Public API
-
-While these public APIs aren't "needed", and could indeed be used with ember's blueprint system, or some other ecosystem
-
-### `transformScript`
-### `transformTemplate`
-### `transformHTML`
-### `addHTML`
-### `gitIgnore`
-### `addScript`
-### `addScripts`
-### `applyFolder`
-### `copyFileTo`
 
 
 ## Related Projects

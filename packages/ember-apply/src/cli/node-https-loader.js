@@ -1,6 +1,12 @@
+// @ts-ignore
 // https-loader.mjs
 import { get } from 'https';
 
+/**
+ * @param {any} specifier
+ * @param {any} context
+ * @param {any} defaultResolve
+ */
 export function resolve(specifier, context, defaultResolve) {
   const { parentURL = null } = context;
 
@@ -21,6 +27,11 @@ export function resolve(specifier, context, defaultResolve) {
   return defaultResolve(specifier, context, defaultResolve);
 }
 
+/**
+ * @param {any} url
+ * @param {any} context
+ * @param {any} defaultLoad
+ */
 export function load(url, context, defaultLoad) {
   // For JavaScript to be loaded over the network, we need to fetch and
   // return it.

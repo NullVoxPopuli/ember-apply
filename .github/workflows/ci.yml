@@ -85,3 +85,27 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  # deployed with cloudflare pages so we can have deploy previews and such
+  # docs:
+  #   name: Publish Docs
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
+  #   needs: [publish]
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         persist-credentials: false
+  #     - uses: volta-cli/action@v1
+  #     - run: yarn install
+  #     - run: |
+  #         cd projects/docs
+  #         yarn docs:collect
+
+  #     - name: Deploy 🚀
+  #       uses: JamesIves/github-pages-deploy-action@v4.2.2
+  #       with:
+  #         branch: gh-pages
+  #         folder: projects/docs/dist
