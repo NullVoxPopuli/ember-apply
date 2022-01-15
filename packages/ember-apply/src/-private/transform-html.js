@@ -24,6 +24,24 @@ import rehypeRaw from 'rehype-raw';
 /**
  * Transform HTML with rehype
  *
+ * @example
+ * the `before` option is to insert HTML before the first tag specified -- `link` in this case.
+ * ```js
+ * import { transformHTML } from 'ember-apply';
+ * import { visit } from 'unist-util-visit';
+ *
+ * await transformHTML(filePath, (tree) => {
+ *   let found = false;
+ *
+ *   visit(tree, (node, index, parent) => {
+ *     let trailing = parent.children.splice(index);
+ *
+ *     // delete children nodes
+ *     parent.children = [];
+ *   });
+ * });
+ * ```
+ *
  * @param {string} filePath
  * @param {(tree: Node) => void} plugin
  */
@@ -44,6 +62,20 @@ export async function transformHTML(filePath, plugin) {
 }
 
 /**
+ * Add a string of HTML to an HTML document.
+ *
+ * @example
+ * the `before` option is to insert HTML before the first tag specified -- `link` in this case.
+ * ```js
+ * import { addHTML } from 'ember-apply';
+ *
+ * await addHTML(
+ *   'app/index.html',
+ *   `<link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">`,
+ *   { before: 'link' }
+ * );
+ * ```
+ *
  * @param {string} filePath
  * @param {string} html the HTML to inject before the first tag matching `before`
  * @param {AddHTMLOptions} options

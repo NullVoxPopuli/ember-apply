@@ -2,9 +2,21 @@
 import fs from 'fs/promises';
 import path from 'path';
 import fse from 'fs-extra';
-// import execa from 'execa';
 
 /**
+ * Add `devDependencies` to the `package.json`.
+ *
+ * @example
+ * ```js
+ * import { addDevDependencies } from 'ember-apply';
+ *
+ * await addDevDependencies({
+ *   autoprefixer: '^10.0.0',
+ *   tailwindcss: '^3.0.0',
+ * })
+ * ```
+ *
+ *
  * @param {Record<string, string>} packages map of package names to package versions
  */
 export async function addDevDependencies(packages) {
@@ -19,6 +31,14 @@ export async function addDevDependencies(packages) {
 
 /**
  * Adds a script entry to package.json
+ * If there is an existing script with the same name, it will be overwritten.
+ *
+ * @exampl
+ * ```js
+ * import { addScript } from 'ember-apply';
+ *
+ * await addScript('say:hi', 'echo "hi"');
+ * ```
  *
  * @param {string} name the name of the script
  * @param {string} command the command to run
@@ -30,6 +50,16 @@ export async function addScript(name, command) {
 /**
  * Adds multiple scripts to package.json.
  * If there is an existing script with a name provided to `addScripts`, it will be replaced.
+ *
+ * @example
+ * ```js
+ * import { addScripts } from 'ember-apply';
+ *
+ * await addScripts({
+ *   build: "rollup -c",
+ *   build:types: "tsc --build",
+ * });
+ * ```
  *
  * @param {Record<string, string>} scripts
  */
@@ -48,6 +78,22 @@ export async function addScripts(scripts) {
  * Will create a .gitignore file if it doesn't exist.
  * Will insert the `pattern` under the `heading` and create the
  * `heading` if it doesn't exist.
+ *
+ * @example
+ * place an ignore entry at the bottom of the file
+ * ```js
+ * import { gitIgnore } from 'ember-apply';
+ *
+ * await gitIgnore('node_modules');
+ * ```
+ *
+ * @example
+ * place an ignore under a heading in the .gitignore file
+ * ```js
+ * import { gitIgnore } from 'ember-apply';
+ *
+ * await gitIgnore('dist', '# build output');
+ * ```
  *
  * @param {string} pattern the pattern to add to the .gitignore file
  * @param {string} [heading] optional heading to place the `pattern` under

@@ -1,0 +1,18 @@
+{
+  "tsconfig": "../ember-apply/tsconfig.json",
+  "readme": "../../README.md",
+  "exclude": [
+    "**/cli/",
+    "**/node-https-loader.js"
+  ],
+  "json": "./docs.json",
+  "out": "dist",
+  "pretty": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "plugin": [
+    "typedoc-plugin-merge-modules",
+    "typedoc-plugin-mdn-links"
+  ]
+}
