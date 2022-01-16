@@ -6,7 +6,7 @@ import { apply, diff, diffSummary, newEmberApp } from '../src/test-utils';
 describe('CLI', () => {
   describe('default command', () => {
     describe('using Tailwind as an example', () => {
-      it('package: @ember-apply/tailwind', async () => {
+      it.skip('package: @ember-apply/tailwind', async () => {
         let appLocation = await newEmberApp();
 
         await apply(appLocation, '@ember-apply/tailwind');

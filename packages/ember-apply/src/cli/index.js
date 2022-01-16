@@ -46,6 +46,10 @@ yargs(hideBin(process.argv))
 
       assert(args.name, 'name is required');
 
+      if (args.verbose) {
+        console.info(chalk.gray(`Detected CWD: ${process.cwd()}`));
+      }
+
       spinner.start(`Locating feature: ${args.name}`);
 
       const applyable = await getApplyable(args);
@@ -104,6 +108,14 @@ async function downloadFromNpm(options) {
 
   assert(name, 'name is required');
 
+  /**
+   * Checking npm for an invalid package takes time,
+   * and we can skip that.
+   */
+  if (isInvalidPackageName(name)) {
+    return false;
+  }
+
   spinner.text = `Skypack unavailable, downloading from npm`;
   spinner.info();
 
@@ -131,10 +143,27 @@ async function downloadFromNpm(options) {
 }
 
 /**
+ * @param {string} name
+ */
+function isInvalidPackageName(name) {
+  return name.startsWith('/') || name.includes('../');
+}
+
+/**
  * @param {Options} options
  */
 async function resolvePackage(options) {
   let { name } = options;
+
+  assert(name, 'name is required');
+
+  /**
+   * Checking the internet for an invalid package takes time,
+   * and we can skip that.
+   */
+  if (isInvalidPackageName(name)) {
+    return false;
+  }
 
   // TODO: prompt user before running this code
   //       (any package can be placed here)
@@ -178,6 +207,7 @@ async function resolvePath(options) {
 /**
  * @param {string} url - the path to import
  * @param {Options} [options]
+ * @returns {Promise<unknown>}
  */
 async function tryResolve(url, options = {}) {
   try {
@@ -185,8 +215,33 @@ async function tryResolve(url, options = {}) {
       console.info(chalk.gray(`Checking ${url}`));
     }
 
-    return await import(url);
-  } catch (error) {
+    let applyableModule = await import(url);
+
+    return applyableModule;
+  } catch (/** @type {any} */ error) {
+    if (error.code === 'ERR_MODULE_NOT_FOUND') {
+      /**
+       * If *we* make a mistake, don't swallow the error
+       */
+      let messageParts = error.message.split('imported from')[0];
+
+      if (messageParts.includes('ember-apply/src/')) {
+        throw error;
+      }
+
+      // /**
+      //  * If a local path is specified, try that path again
+      //  * bit with a resolved path.
+      //  */
+      // if (!url.startsWith('/')) {
+      //   let applyableModule = await tryResolve(path.resolve(url), options);
+
+      //   return applyableModule;
+      // }
+
+      return false;
+    }
+
     if (options.verbose) {
       console.error(chalk.red(error));
     }

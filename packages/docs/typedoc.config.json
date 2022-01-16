@@ -11,6 +11,7 @@
   "excludePrivate": true,
   "excludeProtected": true,
   "excludeExternals": true,
+  "disableSources": true,
   "plugin": [
     "typedoc-plugin-merge-modules",
     "typedoc-plugin-mdn-links"

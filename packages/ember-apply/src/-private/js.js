@@ -1,8 +1,8 @@
 // @ts-check
 /**
  *
- * @typedef {import('jscodeshift')} JSCodeshift;
- * @typedef {ReturnType<JSCodeshift>} jAST;
+ * @typedef {import('jscodeshift')} JSCodeshift
+ * @typedef {ReturnType<JSCodeshift>} jAST
  *
  * @typedef {object} CallbackApi
  * @property {jAST} root
@@ -28,9 +28,9 @@ import jscodeshift from 'jscodeshift';
  *
  * @example
  * ```js
- * import { transformScript } from 'ember-apply';
+ * import { js } from 'ember-apply';
  *
- * await transformScript('path/to/file.js', ({ root, j }) => {
+ * await js.transform('path/to/file.js', ({ root, j }) => {
  *   root
  *    .find(j.Identifier)
  *    .forEach(path => {
@@ -45,7 +45,7 @@ import jscodeshift from 'jscodeshift';
  * @param {TransformCallback} callback
  * @returns void
  */
-export async function transformScript(filePath, callback) {
+export async function transform(filePath, callback) {
   let code = (await fs.readFile(filePath)).toString();
 
   let j;

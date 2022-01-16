@@ -1,11 +1,4 @@
 // @ts-check
-/**
- *
- *
- * @typedef {import('ember-template-recast').TransformPluginBuilder} etrPlugin
- *
- *
- */
 import fs from 'fs/promises';
 import recast from 'ember-template-recast';
 
@@ -36,7 +29,7 @@ import recast from 'ember-template-recast';
  * [example-plugin]: https://github.com/ember-template-lint/ember-template-recast/blob/eb1e093a68b6013dd0ce1b0d1f2c2a146de9d3da/src/smoke.test.ts#L200
  *
  * @param {string} filePath to the file to transform
- * @param {etrPlugin} plugin
+ * @param {import('ember-template-recast').TransformPluginBuilder} plugin
  */
 export async function transformTemplate(filePath, plugin) {
   let code = (await fs.readFile(filePath)).toString();

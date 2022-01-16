@@ -8,6 +8,7 @@
   "author": "NullVoxPopuli",
   "scripts": {
     "build:docs": "yarn workspace docs docs:collect",
+    "start:docs": "yarn build:docs --watch",
     "publish:release": "turbo run publish --concurrency=1",
     "publish:dry-run": "turbo run publish:dry-run --concurrency=1",
     "test": "turbo run test",
