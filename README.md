@@ -5,6 +5,8 @@
 
 _Automatic integration and configuration from the community._
 
+[Documentation](https://ember-apply.pages.dev/modules)
+
 This is a framework and ecosystem agnostic collection of recommended configurations,
 applied via automation, that is compatible with any kind of project, new and old.
 
