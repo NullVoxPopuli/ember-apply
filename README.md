@@ -14,7 +14,7 @@ whatever you want. The tools provided by `ember-apply` only require Node 16+.
 
 Maybe most importantly, is that `ember-apply` can be used for any tool that wishes
 to use high-level project-management and transformation utilities.
-See [#Public API](#public-api).
+See [#Public API](https://ember-apply.pages.dev/modules).
 
 
 ![npm (tag)](https://img.shields.io/npm/v/@ember-apply/tailwind/latest?label=%40ember-apply%2Ftailwind)
