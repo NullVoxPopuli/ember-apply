@@ -1,5 +1,5 @@
 {
-  "tsconfig": "../ember-apply/tsconfig.json",
+  "tsconfig": "../../ember-apply/tsconfig.json",
   "readme": "../../README.md",
   "exclude": [
     "**/cli/",

@@ -22,7 +22,7 @@ describe('CLI', () => {
       it('local relative path', async () => {
         let appLocation = await newEmberApp();
 
-        await apply(appLocation, '../ember/tailwind');
+        await apply(appLocation, '../packages/ember/tailwind');
 
         expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
@@ -31,7 +31,7 @@ describe('CLI', () => {
       it('local relative path (with index)', async () => {
         let appLocation = await newEmberApp();
 
-        await apply(appLocation, '../ember/tailwind/index.js');
+        await apply(appLocation, '../packages/ember/tailwind/index.js');
 
         expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
@@ -39,7 +39,7 @@ describe('CLI', () => {
 
       it('local absolute path', async () => {
         let appLocation = await newEmberApp();
-        let target = path.resolve('../ember/tailwind');
+        let target = path.resolve('../packages/ember/tailwind');
 
         await apply(appLocation, target);
 
@@ -49,7 +49,7 @@ describe('CLI', () => {
 
       it('local absolute path (with index)', async () => {
         let appLocation = await newEmberApp();
-        let target = path.resolve('../ember/tailwind/index.js');
+        let target = path.resolve('../packages/ember/tailwind/index.js');
 
         await apply(appLocation, target);
 

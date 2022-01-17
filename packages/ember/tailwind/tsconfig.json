@@ -1,7 +1,7 @@
 {
-  "extends": "../../tsconfig.compiler-options.json",
+  "extends": "../../../tsconfig.compiler-options.json",
   "include": ["src/**/*"],
   "references": [
-    { "path": "../../ember-apply" }
+    { "path": "../../../ember-apply" }
   ]
 }

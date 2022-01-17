@@ -14,9 +14,9 @@ import recast from 'ember-template-recast';
  * transformTemplate takes an [ember-template-recast][recast] [plugin][example-plugin]
  *
  * ```js
- * import { transformTemplate } from 'ember-apply';
+ * import { ember } from 'ember-apply';
  *
- * await transformTemplate('path/to/template.hbs', (env) => {
+ * await ember.transformTemplate('path/to/template.hbs', (env) => {
  *   return {
  *     Hash(node) {
  *      // do something with hash nodes

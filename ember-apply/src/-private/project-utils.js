@@ -15,9 +15,9 @@ import { listWorkspaces as listYarnWorkspaces } from 'yarn-workspaces-list';
  * @example
  * place an ignore entry at the bottom of the file
  * ```js
- * import { gitIgnore } from 'ember-apply';
+ * import { project } from 'ember-apply';
  *
- * await gitIgnore('node_modules');
+ * await project.gitIgnore('node_modules');
  * ```
  *
  * @example
@@ -141,6 +141,8 @@ export async function inWorkspace(workspace, callback) {
  *
  * @example
  * ```js
+ * import { project } from 'ember-apply';
+ *
  * for await (let workspace of project.eachWorkspace()) {
  *   // perform actions within this workspace
  * }

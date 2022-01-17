@@ -50,18 +50,12 @@ yargs(hideBin(process.argv))
         console.info(chalk.gray(`Detected CWD: ${process.cwd()}`));
       }
 
-      spinner.start(`Locating feature: ${args.name}`);
-
-      const applyable = await getApplyable(args);
-
-      assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
-      assert(typeof applyable === 'function', 'applyable must be a function');
-
-      spinner.text = `Applying: ${args.name}`;
-      spinner.info();
-      await applyable();
-
-      spinner.succeed(`Applied feature: ${args.name}`);
+      try {
+        await run(args);
+      } catch (/** @type any */ e) {
+        spinner.fail(e.message);
+        console.error(e);
+      }
     }
   )
   .option('verbose', {
@@ -76,10 +70,32 @@ yargs(hideBin(process.argv))
  * @param {Options} options
  *
  */
+async function run(options) {
+  spinner.start(`Locating feature: ${options.name}`);
+
+  const applyable = await getApplyable(options);
+
+  assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
+  assert(typeof applyable === 'function', 'applyable must be a function');
+
+  spinner.text = `Applying: ${options.name}`;
+  spinner.info();
+  await applyable();
+
+  spinner.succeed(`Applied feature: ${options.name}`);
+}
+
+/**
+ * @param {Options} options
+ *
+ */
 async function getApplyable(options) {
   let applyableModule = await resolveApplyable(options);
 
-  assert(typeof applyableModule === 'object', 'applyable feature must be a object');
+  assert(
+    typeof applyableModule === 'object',
+    `applyable feature must be a object. got: ${typeof applyableModule}`
+  );
   assert(applyableModule, 'Could not find an applyable feature.');
   assert('default' in applyableModule, 'Module found, but it does not have a default export');
 
@@ -229,23 +245,9 @@ async function tryResolve(url, options = {}) {
       /**
        * If *we* make a mistake, don't swallow the error
        */
-      let messageParts = error.message.split('imported from')[0];
-
-      if (messageParts.includes('ember-apply/src/')) {
+      if (!error.message.includes('ember-apply/src/cli/index.js')) {
         throw error;
       }
-
-      // /**
-      //  * If a local path is specified, try that path again
-      //  * bit with a resolved path.
-      //  */
-      // if (!url.startsWith('/')) {
-      //   let applyableModule = await tryResolve(path.resolve(url), options);
-
-      //   return applyableModule;
-      // }
-
-      return;
     }
 
     if (options.verbose) {

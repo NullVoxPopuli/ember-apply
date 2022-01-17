@@ -29,9 +29,9 @@ export async function hasDependency(name, version = '*') {
  *
  * @example
  * ```js
- * import { addDevDependencies } from 'ember-apply';
+ * import { packageJson } from 'ember-apply';
  *
- * await addDevDependencies({
+ * await packageJson.addDevDependencies({
  *   autoprefixer: '^10.0.0',
  *   tailwindcss: '^3.0.0',
  * })
@@ -51,9 +51,9 @@ export async function addDevDependencies(packages) {
  *
  * @example
  * ```js
- * import { addDependencies } from 'ember-apply';
+ * import { packageJson } from 'ember-apply';
  *
- * await addDependencies({
+ * await packageJson.addDependencies({
  *   tailwindcss: '^3.0.0',
  * })
  * ```
@@ -72,9 +72,9 @@ export async function addDependencies(packages) {
  *
  * @example
  * ```js
- * import { addPeerDependencies } from 'ember-apply';
+ * import { packageJson } from 'ember-apply';
  *
- * await addPeerDependencies({
+ * await packageJson.addPeerDependencies({
  *   tailwindcss: '^3.0.0',
  * });
  * ```
@@ -93,9 +93,9 @@ export async function addPeerDependencies(packages) {
  *
  * @example
  * ```js
- * import { addScript } from 'ember-apply';
+ * import { packageJson } from 'ember-apply';
  *
- * await addScript('say:hi', 'echo "hi"');
+ * await packageJson.addScript('say:hi', 'echo "hi"');
  * ```
  *
  * @param {string} name the name of the script
@@ -111,9 +111,9 @@ export async function addScript(name, command) {
  *
  * @example
  * ```js
- * import { addScripts } from 'ember-apply';
+ * import { packageJson } from 'ember-apply';
  *
- * await addScripts({
+ * await packageJson.addScripts({
  *   build: "rollup -c",
  *   build:types: "tsc --build",
  * });
@@ -132,9 +132,9 @@ export async function addScripts(scripts) {
  *
  * @example
  * ```js
- * import { project } from 'ember-apply';
+ * import { packageJson } from 'ember-apply';
  *
- * await modify(packgeJson => {
+ * await packageJson.modify(packgeJson => {
  *   packageJson.volta = {
  *     node: '16.3.0'
  *   }
