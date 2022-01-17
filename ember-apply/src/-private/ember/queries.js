@@ -1,5 +1,5 @@
 // @ts-check
-import { read } from '../package-json.js';
+import { read } from '../package-json/index.js';
 
 /**
  *
