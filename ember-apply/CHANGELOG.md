@@ -1,3 +1,10 @@
+# [ember-apply-v1.4.1](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.4.0...ember-apply-v1.4.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* **internal:** forgot to make an adjustment for publishing ([07a6490](https://github.com/NullVoxPopuli/ember-apply//commit/07a6490cc6b81a4aec79926690038df4d2908db6))
+
 # [ember-apply-v1.4.0](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.3.0...ember-apply-v1.4.0) (2022-01-14)
 
 
