@@ -18,9 +18,9 @@ import path from 'path';
  * if this script is located as a sibling to the "files" directory,
  * this will copy each file in the "files" directory to the process.cwd() directory.
  * ```js
- * import { applyFolder } from 'ember-apply';
+ * import { files } from 'ember-apply';
  *
- * await applyFolder(path.resolve(__dirname, 'files'));
+ * await files.applyFolder(path.resolve(__dirname, 'files'));
  * ```
  *
  * @example
@@ -28,9 +28,9 @@ import path from 'path';
  * this will copy each file in the "files" directory to the `${process.cwd()}/target/subfolder` directory.
  *
  * ```js
- * import { applyFolder } from 'ember-apply';
+ * import { files } from 'ember-apply';
  *
- * await applyFolder(path.resolve(__dirname, 'files'), 'target/subfolder');
+ * await files.applyFolder(path.resolve(__dirname, 'files'), 'target/subfolder');
  * ```
  *
  *
@@ -59,16 +59,16 @@ export async function applyFolder(folder, to) {
  *
  * @example
  * ```js
- * import { copyFileTo } from 'ember-apply';
+ * import { files } from 'ember-apply';
  *
- * await copyFileTo('destination/file.js', { source: 'source/file.js' });
+ * await files.copyFileTo('destination/file.js', { source: 'source/file.js' });
  * ```
  *
  * @example
  * ```js
- * import { copyFileTo } from 'ember-apply';
+ * import { files } from 'ember-apply';
  *
- * await copyFileTo('destination/file.js', { content: 'file contents' });
+ * await files.copyFileTo('destination/file.js', { content: 'file contents' });
  * ```
  *
  * @param {string} destination

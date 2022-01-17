@@ -27,10 +27,10 @@ import rehypeRaw from 'rehype-raw';
  * @example
  * the `before` option is to insert HTML before the first tag specified -- `link` in this case.
  * ```js
- * import { transformHTML } from 'ember-apply';
+ * import { html } from 'ember-apply';
  * import { visit } from 'unist-util-visit';
  *
- * await transformHTML(filePath, (tree) => {
+ * await html.transform(filePath, (tree) => {
  *   let found = false;
  *
  *   visit(tree, (node, index, parent) => {
@@ -45,7 +45,7 @@ import rehypeRaw from 'rehype-raw';
  * @param {string} filePath
  * @param {(tree: Node) => void} plugin
  */
-export async function transformHTML(filePath, plugin) {
+export async function transform(filePath, plugin) {
   let code = (await fs.readFile(filePath)).toString();
 
   let transformed = await unified()
@@ -67,9 +67,9 @@ export async function transformHTML(filePath, plugin) {
  * @example
  * the `before` option is to insert HTML before the first tag specified -- `link` in this case.
  * ```js
- * import { addHTML } from 'ember-apply';
+ * import { html } from 'ember-apply';
  *
- * await addHTML(
+ * await html.add(
  *   'app/index.html',
  *   `<link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">`,
  *   { before: 'link' }
@@ -80,7 +80,7 @@ export async function transformHTML(filePath, plugin) {
  * @param {string} html the HTML to inject before the first tag matching `before`
  * @param {AddHTMLOptions} options
  */
-export async function addHTML(filePath, html, { before = '' }) {
+export async function add(filePath, html, { before = '' }) {
   let code = (await fs.readFile(filePath)).toString();
 
   if (code.includes(html)) {
@@ -104,7 +104,7 @@ export async function addHTML(filePath, html, { before = '' }) {
     )
     .process(html);
 
-  await transformHTML(filePath, (tree) => {
+  await transform(filePath, (tree) => {
     let found = false;
 
     visit(

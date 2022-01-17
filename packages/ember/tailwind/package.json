@@ -56,8 +56,8 @@
     "semantic-release-monorepo": "^7.0.0",
     "tailwindcss": "^3.0.0",
     "typescript": "4.4.4",
-    "vitest": "^0.1.0",
-    "vite": "^2.7.10"
+    "vite": "^2.7.10",
+    "vitest": "^0.1.17"
   },
   "release": {
     "extends": "semantic-release-monorepo",

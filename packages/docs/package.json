@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "docs:collect": "typedoc --options ./typedoc.config.json ../ember-apply/src/index.js",
+    "docs:collect": "typedoc --options ./typedoc.config.json ../../ember-apply/src/index.js",
     "docs:watch": "yarn docs:collect --watch"
   },
   "devDependencies": {

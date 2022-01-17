@@ -1,5 +1,5 @@
 {
-  "tsconfig": "../ember-apply/tsconfig.json",
+  "tsconfig": "../../ember-apply/tsconfig.json",
   "readme": "../../README.md",
   "exclude": [
     "**/cli/",
@@ -11,6 +11,7 @@
   "excludePrivate": true,
   "excludeProtected": true,
   "excludeExternals": true,
+  "disableSources": true,
   "plugin": [
     "typedoc-plugin-merge-modules",
     "typedoc-plugin-mdn-links"

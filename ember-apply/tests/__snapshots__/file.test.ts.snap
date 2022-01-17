@@ -1,0 +1,5 @@
+// Vitest Snapshot v1
+
+exports[`files > utils > applyFolder > works 1`] = `""`;
+
+exports[`files > utils > applyFolder > works 2`] = `""`;

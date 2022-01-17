@@ -46,18 +46,16 @@ yargs(hideBin(process.argv))
 
       assert(args.name, 'name is required');
 
-      spinner.start(`Locating feature: ${args.name}`);
+      if (args.verbose) {
+        console.info(chalk.gray(`Detected CWD: ${process.cwd()}`));
+      }
 
-      const applyable = await getApplyable(args);
-
-      assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
-      assert(typeof applyable === 'function', 'applyable must be a function');
-
-      spinner.text = `Applying: ${args.name}`;
-      spinner.info();
-      await applyable();
-
-      spinner.succeed(`Applied feature: ${args.name}`);
+      try {
+        await run(args);
+      } catch (/** @type any */ e) {
+        spinner.fail(e.message);
+        console.error(e);
+      }
     }
   )
   .option('verbose', {
@@ -72,16 +70,41 @@ yargs(hideBin(process.argv))
  * @param {Options} options
  *
  */
+async function run(options) {
+  spinner.start(`Locating feature: ${options.name}`);
+
+  const applyable = await getApplyable(options);
+
+  assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
+  assert(typeof applyable === 'function', 'applyable must be a function');
+
+  spinner.text = `Applying: ${options.name}`;
+  spinner.info();
+  await applyable();
+
+  spinner.succeed(`Applied feature: ${options.name}`);
+}
+
+/**
+ * @param {Options} options
+ *
+ */
 async function getApplyable(options) {
   let applyableModule = await resolveApplyable(options);
 
-  assert(applyableModule, 'Could not find an applyable feature. Does it have a default export?');
+  assert(
+    typeof applyableModule === 'object',
+    `applyable feature must be a object. got: ${typeof applyableModule}`
+  );
+  assert(applyableModule, 'Could not find an applyable feature.');
+  assert('default' in applyableModule, 'Module found, but it does not have a default export');
 
   return applyableModule.default;
 }
 
 /**
  * @param {Options} options
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function resolveApplyable(options) {
   return (
@@ -98,11 +121,20 @@ async function resolveApplyable(options) {
 /**
  * This is the super slow lost-resort thing to do
  * @param {Options} options
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function downloadFromNpm(options) {
   let { name } = options;
 
   assert(name, 'name is required');
+
+  /**
+   * Checking npm for an invalid package takes time,
+   * and we can skip that.
+   */
+  if (isInvalidPackageName(name)) {
+    return;
+  }
 
   spinner.text = `Skypack unavailable, downloading from npm`;
   spinner.info();
@@ -131,10 +163,28 @@ async function downloadFromNpm(options) {
 }
 
 /**
+ * @param {string} name
+ */
+function isInvalidPackageName(name) {
+  return name.startsWith('/') || name.includes('../');
+}
+
+/**
  * @param {Options} options
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function resolvePackage(options) {
   let { name } = options;
+
+  assert(name, 'name is required');
+
+  /**
+   * Checking the internet for an invalid package takes time,
+   * and we can skip that.
+   */
+  if (isInvalidPackageName(name)) {
+    return;
+  }
 
   // TODO: prompt user before running this code
   //       (any package can be placed here)
@@ -156,6 +206,7 @@ async function resolvePackage(options) {
 
 /**
  * @param {Options} options
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function resolvePath(options) {
   let cwd = process.cwd();
@@ -178,6 +229,7 @@ async function resolvePath(options) {
 /**
  * @param {string} url - the path to import
  * @param {Options} [options]
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function tryResolve(url, options = {}) {
   try {
@@ -185,8 +237,19 @@ async function tryResolve(url, options = {}) {
       console.info(chalk.gray(`Checking ${url}`));
     }
 
-    return await import(url);
-  } catch (error) {
+    let applyableModule = await import(url);
+
+    return applyableModule;
+  } catch (/** @type {any} */ error) {
+    if (error.code === 'ERR_MODULE_NOT_FOUND') {
+      /**
+       * If *we* make a mistake, don't swallow the error
+       */
+      if (!error.message.includes('ember-apply/src/cli/index.js')) {
+        throw error;
+      }
+    }
+
     if (options.verbose) {
       console.error(chalk.red(error));
     }

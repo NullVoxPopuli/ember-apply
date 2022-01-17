@@ -1,12 +1,16 @@
 import path from 'path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 import { apply, diff, diffSummary, newEmberApp } from '../src/test-utils';
+
+// let it = test.concurrent;
+// Snapshot testing is broken in concurrent tests
+let it = test;
 
 describe('CLI', () => {
   describe('default command', () => {
     describe('using Tailwind as an example', () => {
-      it('package: @ember-apply/tailwind', async () => {
+      it.skip('package: @ember-apply/tailwind', async () => {
         let appLocation = await newEmberApp();
 
         await apply(appLocation, '@ember-apply/tailwind');
@@ -18,7 +22,7 @@ describe('CLI', () => {
       it('local relative path', async () => {
         let appLocation = await newEmberApp();
 
-        await apply(appLocation, '../ember/tailwind');
+        await apply(appLocation, '../packages/ember/tailwind');
 
         expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
@@ -27,7 +31,7 @@ describe('CLI', () => {
       it('local relative path (with index)', async () => {
         let appLocation = await newEmberApp();
 
-        await apply(appLocation, '../ember/tailwind/index.js');
+        await apply(appLocation, '../packages/ember/tailwind/index.js');
 
         expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
@@ -35,7 +39,7 @@ describe('CLI', () => {
 
       it('local absolute path', async () => {
         let appLocation = await newEmberApp();
-        let target = path.resolve('../ember/tailwind');
+        let target = path.resolve('../packages/ember/tailwind');
 
         await apply(appLocation, target);
 
@@ -45,7 +49,7 @@ describe('CLI', () => {
 
       it('local absolute path (with index)', async () => {
         let appLocation = await newEmberApp();
-        let target = path.resolve('../ember/tailwind/index.js');
+        let target = path.resolve('../packages/ember/tailwind/index.js');
 
         await apply(appLocation, target);
 
