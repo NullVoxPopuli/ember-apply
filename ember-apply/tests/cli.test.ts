@@ -5,6 +5,7 @@ import { apply, diff, diffSummary, newEmberApp } from '../src/test-utils';
 
 // let it = test.concurrent;
 // Snapshot testing is broken in concurrent tests
+// see: https://github.com/vitest-dev/vitest/issues/551
 let it = test;
 
 describe('CLI', () => {
