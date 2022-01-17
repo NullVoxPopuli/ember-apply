@@ -1,7 +1,11 @@
-import { describe, expect, it } from 'vitest';
+import fs from 'fs/promises';
+import path from 'path';
+import { describe, expect, test } from 'vitest';
 
 import { ember } from '../src';
 import { newEmberAddon, newEmberApp, newTmpDir } from '../src/test-utils';
+
+let it = test.concurrent;
 
 describe('ember', () => {
   describe(ember.isApp.name, () => {
@@ -53,8 +57,24 @@ describe('ember', () => {
   });
 
   describe(ember.transformTemplate.name, () => {
-    it.skip('works', async () => {
-      // TODO
+    it('works', async () => {
+      let dir = await newTmpDir();
+
+      let target = path.join(dir, 'file.hbs');
+
+      await fs.writeFile(target, '<h1>Hello World</h1>');
+
+      await ember.transformTemplate(target, (/* env */) => {
+        // let b = env.syntax.builders;
+
+        return {
+          ElementNode(node) {
+            node.tag = node.tag.split('').reverse().join('');
+          },
+        };
+      });
+
+      expect(await fs.readFile(path.join(dir, 'file.hbs'), 'utf8')).toBe('<1h>Hello World</1h>');
     });
   });
 });

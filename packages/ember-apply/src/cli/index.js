@@ -79,13 +79,16 @@ yargs(hideBin(process.argv))
 async function getApplyable(options) {
   let applyableModule = await resolveApplyable(options);
 
-  assert(applyableModule, 'Could not find an applyable feature. Does it have a default export?');
+  assert(typeof applyableModule === 'object', 'applyable feature must be a object');
+  assert(applyableModule, 'Could not find an applyable feature.');
+  assert('default' in applyableModule, 'Module found, but it does not have a default export');
 
   return applyableModule.default;
 }
 
 /**
  * @param {Options} options
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function resolveApplyable(options) {
   return (
@@ -102,6 +105,7 @@ async function resolveApplyable(options) {
 /**
  * This is the super slow lost-resort thing to do
  * @param {Options} options
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function downloadFromNpm(options) {
   let { name } = options;
@@ -113,7 +117,7 @@ async function downloadFromNpm(options) {
    * and we can skip that.
    */
   if (isInvalidPackageName(name)) {
-    return false;
+    return;
   }
 
   spinner.text = `Skypack unavailable, downloading from npm`;
@@ -151,6 +155,7 @@ function isInvalidPackageName(name) {
 
 /**
  * @param {Options} options
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function resolvePackage(options) {
   let { name } = options;
@@ -162,7 +167,7 @@ async function resolvePackage(options) {
    * and we can skip that.
    */
   if (isInvalidPackageName(name)) {
-    return false;
+    return;
   }
 
   // TODO: prompt user before running this code
@@ -185,6 +190,7 @@ async function resolvePackage(options) {
 
 /**
  * @param {Options} options
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function resolvePath(options) {
   let cwd = process.cwd();
@@ -207,7 +213,7 @@ async function resolvePath(options) {
 /**
  * @param {string} url - the path to import
  * @param {Options} [options]
- * @returns {Promise<unknown>}
+ * @returns {Promise<undefined | { default?: any }>}
  */
 async function tryResolve(url, options = {}) {
   try {
@@ -239,7 +245,7 @@ async function tryResolve(url, options = {}) {
       //   return applyableModule;
       // }
 
-      return false;
+      return;
     }
 
     if (options.verbose) {

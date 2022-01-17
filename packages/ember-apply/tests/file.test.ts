@@ -1,10 +1,12 @@
 import { execa } from 'execa';
 import * as fs from 'fs/promises';
 import path from 'path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 import { files } from '../src';
 import { diff, diffSummary, newTmpDir } from '../src/test-utils';
+
+let it = test.concurrent;
 
 describe('files', () => {
   describe('utils', () => {

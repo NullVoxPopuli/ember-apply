@@ -19,12 +19,12 @@ export default async function run(workingDirectory) {
   await files.applyFolder(path.join(__dirname, 'files'), 'config/tailwind');
   await html.addHTML(
     'app/index.html',
-    `<link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">`,
+    `<link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">\n`,
     { before: 'link' }
   );
   await html.addHTML(
     'tests/index.html',
-    `<link rel="stylesheet" href="{{rootURL}}assets/tailwind.css">`,
+    `<link rel="stylesheet" href="{{rootURL}}assets/tailwind.css">\n`,
     { before: 'link' }
   );
 
