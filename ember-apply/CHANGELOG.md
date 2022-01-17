@@ -1,3 +1,10 @@
+# [ember-apply-v1.4.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v1.4.1...ember-apply-v1.4.2) (2022-01-17)
+
+
+### Bug Fixes
+
+* **internal:** remove trailing slash from package URLs ([991c35a](https://github.com/NullVoxPopuli/ember-apply/commit/991c35a6c89fff9522a53268a7e6f83deaa69e7c))
+
 # [ember-apply-v1.4.1](https://github.com/NullVoxPopuli/ember-apply//compare/ember-apply-v1.4.0...ember-apply-v1.4.1) (2022-01-17)
 
 
