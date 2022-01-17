@@ -1,6 +1,7 @@
 {
   "private": true,
   "workspaces": [
+    "ember-apply",
     "packages/*",
     "packages/ember/*"
   ],
