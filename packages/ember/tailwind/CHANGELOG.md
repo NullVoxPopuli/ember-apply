@@ -1,3 +1,22 @@
+# [@ember-apply/tailwind-v2.0.0](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/tailwind-v1.0.2...@ember-apply/tailwind-v2.0.0) (2022-01-17)
+
+
+### Bug Fixes
+
+* **internal:** remove trailing slash from package URLs ([991c35a](https://github.com/NullVoxPopuli/ember-apply/commit/991c35a6c89fff9522a53268a7e6f83deaa69e7c))
+* **tailwind:** support gjs and gts ([b839c0c](https://github.com/NullVoxPopuli/ember-apply/commit/b839c0c74e15ffa0065534fcc34cbace236d6a0a))
+
+
+### Features
+
+* assorted new utilities and docs ([5243434](https://github.com/NullVoxPopuli/ember-apply/commit/524343480ee59e51bd855ba09bc5c7df68c1c5bc))
+
+
+### BREAKING CHANGES
+
+* utilities have been re-organized a bit to support
+broader growth
+
 # [@ember-apply/tailwind-v1.0.2](https://github.com/NullVoxPopuli/ember-apply//compare/@ember-apply/tailwind-v1.0.1...@ember-apply/tailwind-v1.0.2) (2022-01-14)
 
 
