@@ -24,7 +24,7 @@
     "README.md"
   ],
   "scripts": {
-    "publish": "cp ../../README.md ./ && semantic-release -e semantic-release-monorepo",
+    "publish": "cp ../README.md ./ && semantic-release -e semantic-release-monorepo",
     "publish:dry-run": "yarn publish --dry-run",
     "build:types": "tsc --build",
     "lint": "yarn lint:js",
