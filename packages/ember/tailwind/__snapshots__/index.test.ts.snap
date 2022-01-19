@@ -2,10 +2,10 @@
 
 exports[`tailwind > applying to an ember app > works via CLI 1`] = `
 " .gitignore       |  3 +++
- app/index.html   | 19 +++++++++----------
+ app/index.html   | 20 ++++++++++----------
  package.json     | 11 ++++++++---
- tests/index.html | 21 ++++++++++-----------
- 4 files changed, 30 insertions(+), 24 deletions(-)"
+ tests/index.html | 22 +++++++++++-----------
+ 4 files changed, 32 insertions(+), 24 deletions(-)"
 `;
 
 exports[`tailwind > applying to an ember app > works via CLI 2`] = `
@@ -24,10 +24,10 @@ index 9bab45a..c4e2f3e 100644
  /tmp/
  
 diff --git a/app/index.html b/app/index.html
-index 2398775..f038aae 100644
+index 2398775..0f71c0e 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -1,25 +1,24 @@
+@@ -1,25 +1,25 @@
 -<!DOCTYPE html>
 -<html>
 -  <head>
@@ -43,7 +43,8 @@ index 2398775..f038aae 100644
 +    </head><body>{{content-for \\"head\\"}}
  
 -    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-+    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\"><link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
++    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
++<link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
      {{content-for \\"head-footer\\"}}
@@ -100,10 +101,10 @@ index 976763c..511752d 100644
    \\"engines\\": {
      \\"node\\": \\"12.* || 14.* || >= 16\\"
 diff --git a/tests/index.html b/tests/index.html
-index ec6650a..b61f82e 100644
+index ec6650a..6912a3a 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -1,23 +1,21 @@
+@@ -1,23 +1,22 @@
 -<!DOCTYPE html>
 -<html>
 -  <head>
@@ -120,7 +121,8 @@ index ec6650a..b61f82e 100644
      {{content-for \\"test-head\\"}}
  
 -    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-+    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\"><link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
++    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
++<link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
  
@@ -133,7 +135,7 @@ index ec6650a..b61f82e 100644
      {{content-for \\"body\\"}}
      {{content-for \\"test-body\\"}}
  
-@@ -28,7 +26,7 @@
+@@ -28,7 +27,7 @@
        </div>
      </div>
  
@@ -142,7 +144,7 @@ index ec6650a..b61f82e 100644
      <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
-@@ -36,5 +34,6 @@
+@@ -36,5 +35,6 @@
  
      {{content-for \\"body-footer\\"}}
      {{content-for \\"test-body-footer\\"}}
