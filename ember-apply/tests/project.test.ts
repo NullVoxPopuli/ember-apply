@@ -48,7 +48,13 @@ describe('project', () => {
     it('lists workspaces', async () => {
       let workspaces = await project.getWorkspaces();
 
-      expect(workspaces).toEqual(['.', 'ember-apply', 'packages/docs', 'packages/ember/tailwind']);
+      expect(workspaces).toEqual([
+        '.',
+        'ember-apply',
+        'packages/docs',
+        'packages/ember/embroider',
+        'packages/ember/tailwind',
+      ]);
     });
   });
 });

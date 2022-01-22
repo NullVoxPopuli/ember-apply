@@ -36,7 +36,7 @@ index 2398775..4ca37d0 100644
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
 diff --git a/package.json b/package.json
-index 55afeca..3f2e38d 100644
+index 959c39a..bf772da 100644
 --- a/package.json
 +++ b/package.json
 @@ -11,7 +11,7 @@
@@ -60,11 +60,11 @@ index 55afeca..3f2e38d 100644
    \\"devDependencies\\": {
      \\"@ember/optional-features\\": \\"^2.0.0\\",
 @@ -59,7 +61,10 @@
-     \\"prettier\\": \\"^2.4.0\\",
+     \\"prettier\\": \\"^2.5.1\\",
      \\"qunit\\": \\"^2.17.2\\",
      \\"qunit-dom\\": \\"^2.0.0\\",
--    \\"webpack\\": \\"^5.52.1\\"
-+    \\"webpack\\": \\"^5.52.1\\",
+-    \\"webpack\\": \\"^5.65.0\\"
++    \\"webpack\\": \\"^5.65.0\\",
 +    \\"autoprefixer\\": \\"^10.0.0\\",
 +    \\"postcss\\": \\"^8.0.0\\",
 +    \\"tailwindcss\\": \\"^3.0.0\\"
