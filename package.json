@@ -39,15 +39,7 @@
       "@semantic-release/npm",
       "@semantic-release/github",
       "@semantic-release/git"
-    ],
-    "monorepo": {
-      "analyzeCommits": [
-        "@semantic-release/commit-analyzer"
-      ],
-      "generateNotes": [
-        "@semantic-release/release-notes-generator"
-      ]
-    }
+    ]
   },
   "turbo": {
     "baseBranch": "origin/main",
