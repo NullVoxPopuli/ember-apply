@@ -3975,6 +3975,11 @@ find-cache-dir@^2.0.0:
     make-dir "^2.0.0"
     pkg-dir "^3.0.0"
 
+find-git-root@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/find-git-root/-/find-git-root-1.0.4.tgz#8bc1e0897db783e06762bf050b0943288e5399fd"
+  integrity sha512-468fmirKKgcrqfZfPn0xIpwZUUsZQcYXfx0RC2/jX39GPz83TwutQNZZhDrI6HqjO8cRejxQVaUY8GQdXopFfA==
+
 find-up@^2.0.0, find-up@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
@@ -6894,6 +6899,16 @@ safe-regex@^1.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+
+semantic-release-monorepo-hooks@^2.9.8:
+  version "2.9.8"
+  resolved "https://registry.npmjs.org/semantic-release-monorepo-hooks/-/semantic-release-monorepo-hooks-2.9.8.tgz#9469059fb8068e2bf9fe502a339da213fc0f19ed"
+  integrity sha512-HmetDm6Sw5FNhoDwqdMMBWmwZwYtnPvvWv2VlaELA031K22GsRnH7MPT+dzFPJA7d76g7U32F9HNDuXUNSMCeQ==
+  dependencies:
+    find-git-root "^1.0.4"
+    lodash "^4.17.21"
+    read-pkg "^5.2.0"
+    semver "^7.3.4"
 
 semantic-release-monorepo@^7.0.0:
   version "7.0.5"
