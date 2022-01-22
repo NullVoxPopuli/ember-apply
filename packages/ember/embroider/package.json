@@ -1,0 +1,61 @@
+{
+  "name": "@ember-apply/embroider",
+  "description": "ember-apply plugin for upgrading a classic build ember app to using embroider",
+  "version": "0.0.1",
+  "type": "module",
+  "license": "MIT",
+  "preset": "index.js",
+  "author": "NullVoxPopuli",
+  "repository": {
+    "url": "https://github.com/NullVoxPopuli/ember-apply",
+    "type": "https",
+    "directory": "packages/ember/embroider"
+  },
+  "keywords": [
+    "ember",
+    "embroider",
+    "ember-apply",
+    "blueprint"
+  ],
+  "exports": {
+    "import": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "build:types": "tsc --build",
+    "lint": "yarn lint:js",
+    "lint:js": "eslint .",
+    "lint:fix": "yarn lint:js --fix",
+    "test": "vitest --coverage --no-watch",
+    "test:watch": "vitest --watch"
+  },
+  "dependencies": {
+    "ember-apply": "*"
+  },
+  "devDependencies": {
+    "@nullvoxpopuli/eslint-configs": "^2.1.17",
+    "autoprefixer": "^10.0.0",
+    "babel-eslint": "^10.1.0",
+    "c8": "^7.11.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-decorator-position": "^4.0.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "postcss": "^8.0.0",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.0",
+    "typescript": "4.5.4",
+    "vite": "^2.7.10",
+    "vitest": "^0.1.17"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "volta": {
+    "node": "16.13.2",
+    "yarn": "1.22.17"
+  }
+}

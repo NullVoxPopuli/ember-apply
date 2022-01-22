@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 
 import { files, project, html, packageJson } from 'ember-apply';
 
+// @ts-ignore
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
