@@ -2,10 +2,10 @@
 
 exports[`tailwind > applying to an ember app > works via CLI 1`] = `
 " .gitignore       |  3 +++
- app/index.html   | 20 ++++++++++----------
+ app/index.html   |  1 +
  package.json     | 11 ++++++++---
- tests/index.html | 22 +++++++++++-----------
- 4 files changed, 32 insertions(+), 24 deletions(-)"
+ tests/index.html |  3 ++-
+ 4 files changed, 14 insertions(+), 4 deletions(-)"
 `;
 
 exports[`tailwind > applying to an ember app > works via CLI 2`] = `
@@ -24,48 +24,19 @@ index 9bab45a..c4e2f3e 100644
  /tmp/
  
 diff --git a/app/index.html b/app/index.html
-index 2398775..0f71c0e 100644
+index 2398775..4ca37d0 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -1,25 +1,25 @@
--<!DOCTYPE html>
--<html>
--  <head>
-+<!DOCTYPE html><html><head>
-     <meta charset=\\"utf-8\\">
-     <meta http-equiv=\\"X-UA-Compatible\\" content=\\"IE=edge\\">
--    <title>TestApp</title>
-+    <title></title>
-     <meta name=\\"description\\" content=\\"\\">
-     <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
+@@ -9,6 +9,7 @@
  
--    {{content-for \\"head\\"}}
-+    </head><body>{{content-for \\"head\\"}}
+     {{content-for \\"head\\"}}
  
--    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
 +    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-+<link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
+     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
-     {{content-for \\"head-footer\\"}}
--  </head>
--  <body>
-+  
-+  
-     {{content-for \\"body\\"}}
- 
-     <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
- 
-     {{content-for \\"body-footer\\"}}
--  </body>
--</html>
-+  
-+
-+</body></html>
-\\\\ No newline at end of file
 diff --git a/package.json b/package.json
-index 976763c..511752d 100644
+index 55afeca..3f2e38d 100644
 --- a/package.json
 +++ b/package.json
 @@ -11,7 +11,7 @@
@@ -89,11 +60,11 @@ index 976763c..511752d 100644
    \\"devDependencies\\": {
      \\"@ember/optional-features\\": \\"^2.0.0\\",
 @@ -59,7 +61,10 @@
-     \\"prettier\\": \\"^2.5.1\\",
+     \\"prettier\\": \\"^2.4.0\\",
      \\"qunit\\": \\"^2.17.2\\",
      \\"qunit-dom\\": \\"^2.0.0\\",
--    \\"webpack\\": \\"^5.65.0\\"
-+    \\"webpack\\": \\"^5.65.0\\",
+-    \\"webpack\\": \\"^5.52.1\\"
++    \\"webpack\\": \\"^5.52.1\\",
 +    \\"autoprefixer\\": \\"^10.0.0\\",
 +    \\"postcss\\": \\"^8.0.0\\",
 +    \\"tailwindcss\\": \\"^3.0.0\\"
@@ -101,41 +72,18 @@ index 976763c..511752d 100644
    \\"engines\\": {
      \\"node\\": \\"12.* || 14.* || >= 16\\"
 diff --git a/tests/index.html b/tests/index.html
-index ec6650a..6912a3a 100644
+index ec6650a..a56e778 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -1,23 +1,22 @@
--<!DOCTYPE html>
--<html>
--  <head>
-+<!DOCTYPE html><html><head>
-     <meta charset=\\"utf-8\\">
-     <meta http-equiv=\\"X-UA-Compatible\\" content=\\"IE=edge\\">
--    <title>TestApp Tests</title>
-+    <title></title>
-     <meta name=\\"description\\" content=\\"\\">
-     <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
- 
--    {{content-for \\"head\\"}}
-+    </head><body>{{content-for \\"head\\"}}
+@@ -10,6 +10,7 @@
+     {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
  
--    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
 +    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-+<link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
+     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
- 
-     {{content-for \\"head-footer\\"}}
-     {{content-for \\"test-head-footer\\"}}
--  </head>
--  <body>
-+  
-+  
-     {{content-for \\"body\\"}}
-     {{content-for \\"test-body\\"}}
- 
-@@ -28,7 +27,7 @@
+@@ -28,7 +29,7 @@
        </div>
      </div>
  
@@ -143,15 +91,5 @@ index ec6650a..6912a3a 100644
 +    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore=\\"\\"></script>
      <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
-@@ -36,5 +35,6 @@
- 
-     {{content-for \\"body-footer\\"}}
-     {{content-for \\"test-body-footer\\"}}
--  </body>
--</html>
-+  
-+
-+</body></html>
-\\\\ No newline at end of file"
+     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>"
 `;
