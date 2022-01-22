@@ -1,4 +1,5 @@
 {
+  "name": "ember-apply-monorepo",
   "private": true,
   "workspaces": [
     "ember-apply",
