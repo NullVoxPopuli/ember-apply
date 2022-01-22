@@ -85,6 +85,9 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USER: 'semantic-release'
+          GIT_AUTHOR_NAME: '@semantic-release'
+          GIT_COMMITTER_NAME: '@semantic-release'
 
 
   # deployed with cloudflare pages so we can have deploy previews and such
