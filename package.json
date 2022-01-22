@@ -11,7 +11,7 @@
     "build:docs": "yarn workspace docs docs:collect",
     "start:docs": "yarn build:docs --watch",
     "publish:release": "multi-semantic-release --ignore-private-packages",
-    "publish:dry-run": "yarn publish:release --dry-run",
+    "publish:dry-run": "yarn publish:release --dry-run --debug",
     "test": "turbo run test",
     "lint:fix": "turbo run lint:fix",
     "lint": "turbo run lint"
