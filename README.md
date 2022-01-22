@@ -109,7 +109,7 @@ npx ember-apply ../../path/to/some/script.mjs
 
 ### For Transforming HTML
 
-[rehype](https://github.com/rehypejs/rehype) is used
+[posthtml](https://github.com/posthtml/posthtml) is used
 
 
 ## Related Projects
