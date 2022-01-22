@@ -16,8 +16,8 @@ describe('CLI', () => {
 
         await apply(appLocation, '@ember-apply/tailwind');
 
-        expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
+        expect(await diffSummary(appLocation)).toMatchSnapshot();
       }, 60_000);
 
       it('local relative path', async () => {
@@ -25,8 +25,8 @@ describe('CLI', () => {
 
         await apply(appLocation, '../packages/ember/tailwind');
 
-        expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
+        expect(await diffSummary(appLocation)).toMatchSnapshot();
       });
 
       it('local relative path (with index)', async () => {
@@ -34,8 +34,8 @@ describe('CLI', () => {
 
         await apply(appLocation, '../packages/ember/tailwind/index.js');
 
-        expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
+        expect(await diffSummary(appLocation)).toMatchSnapshot();
       });
 
       it('local absolute path', async () => {
@@ -44,8 +44,8 @@ describe('CLI', () => {
 
         await apply(appLocation, target);
 
-        expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
+        expect(await diffSummary(appLocation)).toMatchSnapshot();
       });
 
       it('local absolute path (with index)', async () => {
@@ -54,8 +54,8 @@ describe('CLI', () => {
 
         await apply(appLocation, target);
 
-        expect(await diffSummary(appLocation)).toMatchSnapshot();
         expect(await diff(appLocation)).toMatchSnapshot();
+        expect(await diffSummary(appLocation)).toMatchSnapshot();
       });
     });
   });

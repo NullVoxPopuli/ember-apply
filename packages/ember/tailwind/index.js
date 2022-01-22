@@ -17,16 +17,14 @@ export default async function run(workingDirectory) {
   });
 
   await files.applyFolder(path.join(__dirname, 'files'), 'config/tailwind');
-  await html.add(
-    'app/index.html',
-    `<link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">\n`,
-    { before: 'link' }
-  );
-  await html.add(
-    'tests/index.html',
-    `<link rel="stylesheet" href="{{rootURL}}assets/tailwind.css">\n`,
-    { before: 'link' }
-  );
+  await html.insertText('app/index.html', {
+    text: `<link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">\n`,
+    beforeFirst: 'link',
+  });
+  await html.insertText('tests/index.html', {
+    text: `<link rel="stylesheet" href="{{rootURL}}assets/tailwind.css">\n`,
+    beforeFirst: 'link',
+  });
 
   await packageJson.addScripts({
     'tailwind:build':
