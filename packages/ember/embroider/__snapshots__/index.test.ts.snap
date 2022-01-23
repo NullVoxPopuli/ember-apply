@@ -35,20 +35,80 @@ index 48e94e9..afcbef6 100644
 +    extraPublicTrees: []
 +  });
  };
-diff --git a/package.json b/package.json
-index 959c39a..472adb9 100644
---- a/package.json
-+++ b/package.json
-@@ -59,7 +59,10 @@
-     \\"prettier\\": \\"^2.5.1\\",
-     \\"qunit\\": \\"^2.17.2\\",
-     \\"qunit-dom\\": \\"^2.0.0\\",
--    \\"webpack\\": \\"^5.65.0\\"
-+    \\"webpack\\": \\"^5.67.0\\",
-+    \\"@embroider/core\\": \\"^1.0.0\\",
-+    \\"@embroider/compat\\": \\"^1.0.0\\",
-+    \\"@embroider/webpack\\": \\"^1.0.0\\"
-   },
-   \\"engines\\": {
-     \\"node\\": \\"12.* || 14.* || >= 16\\""
+
+package.json
+{
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
+  \\"license\\": \\"MIT\\",
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
+  },
+  \\"scripts\\": {
+    \\"build\\": \\"ember build --environment=production\\",
+    \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
+    \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"npm-run-all lint test:*\\",
+    \\"test:ember\\": \\"ember test\\"
+  },
+  \\"devDependencies\\": [
+    \\"@ember/optional-features\\",
+    \\"@ember/test-helpers\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
+    \\"babel-eslint\\",
+    \\"broccoli-asset-rev\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
+    \\"ember-data\\",
+    \\"ember-export-application-global\\",
+    \\"ember-fetch\\",
+    \\"ember-load-initializers\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
+    \\"eslint\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
+    \\"eslint-plugin-node\\",
+    \\"eslint-plugin-prettier\\",
+    \\"eslint-plugin-qunit\\",
+    \\"loader.js\\",
+    \\"npm-run-all\\",
+    \\"prettier\\",
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"webpack\\",
+    \\"@embroider/core\\",
+    \\"@embroider/compat\\",
+    \\"@embroider/webpack\\"
+  ],
+  \\"engines\\": [
+    \\"node\\"
+  ],
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  }
+}
+"
 `;

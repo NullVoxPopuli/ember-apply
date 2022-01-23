@@ -35,42 +35,83 @@ index 2398775..4ca37d0 100644
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
-diff --git a/package.json b/package.json
-index 959c39a..bf772da 100644
---- a/package.json
-+++ b/package.json
-@@ -11,7 +11,7 @@
-     \\"test\\": \\"tests\\"
-   },
-   \\"scripts\\": {
--    \\"build\\": \\"ember build --environment=production\\",
-+    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
-     \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
-     \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
-     \\"lint:hbs\\": \\"ember-template-lint .\\",
-@@ -20,7 +20,9 @@
-     \\"lint:js:fix\\": \\"eslint . --fix\\",
-     \\"start\\": \\"ember serve\\",
-     \\"test\\": \\"npm-run-all lint test:*\\",
--    \\"test:ember\\": \\"ember test\\"
-+    \\"test:ember\\": \\"ember test\\",
-+    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
-+    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
-   },
-   \\"devDependencies\\": {
-     \\"@ember/optional-features\\": \\"^2.0.0\\",
-@@ -59,7 +61,10 @@
-     \\"prettier\\": \\"^2.5.1\\",
-     \\"qunit\\": \\"^2.17.2\\",
-     \\"qunit-dom\\": \\"^2.0.0\\",
--    \\"webpack\\": \\"^5.65.0\\"
-+    \\"webpack\\": \\"^5.65.0\\",
-+    \\"autoprefixer\\": \\"^10.0.0\\",
-+    \\"postcss\\": \\"^8.0.0\\",
-+    \\"tailwindcss\\": \\"^3.0.0\\"
-   },
-   \\"engines\\": {
-     \\"node\\": \\"12.* || 14.* || >= 16\\"
+
+package.json
+{
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
+  \\"license\\": \\"MIT\\",
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
+  },
+  \\"scripts\\": {
+    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
+    \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
+    \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"npm-run-all lint test:*\\",
+    \\"test:ember\\": \\"ember test\\",
+    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
+    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
+  },
+  \\"devDependencies\\": [
+    \\"@ember/optional-features\\",
+    \\"@ember/test-helpers\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
+    \\"babel-eslint\\",
+    \\"broccoli-asset-rev\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
+    \\"ember-data\\",
+    \\"ember-export-application-global\\",
+    \\"ember-fetch\\",
+    \\"ember-load-initializers\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
+    \\"eslint\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
+    \\"eslint-plugin-node\\",
+    \\"eslint-plugin-prettier\\",
+    \\"eslint-plugin-qunit\\",
+    \\"loader.js\\",
+    \\"npm-run-all\\",
+    \\"prettier\\",
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"webpack\\",
+    \\"autoprefixer\\",
+    \\"postcss\\",
+    \\"tailwindcss\\"
+  ],
+  \\"engines\\": [
+    \\"node\\"
+  ],
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  }
+}
 diff --git a/tests/index.html b/tests/index.html
 index ec6650a..a56e778 100644
 --- a/tests/index.html
@@ -91,5 +132,6 @@ index ec6650a..a56e778 100644
 +    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore=\\"\\"></script>
      <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>"
+     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
+"
 `;

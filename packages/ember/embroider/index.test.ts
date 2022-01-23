@@ -15,7 +15,7 @@ describe('embroider', () => {
       await apply(appLocation, embroider.path);
 
       expect(await diffSummary(appLocation)).toMatchSnapshot();
-      expect(await diff(appLocation)).toMatchSnapshot();
+      expect(await diff(appLocation, { ignoreVersions: true })).toMatchSnapshot();
     });
   });
 });
