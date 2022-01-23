@@ -10,8 +10,31 @@ exports[`tailwind > applying to an ember app > works via CLI 1`] = `
 
 exports[`tailwind > applying to an ember app > works via CLI 2`] = `
 "diff --git a/.gitignore b/.gitignore
-
-diff --git a/app/
+index 9bab45a..c4e2f3e 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,6 +1,9 @@
+ # See https://help.github.com/ignore-files/ for more about ignoring files.
+ 
++
+ # compiled output
++public/assets/tailwind.css
++
+ /dist/
+ /tmp/
+ 
+diff --git a/app/index.html b/app/index.html
+index 2398775..4ca37d0 100644
+--- a/app/index.html
++++ b/app/index.html
+@@ -9,6 +9,7 @@
+ 
+     {{content-for \\"head\\"}}
+ 
++    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
+     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
+     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
+ 
 
 package.json
 {
@@ -77,8 +100,26 @@ package.json
     \\"yarn\\"
   ]
 }
-diff --git a/package.json b/package.json
-
-diff --git a/tests/
+diff --git a/tests/index.html b/tests/index.html
+index ec6650a..a56e778 100644
+--- a/tests/index.html
++++ b/tests/index.html
+@@ -10,6 +10,7 @@
+     {{content-for \\"head\\"}}
+     {{content-for \\"test-head\\"}}
+ 
++    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
+     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
+     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
+     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
+@@ -28,7 +29,7 @@
+       </div>
+     </div>
+ 
+-    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore></script>
++    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore=\\"\\"></script>
+     <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
+     <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
+     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
 "
 `;

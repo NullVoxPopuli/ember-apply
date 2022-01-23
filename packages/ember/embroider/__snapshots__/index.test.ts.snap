@@ -8,7 +8,33 @@ exports[`embroider > applying to an ember app > works via CLI 1`] = `
 
 exports[`embroider > applying to an ember app > works via CLI 2`] = `
 "diff --git a/ember-cli-build.js b/ember-cli-build.js
-
+index 48e94e9..afcbef6 100644
+--- a/ember-cli-build.js
++++ b/ember-cli-build.js
+@@ -20,5 +20,22 @@ module.exports = function (defaults) {
+   // please specify an object with the list of modules as keys
+   // along with the exports of each module as its value.
+ 
+-  return app.toTree();
++  const {
++    Webpack
++  } = require(\\"@embroider/webpack\\");
++
++  return require(\\"@embroider/compat\\").compatBuild(app, Webpack, {
++    // 
++    // staticAddonTestSupportTrees: true,
++    // staticAddonTrees: true,
++    // staticHelpers: true,
++    // staticModifiers: true,
++    // staticComponents: true,
++    // splitAtRoutes: ['route.name'], // can also be a RegExp
++    // packagerOptions: {
++    //    webpackConfig: { }
++    // }
++    // 
++    extraPublicTrees: []
++  });
+ };
 
 package.json
 {
@@ -72,7 +98,5 @@ package.json
     \\"yarn\\"
   ]
 }
-diff --git a/package.json b/package.json
-
 "
 `;

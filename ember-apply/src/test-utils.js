@@ -94,6 +94,7 @@ export async function diff(appPath, options = {}) {
       }
 
       diff += `\n${filePath}\n${JSON.stringify(json, null, 2)}\n`;
+      continue;
     }
 
     // Why is this not easier....
@@ -107,10 +108,10 @@ export async function diff(appPath, options = {}) {
     let { stdout: fullDiff } = await execa(`git`, ['diff', filePath], { cwd: appPath });
 
     let shortDiff = fullDiff
-      .replace(/^---[^$]+$/, '')
-      .replace(/^\+\+\+[^$]+$/, '')
-      .replace(/index[^$]+$/, '')
-      .replace(/@@[^$]+$/, '');
+      .replace(/^---.+$/, '')
+      .replace(/^\+\+\+.+$/, '')
+      .replace(/index.+$/, '')
+      .replace(/@@.+$/, '');
 
     diff += shortDiff + '\n';
   }
