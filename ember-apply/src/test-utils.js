@@ -58,12 +58,62 @@ export async function diffSummary(appPath) {
 }
 
 /**
+ * @typedef {object} DiffOptions
+ * @property {boolean} [ignoreVersions]
+ *
  * @param {string} appPath the path to git diff
+ * @param {DiffOptions} [options]
  */
-export async function diff(appPath) {
-  let { stdout } = await execa('git', ['diff'], {
-    cwd: appPath,
-  });
+export async function diff(appPath, options = {}) {
+  let { stdout } = await execa('git', ['diff', '--name-only'], { cwd: appPath });
 
-  return stdout;
+  let files = stdout.split('\n');
+
+  let diff = '';
+
+  for (let filePath of files) {
+    if (!filePath) {
+      continue;
+    }
+
+    if (filePath.endsWith('package.json') && options?.ignoreVersions) {
+      let fileBuffer = await fs.readFile(filePath);
+      let fileString = fileBuffer.toString();
+      let json = JSON.parse(fileString);
+
+      for (let section of [
+        'dependencies',
+        'devDependencies',
+        'peerDependencies',
+        'engines',
+        'volta',
+      ]) {
+        if (json[section]) {
+          json[section] = Object.keys(json[section]);
+        }
+      }
+
+      diff += `\n${filePath}\n${JSON.stringify(json, null, 2)}\n`;
+    }
+
+    // Why is this not easier....
+    // let normalCommand =
+    //   `git diff ${filePath} ` +
+    //   `| sed -n '/^---/!p' ` +
+    //   `| sed -n '/^+++/!p' ` +
+    //   `| sed -n '/^@@/!p' ` +
+    //   `| sed -n '/^index /!p'`;
+
+    let { stdout: fullDiff } = await execa(`git`, ['diff', filePath], { cwd: appPath });
+
+    let shortDiff = fullDiff
+      .replace(/^---[^$]+$/, '')
+      .replace(/^\+\+\+[^$]+$/, '')
+      .replace(/index[^$]+$/, '')
+      .replace(/@@[^$]+$/, '');
+
+    diff += shortDiff + '\n';
+  }
+
+  return diff;
 }

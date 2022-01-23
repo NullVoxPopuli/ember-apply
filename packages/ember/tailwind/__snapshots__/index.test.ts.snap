@@ -10,86 +10,75 @@ exports[`tailwind > applying to an ember app > works via CLI 1`] = `
 
 exports[`tailwind > applying to an ember app > works via CLI 2`] = `
 "diff --git a/.gitignore b/.gitignore
-index 9bab45a..c4e2f3e 100644
---- a/.gitignore
-+++ b/.gitignore
-@@ -1,6 +1,9 @@
- # See https://help.github.com/ignore-files/ for more about ignoring files.
- 
-+
- # compiled output
-+public/assets/tailwind.css
-+
- /dist/
- /tmp/
- 
-diff --git a/app/index.html b/app/index.html
-index 2398775..4ca37d0 100644
---- a/app/index.html
-+++ b/app/index.html
-@@ -9,6 +9,7 @@
- 
-     {{content-for \\"head\\"}}
- 
-+    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
- 
+
+diff --git a/app/
+
+package.json
+{
+  \\"name\\": \\"@ember-apply/tailwind\\",
+  \\"description\\": \\"ember-apply plugin for tailwind\\",
+  \\"version\\": \\"2.0.0\\",
+  \\"type\\": \\"module\\",
+  \\"license\\": \\"MIT\\",
+  \\"preset\\": \\"index.js\\",
+  \\"author\\": \\"NullVoxPopuli\\",
+  \\"repository\\": {
+    \\"url\\": \\"https://github.com/NullVoxPopuli/ember-apply\\",
+    \\"type\\": \\"https\\",
+    \\"directory\\": \\"packages/ember/tailwind\\"
+  },
+  \\"keywords\\": [
+    \\"ember\\",
+    \\"tailwind\\",
+    \\"css\\",
+    \\"ember-apply\\",
+    \\"blueprint\\"
+  ],
+  \\"exports\\": {
+    \\"import\\": \\"./index.js\\"
+  },
+  \\"files\\": [
+    \\"index.js\\",
+    \\"files/**/*\\"
+  ],
+  \\"scripts\\": {
+    \\"build:types\\": \\"tsc --build\\",
+    \\"lint\\": \\"yarn lint:js\\",
+    \\"lint:js\\": \\"eslint .\\",
+    \\"lint:fix\\": \\"yarn lint:js --fix\\",
+    \\"test\\": \\"vitest --coverage --no-watch\\",
+    \\"test:watch\\": \\"vitest --watch\\"
+  },
+  \\"dependencies\\": [
+    \\"ember-apply\\"
+  ],
+  \\"devDependencies\\": [
+    \\"@nullvoxpopuli/eslint-configs\\",
+    \\"autoprefixer\\",
+    \\"babel-eslint\\",
+    \\"c8\\",
+    \\"eslint\\",
+    \\"eslint-plugin-decorator-position\\",
+    \\"eslint-plugin-import\\",
+    \\"eslint-plugin-node\\",
+    \\"eslint-plugin-prettier\\",
+    \\"postcss\\",
+    \\"prettier\\",
+    \\"tailwindcss\\",
+    \\"typescript\\",
+    \\"vite\\",
+    \\"vitest\\"
+  ],
+  \\"engines\\": [
+    \\"node\\"
+  ],
+  \\"volta\\": [
+    \\"node\\",
+    \\"yarn\\"
+  ]
+}
 diff --git a/package.json b/package.json
-index 959c39a..bf772da 100644
---- a/package.json
-+++ b/package.json
-@@ -11,7 +11,7 @@
-     \\"test\\": \\"tests\\"
-   },
-   \\"scripts\\": {
--    \\"build\\": \\"ember build --environment=production\\",
-+    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
-     \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
-     \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
-     \\"lint:hbs\\": \\"ember-template-lint .\\",
-@@ -20,7 +20,9 @@
-     \\"lint:js:fix\\": \\"eslint . --fix\\",
-     \\"start\\": \\"ember serve\\",
-     \\"test\\": \\"npm-run-all lint test:*\\",
--    \\"test:ember\\": \\"ember test\\"
-+    \\"test:ember\\": \\"ember test\\",
-+    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
-+    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
-   },
-   \\"devDependencies\\": {
-     \\"@ember/optional-features\\": \\"^2.0.0\\",
-@@ -59,7 +61,10 @@
-     \\"prettier\\": \\"^2.5.1\\",
-     \\"qunit\\": \\"^2.17.2\\",
-     \\"qunit-dom\\": \\"^2.0.0\\",
--    \\"webpack\\": \\"^5.65.0\\"
-+    \\"webpack\\": \\"^5.65.0\\",
-+    \\"autoprefixer\\": \\"^10.0.0\\",
-+    \\"postcss\\": \\"^8.0.0\\",
-+    \\"tailwindcss\\": \\"^3.0.0\\"
-   },
-   \\"engines\\": {
-     \\"node\\": \\"12.* || 14.* || >= 16\\"
-diff --git a/tests/index.html b/tests/index.html
-index ec6650a..a56e778 100644
---- a/tests/index.html
-+++ b/tests/index.html
-@@ -10,6 +10,7 @@
-     {{content-for \\"head\\"}}
-     {{content-for \\"test-head\\"}}
- 
-+    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
-@@ -28,7 +29,7 @@
-       </div>
-     </div>
- 
--    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore></script>
-+    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore=\\"\\"></script>
-     <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>"
+
+diff --git a/tests/
+"
 `;

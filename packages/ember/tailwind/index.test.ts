@@ -15,7 +15,7 @@ describe('tailwind', () => {
       await apply(appLocation, tailwind.path);
 
       expect(await diffSummary(appLocation)).toMatchSnapshot();
-      expect(await diff(appLocation)).toMatchSnapshot();
+      expect(await diff(appLocation, { ignoreVersions: true })).toMatchSnapshot();
     });
   });
 });
