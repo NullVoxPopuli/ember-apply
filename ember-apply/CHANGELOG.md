@@ -1,3 +1,15 @@
+# [ember-apply-v2.1.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v2.0.1...ember-apply-v2.1.0) (2022-01-23)
+
+
+### Bug Fixes
+
+* **npm-fallback:** add flags to npm install to _make_ it work ([ca7eacc](https://github.com/NullVoxPopuli/ember-apply/commit/ca7eaccf53efd76f5e94aed1ac238e7efb2c0989))
+
+
+### Features
+
+* **ember-apply:** print the issue report URL before applying ([03db4db](https://github.com/NullVoxPopuli/ember-apply/commit/03db4dbc9701fb2072acbbc768d771e331af30b5))
+
 # [ember-apply-v2.0.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v2.0.0...ember-apply-v2.0.1) (2022-01-23)
 
 
