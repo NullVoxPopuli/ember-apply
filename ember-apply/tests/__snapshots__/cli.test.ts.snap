@@ -30,83 +30,79 @@ index 2398775..4ca37d0 100644
 
 package.json
 {
-  \\"name\\": \\"ember-apply\\",
-  \\"version\\": \\"1.4.2\\",
-  \\"description\\": \\"automatic integration and configuration from the community\\",
-  \\"repository\\": {
-    \\"url\\": \\"https://github.com/NullVoxPopuli/ember-apply\\",
-    \\"type\\": \\"https\\",
-    \\"directory\\": \\"packages/ember-apply\\"
-  },
-  \\"main\\": \\"src/index.js\\",
-  \\"exports\\": {
-    \\".\\": \\"./src/index.js\\",
-    \\"./test-utils\\": \\"./src/test-utils.js\\"
-  },
-  \\"type\\": \\"module\\",
-  \\"author\\": \\"NullVoxPopuli\\",
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
   \\"license\\": \\"MIT\\",
-  \\"private\\": false,
-  \\"bin\\": {
-    \\"ember-apply\\": \\"src/cli/index.js\\"
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
   },
-  \\"files\\": [
-    \\"src/**/*\\",
-    \\"README.md\\"
-  ],
   \\"scripts\\": {
-    \\"prepack\\": \\"cp ../README.md\\",
-    \\"build:types\\": \\"tsc --build\\",
-    \\"lint\\": \\"yarn lint:js\\",
-    \\"lint:js\\": \\"eslint .\\",
-    \\"lint:fix\\": \\"yarn lint:js --fix\\",
-    \\"test\\": \\"vitest --coverage --no-watch\\",
-    \\"test:watch\\": \\"vitest --watch\\"
+    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
+    \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
+    \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"npm-run-all lint test:*\\",
+    \\"test:ember\\": \\"ember test\\",
+    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
+    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
   },
-  \\"dependencies\\": [
-    \\"@babel/core\\",
-    \\"@babel/preset-env\\",
-    \\"chalk\\",
-    \\"ember-template-recast\\",
-    \\"execa\\",
-    \\"fs-extra\\",
-    \\"jscodeshift\\",
-    \\"ora\\",
-    \\"pacote\\",
-    \\"posthtml\\",
-    \\"semver\\",
-    \\"unified\\",
-    \\"yargs\\",
-    \\"yarn-workspaces-list\\"
-  ],
   \\"devDependencies\\": [
-    \\"@nullvoxpopuli/eslint-configs\\",
-    \\"@types/fs-extra\\",
-    \\"@types/jscodeshift\\",
-    \\"@types/node\\",
-    \\"@types/pacote\\",
-    \\"@types/semver\\",
-    \\"@types/yargs\\",
-    \\"@vitest/ui\\",
+    \\"@ember/optional-features\\",
+    \\"@ember/test-helpers\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
     \\"babel-eslint\\",
-    \\"c8\\",
+    \\"broccoli-asset-rev\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
+    \\"ember-data\\",
+    \\"ember-export-application-global\\",
+    \\"ember-fetch\\",
+    \\"ember-load-initializers\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
     \\"eslint\\",
-    \\"eslint-plugin-decorator-position\\",
-    \\"eslint-plugin-import\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
     \\"eslint-plugin-node\\",
     \\"eslint-plugin-prettier\\",
+    \\"eslint-plugin-qunit\\",
+    \\"loader.js\\",
+    \\"npm-run-all\\",
     \\"prettier\\",
-    \\"typescript\\",
-    \\"vite\\",
-    \\"vitest\\"
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"webpack\\",
+    \\"autoprefixer\\",
+    \\"postcss\\",
+    \\"tailwindcss\\"
   ],
   \\"engines\\": [
     \\"node\\"
   ],
-  \\"volta\\": [
-    \\"node\\",
-    \\"yarn\\"
-  ]
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  }
 }
 diff --git a/tests/index.html b/tests/index.html
 index ec6650a..a56e778 100644
@@ -170,83 +166,79 @@ index 2398775..4ca37d0 100644
 
 package.json
 {
-  \\"name\\": \\"ember-apply\\",
-  \\"version\\": \\"1.4.2\\",
-  \\"description\\": \\"automatic integration and configuration from the community\\",
-  \\"repository\\": {
-    \\"url\\": \\"https://github.com/NullVoxPopuli/ember-apply\\",
-    \\"type\\": \\"https\\",
-    \\"directory\\": \\"packages/ember-apply\\"
-  },
-  \\"main\\": \\"src/index.js\\",
-  \\"exports\\": {
-    \\".\\": \\"./src/index.js\\",
-    \\"./test-utils\\": \\"./src/test-utils.js\\"
-  },
-  \\"type\\": \\"module\\",
-  \\"author\\": \\"NullVoxPopuli\\",
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
   \\"license\\": \\"MIT\\",
-  \\"private\\": false,
-  \\"bin\\": {
-    \\"ember-apply\\": \\"src/cli/index.js\\"
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
   },
-  \\"files\\": [
-    \\"src/**/*\\",
-    \\"README.md\\"
-  ],
   \\"scripts\\": {
-    \\"prepack\\": \\"cp ../README.md\\",
-    \\"build:types\\": \\"tsc --build\\",
-    \\"lint\\": \\"yarn lint:js\\",
-    \\"lint:js\\": \\"eslint .\\",
-    \\"lint:fix\\": \\"yarn lint:js --fix\\",
-    \\"test\\": \\"vitest --coverage --no-watch\\",
-    \\"test:watch\\": \\"vitest --watch\\"
+    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
+    \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
+    \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"npm-run-all lint test:*\\",
+    \\"test:ember\\": \\"ember test\\",
+    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
+    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
   },
-  \\"dependencies\\": [
-    \\"@babel/core\\",
-    \\"@babel/preset-env\\",
-    \\"chalk\\",
-    \\"ember-template-recast\\",
-    \\"execa\\",
-    \\"fs-extra\\",
-    \\"jscodeshift\\",
-    \\"ora\\",
-    \\"pacote\\",
-    \\"posthtml\\",
-    \\"semver\\",
-    \\"unified\\",
-    \\"yargs\\",
-    \\"yarn-workspaces-list\\"
-  ],
   \\"devDependencies\\": [
-    \\"@nullvoxpopuli/eslint-configs\\",
-    \\"@types/fs-extra\\",
-    \\"@types/jscodeshift\\",
-    \\"@types/node\\",
-    \\"@types/pacote\\",
-    \\"@types/semver\\",
-    \\"@types/yargs\\",
-    \\"@vitest/ui\\",
+    \\"@ember/optional-features\\",
+    \\"@ember/test-helpers\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
     \\"babel-eslint\\",
-    \\"c8\\",
+    \\"broccoli-asset-rev\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
+    \\"ember-data\\",
+    \\"ember-export-application-global\\",
+    \\"ember-fetch\\",
+    \\"ember-load-initializers\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
     \\"eslint\\",
-    \\"eslint-plugin-decorator-position\\",
-    \\"eslint-plugin-import\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
     \\"eslint-plugin-node\\",
     \\"eslint-plugin-prettier\\",
+    \\"eslint-plugin-qunit\\",
+    \\"loader.js\\",
+    \\"npm-run-all\\",
     \\"prettier\\",
-    \\"typescript\\",
-    \\"vite\\",
-    \\"vitest\\"
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"webpack\\",
+    \\"autoprefixer\\",
+    \\"postcss\\",
+    \\"tailwindcss\\"
   ],
   \\"engines\\": [
     \\"node\\"
   ],
-  \\"volta\\": [
-    \\"node\\",
-    \\"yarn\\"
-  ]
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  }
 }
 diff --git a/tests/index.html b/tests/index.html
 index ec6650a..a56e778 100644
@@ -310,83 +302,79 @@ index 2398775..4ca37d0 100644
 
 package.json
 {
-  \\"name\\": \\"ember-apply\\",
-  \\"version\\": \\"1.4.2\\",
-  \\"description\\": \\"automatic integration and configuration from the community\\",
-  \\"repository\\": {
-    \\"url\\": \\"https://github.com/NullVoxPopuli/ember-apply\\",
-    \\"type\\": \\"https\\",
-    \\"directory\\": \\"packages/ember-apply\\"
-  },
-  \\"main\\": \\"src/index.js\\",
-  \\"exports\\": {
-    \\".\\": \\"./src/index.js\\",
-    \\"./test-utils\\": \\"./src/test-utils.js\\"
-  },
-  \\"type\\": \\"module\\",
-  \\"author\\": \\"NullVoxPopuli\\",
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
   \\"license\\": \\"MIT\\",
-  \\"private\\": false,
-  \\"bin\\": {
-    \\"ember-apply\\": \\"src/cli/index.js\\"
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
   },
-  \\"files\\": [
-    \\"src/**/*\\",
-    \\"README.md\\"
-  ],
   \\"scripts\\": {
-    \\"prepack\\": \\"cp ../README.md\\",
-    \\"build:types\\": \\"tsc --build\\",
-    \\"lint\\": \\"yarn lint:js\\",
-    \\"lint:js\\": \\"eslint .\\",
-    \\"lint:fix\\": \\"yarn lint:js --fix\\",
-    \\"test\\": \\"vitest --coverage --no-watch\\",
-    \\"test:watch\\": \\"vitest --watch\\"
+    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
+    \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
+    \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"npm-run-all lint test:*\\",
+    \\"test:ember\\": \\"ember test\\",
+    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
+    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
   },
-  \\"dependencies\\": [
-    \\"@babel/core\\",
-    \\"@babel/preset-env\\",
-    \\"chalk\\",
-    \\"ember-template-recast\\",
-    \\"execa\\",
-    \\"fs-extra\\",
-    \\"jscodeshift\\",
-    \\"ora\\",
-    \\"pacote\\",
-    \\"posthtml\\",
-    \\"semver\\",
-    \\"unified\\",
-    \\"yargs\\",
-    \\"yarn-workspaces-list\\"
-  ],
   \\"devDependencies\\": [
-    \\"@nullvoxpopuli/eslint-configs\\",
-    \\"@types/fs-extra\\",
-    \\"@types/jscodeshift\\",
-    \\"@types/node\\",
-    \\"@types/pacote\\",
-    \\"@types/semver\\",
-    \\"@types/yargs\\",
-    \\"@vitest/ui\\",
+    \\"@ember/optional-features\\",
+    \\"@ember/test-helpers\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
     \\"babel-eslint\\",
-    \\"c8\\",
+    \\"broccoli-asset-rev\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
+    \\"ember-data\\",
+    \\"ember-export-application-global\\",
+    \\"ember-fetch\\",
+    \\"ember-load-initializers\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
     \\"eslint\\",
-    \\"eslint-plugin-decorator-position\\",
-    \\"eslint-plugin-import\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
     \\"eslint-plugin-node\\",
     \\"eslint-plugin-prettier\\",
+    \\"eslint-plugin-qunit\\",
+    \\"loader.js\\",
+    \\"npm-run-all\\",
     \\"prettier\\",
-    \\"typescript\\",
-    \\"vite\\",
-    \\"vitest\\"
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"webpack\\",
+    \\"autoprefixer\\",
+    \\"postcss\\",
+    \\"tailwindcss\\"
   ],
   \\"engines\\": [
     \\"node\\"
   ],
-  \\"volta\\": [
-    \\"node\\",
-    \\"yarn\\"
-  ]
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  }
 }
 diff --git a/tests/index.html b/tests/index.html
 index ec6650a..a56e778 100644
@@ -450,83 +438,79 @@ index 2398775..4ca37d0 100644
 
 package.json
 {
-  \\"name\\": \\"ember-apply\\",
-  \\"version\\": \\"1.4.2\\",
-  \\"description\\": \\"automatic integration and configuration from the community\\",
-  \\"repository\\": {
-    \\"url\\": \\"https://github.com/NullVoxPopuli/ember-apply\\",
-    \\"type\\": \\"https\\",
-    \\"directory\\": \\"packages/ember-apply\\"
-  },
-  \\"main\\": \\"src/index.js\\",
-  \\"exports\\": {
-    \\".\\": \\"./src/index.js\\",
-    \\"./test-utils\\": \\"./src/test-utils.js\\"
-  },
-  \\"type\\": \\"module\\",
-  \\"author\\": \\"NullVoxPopuli\\",
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
   \\"license\\": \\"MIT\\",
-  \\"private\\": false,
-  \\"bin\\": {
-    \\"ember-apply\\": \\"src/cli/index.js\\"
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
   },
-  \\"files\\": [
-    \\"src/**/*\\",
-    \\"README.md\\"
-  ],
   \\"scripts\\": {
-    \\"prepack\\": \\"cp ../README.md\\",
-    \\"build:types\\": \\"tsc --build\\",
-    \\"lint\\": \\"yarn lint:js\\",
-    \\"lint:js\\": \\"eslint .\\",
-    \\"lint:fix\\": \\"yarn lint:js --fix\\",
-    \\"test\\": \\"vitest --coverage --no-watch\\",
-    \\"test:watch\\": \\"vitest --watch\\"
+    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
+    \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
+    \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"npm-run-all lint test:*\\",
+    \\"test:ember\\": \\"ember test\\",
+    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
+    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
   },
-  \\"dependencies\\": [
-    \\"@babel/core\\",
-    \\"@babel/preset-env\\",
-    \\"chalk\\",
-    \\"ember-template-recast\\",
-    \\"execa\\",
-    \\"fs-extra\\",
-    \\"jscodeshift\\",
-    \\"ora\\",
-    \\"pacote\\",
-    \\"posthtml\\",
-    \\"semver\\",
-    \\"unified\\",
-    \\"yargs\\",
-    \\"yarn-workspaces-list\\"
-  ],
   \\"devDependencies\\": [
-    \\"@nullvoxpopuli/eslint-configs\\",
-    \\"@types/fs-extra\\",
-    \\"@types/jscodeshift\\",
-    \\"@types/node\\",
-    \\"@types/pacote\\",
-    \\"@types/semver\\",
-    \\"@types/yargs\\",
-    \\"@vitest/ui\\",
+    \\"@ember/optional-features\\",
+    \\"@ember/test-helpers\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
     \\"babel-eslint\\",
-    \\"c8\\",
+    \\"broccoli-asset-rev\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
+    \\"ember-data\\",
+    \\"ember-export-application-global\\",
+    \\"ember-fetch\\",
+    \\"ember-load-initializers\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
     \\"eslint\\",
-    \\"eslint-plugin-decorator-position\\",
-    \\"eslint-plugin-import\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
     \\"eslint-plugin-node\\",
     \\"eslint-plugin-prettier\\",
+    \\"eslint-plugin-qunit\\",
+    \\"loader.js\\",
+    \\"npm-run-all\\",
     \\"prettier\\",
-    \\"typescript\\",
-    \\"vite\\",
-    \\"vitest\\"
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"webpack\\",
+    \\"autoprefixer\\",
+    \\"postcss\\",
+    \\"tailwindcss\\"
   ],
   \\"engines\\": [
     \\"node\\"
   ],
-  \\"volta\\": [
-    \\"node\\",
-    \\"yarn\\"
-  ]
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  }
 }
 diff --git a/tests/index.html b/tests/index.html
 index ec6650a..a56e778 100644

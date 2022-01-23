@@ -77,7 +77,7 @@ export async function diff(appPath, options = {}) {
     }
 
     if (filePath.endsWith('package.json') && options?.ignoreVersions) {
-      let fileBuffer = await fs.readFile(filePath);
+      let fileBuffer = await fs.readFile(path.join(appPath, filePath));
       let fileString = fileBuffer.toString();
       let json = JSON.parse(fileString);
 

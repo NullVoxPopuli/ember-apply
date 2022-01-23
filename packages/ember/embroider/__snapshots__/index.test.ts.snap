@@ -38,65 +38,77 @@ index 48e94e9..afcbef6 100644
 
 package.json
 {
-  \\"name\\": \\"@ember-apply/embroider\\",
-  \\"description\\": \\"ember-apply plugin for upgrading a classic build ember app to using embroider\\",
-  \\"version\\": \\"0.0.1\\",
-  \\"type\\": \\"module\\",
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
   \\"license\\": \\"MIT\\",
-  \\"preset\\": \\"index.js\\",
-  \\"author\\": \\"NullVoxPopuli\\",
-  \\"repository\\": {
-    \\"url\\": \\"https://github.com/NullVoxPopuli/ember-apply\\",
-    \\"type\\": \\"https\\",
-    \\"directory\\": \\"packages/ember/embroider\\"
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
   },
-  \\"keywords\\": [
-    \\"ember\\",
-    \\"embroider\\",
-    \\"ember-apply\\",
-    \\"blueprint\\"
-  ],
-  \\"exports\\": {
-    \\"import\\": \\"./index.js\\"
-  },
-  \\"files\\": [
-    \\"index.js\\"
-  ],
   \\"scripts\\": {
-    \\"build:types\\": \\"tsc --build\\",
-    \\"lint\\": \\"yarn lint:js\\",
-    \\"lint:js\\": \\"eslint .\\",
-    \\"lint:fix\\": \\"yarn lint:js --fix\\",
-    \\"test\\": \\"vitest --coverage --no-watch\\",
-    \\"test:watch\\": \\"vitest --watch\\"
+    \\"build\\": \\"ember build --environment=production\\",
+    \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
+    \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"npm-run-all lint test:*\\",
+    \\"test:ember\\": \\"ember test\\"
   },
-  \\"dependencies\\": [
-    \\"ember-apply\\"
-  ],
   \\"devDependencies\\": [
-    \\"@nullvoxpopuli/eslint-configs\\",
-    \\"autoprefixer\\",
+    \\"@ember/optional-features\\",
+    \\"@ember/test-helpers\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
     \\"babel-eslint\\",
-    \\"c8\\",
+    \\"broccoli-asset-rev\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
+    \\"ember-data\\",
+    \\"ember-export-application-global\\",
+    \\"ember-fetch\\",
+    \\"ember-load-initializers\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
     \\"eslint\\",
-    \\"eslint-plugin-decorator-position\\",
-    \\"eslint-plugin-import\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
     \\"eslint-plugin-node\\",
     \\"eslint-plugin-prettier\\",
-    \\"postcss\\",
+    \\"eslint-plugin-qunit\\",
+    \\"loader.js\\",
+    \\"npm-run-all\\",
     \\"prettier\\",
-    \\"tailwindcss\\",
-    \\"typescript\\",
-    \\"vite\\",
-    \\"vitest\\"
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"webpack\\",
+    \\"@embroider/core\\",
+    \\"@embroider/compat\\",
+    \\"@embroider/webpack\\"
   ],
   \\"engines\\": [
     \\"node\\"
   ],
-  \\"volta\\": [
-    \\"node\\",
-    \\"yarn\\"
-  ]
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  }
 }
 "
 `;
