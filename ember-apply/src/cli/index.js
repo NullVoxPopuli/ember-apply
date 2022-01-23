@@ -157,7 +157,7 @@ async function downloadFromNpm(options) {
 
   spinner.text = `Installing dependencies for ${packageName}`;
   spinner.info();
-  await execa('npm', ['install'], { cwd: dir });
+  await execa('npm', ['install', '--omit', 'dev', '--force'], { cwd: dir });
 
   return await tryResolve(path.join(dir, main), options);
 }
@@ -263,8 +263,6 @@ async function tryResolve(url, options = {}) {
  * @param {Options} [options]
  */
 async function tryNpmInfo(name, options = {}) {
-  let { verbose } = options;
-
   try {
     if (options.verbose) {
       console.info(chalk.gray(`NPM Info: ${name}`));
