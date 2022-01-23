@@ -1,3 +1,18 @@
+# [ember-apply-v2.0.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v1.4.2...ember-apply-v2.0.0) (2022-01-23)
+
+
+### Bug Fixes
+
+* **html, transform:** move from rehype back to posthtml ([5ae8ea4](https://github.com/NullVoxPopuli/ember-apply/commit/5ae8ea4d08f12ae1afb63454982912f914a0909d))
+
+
+### BREAKING CHANGES
+
+* **html, transform:** turns out rehype isn't a good fit for codemods
+rehype's primary use case is generated code -> generated code.
+We need userland code -> userland code, so maintaining formatting is
+important.
+
 # [ember-apply-v1.4.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v1.4.1...ember-apply-v1.4.2) (2022-01-17)
 
 
