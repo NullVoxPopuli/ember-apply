@@ -21,6 +21,7 @@ See [#Public API](https://ember-apply.pages.dev/modules).
 
 
 ![npm (tag)](https://img.shields.io/npm/v/@ember-apply/tailwind/latest?label=%40ember-apply%2Ftailwind)
+![npm (tag)](https://img.shields.io/npm/v/@ember-apply/embroider/latest?label=%40ember-apply%2Fembroider)
 
 
 _NOTE:_ this package is a slightly experimental and prone to some API or organizational changes -- but is committed to strictly following semver.
@@ -56,6 +57,15 @@ Known working capabilities:
 - entrypoint for your app is located at `app/index.html`
 - entrypoint for your tests is located at `tests/index.html`
 - tailwind files are placed in `config/tailwind/`
+
+### `embroider`
+
+```shell
+npx ember-apply embroider
+```
+
+_Automates the embroider migration from the classic ember build system for maximum-compatibility mode_.
+See the [Embroider docs](https://github.com/embroider-build/embroider/)
 
 ### `ssr`
 
