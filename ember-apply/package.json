@@ -24,7 +24,7 @@
     "README.md"
   ],
   "scripts": {
-    "prepack": "cp ../README.md",
+    "prepack": "cp ../README.md ./",
     "build:types": "tsc --build",
     "lint": "yarn lint:js",
     "lint:js": "eslint .",
