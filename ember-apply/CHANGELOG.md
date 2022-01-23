@@ -1,3 +1,10 @@
+# [ember-apply-v2.0.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v2.0.0...ember-apply-v2.0.1) (2022-01-23)
+
+
+### Bug Fixes
+
+* **ember-apply:** re-add readme ([f30afda](https://github.com/NullVoxPopuli/ember-apply/commit/f30afda737d3a401e25cd8eb4c6cab5e09f3c716))
+
 # [ember-apply-v2.0.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v1.4.2...ember-apply-v2.0.0) (2022-01-23)
 
 
