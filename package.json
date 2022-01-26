@@ -25,7 +25,7 @@
     "multi-semantic-release": "^2.11.0",
     "semantic-release": "^19.0.0",
     "semantic-release-monorepo": "^7.0.0",
-    "turbo": "1.0.28"
+    "turbo": "1.0.29"
   },
   "release": {
     "extends": "semantic-release-monorepo",
