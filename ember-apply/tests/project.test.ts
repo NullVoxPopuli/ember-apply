@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import path from 'path';
-import { describe, expect, test } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 
 import { project } from '../src';
 import { newTmpDir } from '../src/test-utils';
@@ -10,23 +10,40 @@ import { newTmpDir } from '../src/test-utils';
 // see: https://github.com/vitest-dev/vitest/issues/551
 let it = test.concurrent;
 
+let original = process.cwd();
+
 describe('project', () => {
+  beforeEach(() => {
+    process.chdir(original);
+  });
+  afterEach(() => {
+    process.chdir(original);
+  });
+
   describe(project.gitRoot.name, () => {
     it('in a git directory, it works', async () => {
       let root = await project.gitRoot();
-      let expected = path.resolve('../');
+      let expected = path.resolve(__dirname, '../..');
 
       expect(root).toEqual(expected);
     });
 
-    it.skip('in a non-git directory, it raises', async () => {
+    it('in a non-git directory, it raises', async () => {
       let newDir = await newTmpDir();
 
-      await project.inWorkspace(newDir, async () => {
-        let root = await project.gitRoot();
+      try {
+        await project.inWorkspace(newDir, async () => {
+          let root = await project.gitRoot();
 
-        expect(root).toEqual('');
-      });
+          expect(root).toEqual(newDir);
+        });
+      } catch (e) {
+        expect(e.message).toMatch(/not a git repository/);
+
+        return;
+      }
+
+      expect(null).toEqual('Test should return before here due to error');
     });
   });
 

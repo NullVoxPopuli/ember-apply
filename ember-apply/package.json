@@ -29,8 +29,8 @@
     "lint": "yarn lint:js",
     "lint:js": "eslint .",
     "lint:fix": "yarn lint:js --fix",
-    "test": "vitest --coverage --no-watch",
-    "test:watch": "vitest --watch"
+    "test": "vitest --coverage --no-watch --no-threads",
+    "test:watch": "vitest --watch --no-threads"
   },
   "dependencies": {
     "@babel/core": "^7.16.7",
