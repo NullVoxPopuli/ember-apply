@@ -3,7 +3,7 @@ import path from 'path';
 import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 
 import { project } from '../src';
-import { newTmpDir } from '../src/test-utils';
+import { newEmberApp, newTmpDir, readFile } from '../src/test-utils';
 
 // let it = test.concurrent;
 // Snapshot testing is broken in concurrent tests
@@ -48,16 +48,60 @@ describe('project', () => {
   });
 
   describe(project.gitIgnore.name, () => {
-    it.skip('adds a new entry to the bottom', () => {});
-    it.skip('adds a new entry under a header', () => {});
-    it.skip('adds a new entry and a new a header', () => {});
+    let tmpDir: string;
+
+    beforeEach(async () => {
+      tmpDir = await newEmberApp();
+      process.chdir(tmpDir);
+    });
+
+    it('adds a new entry to the bottom', async () => {
+      let text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).not.toMatch(/test-test/);
+
+      await project.gitIgnore('test-test');
+
+      text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).toMatch(/test-test$/);
+    });
+
+    it('adds a new entry under a header', async () => {
+      let text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).not.toMatch(/test-test/);
+
+      await project.gitIgnore('test-test', '# misc');
+
+      text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).toMatch('# misc\ntest-test');
+    });
+
+    it('adds a new entry and a new a header', async () => {
+      let text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).not.toMatch('my-new-header');
+      expect(text).not.toMatch('test-test');
+
+      await project.gitIgnore('test-test', '# my-new-header');
+
+      text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).toMatch('# my-new-header\ntest-test');
+    });
   });
 
   describe(project.inWorkspace.name, () => {
+    beforeEach(async () => {});
+
     it.skip('changes the working directory', () => {});
   });
 
   describe(project.eachWorkspace.name, () => {
+    beforeEach(async () => {});
+
     it.skip('does something in each workspace', () => {});
   });
 

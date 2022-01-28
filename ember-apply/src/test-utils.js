@@ -118,3 +118,29 @@ export async function diff(appPath, options = {}) {
 
   return diff;
 }
+
+/**
+ * Gets text content of the file all in one go
+ * fs.readFile with the extra steps
+ *
+ * @param {string} filePath
+ * @returns {Promise<string>} the file
+ */
+export async function readFile(filePath) {
+  let file = await fs.readFile(filePath);
+
+  return file.toString();
+}
+
+/**
+ * Gets JSON content of the file all in one go
+ * fs.readFile with the extra steps
+ *
+ * @param {string} filePath
+ * @returns {Promise<object>} the file
+ */
+export async function readJson(filePath) {
+  let text = await readFile(filePath);
+
+  return JSON.parse(text);
+}
