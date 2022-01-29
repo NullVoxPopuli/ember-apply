@@ -118,3 +118,57 @@ export async function diff(appPath, options = {}) {
 
   return diff;
 }
+
+/**
+ * Gets text content of the file all in one go
+ * fs.readFile with the extra steps
+ *
+ * @param {string} filePath
+ * @returns {Promise<string>} the file
+ */
+export async function readFile(filePath) {
+  let file = await fs.readFile(filePath);
+
+  return file.toString();
+}
+
+/**
+ * Gets JSON content of the file all in one go
+ * fs.readFile with the extra steps
+ *
+ * @param {string} filePath
+ * @returns {Promise<object>} the file
+ */
+export async function readJson(filePath) {
+  let text = await readFile(filePath);
+
+  return JSON.parse(text);
+}
+
+/**
+ * Creates a new monorepo with git in a tmp directory
+ *
+ * @param {string[]} workspaces list of workspace names
+ */
+export async function newMonorepo(workspaces) {
+  let root = await newTmpDir();
+
+  await execa('git', ['init'], { cwd: root });
+
+  await fs.writeFile(
+    path.join(root, 'package.json'),
+    `{ "workspaces": [${workspaces.map((w) => `"${w}"`)}], "private": true }`
+  );
+
+  for (let workspace of workspaces) {
+    let safeName = workspace.replaceAll('/', '-');
+
+    await fs.mkdir(path.join(root, `${workspace}`), { recursive: true });
+    await fs.writeFile(
+      path.join(root, `${workspace}/package.json`),
+      `{ "name": "test-${safeName}" , "dependencies": {}, "version": "0.0.0" }`
+    );
+  }
+
+  return root;
+}

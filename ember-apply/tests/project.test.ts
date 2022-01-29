@@ -1,59 +1,141 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import path from 'path';
-import { describe, expect, test } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 
 import { project } from '../src';
-import { newTmpDir } from '../src/test-utils';
+import { newEmberApp, newMonorepo, newTmpDir, readFile } from '../src/test-utils';
 
 // let it = test.concurrent;
 // Snapshot testing is broken in concurrent tests
 // see: https://github.com/vitest-dev/vitest/issues/551
 let it = test.concurrent;
 
+let original = process.cwd();
+
 describe('project', () => {
+  beforeEach(() => {
+    process.chdir(original);
+  });
+  afterEach(() => {
+    process.chdir(original);
+  });
+
   describe(project.gitRoot.name, () => {
     it('in a git directory, it works', async () => {
       let root = await project.gitRoot();
-      let expected = path.resolve('../');
+      let expected = path.resolve(__dirname, '../..');
 
       expect(root).toEqual(expected);
     });
 
-    it.skip('in a non-git directory, it raises', async () => {
+    it('in a non-git directory, it raises', async () => {
       let newDir = await newTmpDir();
 
-      await project.inWorkspace(newDir, async () => {
-        let root = await project.gitRoot();
+      try {
+        await project.inWorkspace(newDir, async () => {
+          let root = await project.gitRoot();
 
-        expect(root).toEqual('');
-      });
+          expect(root).toEqual(newDir);
+        });
+      } catch (e) {
+        expect(e.message).toMatch(/not a git repository/);
+
+        return;
+      }
+
+      expect(null).toEqual('Test should return before here due to error');
     });
   });
 
   describe(project.gitIgnore.name, () => {
-    it.skip('adds a new entry to the bottom', () => {});
-    it.skip('adds a new entry under a header', () => {});
-    it.skip('adds a new entry and a new a header', () => {});
+    let tmpDir: string;
+
+    beforeEach(async () => {
+      tmpDir = await newEmberApp();
+      process.chdir(tmpDir);
+    });
+
+    it('adds a new entry to the bottom', async () => {
+      let text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).not.toMatch(/test-test/);
+
+      await project.gitIgnore('test-test');
+
+      text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).toMatch(/test-test$/);
+    });
+
+    it('adds a new entry under a header', async () => {
+      let text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).not.toMatch(/test-test/);
+
+      await project.gitIgnore('test-test', '# misc');
+
+      text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).toMatch('# misc\ntest-test');
+    });
+
+    it('adds a new entry and a new a header', async () => {
+      let text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).not.toMatch('my-new-header');
+      expect(text).not.toMatch('test-test');
+
+      await project.gitIgnore('test-test', '# my-new-header');
+
+      text = await readFile(path.join(tmpDir, '.gitignore'));
+
+      expect(text).toMatch('# my-new-header\ntest-test');
+    });
   });
 
   describe(project.inWorkspace.name, () => {
+    beforeEach(async () => {});
+
     it.skip('changes the working directory', () => {});
   });
 
   describe(project.eachWorkspace.name, () => {
-    it.skip('does something in each workspace', () => {});
-  });
+    let root: string;
 
-  describe(project.getWorkspaces.name, () => {
-    it('lists workspaces', async () => {
-      let workspaces = await project.getWorkspaces();
+    beforeEach(async () => {
+      root = await newMonorepo(['packages/a', 'packages/b', 'packages/c', 'd']);
+
+      process.chdir(root);
+    });
+
+    it('iterates each workspace', async () => {
+      let workspaces: string[] = [];
+
+      for await (let current of await project.eachWorkspace()) {
+        workspaces.push(current);
+      }
 
       expect(workspaces).toEqual([
-        '.',
-        'ember-apply',
-        'packages/docs',
-        'packages/ember/embroider',
-        'packages/ember/tailwind',
+        root,
+        root + '/packages/a',
+        root + '/packages/b',
+        root + '/packages/c',
+        root + '/d',
+      ]);
+    });
+  });
+
+  describe('getWorkspaces + workspaceRoot', () => {
+    it('lists workspaces', async () => {
+      let workspaces = await project.getWorkspaces();
+      let root = await project.workspaceRoot();
+
+      expect(workspaces).toEqual([
+        root,
+        root + '/ember-apply',
+        root + '/packages/docs',
+        root + '/packages/ember/embroider',
+        root + '/packages/ember/tailwind',
       ]);
     });
   });
