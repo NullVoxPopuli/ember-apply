@@ -3,7 +3,7 @@ import path from 'path';
 import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 
 import { project } from '../src';
-import { newEmberApp, newTmpDir, readFile } from '../src/test-utils';
+import { newEmberApp, newMonorepo, newTmpDir, readFile } from '../src/test-utils';
 
 // let it = test.concurrent;
 // Snapshot testing is broken in concurrent tests
@@ -100,21 +100,42 @@ describe('project', () => {
   });
 
   describe(project.eachWorkspace.name, () => {
-    beforeEach(async () => {});
+    let root: string;
 
-    it.skip('does something in each workspace', () => {});
-  });
+    beforeEach(async () => {
+      root = await newMonorepo(['packages/a', 'packages/b', 'packages/c', 'd']);
 
-  describe(project.getWorkspaces.name, () => {
-    it('lists workspaces', async () => {
-      let workspaces = await project.getWorkspaces();
+      process.chdir(root);
+    });
+
+    it('iterates each workspace', async () => {
+      let workspaces: string[] = [];
+
+      for await (let current of await project.eachWorkspace()) {
+        workspaces.push(current);
+      }
 
       expect(workspaces).toEqual([
-        '.',
-        'ember-apply',
-        'packages/docs',
-        'packages/ember/embroider',
-        'packages/ember/tailwind',
+        root,
+        root + '/packages/a',
+        root + '/packages/b',
+        root + '/packages/c',
+        root + '/d',
+      ]);
+    });
+  });
+
+  describe('getWorkspaces + workspaceRoot', () => {
+    it('lists workspaces', async () => {
+      let workspaces = await project.getWorkspaces();
+      let root = await project.workspaceRoot();
+
+      expect(workspaces).toEqual([
+        root,
+        root + '/ember-apply',
+        root + '/packages/docs',
+        root + '/packages/ember/embroider',
+        root + '/packages/ember/tailwind',
       ]);
     });
   });

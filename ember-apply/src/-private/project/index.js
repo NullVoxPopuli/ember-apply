@@ -4,4 +4,11 @@
  * Public API for the project namespace
  */
 
-export { gitRoot, gitIgnore, inWorkspace, eachWorkspace, getWorkspaces } from './utils.js';
+export {
+  gitRoot,
+  gitIgnore,
+  inWorkspace,
+  eachWorkspace,
+  getWorkspaces,
+  workspaceRoot,
+} from './utils.js';
