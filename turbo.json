@@ -1,0 +1,31 @@
+{
+  "baseBranch": "origin/main",
+  "pipeline": {
+    "dev": {
+      "dependsOn": [
+        "^dev"
+      ]
+    },
+    "start": {
+      "dependsOn": [
+        "^build"
+      ],
+      "cache": false
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "lint": {
+      "dependsOn": [
+        "^lint:js"
+      ]
+    },
+    "lint:fix": {},
+    "lint:js": {},
+    "test": {},
+    "publish": {},
+    "publish:dry-run": {}
+  }
+}
