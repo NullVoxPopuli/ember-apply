@@ -46,6 +46,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "postcss": "^8.0.0",
     "prettier": "^2.5.1",
+    "semantic-release": "^19.0.0",
+    "semantic-release-monorepo": "^7.0.0",
     "typescript": "4.5.4",
     "vite": "^2.7.13",
     "vitest": "^0.2.0"
