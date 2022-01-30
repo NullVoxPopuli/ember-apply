@@ -55,5 +55,6 @@
   "volta": {
     "node": "16.13.2",
     "yarn": "1.22.17"
-  }
+  },
+  "packageManager": "yarn@1.22.17"
 }
