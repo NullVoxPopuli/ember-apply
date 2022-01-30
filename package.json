@@ -33,11 +33,15 @@
       "main"
     ],
     "plugins": [
-      ["@semantic-release/commit-analyzer",
+      [
+        "@semantic-release/commit-analyzer",
         {
           "preset": "angular",
           "parserOpts": {
-            "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES"
+            ]
           }
         }
       ],
@@ -47,37 +51,6 @@
       "@semantic-release/github",
       "@semantic-release/git"
     ]
-  },
-  "turbo": {
-    "baseBranch": "origin/main",
-    "pipeline": {
-      "dev": {
-        "dependsOn": [
-          "^dev"
-        ]
-      },
-      "start": {
-        "dependsOn": [
-          "^build"
-        ],
-        "cache": false
-      },
-      "build": {
-        "dependsOn": [
-          "^build"
-        ]
-      },
-      "lint": {
-        "dependsOn": [
-          "^lint:js"
-        ]
-      },
-      "lint:fix": {},
-      "lint:js": {},
-      "test": {},
-      "publish": {},
-      "publish:dry-run": {}
-    }
   },
   "volta": {
     "node": "16.13.2",
