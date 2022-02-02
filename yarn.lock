@@ -6460,10 +6460,10 @@ mute-stream@~0.0.4:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-nanoid@^3.1.30:
-  version "3.1.32"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.32.tgz#8f96069e6239cc0a9ae8c0d3b41a3b4933a88c0a"
-  integrity sha512-F8mf7R3iT9bvThBoW4tGXhXFHCctyCiUUPrWF8WaTqa3h96d9QybkSeba43XVOOE3oiLfkVDe4bT8MeGmkrTxw==
+nanoid@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.2.0.tgz#62667522da6673971cca916a6d3eff3f415ff80c"
+  integrity sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -7384,11 +7384,13 @@ postcss-value-parser@^4.2.0:
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
 postcss@^8.0.0, postcss@^8.4.5:
-  version: "8.4.6"
+  version "8.4.6"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.6.tgz#c5ff3c3c457a23864f32cb45ac9b741498a09ae1"
+  integrity sha512-OovjwIzs9Te46vlEx7+uXB0PLijpwjXGKXjVGGPIGubGpq7uh5Xgf6D6FiJ/SzJMBosHDp6a2hiXOS97iBXcaA==
   dependencies:
-    nanoid "^3.1.30"
+    nanoid "^3.2.0"
     picocolors "^1.0.0"
-    source-map-js "^1.0.1"
+    source-map-js "^1.0.2"
 
 posthtml-parser@^0.10.0:
   version "0.10.2"
@@ -8218,10 +8220,10 @@ socks@^2.6.1:
     ip "^1.1.5"
     smart-buffer "^4.1.0"
 
-source-map-js@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.1.tgz#a1741c131e3c77d048252adfa24e23b908670caf"
-  integrity sha512-4+TN2b3tqOCd/kaGRJ/sTYA0tR0mdXx26ipdolxcwtJVqEnqNYvlCAt1q3ypy4QMlYus+Zh34RNtYLoq2oQ4IA==
+source-map-js@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
+  integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
 source-map-resolve@^0.5.0:
   version "0.5.3"
