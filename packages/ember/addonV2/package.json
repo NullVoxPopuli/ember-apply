@@ -36,7 +36,9 @@
   "dependencies": {
     "ember-apply": "*",
     "execa": "^6.0.0",
-    "fs-extra": "^10.0.0"
+    "fs-extra": "^10.0.0",
+    "semver": "^7.0.0",
+    "globby": "^13.1.1"
   },
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "^2.1.17",

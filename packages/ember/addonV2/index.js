@@ -5,8 +5,10 @@ import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import fse from 'fs-extra';
 import { execa } from 'execa';
+import semver from 'semver';
+import { globby } from 'globby';
 
-import { project, js, files, packageJson } from 'ember-apply';
+import { packageJson } from 'ember-apply';
 
 /**
  * @param {string} workingDirectory - the directory `npx ember-apply` was invoked fromm
@@ -20,7 +22,7 @@ export default async function run(workingDirectory) {
     return;
   }
 
-  let emberCli = info.devDependencies['ember-cli'];
+  let emberCli = semver.coerce(info.devDependencies['ember-cli']);
 
   /**
    * High level process
@@ -34,18 +36,53 @@ export default async function run(workingDirectory) {
    *  - copy over enough files to the new project for it to work
    *
    */
+  await writeRootPackageJson(info, workingDirectory);
+  await createTestApp(emberCli, name);
+
+  await fse.move('addon', `${workspace}/src`);
+  await moveTests();
+
+  await moveFilesToTestApp();
+  await removeFiles();
+}
+
+async function writeRootPackageJson(info, addonPath) {
+  let rootJson = workspacePackageJsonFrom(info, addonPath);
+
+  // root package.json must not contain 'ember-cli',
+  // otherwise ember-cli doesn't work :(
+  await fs.writeFile('package.json', JSON.stringify(rootJson, null, 2));
+}
+
+async function moveFilesToTestApp() {
+  // Move useful files to test app
+  await fse.move('ember-cli-build.js', 'testing/ember-app/ember-cli-build.js', { overwrite: true });
+}
+
+async function createTestApp(emberCli, name) {
   await fs.mkdir('testing', { recursive: true });
-  await execa('npx', [`ember-cli@${emberCli}`, 'new', 'ember-app', '--skip-npm', '--skip-git']);
+  await execa(
+    'npx',
+    [`ember-cli@${emberCli}`, 'new', 'ember-app', '--skip-npm', '--skip-git', '--embroider'],
+    { cwd: path.join(process.cwd(), 'testing') }
+  );
   await packageJson.addDevDependencies(
     {
       [name]: '*',
     },
     path.join(process.cwd(), 'testing/ember-app')
   );
+}
 
-  await fse.move('addon', `${workspace}/src`);
+async function moveTests() {
+  const paths = await globby(['tests/*']);
 
-  // Delete unneeded files
+  for (let filePath of paths) {
+    await fse.move(filePath, `testing/ember-app/${filePath}`, { overwrite: true });
+  }
+}
+
+async function removeFiles() {
   await fse.remove('app');
   await fse.remove('.ember-cli');
   await fse.remove('types');
@@ -58,13 +95,9 @@ export default async function run(workingDirectory) {
   await fse.remove('testem.js');
   await fse.remove('tests/dummy');
   await fse.remove('tests/index.html');
-
-  // Move useful files to test app
-  await fse.move('ember-cli-build.js', 'testing/ember-app/');
-  await fse.move('tests/*', 'testing/ember-app/tests/');
 }
 
-export function workspacePackageJsonFrom(old, workspace) {
+function workspacePackageJsonFrom(old, workspace) {
   let rootJson = {
     private: 'true',
     workspaces: [workspace, 'testing/*'],
