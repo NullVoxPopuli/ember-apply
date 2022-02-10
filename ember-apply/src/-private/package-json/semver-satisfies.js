@@ -1,4 +1,4 @@
-import * as semver from 'semver';
+import semver from 'semver';
 
 /**
  * Improved semver `satisfies` function.
