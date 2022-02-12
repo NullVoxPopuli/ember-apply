@@ -9,9 +9,10 @@ import { satisfies } from './semver-satisfies.js';
  *
  * @param {string} name the name of the package to check for
  * @param {string} [version] optional version to check for, defaults to any version
+ * @param {string} [cwd] override the working directory
  */
-export async function hasDependency(name, version = '*') {
-  let packageJson = await read();
+export async function hasDependency(name, version = '*', cwd) {
+  let packageJson = await read(cwd);
 
   let { dependencies = {}, devDependencies = {} } = packageJson;
 
@@ -39,11 +40,12 @@ export async function hasDependency(name, version = '*') {
  *
  *
  * @param {Record<string, string>} packages map of package names to package versions
+ * @param {string} [cwd] override the working directory
  */
-export async function addDevDependencies(packages) {
+export async function addDevDependencies(packages, cwd) {
   await modify((json) => {
     json.devDependencies = { ...json.devDependencies, ...packages };
-  });
+  }, cwd);
 }
 
 /**
@@ -60,11 +62,12 @@ export async function addDevDependencies(packages) {
  *
  *
  * @param {Record<string, string>} packages map of package names to package versions
+ * @param {string} [cwd] override the working directory
  */
-export async function addDependencies(packages) {
+export async function addDependencies(packages, cwd) {
   await modify((json) => {
     json.dependencies = { ...json.dependencies, ...packages };
-  });
+  }, cwd);
 }
 
 /**
@@ -80,11 +83,12 @@ export async function addDependencies(packages) {
  * ```
  *
  * @param {Record<string, string>} packages map of package names to package versions
+ * @param {string} [cwd] override the working directory
  */
-export async function addPeerDependencies(packages) {
+export async function addPeerDependencies(packages, cwd) {
   await modify((json) => {
     json.peerDependencies = { ...json.peerDependencies, ...packages };
-  });
+  }, cwd);
 }
 
 /**
@@ -100,9 +104,10 @@ export async function addPeerDependencies(packages) {
  *
  * @param {string} name the name of the script
  * @param {string} command the command to run
+ * @param {string} [cwd] override the working directory
  */
-export async function addScript(name, command) {
-  await addScripts({ [name]: command });
+export async function addScript(name, command, cwd) {
+  await addScripts({ [name]: command }, cwd);
 }
 
 /**
@@ -120,11 +125,12 @@ export async function addScript(name, command) {
  * ```
  *
  * @param {Record<string, string>} scripts
+ * @param {string} [cwd] override the working directory
  */
-export async function addScripts(scripts) {
+export async function addScripts(scripts, cwd) {
   await modify((packageJson) => {
     packageJson.scripts = { ...packageJson.scripts, ...scripts };
-  });
+  }, cwd);
 }
 
 /**
@@ -142,10 +148,11 @@ export async function addScripts(scripts) {
  * ```
  *
  * @param {(json: Record<string, any>) => void} callback
+ * @param {string} [cwd] override the working directory
  */
-export async function modify(callback) {
-  let filePath = path.join(process.cwd(), 'package.json');
-  let json = await read();
+export async function modify(callback, cwd) {
+  let filePath = path.join(cwd || process.cwd(), 'package.json');
+  let json = await read(cwd);
 
   // Mutation of the JSON!
   await callback(json);
