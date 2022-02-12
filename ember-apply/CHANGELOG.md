@@ -1,3 +1,10 @@
+## ember-apply [2.0.3](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.0.2...ember-apply@2.0.3) (2022-02-12)
+
+
+### Bug Fixes
+
+* **ember-apply:** dependency version checking fixed for range vs range check ([2169f3e](https://github.com/NullVoxPopuli/ember-apply/commit/2169f3ed1e5199ee546e112ecc8d5c6756abfddb))
+
 ## ember-apply [2.0.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.0.1...ember-apply@2.0.2) (2022-02-12)
 
 
