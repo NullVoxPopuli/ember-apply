@@ -1,3 +1,27 @@
+# ember-apply [2.0.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@1.4.2...ember-apply@2.0.0) (2022-02-12)
+
+
+### Bug Fixes
+
+* **ember-apply:** re-add readme ([f30afda](https://github.com/NullVoxPopuli/ember-apply/commit/f30afda737d3a401e25cd8eb4c6cab5e09f3c716))
+* **html, transform:** move from rehype back to posthtml ([5ae8ea4](https://github.com/NullVoxPopuli/ember-apply/commit/5ae8ea4d08f12ae1afb63454982912f914a0909d))
+* **npm-fallback:** add flags to npm install to _make_ it work ([ca7eacc](https://github.com/NullVoxPopuli/ember-apply/commit/ca7eaccf53efd76f5e94aed1ac238e7efb2c0989))
+* **project:** add tests (and fixes) for workspace iteration ([5560d95](https://github.com/NullVoxPopuli/ember-apply/commit/5560d95bd193950f15151114d42fb1c267772d9d))
+
+
+### Features
+
+* **ember-apply:** add cwd to support to all package-json utilities ([1c85876](https://github.com/NullVoxPopuli/ember-apply/commit/1c85876ec1b5b37ca3c164ffffbc7392c8f4dd76))
+* **ember-apply:** print the issue report URL before applying ([03db4db](https://github.com/NullVoxPopuli/ember-apply/commit/03db4dbc9701fb2072acbbc768d771e331af30b5))
+
+
+### BREAKING CHANGES
+
+* **html, transform:** turns out rehype isn't a good fit for codemods
+rehype's primary use case is generated code -> generated code.
+We need userland code -> userland code, so maintaining formatting is
+important.
+
 # [ember-apply-v2.1.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply-v2.0.1...ember-apply-v2.1.0) (2022-01-23)
 
 
