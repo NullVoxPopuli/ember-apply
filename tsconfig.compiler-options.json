@@ -4,8 +4,6 @@
     "baseUrl": "./src",
     "moduleResolution": "node",
     // We only use tsc for type checking
-    // "declarationDir": "./declarations",
-    // "emitDeclarationOnly": true,
     "declaration": true,
     "noEmit": true,
     // Build settings

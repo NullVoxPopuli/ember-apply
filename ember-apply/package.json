@@ -19,12 +19,14 @@
   "bin": {
     "ember-apply": "src/cli/index.js"
   },
+  "types": "./declarations/src/",
   "files": [
     "src/**/*",
+    "declarations/**/*",
     "README.md"
   ],
   "scripts": {
-    "prepack": "cp ../README.md ./",
+    "prepack": "yarn build:types && cp ../README.md ./",
     "build:types": "tsc --build",
     "lint": "yarn lint:js",
     "lint:js": "eslint .",

@@ -2,7 +2,10 @@
   "extends": "../tsconfig.compiler-options.json",
   "compilerOptions": {
     "baseUrl": "./src",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "declarationDir": "./declarations",
+    "emitDeclarationOnly": true,
+    "noEmit": false
   },
   "include": ["src/**/*"]
 }
