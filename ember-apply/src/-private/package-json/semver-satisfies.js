@@ -17,6 +17,9 @@ import semver from 'semver';
  * @returns {boolean}
  */
 export function satisfies(version, range) {
+  // if `version` is a range, make it not a range
+  version = `${semver.coerce(version)}`;
+
   let satisfied = semver.satisfies(version, range, {
     includePrerelease: true,
   });
