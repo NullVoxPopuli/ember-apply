@@ -1,3 +1,10 @@
+## ember-apply [2.0.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.0.0...ember-apply@2.0.1) (2022-02-12)
+
+
+### Bug Fixes
+
+* **ember-apply:** add types to ember-apply package ([dccee29](https://github.com/NullVoxPopuli/ember-apply/commit/dccee29f45fd3c4e11dfbc262d2794c4689d2f25))
+
 # ember-apply [2.0.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@1.4.2...ember-apply@2.0.0) (2022-02-12)
 
 
