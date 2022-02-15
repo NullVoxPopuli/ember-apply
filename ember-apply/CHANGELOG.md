@@ -1,3 +1,10 @@
+## ember-apply [2.0.4](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.0.3...ember-apply@2.0.4) (2022-02-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pacote to v13 ([8f8a4e3](https://github.com/NullVoxPopuli/ember-apply/commit/8f8a4e38ca544ef2c6fbc370f0edff07f34caecf))
+
 ## ember-apply [2.0.3](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.0.2...ember-apply@2.0.3) (2022-02-12)
 
 
