@@ -38,13 +38,87 @@ export async function hasDependency(name, version = '*', cwd) {
  * })
  * ```
  *
- *
  * @param {Record<string, string>} packages map of package names to package versions
  * @param {string} [cwd] override the working directory
  */
 export async function addDevDependencies(packages, cwd) {
   await modify((json) => {
     json.devDependencies = { ...json.devDependencies, ...packages };
+  }, cwd);
+}
+
+/**
+ * Remove `dependencies` from the `package.json`
+ *
+ * @example
+ * ```js
+ * import { packageJson } from 'ember-apply';
+ *
+ * await packageJson.removeDependencies(['autoprefixer', 'tailwindcss']);
+ * ```
+ *
+ * @param {string[]} packages list of package to remove
+ * @param {string} [cwd] override the working directory
+ */
+export async function removeDependencies(packages, cwd) {
+  await modify((json) => {
+    let deps = json.dependencies;
+
+    for (let packageName of packages) {
+      delete deps[packageName];
+    }
+
+    json.dependencies = deps;
+  }, cwd);
+}
+
+/**
+ * Remove `devDependencies` from the `package.json`
+ *
+ * @example
+ * ```js
+ * import { packageJson } from 'ember-apply';
+ *
+ * await packageJson.removeDevDependencies(['autoprefixer', 'tailwindcss']);
+ * ```
+ *
+ * @param {string[]} packages list of package to remove
+ * @param {string} [cwd] override the working directory
+ */
+export async function removeDevDependencies(packages, cwd) {
+  await modify((json) => {
+    let devDeps = json.devDependencies;
+
+    for (let packageName of packages) {
+      delete devDeps[packageName];
+    }
+
+    json.devDependencies = devDeps;
+  }, cwd);
+}
+
+/**
+ * Remove `peerDependencies` from the `package.json`
+ *
+ * @example
+ * ```js
+ * import { packageJson } from 'ember-apply';
+ *
+ * await packageJson.removePeerDependencies(['autoprefixer', 'tailwindcss']);
+ * ```
+ *
+ * @param {string[]} packages list of package to remove
+ * @param {string} [cwd] override the working directory
+ */
+export async function removePeerDependencies(packages, cwd) {
+  await modify((json) => {
+    let deps = json.peerDependencies;
+
+    for (let packageName of packages) {
+      delete deps[packageName];
+    }
+
+    json.peerDependencies = deps;
   }, cwd);
 }
 
