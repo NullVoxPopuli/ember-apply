@@ -7347,9 +7347,7 @@ pacote@^12.0.0, pacote@^12.0.2:
     tar "^6.1.0"
 
 pacote@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/pacote/-/pacote-13.0.0.tgz#01a7d3e87fea45c22b1d56ed0a8ee3790cd9cfba"
-  integrity sha512-21d5NLwoJ3KXGRsFcJUPAp2Tu0d6l3a24djfjZ9KABDpobLvkcAwIWGidy+/l4GzoI5yGFD+3nTgvHDQv2mo5w==
+  version: "13.0.1"
   dependencies:
     "@npmcli/git" "^2.1.0"
     "@npmcli/installed-package-contents" "^1.0.7"
