@@ -1,3 +1,10 @@
+# ember-apply [2.1.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.0.4...ember-apply@2.1.0) (2022-02-16)
+
+
+### Features
+
+* **packageJson:** add remone*Dependencies methods ([9c2ff3e](https://github.com/NullVoxPopuli/ember-apply/commit/9c2ff3e643974ab85d23d26a30021fc653f5c535))
+
 ## ember-apply [2.0.4](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.0.3...ember-apply@2.0.4) (2022-02-15)
 
 
