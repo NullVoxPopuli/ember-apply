@@ -13,4 +13,7 @@ export {
   addDependencies,
   addDevDependencies,
   addPeerDependencies,
+  removeDependencies,
+  removeDevDependencies,
+  removePeerDependencies,
 } from './utils.js';
