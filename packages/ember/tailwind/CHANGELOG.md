@@ -1,3 +1,13 @@
+## @ember-apply/tailwind [2.0.6](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/tailwind@2.0.5...@ember-apply/tailwind@2.0.6) (2022-02-16)
+
+
+
+
+
+### Dependencies
+
+* **ember-apply:** upgraded to 2.1.0
+
 ## @ember-apply/tailwind [2.0.5](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/tailwind@2.0.4...@ember-apply/tailwind@2.0.5) (2022-02-15)
 
 
