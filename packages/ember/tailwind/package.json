@@ -38,7 +38,6 @@
   },
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "^2.1.17",
-    "autoprefixer": "^10.0.0",
     "babel-eslint": "^10.1.0",
     "c8": "^7.11.0",
     "eslint": "^8.0.0",
@@ -46,7 +45,6 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "postcss": "^8.0.0",
     "prettier": "^2.5.1",
     "semantic-release": "^19.0.0",
     "semantic-release-monorepo": "^7.0.0",

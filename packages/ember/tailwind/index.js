@@ -12,8 +12,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  */
 export default async function run(workingDirectory) {
   await packageJson.addDevDependencies({
-    autoprefixer: '^10.0.0',
-    postcss: '^8.0.0',
     tailwindcss: '^3.0.0',
   });
 

@@ -93,8 +93,6 @@ package.json
     \\"qunit\\",
     \\"qunit-dom\\",
     \\"webpack\\",
-    \\"autoprefixer\\",
-    \\"postcss\\",
     \\"tailwindcss\\"
   ],
   \\"engines\\": [
@@ -129,11 +127,11 @@ index ec6650a..a56e778 100644
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local absolute path (with index) 2`] = `
-" .gitignore       |  3 +++
- app/index.html   |  1 +
- package.json     | 11 ++++++++---
- tests/index.html |  3 ++-
- 4 files changed, 14 insertions(+), 4 deletions(-)"
+" .gitignore       | 3 +++
+ app/index.html   | 1 +
+ package.json     | 9 ++++++---
+ tests/index.html | 3 ++-
+ 4 files changed, 12 insertions(+), 4 deletions(-)"
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local absolute path 1`] = `
@@ -229,8 +227,6 @@ package.json
     \\"qunit\\",
     \\"qunit-dom\\",
     \\"webpack\\",
-    \\"autoprefixer\\",
-    \\"postcss\\",
     \\"tailwindcss\\"
   ],
   \\"engines\\": [
@@ -265,11 +261,11 @@ index ec6650a..a56e778 100644
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local absolute path 2`] = `
-" .gitignore       |  3 +++
- app/index.html   |  1 +
- package.json     | 11 ++++++++---
- tests/index.html |  3 ++-
- 4 files changed, 14 insertions(+), 4 deletions(-)"
+" .gitignore       | 3 +++
+ app/index.html   | 1 +
+ package.json     | 9 ++++++---
+ tests/index.html | 3 ++-
+ 4 files changed, 12 insertions(+), 4 deletions(-)"
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local relative path (with index) 1`] = `
@@ -365,8 +361,6 @@ package.json
     \\"qunit\\",
     \\"qunit-dom\\",
     \\"webpack\\",
-    \\"autoprefixer\\",
-    \\"postcss\\",
     \\"tailwindcss\\"
   ],
   \\"engines\\": [
@@ -401,11 +395,11 @@ index ec6650a..a56e778 100644
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local relative path (with index) 2`] = `
-" .gitignore       |  3 +++
- app/index.html   |  1 +
- package.json     | 11 ++++++++---
- tests/index.html |  3 ++-
- 4 files changed, 14 insertions(+), 4 deletions(-)"
+" .gitignore       | 3 +++
+ app/index.html   | 1 +
+ package.json     | 9 ++++++---
+ tests/index.html | 3 ++-
+ 4 files changed, 12 insertions(+), 4 deletions(-)"
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local relative path 1`] = `
@@ -501,8 +495,6 @@ package.json
     \\"qunit\\",
     \\"qunit-dom\\",
     \\"webpack\\",
-    \\"autoprefixer\\",
-    \\"postcss\\",
     \\"tailwindcss\\"
   ],
   \\"engines\\": [
@@ -537,9 +529,9 @@ index ec6650a..a56e778 100644
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local relative path 2`] = `
-" .gitignore       |  3 +++
- app/index.html   |  1 +
- package.json     | 11 ++++++++---
- tests/index.html |  3 ++-
- 4 files changed, 14 insertions(+), 4 deletions(-)"
+" .gitignore       | 3 +++
+ app/index.html   | 1 +
+ package.json     | 9 ++++++---
+ tests/index.html | 3 ++-
+ 4 files changed, 12 insertions(+), 4 deletions(-)"
 `;
