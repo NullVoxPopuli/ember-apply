@@ -6154,10 +6154,10 @@ make-fetch-happen@^10.0.0:
     socks-proxy-agent "^6.0.0"
     ssri "^8.0.0"
 
-make-fetch-happen@^10.0.1:
-  version "10.0.2"
-  resolved "https://registry.yarnpkg.com/make-fetch-happen/-/make-fetch-happen-10.0.2.tgz#0afb38d2f951b17ebc482b0b16c8d77f39dfe389"
-  integrity sha512-JSFLK53NJP22FL/eAGOyKsWbc2G3v+toPMD7Dq9PJKQCvK0i3t8hGkKxe+3YZzwYa+c0kxRHu7uxH3fvO+rsaA==
+make-fetch-happen@^10.0.2:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/make-fetch-happen/-/make-fetch-happen-10.0.3.tgz#94bbe675cf62a811dbab59668052388a078beaf2"
+  integrity sha512-CzarPHynPpHjhF5in/YapnO44rSZeYX5VCMfdXa99+gLwpbfFLh20CWa6dP/taV9Net9PWJwXNKtp/4ZTCQnag==
   dependencies:
     agentkeepalive "^4.2.0"
     cacache "^15.3.0"
@@ -6819,17 +6819,18 @@ npm-registry-fetch@^12.0.0:
     minizlib "^2.0.0"
     npm-package-arg "^8.0.0"
 
-npm-registry-fetch@^12.0.2:
-  version "12.0.2"
-  resolved "https://registry.yarnpkg.com/npm-registry-fetch/-/npm-registry-fetch-12.0.2.tgz#ae583bb3c902a60dae43675b5e33b5b1f6159f1e"
-  integrity sha512-Df5QT3RaJnXYuOwtXBXS9BWs+tHH2olvkCLh6jcR/b/u3DvPMlp3J0TvvYwplPKxHMOwfg287PYih9QqaVFoKA==
+npm-registry-fetch@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/npm-registry-fetch/-/npm-registry-fetch-13.0.0.tgz#f0cf807f661184217651e0465668e4fd255fd6a8"
+  integrity sha512-MmiMuV9DU5gRuAU0jia952Qq+E4h7ZoUaeltCXivhClcqfOVKqNLZEQsRUOb6a8WQY+um8x97JcUuaWFoPoBBw==
   dependencies:
-    make-fetch-happen "^10.0.1"
+    make-fetch-happen "^10.0.2"
     minipass "^3.1.6"
     minipass-fetch "^1.4.1"
     minipass-json-stream "^1.0.1"
     minizlib "^2.1.2"
-    npm-package-arg "^8.1.5"
+    npm-package-arg "^9.0.0"
+    proc-log "^2.0.0"
 
 npm-run-path@^2.0.0:
   version "2.0.2"
@@ -7347,7 +7348,9 @@ pacote@^12.0.0, pacote@^12.0.2:
     tar "^6.1.0"
 
 pacote@^13.0.0:
-  version: "13.0.1"
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/pacote/-/pacote-13.0.1.tgz#3dd1a2a6501960466cc8ec7302b37eb7d064326e"
+  integrity sha512-nSdUduvmIZ2pYxENuCj6FYok+XYl8eXk7ajk+vAi6ZUVgTM81xhi13qsq4LZ/54f1MWOv3rVpbYZrpeIxcrSJQ==
   dependencies:
     "@npmcli/git" "^2.1.0"
     "@npmcli/installed-package-contents" "^1.0.7"
@@ -7362,7 +7365,7 @@ pacote@^13.0.0:
     npm-package-arg "^9.0.0"
     npm-packlist "^3.0.0"
     npm-pick-manifest "^7.0.0"
-    npm-registry-fetch "^12.0.2"
+    npm-registry-fetch "^13.0.0"
     proc-log "^2.0.0"
     promise-retry "^2.0.1"
     read-package-json "^4.1.1"
