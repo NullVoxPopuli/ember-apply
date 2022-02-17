@@ -1,3 +1,18 @@
+## @ember-apply/tailwind [2.0.7](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/tailwind@2.0.6...@ember-apply/tailwind@2.0.7) (2022-02-17)
+
+
+### Bug Fixes
+
+* remove references to autoprefixer and postcss ([b50eebc](https://github.com/NullVoxPopuli/ember-apply/commit/b50eebc2fd106ee9c798297e9e6464030f75539f))
+
+
+
+
+
+### Dependencies
+
+* **ember-apply:** upgraded to 2.1.1
+
 ## @ember-apply/tailwind [2.0.6](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/tailwind@2.0.5...@ember-apply/tailwind@2.0.6) (2022-02-16)
 
 
