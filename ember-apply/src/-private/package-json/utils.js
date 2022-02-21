@@ -26,6 +26,27 @@ export async function hasDependency(name, version = '*', cwd) {
 }
 
 /**
+ * Check if a package has a peer dependency
+ *
+ * @param {string} name the name of the package to check for
+ * @param {string} [version] optional version to check for, defaults to any version
+ * @param {string} [cwd] override the working directory
+ */
+export async function hasPeerDependency(name, version = '*', cwd) {
+  let packageJson = await read(cwd);
+
+  let { peerDependencies = {} } = packageJson;
+
+  let packageVersion = peerDependencies[name];
+
+  if (!packageVersion) {
+    return false;
+  }
+
+  return satisfies(packageVersion, version);
+}
+
+/**
  * Add `devDependencies` to the `package.json`.
  *
  * @example

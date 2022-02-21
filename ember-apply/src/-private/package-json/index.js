@@ -10,6 +10,7 @@ export {
   addScript,
   addScripts,
   hasDependency,
+  hasPeerDependency,
   addDependencies,
   addDevDependencies,
   addPeerDependencies,
