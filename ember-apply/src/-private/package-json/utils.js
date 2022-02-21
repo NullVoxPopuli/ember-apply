@@ -85,6 +85,8 @@ export async function removeDependencies(packages, cwd) {
   await modify((json) => {
     let deps = json.dependencies;
 
+    if (!deps) return;
+
     for (let packageName of packages) {
       delete deps[packageName];
     }
@@ -110,6 +112,8 @@ export async function removeDevDependencies(packages, cwd) {
   await modify((json) => {
     let devDeps = json.devDependencies;
 
+    if (!devDeps) return;
+
     for (let packageName of packages) {
       delete devDeps[packageName];
     }
@@ -134,6 +138,8 @@ export async function removeDevDependencies(packages, cwd) {
 export async function removePeerDependencies(packages, cwd) {
   await modify((json) => {
     let deps = json.peerDependencies;
+
+    if (!deps) return;
 
     for (let packageName of packages) {
       delete deps[packageName];
