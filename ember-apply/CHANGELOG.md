@@ -1,3 +1,10 @@
+# ember-apply [2.2.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.1.1...ember-apply@2.2.0) (2022-02-21)
+
+
+### Features
+
+* **ember-apply:** add hasPeerDependency ([485374e](https://github.com/NullVoxPopuli/ember-apply/commit/485374e6326df8a5348be077d35309e91a667c53))
+
 ## ember-apply [2.1.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.1.0...ember-apply@2.1.1) (2022-02-17)
 
 
