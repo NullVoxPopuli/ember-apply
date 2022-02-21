@@ -63,7 +63,7 @@ jobs:
       - run: yarn install
       - name: Semantic Release
         run: |
-          git branch -d main
+          echo "Testing release likelihood of success"
           # atm, dry-run only works on the main branch
           git checkout -b main
           yarn publish:dry-run
