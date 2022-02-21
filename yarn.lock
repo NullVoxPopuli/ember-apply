@@ -2318,10 +2318,10 @@
     "@typescript-eslint/types" "5.12.0"
     eslint-visitor-keys "^3.0.0"
 
-"@vitest/ui@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@vitest/ui/-/ui-0.4.0.tgz#49fe360e4dde31ba24a285377341a1ea3e518ef6"
-  integrity sha512-sVIj1Cz8c3UtRspxqhuFKDCePeyK/NM7b0W8X6l400zHJhI1stCGHDOs73YNikdLMcEnfgaVw/Sl9v/Z1B2phw==
+"@vitest/ui@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@vitest/ui/-/ui-0.5.0.tgz#478692b3555f4c6a260b3aa9bbf5bb88b79c1e3a"
+  integrity sha512-aaBf+4ODR+SlfY0/EvTIl3wPWSu4sVI+JmGhZNF/aE6IlseF0IqA6Ukc/41DPGoh8TIeOxFaMdfsOQaFrdvfnA==
   dependencies:
     sirv "^2.0.2"
 
@@ -8782,7 +8782,9 @@ typedoc-plugin-merge-modules@^3.1.0:
   integrity sha512-DAHDZD+KG3mRm+hJFAMh/pO98CQ3W/BFA81FzWpc1kos66mLRIa7QVO30yBREkZNZMsTA7fgGEjEN2GO2cgi3A==
 
 typedoc@^0.22.10:
-  version: "0.22.12"
+  version "0.22.12"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.22.12.tgz#52a8bb0e77458dcbab35fb89e24b80160ba6558d"
+  integrity sha512-FcyC+YuaOpr3rB9QwA1IHOi9KnU2m50sPJW5vcNRPCIdecp+3bFkh7Rq5hBU1Fyn29UR2h4h/H7twZHWDhL0sw==
   dependencies:
     glob "^7.2.0"
     lunr "^2.3.9"
