@@ -1,3 +1,10 @@
+## ember-apply [2.2.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.2.0...ember-apply@2.2.1) (2022-02-21)
+
+
+### Bug Fixes
+
+* **ember-apply:** packageJson: protect against missing dependency collections ([9ed4729](https://github.com/NullVoxPopuli/ember-apply/commit/9ed472953dc2c1ddd8482458faf1ac9824feeb21))
+
 # ember-apply [2.2.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.1.1...ember-apply@2.2.0) (2022-02-21)
 
 
