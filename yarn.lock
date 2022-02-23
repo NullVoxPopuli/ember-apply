@@ -2280,7 +2280,9 @@
     eslint-visitor-keys "^3.0.0"
 
 "@vitest/ui@^0.5.0":
-  version: "0.5.4"
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@vitest/ui/-/ui-0.5.4.tgz#284b5a3aa91b205cfafe180a8d7b0e47793f1bd4"
+  integrity sha512-XAyW+kXNSv/M/MTZJ9CJBith0iaPvu/FjuKOkbrajw127skTP8/aZzo/s3enb7J85NPzIEZPTgJNG0/11RBYbQ==
   dependencies:
     sirv "^2.0.2"
 
