@@ -7576,9 +7576,7 @@ posthtml-render@^3.0.0:
     is-json "^2.0.1"
 
 posthtml@^0.16.5:
-  version "0.16.5"
-  resolved "https://registry.npmjs.org/posthtml/-/posthtml-0.16.5.tgz#d32f5cf32436516d49e0884b2367d0a1424136f6"
-  integrity sha512-1qOuPsywVlvymhTFIBniDXwUDwvlDri5KUQuBqjmCc8Jj4b/HDSVWU//P6rTWke5rzrk+vj7mms2w8e1vD0nnw==
+  version: "0.16.6"
   dependencies:
     posthtml-parser "^0.10.0"
     posthtml-render "^3.0.0"
