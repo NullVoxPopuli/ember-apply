@@ -1722,6 +1722,13 @@
   dependencies:
     infer-owner "^1.0.4"
 
+"@npmcli/promise-spawn@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@npmcli/promise-spawn/-/promise-spawn-3.0.0.tgz#53283b5f18f855c6925f23c24e67c911501ef573"
+  integrity sha512-s9SgS+p3a9Eohe68cSI3fi+hpcZUmXq5P7w0kMlAsWVtR7XbK3ptkZqKT2cK1zLDObJ3sR+8P59sJE0w/KTL1g==
+  dependencies:
+    infer-owner "^1.0.4"
+
 "@npmcli/run-script@*", "@npmcli/run-script@^3.0.0", "@npmcli/run-script@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@npmcli/run-script/-/run-script-3.0.1.tgz#9d10b46586300074cc9e53ef320130a69567e1ce"
@@ -7332,28 +7339,30 @@ pacote@^12.0.0, pacote@^12.0.2:
     tar "^6.1.0"
 
 pacote@^13.0.0:
-  version: "13.1.0"
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/pacote/-/pacote-13.1.0.tgz#a834921c8d6d27841b1027b6a8376351d155a671"
+  integrity sha512-Ns2chroFx26U4Bd+qm/ETxHGv+HLafoy5TVAcYHigIqANZ+kkk6PANMr1KAugNYecnrN+5lwwiWyBeu40nuU7Q==
   dependencies:
     "@npmcli/git" "^3.0.0"
     "@npmcli/installed-package-contents" "^1.0.7"
-    "@npmcli/promise-spawn" "^1.2.0"
-    "@npmcli/run-script" "^3.0.0"
-    cacache "^15.3.0"
+    "@npmcli/promise-spawn" "^3.0.0"
+    "@npmcli/run-script" "^3.0.1"
+    cacache "^16.0.0"
     chownr "^2.0.0"
     fs-minipass "^2.1.0"
     infer-owner "^1.0.4"
     minipass "^3.1.6"
     mkdirp "^1.0.4"
     npm-package-arg "^9.0.0"
-    npm-packlist "^3.0.0"
+    npm-packlist "^4.0.0"
     npm-pick-manifest "^7.0.0"
-    npm-registry-fetch "^13.0.0"
+    npm-registry-fetch "^13.0.1"
     proc-log "^2.0.0"
     promise-retry "^2.0.1"
-    read-package-json "^4.1.1"
+    read-package-json "^5.0.0"
     read-package-json-fast "^2.0.3"
     rimraf "^3.0.2"
-    ssri "^8.0.1"
+    ssri "^9.0.0"
     tar "^6.1.11"
 
 parent-module@^1.0.0:
@@ -8434,6 +8443,13 @@ ssri@*, ssri@^8.0.0, ssri@^8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/ssri/-/ssri-8.0.1.tgz#638e4e439e2ffbd2cd289776d5ca457c4f51a2af"
   integrity sha512-97qShzy1AiyxvPNIkLWoGua7xoQzzPjQ0HAH4B0rWKo7SZ6USuPcrUiAFrws0UH8RrbWmgq3LMTObhPIHbbBeQ==
+  dependencies:
+    minipass "^3.1.1"
+
+ssri@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ssri/-/ssri-9.0.0.tgz#70ad90e339eb910f1a7ff1dcf4afc268326c4547"
+  integrity sha512-Y1Z6J8UYnexKFN1R/hxUaYoY2LVdKEzziPmVAFKiKX8fiwvCJTVzn/xYE9TEWod5OVyNfIHHuVfIEuBClL/uJQ==
   dependencies:
     minipass "^3.1.1"
 
