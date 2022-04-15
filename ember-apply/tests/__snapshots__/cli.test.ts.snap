@@ -2,7 +2,7 @@
 
 exports[`CLI > default command > using Tailwind as an example > local absolute path (with index) 1`] = `
 "diff --git a/.gitignore b/.gitignore
-index 9bab45a..c4e2f3e 100644
+index f1e859b..e2943c0 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -1,7 +1,10 @@
@@ -17,10 +17,10 @@ index 9bab45a..c4e2f3e 100644
  
  # dependencies
 diff --git a/app/index.html b/app/index.html
-index 2398775..4ca37d0 100644
+index 90cb9a3..d869700 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -8,8 +8,9 @@
+@@ -7,8 +7,9 @@
      <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
  
      {{content-for \\"head\\"}}
@@ -106,10 +106,10 @@ package.json
   }
 }
 diff --git a/tests/index.html b/tests/index.html
-index ec6650a..a56e778 100644
+index e4b2e69..d422b9b 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -9,8 +9,9 @@
+@@ -8,8 +8,9 @@
  
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
@@ -119,7 +119,7 @@ index ec6650a..a56e778 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
  
-@@ -27,9 +28,9 @@
+@@ -26,9 +27,9 @@
          <div id=\\"ember-testing\\"></div>
        </div>
      </div>
@@ -143,7 +143,7 @@ exports[`CLI > default command > using Tailwind as an example > local absolute p
 
 exports[`CLI > default command > using Tailwind as an example > local absolute path 1`] = `
 "diff --git a/.gitignore b/.gitignore
-index 9bab45a..c4e2f3e 100644
+index f1e859b..e2943c0 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -1,7 +1,10 @@
@@ -158,10 +158,10 @@ index 9bab45a..c4e2f3e 100644
  
  # dependencies
 diff --git a/app/index.html b/app/index.html
-index 2398775..4ca37d0 100644
+index 90cb9a3..d869700 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -8,8 +8,9 @@
+@@ -7,8 +7,9 @@
      <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
  
      {{content-for \\"head\\"}}
@@ -247,10 +247,10 @@ package.json
   }
 }
 diff --git a/tests/index.html b/tests/index.html
-index ec6650a..a56e778 100644
+index e4b2e69..d422b9b 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -9,8 +9,9 @@
+@@ -8,8 +8,9 @@
  
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
@@ -260,7 +260,7 @@ index ec6650a..a56e778 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
  
-@@ -27,9 +28,9 @@
+@@ -26,9 +27,9 @@
          <div id=\\"ember-testing\\"></div>
        </div>
      </div>
@@ -284,7 +284,7 @@ exports[`CLI > default command > using Tailwind as an example > local absolute p
 
 exports[`CLI > default command > using Tailwind as an example > local relative path (with index) 1`] = `
 "diff --git a/.gitignore b/.gitignore
-index 9bab45a..c4e2f3e 100644
+index f1e859b..e2943c0 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -1,7 +1,10 @@
@@ -299,10 +299,10 @@ index 9bab45a..c4e2f3e 100644
  
  # dependencies
 diff --git a/app/index.html b/app/index.html
-index 2398775..4ca37d0 100644
+index 90cb9a3..d869700 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -8,8 +8,9 @@
+@@ -7,8 +7,9 @@
      <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
  
      {{content-for \\"head\\"}}
@@ -388,10 +388,10 @@ package.json
   }
 }
 diff --git a/tests/index.html b/tests/index.html
-index ec6650a..a56e778 100644
+index e4b2e69..d422b9b 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -9,8 +9,9 @@
+@@ -8,8 +8,9 @@
  
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
@@ -401,7 +401,7 @@ index ec6650a..a56e778 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
  
-@@ -27,9 +28,9 @@
+@@ -26,9 +27,9 @@
          <div id=\\"ember-testing\\"></div>
        </div>
      </div>
@@ -425,7 +425,7 @@ exports[`CLI > default command > using Tailwind as an example > local relative p
 
 exports[`CLI > default command > using Tailwind as an example > local relative path 1`] = `
 "diff --git a/.gitignore b/.gitignore
-index 9bab45a..c4e2f3e 100644
+index f1e859b..e2943c0 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -1,7 +1,10 @@
@@ -440,10 +440,10 @@ index 9bab45a..c4e2f3e 100644
  
  # dependencies
 diff --git a/app/index.html b/app/index.html
-index 2398775..4ca37d0 100644
+index 90cb9a3..d869700 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -8,8 +8,9 @@
+@@ -7,8 +7,9 @@
      <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
  
      {{content-for \\"head\\"}}
@@ -529,10 +529,10 @@ package.json
   }
 }
 diff --git a/tests/index.html b/tests/index.html
-index ec6650a..a56e778 100644
+index e4b2e69..d422b9b 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -9,8 +9,9 @@
+@@ -8,8 +8,9 @@
  
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
@@ -542,7 +542,7 @@ index ec6650a..a56e778 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
  
-@@ -27,9 +28,9 @@
+@@ -26,9 +27,9 @@
          <div id=\\"ember-testing\\"></div>
        </div>
      </div>

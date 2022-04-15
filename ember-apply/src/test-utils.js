@@ -15,6 +15,7 @@ export async function newTmpDir() {
 export async function newEmberApp() {
   let dir = await newTmpDir();
 
+  await execa('ember', ['-v'], { cwd: dir });
   await execa('ember', ['new', 'test-app', '--skip-npm'], {
     cwd: dir,
   });
