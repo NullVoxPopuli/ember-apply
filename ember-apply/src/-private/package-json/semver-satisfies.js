@@ -17,6 +17,11 @@ import semver from 'semver';
  * @returns {boolean}
  */
 export function satisfies(version, range) {
+  // Easy, no work to do!
+  if (version === range) {
+    return true;
+  }
+
   // if `version` is a range, make it not a range
   version = `${semver.coerce(version)}`;
 

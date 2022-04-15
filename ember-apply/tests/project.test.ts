@@ -76,7 +76,7 @@ describe('project', () => {
 
       text = await readFile(path.join(tmpDir, '.gitignore'));
 
-      expect(text).toMatch('# misc\ntest-test');
+      expect(text).toMatch(/# misc(\s+)test-test/);
     });
 
     it('adds a new entry and a new a header', async () => {
@@ -89,7 +89,7 @@ describe('project', () => {
 
       text = await readFile(path.join(tmpDir, '.gitignore'));
 
-      expect(text).toMatch('# my-new-header\ntest-test');
+      expect(text).toMatch(/# my-new-header(\s+)test-test/);
     });
   });
 
