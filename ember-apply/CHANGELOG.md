@@ -1,3 +1,10 @@
+## ember-apply [2.2.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.2.1...ember-apply@2.2.2) (2022-04-15)
+
+
+### Bug Fixes
+
+* **satisfies, packageJson:** allow *===* comparisons for packageJson comparisons ([433f928](https://github.com/NullVoxPopuli/ember-apply/commit/433f928377606a7a9aff7c61beff11e12add853b))
+
 ## ember-apply [2.2.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.2.0...ember-apply@2.2.1) (2022-02-21)
 
 
