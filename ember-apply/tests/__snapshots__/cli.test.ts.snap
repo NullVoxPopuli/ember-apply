@@ -5,7 +5,7 @@ exports[`CLI > default command > using Tailwind as an example > local absolute p
 index 9bab45a..c4e2f3e 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,6 +1,9 @@
+@@ -1,7 +1,10 @@
  # See https://help.github.com/ignore-files/ for more about ignoring files.
  
 +
@@ -15,11 +15,13 @@ index 9bab45a..c4e2f3e 100644
  /dist/
  /tmp/
  
+ # dependencies
 diff --git a/app/index.html b/app/index.html
 index 2398775..4ca37d0 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -9,6 +9,7 @@
+@@ -8,8 +8,9 @@
+     <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
  
      {{content-for \\"head\\"}}
  
@@ -27,6 +29,7 @@ index 2398775..4ca37d0 100644
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
+     {{content-for \\"head-footer\\"}}
 
 package.json
 {
@@ -106,7 +109,8 @@ diff --git a/tests/index.html b/tests/index.html
 index ec6650a..a56e778 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -10,6 +10,7 @@
+@@ -9,8 +9,9 @@
+ 
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
  
@@ -114,7 +118,9 @@ index ec6650a..a56e778 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
-@@ -28,7 +29,7 @@
+ 
+@@ -27,9 +28,9 @@
+         <div id=\\"ember-testing\\"></div>
        </div>
      </div>
  
@@ -123,6 +129,7 @@ index ec6650a..a56e778 100644
      <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
+     <script src=\\"{{rootURL}}assets/tests.js\\"></script>
 "
 `;
 
@@ -139,7 +146,7 @@ exports[`CLI > default command > using Tailwind as an example > local absolute p
 index 9bab45a..c4e2f3e 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,6 +1,9 @@
+@@ -1,7 +1,10 @@
  # See https://help.github.com/ignore-files/ for more about ignoring files.
  
 +
@@ -149,11 +156,13 @@ index 9bab45a..c4e2f3e 100644
  /dist/
  /tmp/
  
+ # dependencies
 diff --git a/app/index.html b/app/index.html
 index 2398775..4ca37d0 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -9,6 +9,7 @@
+@@ -8,8 +8,9 @@
+     <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
  
      {{content-for \\"head\\"}}
  
@@ -161,6 +170,7 @@ index 2398775..4ca37d0 100644
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
+     {{content-for \\"head-footer\\"}}
 
 package.json
 {
@@ -240,7 +250,8 @@ diff --git a/tests/index.html b/tests/index.html
 index ec6650a..a56e778 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -10,6 +10,7 @@
+@@ -9,8 +9,9 @@
+ 
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
  
@@ -248,7 +259,9 @@ index ec6650a..a56e778 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
-@@ -28,7 +29,7 @@
+ 
+@@ -27,9 +28,9 @@
+         <div id=\\"ember-testing\\"></div>
        </div>
      </div>
  
@@ -257,6 +270,7 @@ index ec6650a..a56e778 100644
      <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
+     <script src=\\"{{rootURL}}assets/tests.js\\"></script>
 "
 `;
 
@@ -273,7 +287,7 @@ exports[`CLI > default command > using Tailwind as an example > local relative p
 index 9bab45a..c4e2f3e 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,6 +1,9 @@
+@@ -1,7 +1,10 @@
  # See https://help.github.com/ignore-files/ for more about ignoring files.
  
 +
@@ -283,11 +297,13 @@ index 9bab45a..c4e2f3e 100644
  /dist/
  /tmp/
  
+ # dependencies
 diff --git a/app/index.html b/app/index.html
 index 2398775..4ca37d0 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -9,6 +9,7 @@
+@@ -8,8 +8,9 @@
+     <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
  
      {{content-for \\"head\\"}}
  
@@ -295,6 +311,7 @@ index 2398775..4ca37d0 100644
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
+     {{content-for \\"head-footer\\"}}
 
 package.json
 {
@@ -374,7 +391,8 @@ diff --git a/tests/index.html b/tests/index.html
 index ec6650a..a56e778 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -10,6 +10,7 @@
+@@ -9,8 +9,9 @@
+ 
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
  
@@ -382,7 +400,9 @@ index ec6650a..a56e778 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
-@@ -28,7 +29,7 @@
+ 
+@@ -27,9 +28,9 @@
+         <div id=\\"ember-testing\\"></div>
        </div>
      </div>
  
@@ -391,6 +411,7 @@ index ec6650a..a56e778 100644
      <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
+     <script src=\\"{{rootURL}}assets/tests.js\\"></script>
 "
 `;
 
@@ -407,7 +428,7 @@ exports[`CLI > default command > using Tailwind as an example > local relative p
 index 9bab45a..c4e2f3e 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,6 +1,9 @@
+@@ -1,7 +1,10 @@
  # See https://help.github.com/ignore-files/ for more about ignoring files.
  
 +
@@ -417,11 +438,13 @@ index 9bab45a..c4e2f3e 100644
  /dist/
  /tmp/
  
+ # dependencies
 diff --git a/app/index.html b/app/index.html
 index 2398775..4ca37d0 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -9,6 +9,7 @@
+@@ -8,8 +8,9 @@
+     <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
  
      {{content-for \\"head\\"}}
  
@@ -429,6 +452,7 @@ index 2398775..4ca37d0 100644
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
+     {{content-for \\"head-footer\\"}}
 
 package.json
 {
@@ -508,7 +532,8 @@ diff --git a/tests/index.html b/tests/index.html
 index ec6650a..a56e778 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -10,6 +10,7 @@
+@@ -9,8 +9,9 @@
+ 
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
  
@@ -516,7 +541,9 @@ index ec6650a..a56e778 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
-@@ -28,7 +29,7 @@
+ 
+@@ -27,9 +28,9 @@
+         <div id=\\"ember-testing\\"></div>
        </div>
      </div>
  
@@ -525,6 +552,7 @@ index ec6650a..a56e778 100644
      <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
      <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
+     <script src=\\"{{rootURL}}assets/tests.js\\"></script>
 "
 `;
 
