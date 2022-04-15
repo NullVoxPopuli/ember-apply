@@ -11,8 +11,7 @@ exports[`embroider > applying to an ember app > works via CLI 2`] = `
 index 48e94e9..afcbef6 100644
 --- a/ember-cli-build.js
 +++ b/ember-cli-build.js
-@@ -19,6 +19,23 @@ module.exports = function (defaults) {
-   // modules that you would like to import into your application
+@@ -20,5 +20,22 @@ module.exports = function (defaults) {
    // please specify an object with the list of modules as keys
    // along with the exports of each module as its value.
  
