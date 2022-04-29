@@ -28,8 +28,11 @@ jobs:
     - run: yarn install
 
   tests:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, windows-latest]
     name: "Tests"
-    runs-on: ubuntu-latest
+    runs-on: "${{ matrix.platform }}"
     needs: [install_dependencies]
 
     steps:
