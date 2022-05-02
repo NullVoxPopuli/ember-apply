@@ -1,3 +1,11 @@
+## ember-apply [2.2.3](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.2.2...ember-apply@2.2.3) (2022-05-02)
+
+
+### Bug Fixes
+
+* use file:// for module resolution of Windows absolute paths ([426896e](https://github.com/NullVoxPopuli/ember-apply/commit/426896e91e26216e9f25d83cb5dd72b203438446))
+* **project:** accommodate Windows paths ([607dfdb](https://github.com/NullVoxPopuli/ember-apply/commit/607dfdb252b32ae053906431b95ed301d5affeea))
+
 ## ember-apply [2.2.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.2.1...ember-apply@2.2.2) (2022-04-15)
 
 
