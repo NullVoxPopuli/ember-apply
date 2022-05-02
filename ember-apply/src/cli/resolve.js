@@ -226,7 +226,7 @@ async function resolvePath(options) {
     path.resolve(name),
     // local, but without index.js
     path.resolve(name, 'index.js'),
-  ].map(p => {
+  ].map((p) => {
     // On Windows, the ESM loader requires that absolute paths must be valid file:// URLs.
     // Absolute paths (e.g. with drive letters like "C:") can lead to ERR_UNSUPPORTED_ESM_URL_SCHEME
     return p.match(/^[a-zA-Z]:/) ? `file://${p}` : p;

@@ -115,13 +115,9 @@ describe('project', () => {
         workspaces.push(current);
       }
 
-      expect(workspaces).toEqual([
-        '',
-        '/packages/a',
-        '/packages/b',
-        '/packages/c',
-        '/d',
-      ].map(p => path.resolve(root + p)));
+      expect(workspaces).toEqual(
+        ['', '/packages/a', '/packages/b', '/packages/c', '/d'].map((p) => path.resolve(root + p))
+      );
     });
   });
 
