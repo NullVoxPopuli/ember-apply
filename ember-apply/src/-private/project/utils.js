@@ -69,13 +69,14 @@ export async function gitIgnore(pattern, heading) {
 /**
  * Uses git to return the path to the root of the project.
  * This is the absolute path to the root of the project / repository.
+ * Note: git for windows returns POSIX-style paths
  */
 export async function gitRoot() {
   let { stdout } = await execa('git', ['rev-parse', '--show-toplevel'], {
     cwd: process.cwd(),
   });
 
-  return stdout.trim();
+  return path.resolve(stdout.trim());
 }
 
 /**

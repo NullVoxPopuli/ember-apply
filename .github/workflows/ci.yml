@@ -28,8 +28,11 @@ jobs:
     - run: yarn install
 
   tests:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, windows-latest]
     name: "Tests"
-    runs-on: ubuntu-latest
+    runs-on: "${{ matrix.platform }}"
     needs: [install_dependencies]
 
     steps:
@@ -48,7 +51,7 @@ jobs:
   tooling:
     name: Tooling
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main'
+    if: github.repository == 'NullVoxPopuli/ember-apply' && github.ref != 'refs/heads/main'
     timeout-minutes: 2
     needs: [install_dependencies]
 
@@ -74,7 +77,7 @@ jobs:
   publish:
     name: Release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.repository == 'NullVoxPopuli/ember-apply' && github.ref == 'refs/heads/main'
     needs: [tests]
 
     steps:

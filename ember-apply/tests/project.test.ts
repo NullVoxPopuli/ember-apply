@@ -115,13 +115,9 @@ describe('project', () => {
         workspaces.push(current);
       }
 
-      expect(workspaces).toEqual([
-        root,
-        root + '/packages/a',
-        root + '/packages/b',
-        root + '/packages/c',
-        root + '/d',
-      ]);
+      expect(workspaces).toEqual(
+        ['', '/packages/a', '/packages/b', '/packages/c', '/d'].map((p) => path.resolve(root + p))
+      );
     });
   });
 
@@ -130,13 +126,15 @@ describe('project', () => {
       let workspaces = await project.getWorkspaces();
       let root = await project.workspaceRoot();
 
-      expect(workspaces).toEqual([
-        root,
-        root + '/ember-apply',
-        root + '/packages/docs',
-        root + '/packages/ember/embroider',
-        root + '/packages/ember/tailwind',
-      ]);
+      expect(workspaces).toEqual(
+        [
+          '',
+          '/ember-apply',
+          '/packages/docs',
+          '/packages/ember/embroider',
+          '/packages/ember/tailwind',
+        ].map((p) => path.resolve(root + p))
+      );
     });
   });
 });
