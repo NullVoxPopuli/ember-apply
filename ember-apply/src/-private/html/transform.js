@@ -58,7 +58,7 @@ export async function transform(filePath, plugin) {
  * ```js
  * import { html } from 'ember-apply';
  *
- * await html.inserText('app/index.html', {
+ * await html.insertText('app/index.html', {
  *   text: `<link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">`,
  *   beforeFirst: 'link',
  * });
