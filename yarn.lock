@@ -7529,9 +7529,9 @@ pacote@^11.1.11, pacote@^11.2.6, pacote@^11.3.0, pacote@^11.3.1, pacote@^11.3.5:
     tar "^6.1.0"
 
 pacote@^13.0.0, pacote@^13.0.3, pacote@^13.0.5, pacote@^13.1.1:
-  version "13.2.0"
-  resolved "https://registry.yarnpkg.com/pacote/-/pacote-13.2.0.tgz#420b9b4971c3e937721c15a752748bc77da45a41"
-  integrity sha512-IT4/xHT8eLi4cJdKSGCuqooWp2YwRP5OgrQypbBlLG8Ubzw+h7s57QbrA2SegQcdGefD81ZvuI+aL0JlfFcPCA==
+  version "13.3.0"
+  resolved "https://registry.yarnpkg.com/pacote/-/pacote-13.3.0.tgz#e221febc17ce2435ce9f31de411832327a34c5ad"
+  integrity sha512-auhJAUlfC2TALo6I0s1vFoPvVFgWGx+uz/PnIojTTgkGwlK3Np8sGJ0ghfFhiuzJXTZoTycMLk8uLskdntPbDw==
   dependencies:
     "@npmcli/git" "^3.0.0"
     "@npmcli/installed-package-contents" "^1.0.7"
