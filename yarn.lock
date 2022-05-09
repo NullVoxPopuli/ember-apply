@@ -2329,9 +2329,9 @@
     eslint-visitor-keys "^3.0.0"
 
 "@vitest/ui@^0.12.0":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@vitest/ui/-/ui-0.12.1.tgz#613dd8328d3f4ab0ee789132c3bddf60a62d438f"
-  integrity sha512-YdFPVGUvjOrOe7FQs72Pnqajruh5rmfPz8nSsSWv32da9XR8+xJa8ILjJjtmyq8HPOkc5frtZ8Zu+hxqWi1UgA==
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/@vitest/ui/-/ui-0.12.2.tgz#d328fdaa91d61e4440cb10ced5c6a794e79a9657"
+  integrity sha512-XTDCxesb+dZHjv3VRAQdLwlYkmVPyD68ZDFFwo3eyxLfFSObCxwOnrwNcfMNawBCUYpkxAuNT0O9/qj+LqGXaQ==
   dependencies:
     sirv "^2.0.2"
 
