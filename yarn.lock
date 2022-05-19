@@ -7058,9 +7058,9 @@ package-json@^7.0.0:
     semver "^7.3.5"
 
 pacote@*, pacote@^13.0.0, pacote@^13.0.3, pacote@^13.0.5, pacote@^13.1.1:
-  version "13.4.0"
-  resolved "https://registry.yarnpkg.com/pacote/-/pacote-13.4.0.tgz#c0a6eafa28ef0e4d3b238a852b13e29528be0788"
-  integrity sha512-GCeiEtCeaXBB00lqsVek87pozP16AguQ2OeW5COVD/ItTFkidfbd1zX1+s7P4k+mjmpqB6RPcCgAGY7/zM8rtQ==
+  version "13.4.1"
+  resolved "https://registry.yarnpkg.com/pacote/-/pacote-13.4.1.tgz#b6610bf8903abc075bfffa02a2cedafe81a97293"
+  integrity sha512-FqlSWlD8n+ejCE17GF/lf0yasztMGFl4UFzYQk5njaK/qPPWfVDWnfQwqmqeXObWLSmIBew+O+CFD24vxkVDjg==
   dependencies:
     "@npmcli/git" "^3.0.0"
     "@npmcli/installed-package-contents" "^1.0.7"
