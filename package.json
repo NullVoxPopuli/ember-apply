@@ -28,7 +28,7 @@
     "turbo": "1.2.14"
   },
   "volta": {
-    "node": "16.15.0",
+    "node": "16.15.1",
     "yarn": "1.22.18"
   },
   "packageManager": "yarn@1.22.18",
