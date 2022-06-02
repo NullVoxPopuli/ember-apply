@@ -1,3 +1,10 @@
+# ember-apply [2.3.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.2.3...ember-apply@2.3.0) (2022-06-02)
+
+
+### Features
+
+* **ember:** add deprecation-workflow management utilities ([a71f0c5](https://github.com/NullVoxPopuli/ember-apply/commit/a71f0c559c3c1c03b808e0acf1c17e53028f3ab9))
+
 ## ember-apply [2.2.3](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.2.2...ember-apply@2.2.3) (2022-05-02)
 
 
