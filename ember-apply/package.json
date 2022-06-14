@@ -46,6 +46,7 @@
     "ora": "^6.0.1",
     "pacote": "^13.0.0",
     "posthtml": "^0.16.5",
+    "posthtml-boolean-attributes": "^0.3.1",
     "semver": "^7.3.5",
     "unified": "^10.1.1",
     "yargs": "^17.3.1",

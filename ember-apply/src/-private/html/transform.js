@@ -3,6 +3,7 @@
 import fs from 'fs/promises';
 
 import posthtml from 'posthtml';
+import booleanAttributes from 'posthtml-boolean-attributes';
 
 /**
  *
@@ -45,7 +46,9 @@ export async function transform(filePath, plugin) {
   let code = (await fs.readFile(filePath)).toString();
 
   let plugins = Array.isArray(plugin) ? plugin : [plugin];
-  let result = await posthtml(plugins).process(code);
+  let result = await posthtml(plugins)
+    .use(booleanAttributes({ boolAttrs: ['data-embroider-ignore'] }))
+    .process(code);
 
   await fs.writeFile(filePath, result.html);
 }
