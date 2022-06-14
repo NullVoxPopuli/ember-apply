@@ -1,3 +1,10 @@
+## ember-apply [2.3.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.3.1...ember-apply@2.3.2) (2022-06-14)
+
+
+### Bug Fixes
+
+* don't add ="" to data-embroider-ignore boolean attribute (fix [#353](https://github.com/NullVoxPopuli/ember-apply/issues/353)) ([f6921e3](https://github.com/NullVoxPopuli/ember-apply/commit/f6921e3d1c4f1162821f4439b1a7ba9bce09f8d4))
+
 ## ember-apply [2.3.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.3.0...ember-apply@2.3.1) (2022-06-14)
 
 
