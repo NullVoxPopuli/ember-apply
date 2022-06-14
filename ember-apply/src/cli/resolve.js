@@ -166,7 +166,17 @@ async function downloadFromNpm(options) {
     spinner.stop();
   }
 
-  return await tryResolve(path.join(dir, main), options);
+  let url = path.join(dir, main);
+
+  if (os.platform() === 'win32') {
+    url = convertWindowsAbsolutePathToFileUrl(url);
+
+    if (options.verbose) {
+      console.info(chalk.gray(`Rewriting as file URL for Windows compatibility --> ${url}`));
+    }
+  }
+
+  return await tryResolve(url, options);
 }
 
 /**
@@ -205,6 +215,20 @@ async function resolvePackage(options) {
 }
 
 /**
+ * On Windows, the ESM loader requires that absolute paths must be valid file:// URLs.
+ * Absolute paths (e.g. with drive letters like "C:") can lead to ERR_UNSUPPORTED_ESM_URL_SCHEME
+ * When this function detects strings that begin with "drive letters" it returns a new
+ * path string that is prefixed with `file://`.
+ * Otherwise, it returns its argument without modification.
+ *
+ * @param {string} path
+ * @returns {string} adjustedPath
+ */
+function convertWindowsAbsolutePathToFileUrl(p) {
+  return p.match(/^[a-zA-Z]:/) ? `file://${p}` : p;
+}
+
+/**
  * @typedef {object} LocalModuleInfo
  * @property {string | undefined} path
  * @property {UnknownModule | undefined} module
@@ -226,11 +250,11 @@ async function resolvePath(options) {
     path.resolve(name),
     // local, but without index.js
     path.resolve(name, 'index.js'),
-  ].map((p) => {
-    // On Windows, the ESM loader requires that absolute paths must be valid file:// URLs.
-    // Absolute paths (e.g. with drive letters like "C:") can lead to ERR_UNSUPPORTED_ESM_URL_SCHEME
-    return p.match(/^[a-zA-Z]:/) ? `file://${p}` : p;
-  });
+  ];
+
+  if (os.platform() === 'win32') {
+    potentialLocations = potentialLocations.map(convertWindowsAbsolutePathToFileUrl);
+  }
 
   let resolvedModule;
   let resolvedPath;
@@ -273,7 +297,7 @@ async function tryResolve(url, options = {}) {
       /**
        * If *we* make a mistake, don't swallow the error
        */
-      if (!error.message.includes('ember-apply/src/cli/')) {
+      if (!error.message.includes(path.join('ember-apply', 'src', 'cli'))) {
         throw error;
       }
     }
