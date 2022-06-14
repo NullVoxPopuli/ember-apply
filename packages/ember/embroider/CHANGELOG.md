@@ -1,3 +1,13 @@
+## @ember-apply/embroider [1.0.13](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/embroider@1.0.12...@ember-apply/embroider@1.0.13) (2022-06-14)
+
+
+
+
+
+### Dependencies
+
+* **ember-apply:** upgraded to 2.3.2
+
 ## @ember-apply/embroider [1.0.12](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/embroider@1.0.11...@ember-apply/embroider@1.0.12) (2022-06-14)
 
 
