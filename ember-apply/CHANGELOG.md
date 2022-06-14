@@ -1,3 +1,10 @@
+## ember-apply [2.3.3](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.3.2...ember-apply@2.3.3) (2022-06-14)
+
+
+### Bug Fixes
+
+* add type-checking to c.i. so that packages release successfully ([5d6eae8](https://github.com/NullVoxPopuli/ember-apply/commit/5d6eae8e2301a5b2e6647cfb584beb97ea78438f))
+
 ## ember-apply [2.3.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.3.1...ember-apply@2.3.2) (2022-06-14)
 
 
