@@ -55,20 +55,25 @@ jobs:
     - uses: volta-cli/action@v1
     - uses: wagoid/commitlint-github-action@v4.1.12
 
-  # types:
-  #   name: "Type Correctness"
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 2
-  #   needs: [install_dependencies]
+  types:
+    name: "Type Correctness"
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    needs: [install_dependencies]
+    strategy:
+      fail-fast: true
+      matrix:
+        path:
+          - ./ember-apply
+          - ./packages/ember/tailwind
+          - ./packages/ember/embroider
 
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - uses: volta-cli/action@v1
-  #   - uses: actions/cache@v2
-  #     with:
-  #       path: ${{ env.CACHE_PATH }}
-  #       key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-  #   - run: yarn install
-  #   # running with yarn causes tsc to hang
-  #   - run: tsc --build --clean && tsc --build
-  #     continue-on-error: true
+    steps:
+    - uses: actions/checkout@v2
+    - uses: volta-cli/action@v1
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.CACHE_PATH }}
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - run: yarn install
+    - run: cd ${{ matrix.path }} && yarn tsc --build

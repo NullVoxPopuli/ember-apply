@@ -221,7 +221,7 @@ async function resolvePackage(options) {
  * path string that is prefixed with `file://`.
  * Otherwise, it returns its argument without modification.
  *
- * @param {string} path
+ * @param {string} p the path
  * @returns {string} adjustedPath
  */
 function convertWindowsAbsolutePathToFileUrl(p) {
