@@ -103,7 +103,7 @@ package.json
   }
 }
 diff --git a/tests/index.html b/tests/index.html
-index e4b2e69..d422b9b 100644
+index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
 @@ -9,6 +9,7 @@
@@ -114,15 +114,6 @@ index e4b2e69..d422b9b 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
-@@ -27,7 +28,7 @@
-       </div>
-     </div>
- 
--    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore></script>
-+    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore=\\"\\"></script>
-     <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
 "
 `;
 
@@ -130,8 +121,8 @@ exports[`CLI > default command > using Tailwind as an example > local absolute p
 " .gitignore       | 3 +++
  app/index.html   | 1 +
  package.json     | 9 ++++++---
- tests/index.html | 3 ++-
- 4 files changed, 12 insertions(+), 4 deletions(-)"
+ tests/index.html | 1 +
+ 4 files changed, 11 insertions(+), 3 deletions(-)"
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local absolute path 1`] = `
@@ -237,7 +228,7 @@ package.json
   }
 }
 diff --git a/tests/index.html b/tests/index.html
-index e4b2e69..d422b9b 100644
+index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
 @@ -9,6 +9,7 @@
@@ -248,15 +239,6 @@ index e4b2e69..d422b9b 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
-@@ -27,7 +28,7 @@
-       </div>
-     </div>
- 
--    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore></script>
-+    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore=\\"\\"></script>
-     <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
 "
 `;
 
@@ -264,8 +246,8 @@ exports[`CLI > default command > using Tailwind as an example > local absolute p
 " .gitignore       | 3 +++
  app/index.html   | 1 +
  package.json     | 9 ++++++---
- tests/index.html | 3 ++-
- 4 files changed, 12 insertions(+), 4 deletions(-)"
+ tests/index.html | 1 +
+ 4 files changed, 11 insertions(+), 3 deletions(-)"
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local relative path (with index) 1`] = `
@@ -371,7 +353,7 @@ package.json
   }
 }
 diff --git a/tests/index.html b/tests/index.html
-index e4b2e69..d422b9b 100644
+index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
 @@ -9,6 +9,7 @@
@@ -382,15 +364,6 @@ index e4b2e69..d422b9b 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
-@@ -27,7 +28,7 @@
-       </div>
-     </div>
- 
--    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore></script>
-+    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore=\\"\\"></script>
-     <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
 "
 `;
 
@@ -398,8 +371,8 @@ exports[`CLI > default command > using Tailwind as an example > local relative p
 " .gitignore       | 3 +++
  app/index.html   | 1 +
  package.json     | 9 ++++++---
- tests/index.html | 3 ++-
- 4 files changed, 12 insertions(+), 4 deletions(-)"
+ tests/index.html | 1 +
+ 4 files changed, 11 insertions(+), 3 deletions(-)"
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local relative path 1`] = `
@@ -505,7 +478,7 @@ package.json
   }
 }
 diff --git a/tests/index.html b/tests/index.html
-index e4b2e69..d422b9b 100644
+index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
 @@ -9,6 +9,7 @@
@@ -516,15 +489,6 @@ index e4b2e69..d422b9b 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
-@@ -27,7 +28,7 @@
-       </div>
-     </div>
- 
--    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore></script>
-+    <script src=\\"/testem.js\\" integrity=\\"\\" data-embroider-ignore=\\"\\"></script>
-     <script src=\\"{{rootURL}}assets/vendor.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-support.js\\"></script>
-     <script src=\\"{{rootURL}}assets/test-app.js\\"></script>
 "
 `;
 
@@ -532,6 +496,6 @@ exports[`CLI > default command > using Tailwind as an example > local relative p
 " .gitignore       | 3 +++
  app/index.html   | 1 +
  package.json     | 9 ++++++---
- tests/index.html | 3 ++-
- 4 files changed, 12 insertions(+), 4 deletions(-)"
+ tests/index.html | 1 +
+ 4 files changed, 11 insertions(+), 3 deletions(-)"
 `;
