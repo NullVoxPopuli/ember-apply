@@ -1,7 +1,7 @@
 {
   "name": "@ember-apply/embroider",
   "description": "ember-apply plugin for upgrading a classic build ember app to using embroider",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "type": "module",
   "license": "MIT",
   "preset": "index.js",
@@ -32,7 +32,7 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
-    "ember-apply": "2.3.2"
+    "ember-apply": "2.3.3"
   },
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "^2.1.17",
