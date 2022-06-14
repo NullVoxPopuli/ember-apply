@@ -1,3 +1,10 @@
+## ember-apply [2.3.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.3.0...ember-apply@2.3.1) (2022-06-14)
+
+
+### Bug Fixes
+
+* detect/correct Windows paths (fix [#271](https://github.com/NullVoxPopuli/ember-apply/issues/271)) ([2a2b029](https://github.com/NullVoxPopuli/ember-apply/commit/2a2b029585c61eb3097511b4d9aec936297fd082)), closes [#262](https://github.com/NullVoxPopuli/ember-apply/issues/262)
+
 # ember-apply [2.3.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.2.3...ember-apply@2.3.0) (2022-06-02)
 
 
