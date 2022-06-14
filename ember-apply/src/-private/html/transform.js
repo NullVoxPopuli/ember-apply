@@ -3,6 +3,7 @@
 import fs from 'fs/promises';
 
 import posthtml from 'posthtml';
+// @ts-ignore
 import booleanAttributes from 'posthtml-boolean-attributes';
 
 /**
