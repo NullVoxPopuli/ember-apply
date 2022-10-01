@@ -1,3 +1,10 @@
+# ember-apply [2.4.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.3.3...ember-apply@2.4.0) (2022-10-01)
+
+
+### Features
+
+* **js:** add ability to override the parser detection ([a05cca8](https://github.com/NullVoxPopuli/ember-apply/commit/a05cca8bde91b57f6533548facabd3dd4736b94c))
+
 ## ember-apply [2.3.3](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.3.2...ember-apply@2.3.3) (2022-06-14)
 
 
