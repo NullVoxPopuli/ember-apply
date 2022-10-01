@@ -11,9 +11,9 @@
  * @callback TransformCallback
  * @param {CallbackApi} callbackApi
  * @return {Promise<void>} return
-  *
-  * @typedef {object} Options
-  * @property {Parameters<JSCodeshift['withParser']>[0]} [parser]
+ *
+ * @typedef {object} Options
+ * @property {Parameters<JSCodeshift['withParser']>[0]} [parser]
  *
  */
 import fs from 'fs/promises';
