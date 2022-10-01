@@ -4,15 +4,15 @@
 
 * `git clone <repository-url>`
 * `cd ember-apply`
-* `yarn install`
+* `pnpm install`
 
 ## Linting
 
-* `yarn lint`
+* `pnpm lint`
 
 ## Running tests
 
-* `yarn test`
+* `pnpm test`
 
 
 ## Local Debugging

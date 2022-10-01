@@ -12,6 +12,9 @@
  * @param {CallbackApi} callbackApi
  * @return {Promise<void>} return
  *
+ * @typedef {object} Options
+ * @property {Parameters<JSCodeshift['withParser']>[0]} [parser]
+ *
  */
 import fs from 'fs/promises';
 import path from 'path';
@@ -43,17 +46,22 @@ import jscodeshift from 'jscodeshift';
  *
  * @param {string} filePath to the file to transform
  * @param {TransformCallback} callback
+ * @param {Options} [options]
  * @returns void
  */
-export async function transform(filePath, callback) {
+export async function transform(filePath, callback, options = {}) {
   let code = (await fs.readFile(filePath)).toString();
 
   let j;
 
-  if (path.extname(filePath).endsWith('ts')) {
-    j = jscodeshift.withParser('ts');
+  if (options?.parser) {
+    j = jscodeshift.withParser(options.parser);
   } else {
-    j = jscodeshift.withParser('babel');
+    if (path.extname(filePath).endsWith('ts')) {
+      j = jscodeshift.withParser('ts');
+    } else {
+      j = jscodeshift.withParser('babel');
+    }
   }
 
   let root = j(code);

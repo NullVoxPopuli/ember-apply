@@ -19,13 +19,48 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: volta-cli/action@v1
-    - uses: actions/cache@v3
+    - uses: ./.github/actions/pnpm
+
+  lint_source:
+    name: Lint Source
+    runs-on: ubuntu-latest
+    needs: [install_dependencies]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/pnpm
+      - name: Lints
+        run: pnpm lint
+
+  commits:
+    name: Commit Messages
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
       with:
-        path: ${{ env.CACHE_PATH }}
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: "${{ runner.os }}-modules-"
-    - run: yarn install
+        fetch-depth: 0
+
+    - uses: volta-cli/action@v1
+    - uses: wagoid/commitlint-github-action@v4.1.12
+
+  types:
+    name: "Type Correctness"
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    needs: [install_dependencies]
+    strategy:
+      fail-fast: true
+      matrix:
+        path:
+          - ./ember-apply
+          - ./packages/ember/tailwind
+          - ./packages/ember/embroider
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/pnpm
+      - run: cd ${{ matrix.path }} && pnpm tsc --build
 
   tests:
     strategy:
@@ -36,17 +71,12 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: volta-cli/action@v1
-      - uses: actions/cache@v3.0.4
-        with:
-          path: ${{ env.CACHE_PATH }}
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: |
-          yarn install
-          yarn global add ember-cli
-      - name: Tests
-        run: yarn test
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/pnpm
+    - run: |
+        pnpm add --global ember-cli
+    - name: Tests
+      run: pnpm test
 
   tooling:
     name: Tooling
@@ -57,19 +87,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: volta-cli/action@v1
-      - uses: actions/cache@v3.0.4
-        with:
-          path: ${{ env.CACHE_PATH }}
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-      - run: yarn install
+      - uses: ./.github/actions/pnpm
       - name: Semantic Release
         run: |
           echo "Testing release likelihood of success"
           # atm, dry-run only works on the main branch
           git checkout -b main
-          yarn publish:dry-run
+          pnpm publish:dry-run
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -82,13 +106,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-      - uses: volta-cli/action@v1
-      - run: yarn install
-
+      - uses: ./.github/actions/pnpm
       - name: Release
-        run: yarn publish:release
+        run: pnpm publish:release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

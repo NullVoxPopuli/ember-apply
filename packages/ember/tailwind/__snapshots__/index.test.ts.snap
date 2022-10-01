@@ -80,7 +80,6 @@ package.json
     \\"ember-cli-sri\\",
     \\"ember-cli-terser\\",
     \\"ember-data\\",
-    \\"ember-export-application-global\\",
     \\"ember-fetch\\",
     \\"ember-load-initializers\\",
     \\"ember-page-title\\",

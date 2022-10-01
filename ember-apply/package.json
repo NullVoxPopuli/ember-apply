@@ -26,11 +26,11 @@
     "README.md"
   ],
   "scripts": {
-    "prepack": "yarn build:types && cp ../README.md ./",
+    "prepack": "pnpm build:types && cp ../README.md ./",
     "build:types": "tsc --build",
-    "lint": "yarn lint:js",
+    "lint": "pnpm lint:js",
     "lint:js": "eslint .",
-    "lint:fix": "yarn lint:js --fix",
+    "lint:fix": "pnpm lint:js --fix",
     "test": "vitest --coverage --no-watch --no-threads",
     "test:watch": "vitest --watch --no-threads"
   },

@@ -1,37 +1,31 @@
 {
   "name": "ember-apply-monorepo",
   "private": true,
-  "workspaces": [
-    "ember-apply",
-    "packages/*",
-    "packages/ember/*"
-  ],
   "license": "MIT",
   "author": "NullVoxPopuli",
   "scripts": {
-    "build:docs": "yarn workspace docs docs:collect",
-    "start:docs": "yarn build:docs --watch",
+    "build:docs": "pnpm --filter docs docs:collect",
+    "start:docs": "pnpm build:docs --watch",
     "publish:release": "multi-semantic-release --ignore-private-packages",
-    "publish:dry-run": "yarn publish:release --dry-run --debug",
+    "publish:dry-run": "pnpm publish:release --dry-run --debug",
     "test": "turbo run test",
-    "lint:fix": "turbo run lint:fix",
-    "lint": "turbo run lint"
+    "lint:fix": "pnpm --filter '*' lint:fix",
+    "lint": "pnpm --filter '*' lint"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.2",
     "@commitlint/config-conventional": "^16.0.0",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "^10.0.0",
-    "multi-semantic-release": "^2.11.1",
+    "multi-semantic-release": "^3.0.1",
     "semantic-release": "^19.0.0",
     "semantic-release-monorepo": "^7.0.0",
-    "turbo": "1.2.16"
+    "turbo": "1.5.5"
   },
   "volta": {
-    "node": "16.15.1",
-    "yarn": "1.22.19"
+    "node": "16.15.1"
   },
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "pnpm@7.12.1",
   "release": {
     "branches": [
       "main"

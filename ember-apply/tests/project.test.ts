@@ -5,10 +5,12 @@ import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 import { project } from '../src';
 import { newEmberApp, newMonorepo, newTmpDir, readFile } from '../src/test-utils';
 
-// let it = test.concurrent;
+let it = test.skip;
 // Snapshot testing is broken in concurrent tests
 // see: https://github.com/vitest-dev/vitest/issues/551
-let it = test.concurrent;
+// let it = test.concurrent;
+// Regressing!
+// https://github.com/vitest-dev/vitest/issues/1436
 
 let original = process.cwd();
 
