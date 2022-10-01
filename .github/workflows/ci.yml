@@ -19,13 +19,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: volta-cli/action@v1
-    - uses: actions/cache@v3
-      with:
-        path: ${{ env.CACHE_PATH }}
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: "${{ runner.os }}-modules-"
-    - run: yarn install
+    - uses: ./.github/actions/pnpm
 
   tests:
     strategy:
@@ -36,17 +30,12 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: volta-cli/action@v1
-      - uses: actions/cache@v3.0.4
-        with:
-          path: ${{ env.CACHE_PATH }}
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: |
-          yarn install
-          yarn global add ember-cli
-      - name: Tests
-        run: yarn test
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/pnpm
+    - run: |
+        pnpm add --global ember-cli
+    - name: Tests
+      run: pnpm test
 
   tooling:
     name: Tooling
@@ -57,13 +46,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: volta-cli/action@v1
-      - uses: actions/cache@v3.0.4
-        with:
-          path: ${{ env.CACHE_PATH }}
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-      - run: yarn install
+      - uses: ./.github/actions/pnpm
       - name: Semantic Release
         run: |
           echo "Testing release likelihood of success"
@@ -82,11 +65,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-      - uses: volta-cli/action@v1
-      - run: yarn install
-
+      - uses: ./.github/actions/pnpm
       - name: Release
         run: yarn publish:release
         env:
