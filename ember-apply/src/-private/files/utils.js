@@ -3,8 +3,8 @@
 /**
  *
  * @typedef {object} CopyOptions
- * @property {string} [ source ]
- * @property {string} [ content ]
+ * @property {string} [source] the source file path to copy
+ * @property {string} [content] the content to copy
  *
  */
 import fs from 'fs/promises';

@@ -103,17 +103,17 @@ importers:
 
   packages/docs:
     specifiers:
-      typedoc: ^0.22.10
+      typedoc: ^0.23.15
       typedoc-plugin-markdown: ^3.11.11
-      typedoc-plugin-mdn-links: ^1.0.4
-      typedoc-plugin-merge-modules: ^3.1.0
-      typescript: 4.7.3
+      typedoc-plugin-mdn-links: ^2.0.0
+      typedoc-plugin-merge-modules: ^4.0.1
+      typescript: 4.8.4
     devDependencies:
-      typedoc: 0.22.18_typescript@4.7.3
-      typedoc-plugin-markdown: 3.13.6_typedoc@0.22.18
-      typedoc-plugin-mdn-links: 1.0.6_typedoc@0.22.18
-      typedoc-plugin-merge-modules: 3.1.0_typedoc@0.22.18
-      typescript: 4.7.3
+      typedoc: 0.23.15_typescript@4.8.4
+      typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
+      typedoc-plugin-mdn-links: 2.0.0_typedoc@0.23.15
+      typedoc-plugin-merge-modules: 4.0.1_typedoc@0.23.15
+      typescript: 4.8.4
 
   packages/ember/embroider:
     specifiers:
@@ -122,7 +122,7 @@ importers:
       autoprefixer: ^10.0.0
       babel-eslint: ^10.1.0
       c8: ^7.11.0
-      ember-apply: 2.3.3
+      ember-apply: 2.4.0
       eslint: ^7.0.0
       eslint-plugin-decorator-position: ^5.0.1
       eslint-plugin-import: ^2.25.4
@@ -161,7 +161,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^2.1.17
       babel-eslint: ^10.1.0
       c8: ^7.11.0
-      ember-apply: 2.3.3
+      ember-apply: 2.4.0
       eslint: ^7.0.0
       eslint-plugin-decorator-position: ^5.0.1
       eslint-plugin-import: ^2.25.4
@@ -3444,8 +3444,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      is-text-path: 1.0.1
       JSONStream: 1.3.5
+      is-text-path: 1.0.1
       lodash: 4.17.21
       meow: 8.1.2
       split2: 3.2.2
@@ -4404,7 +4404,7 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.38.1_3rubbgt5ekhqrcgx4uwls3neim
+      '@typescript-eslint/parser': 5.38.1_kix3shd7zvxuvkzdjm72bpp2vy
       debug: 3.2.7
       eslint: 7.32.0
       eslint-import-resolver-node: 0.3.6
@@ -4540,7 +4540,7 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.38.1_3rubbgt5ekhqrcgx4uwls3neim
+      '@typescript-eslint/parser': 5.38.1_kix3shd7zvxuvkzdjm72bpp2vy
       array-includes: 3.1.5
       array.prototype.flat: 1.3.0
       debug: 2.6.9
@@ -5241,6 +5241,7 @@ packages:
       inherits: 2.0.4
       minimatch: 5.1.0
       once: 1.4.0
+    dev: false
 
   /global-dirs/0.1.1:
     resolution: {integrity: sha512-NknMLn7F2J7aflwFOlGdNIuCDpN3VGoSoB+aap3KABFWbHVn1TCgFC+np23J8W2BiZbjfEw3BFBycSMv1AFblg==}
@@ -7866,12 +7867,12 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  /shiki/0.10.1:
-    resolution: {integrity: sha512-VsY7QJVzU51j5o1+DguUd+6vmCmZ5v/6gYu4vyYAhzjuNQU6P/vmSy4uQaOhvje031qQMiW0d2BwgMH52vqMng==}
+  /shiki/0.11.1:
+    resolution: {integrity: sha512-EugY9VASFuDqOexOgXR18ZV+TbFrQHeCpEYaXamO+SZlsnT/2LxuLBX25GGtIrwaEVFXUAbUQ601SWE2rMwWHA==}
     dependencies:
       jsonc-parser: 3.2.0
       vscode-oniguruma: 1.6.2
-      vscode-textmate: 5.2.0
+      vscode-textmate: 6.0.0
     dev: true
 
   /side-channel/1.0.4:
@@ -8555,44 +8556,43 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /typedoc-plugin-markdown/3.13.6_typedoc@0.22.18:
+  /typedoc-plugin-markdown/3.13.6_typedoc@0.23.15:
     resolution: {integrity: sha512-ISSc9v3BK7HkokxSBuJPttXox4tJ6hP0N9wfSIk0fmLN67+eqtAxbk97gs2nDiuha+RTO5eW9gdeAb+RPP0mgg==}
     peerDependencies:
       typedoc: '>=0.23.0'
     dependencies:
       handlebars: 4.7.7
-      typedoc: 0.22.18_typescript@4.7.3
+      typedoc: 0.23.15_typescript@4.8.4
     dev: true
 
-  /typedoc-plugin-mdn-links/1.0.6_typedoc@0.22.18:
-    resolution: {integrity: sha512-ee+uJXZH8vXzi5wpXBc+Wgjt30hQdRE3SyUvAHVoBbHsoqkGbs4hMTDo9mU8aQsZ2MZkve0nTmN3eVc79YN/Qg==}
+  /typedoc-plugin-mdn-links/2.0.0_typedoc@0.23.15:
+    resolution: {integrity: sha512-IGLuelXPOenGdmklr5DHgPPf/MfZj7aEYCxCMtPN8C1D0lA7w0YLahd0jhDDcOMU7zL1EPcM5pPnhZHltDhqGQ==}
     peerDependencies:
-      typedoc: 0.22.x
+      typedoc: 0.22.x || 0.23.x
     dependencies:
-      typedoc: 0.22.18_typescript@4.7.3
+      typedoc: 0.23.15_typescript@4.8.4
     dev: true
 
-  /typedoc-plugin-merge-modules/3.1.0_typedoc@0.22.18:
-    resolution: {integrity: sha512-DAHDZD+KG3mRm+hJFAMh/pO98CQ3W/BFA81FzWpc1kos66mLRIa7QVO30yBREkZNZMsTA7fgGEjEN2GO2cgi3A==}
+  /typedoc-plugin-merge-modules/4.0.1_typedoc@0.23.15:
+    resolution: {integrity: sha512-peuoWT/xcpEO71kNuaTBAS2IVwc8qm5tiIXnJc0vW/Cy9HHoVGkYecarkwtLBl5VmrhZjZN6LQNriqYfgHA1+A==}
     peerDependencies:
-      typedoc: 0.21.x || 0.22.x
+      typedoc: 0.23.x
     dependencies:
-      typedoc: 0.22.18_typescript@4.7.3
+      typedoc: 0.23.15_typescript@4.8.4
     dev: true
 
-  /typedoc/0.22.18_typescript@4.7.3:
-    resolution: {integrity: sha512-NK9RlLhRUGMvc6Rw5USEYgT4DVAUFk7IF7Q6MYfpJ88KnTZP7EneEa4RcP+tX1auAcz7QT1Iy0bUSZBYYHdoyA==}
-    engines: {node: '>= 12.10.0'}
+  /typedoc/0.23.15_typescript@4.8.4:
+    resolution: {integrity: sha512-x9Zu+tTnwxb9YdVr+zvX7LYzyBl1nieOr6lrSHbHsA22/RJK2m4Y525WIg5Mj4jWCmfL47v6f4hUzY7EIuwS5w==}
+    engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
-      typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x || 4.6.x || 4.7.x
+      typescript: 4.6.x || 4.7.x || 4.8.x
     dependencies:
-      glob: 8.0.3
       lunr: 2.3.9
       marked: 4.1.1
       minimatch: 5.1.0
-      shiki: 0.10.1
-      typescript: 4.7.3
+      shiki: 0.11.1
+      typescript: 4.8.4
     dev: true
 
   /typescript/4.7.3:
@@ -8957,8 +8957,8 @@ packages:
     resolution: {integrity: sha512-KH8+KKov5eS/9WhofZR8M8dMHWN2gTxjMsG4jd04YhpbPR91fUj7rYQ2/XjeHCJWbg7X++ApRIU9NUwM2vTvLA==}
     dev: true
 
-  /vscode-textmate/5.2.0:
-    resolution: {integrity: sha512-Uw5ooOQxRASHgu6C7GVvUxisKXfSgW4oFlO+aa+PAkgmH89O3CXxEEzNRNtHSqtXFTl0nAC1uYj0GMSH27uwtQ==}
+  /vscode-textmate/6.0.0:
+    resolution: {integrity: sha512-gu73tuZfJgu+mvCSy4UZwd2JXykjK9zAZsfmDeut5dx/1a7FeTk0XwJsSuqQn+cuMCGVbIBfl+s53X4T19DnzQ==}
     dev: true
 
   /vscode-uri/3.0.6:
