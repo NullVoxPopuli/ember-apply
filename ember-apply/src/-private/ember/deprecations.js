@@ -53,13 +53,13 @@ export function withAST({ root, j }) {
  *
  * @typedef {JSTransformArgs & { handler: string }} EnsureOptions
  * @typedef {import('jscodeshift')} J
- * @typedef {J[ 'RestElement' ]} RestElement;
- * @typedef {J[ 'SpreadElement' ]} SpreadElement;
- * @typedef {J[ 'ExpressionKind' ]} ExpressionKind;
- * @typedef {J[ 'ObjectExpression' ]} ObjectExpression;
+ * @typedef {J['RestElement']} RestElement
+ * @typedef {J['SpreadElement']} SpreadElement
+ * @typedef {J['ExpressionKind']} ExpressionKind
+ * @typedef {J['ObjectExpression']} ObjectExpression
  *
  *
- * @typedef {RestElement | SpreadElement | ExpressionKind} Entry;
+ * @typedef {RestElement | SpreadElement | ExpressionKind} Entry
  *
  *
  * @param {string} id

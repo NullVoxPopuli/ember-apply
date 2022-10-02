@@ -8,10 +8,10 @@
   "json": "./docs.json",
   "out": "dist",
   "pretty": true,
-  "excludePrivate": true,
-  "excludeProtected": true,
+  "excludePrivate": false,
+  "excludeProtected": false,
   "excludeExternals": true,
-  "disableSources": true,
+  "disableSources": false,
   "plugin": [
     "typedoc-plugin-merge-modules",
     "typedoc-plugin-mdn-links"
