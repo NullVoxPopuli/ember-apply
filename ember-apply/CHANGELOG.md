@@ -1,3 +1,10 @@
+## ember-apply [2.4.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.4.0...ember-apply@2.4.1) (2022-10-02)
+
+
+### Bug Fixes
+
+* **docs:** improve typedoc-parsing of documentation ([0c3587d](https://github.com/NullVoxPopuli/ember-apply/commit/0c3587d5f0d5599883821d2d41d06a6efe08956f))
+
 # ember-apply [2.4.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.3.3...ember-apply@2.4.0) (2022-10-01)
 
 
