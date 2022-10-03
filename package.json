@@ -23,7 +23,7 @@
     "turbo": "1.5.5"
   },
   "volta": {
-    "node": "16.15.1"
+    "node": "16.17.1"
   },
   "packageManager": "pnpm@7.12.2",
   "release": {
