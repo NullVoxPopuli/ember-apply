@@ -42,7 +42,7 @@ jobs:
         fetch-depth: 0
 
     - uses: volta-cli/action@v3
-    - uses: wagoid/commitlint-github-action@v4.1.15
+    - uses: wagoid/commitlint-github-action@v5.0.2
 
   types:
     name: "Type Correctness"
