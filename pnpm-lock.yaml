@@ -122,7 +122,7 @@ importers:
       autoprefixer: ^10.0.0
       babel-eslint: ^10.1.0
       c8: ^7.11.0
-      ember-apply: 2.4.1
+      ember-apply: 2.4.2
       eslint: ^7.0.0
       eslint-plugin-decorator-position: ^5.0.1
       eslint-plugin-import: ^2.25.4
@@ -161,7 +161,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^2.1.17
       babel-eslint: ^10.1.0
       c8: ^7.11.0
-      ember-apply: 2.4.1
+      ember-apply: 2.4.2
       eslint: ^7.0.0
       eslint-plugin-decorator-position: ^5.0.1
       eslint-plugin-import: ^2.25.4
