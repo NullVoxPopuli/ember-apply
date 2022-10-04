@@ -1,3 +1,10 @@
+## ember-apply [2.4.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.4.1...ember-apply@2.4.2) (2022-10-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency latest-version to v7 ([67bc699](https://github.com/NullVoxPopuli/ember-apply/commit/67bc699d312229fb394705d31938545421a7ae2c))
+
 ## ember-apply [2.4.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.4.0...ember-apply@2.4.1) (2022-10-02)
 
 
