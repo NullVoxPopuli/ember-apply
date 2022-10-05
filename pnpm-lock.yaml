@@ -45,7 +45,7 @@ importers:
       eslint-plugin-prettier: ^4.0.0
       execa: ^6.0.0
       fs-extra: ^10.0.0
-      jscodeshift: ^0.13.1
+      jscodeshift: ^0.14.0
       latest-version: ^7.0.0
       ora: ^6.0.1
       pacote: ^13.0.0
@@ -68,7 +68,7 @@ importers:
       ember-template-recast: 6.1.3
       execa: 6.1.0
       fs-extra: 10.1.0
-      jscodeshift: 0.13.1_@babel+preset-env@7.19.3
+      jscodeshift: 0.14.0_@babel+preset-env@7.19.3
       latest-version: 7.0.0
       ora: 6.1.2
       pacote: 13.6.2
@@ -2702,6 +2702,14 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       tslib: 2.4.0
+    dev: true
+
+  /ast-types/0.15.2:
+    resolution: {integrity: sha512-c27loCv9QkZinsa5ProX751khO9DJl/AcB5c2KNtA6NRvHKS0PgLfcftz72KVq504vB0Gku5s2kUZzDBvQWvHg==}
+    engines: {node: '>=4'}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
 
   /astral-regex/2.0.0:
     resolution: {integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==}
@@ -5560,8 +5568,8 @@ packages:
       esprima: 4.0.1
     dev: true
 
-  /jscodeshift/0.13.1_@babel+preset-env@7.19.3:
-    resolution: {integrity: sha512-lGyiEbGOvmMRKgWk4vf+lUrCWO/8YR8sUR3FKF1Cq5fovjZDlIcw3Hu5ppLHAnEXshVffvaM0eyuY/AbOeYpnQ==}
+  /jscodeshift/0.14.0_@babel+preset-env@7.19.3:
+    resolution: {integrity: sha512-7eCC1knD7bLUPuSCwXsMZUH51O8jIcoVyKtI6P0XM0IVzlGjckPy3FIwQlorzbN0Sg79oK+RlohN32Mqf/lrYA==}
     hasBin: true
     peerDependencies:
       '@babel/preset-env': ^7.1.6
@@ -5580,10 +5588,10 @@ packages:
       chalk: 4.1.2
       flow-parser: 0.188.1
       graceful-fs: 4.2.10
-      micromatch: 3.1.10
+      micromatch: 4.0.5
       neo-async: 2.6.2
       node-dir: 0.1.17
-      recast: 0.20.5
+      recast: 0.21.5
       temp: 0.8.4
       write-file-atomic: 2.4.3
     transitivePeerDependencies:
@@ -7145,6 +7153,17 @@ packages:
       esprima: 4.0.1
       source-map: 0.6.1
       tslib: 2.4.0
+    dev: true
+
+  /recast/0.21.5:
+    resolution: {integrity: sha512-hjMmLaUXAm1hIuTqOdeYObMslq/q+Xff6QE3Y2P+uoHAg2nmVlLBps2hzh1UJDdMtDTMXOFewK6ky51JQIeECg==}
+    engines: {node: '>= 4'}
+    dependencies:
+      ast-types: 0.15.2
+      esprima: 4.0.1
+      source-map: 0.6.1
+      tslib: 2.4.0
+    dev: false
 
   /redent/3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
