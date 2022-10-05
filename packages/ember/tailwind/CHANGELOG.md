@@ -1,3 +1,11 @@
+## @ember-apply/tailwind [2.0.21](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/tailwind@2.0.20...@ember-apply/tailwind@2.0.21) (2022-10-05)
+
+
+### Bug Fixes
+
+* **deps:** roll back dependency ember-apply to 2.4.3 ([22b9a83](https://github.com/NullVoxPopuli/ember-apply/commit/22b9a83e5857b27e9b2ed3e88fdd8933fb47356b))
+* **deps:** update dependency ember-apply to v2.4.4 ([bbcd83f](https://github.com/NullVoxPopuli/ember-apply/commit/bbcd83f6ec2a651e7ff81058d3ed67ae846007e1))
+
 ## @ember-apply/tailwind [2.0.20](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/tailwind@2.0.19...@ember-apply/tailwind@2.0.20) (2022-10-05)
 
 
