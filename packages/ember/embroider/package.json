@@ -1,7 +1,7 @@
 {
   "name": "@ember-apply/embroider",
   "description": "ember-apply plugin for upgrading a classic build ember app to using embroider",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "type": "module",
   "license": "MIT",
   "preset": "index.js",
