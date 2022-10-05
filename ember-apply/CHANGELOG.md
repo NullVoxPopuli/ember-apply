@@ -1,3 +1,10 @@
+## ember-apply [2.4.3](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.4.2...ember-apply@2.4.3) (2022-10-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency jscodeshift to ^0.14.0 ([5c43f8f](https://github.com/NullVoxPopuli/ember-apply/commit/5c43f8fe51a930799a2d865a68fe42f06a355985))
+
 ## ember-apply [2.4.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.4.1...ember-apply@2.4.2) (2022-10-04)
 
 
