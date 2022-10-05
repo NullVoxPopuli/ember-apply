@@ -48,7 +48,7 @@ importers:
       jscodeshift: ^0.14.0
       latest-version: ^7.0.0
       ora: ^6.0.1
-      pacote: ^13.0.0
+      pacote: ^14.0.0
       posthtml: ^0.16.5
       posthtml-boolean-attributes: ^0.3.1
       prettier: ^2.5.1
@@ -71,7 +71,7 @@ importers:
       jscodeshift: 0.14.0_@babel+preset-env@7.19.3
       latest-version: 7.0.0
       ora: 6.1.2
-      pacote: 13.6.2
+      pacote: 14.0.0
       posthtml: 0.16.6
       posthtml-boolean-attributes: 0.3.1
       semver: 7.3.7
@@ -122,7 +122,7 @@ importers:
       autoprefixer: ^10.0.0
       babel-eslint: ^10.1.0
       c8: ^7.11.0
-      ember-apply: 2.4.2
+      ember-apply: 2.4.3
       eslint: ^7.0.0
       eslint-plugin-decorator-position: ^5.0.1
       eslint-plugin-import: ^2.25.4
@@ -161,7 +161,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^2.1.17
       babel-eslint: ^10.1.0
       c8: ^7.11.0
-      ember-apply: 2.4.2
+      ember-apply: 2.4.3
       eslint: ^7.0.0
       eslint-plugin-decorator-position: ^5.0.1
       eslint-plugin-import: ^2.25.4
@@ -6357,13 +6357,6 @@ packages:
       npm-normalize-package-bin: 1.0.1
     dev: false
 
-  /npm-bundled/2.0.1:
-    resolution: {integrity: sha512-gZLxXdjEzE/+mOstGDqR6b0EkhJ+kM6fxM6vUuckuctuVPh80Q6pw/rSZj9s4Gex9GxWtIicO1pc8DB9KZWudw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
-    dependencies:
-      npm-normalize-package-bin: 2.0.0
-    dev: false
-
   /npm-install-checks/5.0.0:
     resolution: {integrity: sha512-65lUsMI8ztHCxFz5ckCEC44DRvEGdZX5usQFriauxHEwt7upv1FKaQEmAtU0YnOAdwuNWCmk64xYiQABNrEyLA==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
@@ -6390,15 +6383,11 @@ packages:
       validate-npm-package-name: 4.0.0
     dev: false
 
-  /npm-packlist/5.1.3:
-    resolution: {integrity: sha512-263/0NGrn32YFYi4J533qzrQ/krmmrWwhKkzwTuM4f/07ug51odoaNjUexxO4vxlzURHcmYMH1QjvHjsNDKLVg==}
-    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
-    hasBin: true
+  /npm-packlist/7.0.0:
+    resolution: {integrity: sha512-8GRMzWQmFdUrRmc6tPPCd9Umm9g2qDR6X6Rik+9nYvoDQTLs/0IcCKv6iUdAmgr9sgJCm24QovwozCHWMDriOg==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      glob: 8.0.3
       ignore-walk: 5.0.1
-      npm-bundled: 2.0.1
-      npm-normalize-package-bin: 2.0.0
     dev: false
 
   /npm-pick-manifest/7.0.2:
@@ -6766,9 +6755,9 @@ packages:
       semver: 7.3.7
     dev: false
 
-  /pacote/13.6.2:
-    resolution: {integrity: sha512-Gu8fU3GsvOPkak2CkbojR7vjs3k3P9cA6uazKTHdsdV0gpCEQq2opelnEv30KRQWgVzP5Vd/5umjcedma3MKtg==}
-    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+  /pacote/14.0.0:
+    resolution: {integrity: sha512-SYXfAQi7Bj+suydMz7lVnEF4/xNIvP+uobXGPwIUdFPkUxoOBHYxCakMXHGQQZ9lIHLj2IXTJ6BeWSe6U/uAYg==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     hasBin: true
     dependencies:
       '@npmcli/git': 3.0.2
@@ -6782,7 +6771,7 @@ packages:
       minipass: 3.3.4
       mkdirp: 1.0.4
       npm-package-arg: 9.1.2
-      npm-packlist: 5.1.3
+      npm-packlist: 7.0.0
       npm-pick-manifest: 7.0.2
       npm-registry-fetch: 13.3.1
       proc-log: 2.0.1
