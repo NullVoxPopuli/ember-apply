@@ -122,7 +122,7 @@ importers:
       autoprefixer: ^10.0.0
       babel-eslint: ^10.1.0
       c8: ^7.11.0
-      ember-apply: 2.4.3
+      ember-apply: 2.4.4
       eslint: ^8.0.0
       eslint-plugin-decorator-position: ^5.0.1
       eslint-plugin-import: ^2.25.4
@@ -136,7 +136,7 @@ importers:
       vite: ^3.1.4
       vitest: ^0.23.4
     dependencies:
-      ember-apply: 2.4.3
+      ember-apply: link:../../../ember-apply
     devDependencies:
       '@nullvoxpopuli/eslint-configs': 2.2.58_typescript@4.8.4
       '@vitest/coverage-c8': 0.23.4
@@ -161,7 +161,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^2.1.17
       babel-eslint: ^10.1.0
       c8: ^7.11.0
-      ember-apply: 2.4.3
+      ember-apply: 2.4.4
       eslint: ^8.0.0
       eslint-plugin-decorator-position: ^5.0.1
       eslint-plugin-import: ^2.25.4
@@ -174,7 +174,7 @@ importers:
       vite: ^3.1.4
       vitest: ^0.23.4
     dependencies:
-      ember-apply: 2.4.3
+      ember-apply: link:../../../ember-apply
     devDependencies:
       '@nullvoxpopuli/eslint-configs': 2.2.58_typescript@4.8.4
       babel-eslint: 10.1.0_eslint@8.24.0
@@ -3742,32 +3742,6 @@ packages:
   /electron-to-chromium/1.4.270:
     resolution: {integrity: sha512-KNhIzgLiJmDDC444dj9vEOpZEgsV96ult9Iff98Vanumn+ShJHd5se8aX6KeVxdc0YQeqdrezBZv89rleDbvSg==}
 
-  /ember-apply/2.4.3:
-    resolution: {integrity: sha512-9t+SGg6eyqXium8bIVQ9E9Cl0Tlul8V1lBUeeO6DCwU4cP4fteStZzDsiAT7jhfXXWmR+14rXtC6CiRxG7hy3A==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/core': 7.19.3
-      '@babel/preset-env': 7.19.3_@babel+core@7.19.3
-      chalk: 5.0.1
-      ember-template-recast: 6.1.3
-      execa: 6.1.0
-      fs-extra: 10.1.0
-      jscodeshift: 0.14.0_@babel+preset-env@7.19.3
-      latest-version: 7.0.0
-      ora: 6.1.2
-      pacote: 13.6.2
-      posthtml: 0.16.6
-      posthtml-boolean-attributes: 0.3.1
-      semver: 7.3.7
-      unified: 10.1.2
-      yargs: 17.6.0
-      yarn-workspaces-list: 0.2.0_@babel+core@7.19.3
-    transitivePeerDependencies:
-      - bluebird
-      - supports-color
-    dev: false
-
   /ember-rfc176-data/0.3.17:
     resolution: {integrity: sha512-EVzTTKqxv9FZbEh6Ktw56YyWRAA0MijKvl7H8C06wVF+8f/cRRz3dXxa4nkwjzyVwx4rzKGuIGq77hxJAQhWWw==}
     dev: true
@@ -6587,13 +6561,6 @@ packages:
       npm-normalize-package-bin: 1.0.1
     dev: false
 
-  /npm-bundled/2.0.1:
-    resolution: {integrity: sha512-gZLxXdjEzE/+mOstGDqR6b0EkhJ+kM6fxM6vUuckuctuVPh80Q6pw/rSZj9s4Gex9GxWtIicO1pc8DB9KZWudw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
-    dependencies:
-      npm-normalize-package-bin: 2.0.0
-    dev: false
-
   /npm-install-checks/5.0.0:
     resolution: {integrity: sha512-65lUsMI8ztHCxFz5ckCEC44DRvEGdZX5usQFriauxHEwt7upv1FKaQEmAtU0YnOAdwuNWCmk64xYiQABNrEyLA==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
@@ -6618,17 +6585,6 @@ packages:
       proc-log: 2.0.1
       semver: 7.3.7
       validate-npm-package-name: 4.0.0
-    dev: false
-
-  /npm-packlist/5.1.3:
-    resolution: {integrity: sha512-263/0NGrn32YFYi4J533qzrQ/krmmrWwhKkzwTuM4f/07ug51odoaNjUexxO4vxlzURHcmYMH1QjvHjsNDKLVg==}
-    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
-    hasBin: true
-    dependencies:
-      glob: 8.0.3
-      ignore-walk: 5.0.1
-      npm-bundled: 2.0.1
-      npm-normalize-package-bin: 2.0.0
     dev: false
 
   /npm-packlist/7.0.0:
@@ -7001,37 +6957,6 @@ packages:
       registry-auth-token: 5.0.1
       registry-url: 6.0.1
       semver: 7.3.7
-    dev: false
-
-  /pacote/13.6.2:
-    resolution: {integrity: sha512-Gu8fU3GsvOPkak2CkbojR7vjs3k3P9cA6uazKTHdsdV0gpCEQq2opelnEv30KRQWgVzP5Vd/5umjcedma3MKtg==}
-    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
-    hasBin: true
-    dependencies:
-      '@npmcli/git': 3.0.2
-      '@npmcli/installed-package-contents': 1.0.7
-      '@npmcli/promise-spawn': 3.0.0
-      '@npmcli/run-script': 4.2.1
-      cacache: 16.1.3
-      chownr: 2.0.0
-      fs-minipass: 2.1.0
-      infer-owner: 1.0.4
-      minipass: 3.3.4
-      mkdirp: 1.0.4
-      npm-package-arg: 9.1.2
-      npm-packlist: 5.1.3
-      npm-pick-manifest: 7.0.2
-      npm-registry-fetch: 13.3.1
-      proc-log: 2.0.1
-      promise-retry: 2.0.1
-      read-package-json: 5.0.2
-      read-package-json-fast: 2.0.3
-      rimraf: 3.0.2
-      ssri: 9.0.1
-      tar: 6.1.11
-    transitivePeerDependencies:
-      - bluebird
-      - supports-color
     dev: false
 
   /pacote/14.0.0:
