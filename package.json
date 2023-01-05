@@ -20,7 +20,7 @@
     "multi-semantic-release": "^3.0.1",
     "semantic-release": "^19.0.0",
     "semantic-release-monorepo": "^7.0.0",
-    "turbo": "1.5.5"
+    "turbo": "1.6.3"
   },
   "volta": {
     "node": "16.17.1"
