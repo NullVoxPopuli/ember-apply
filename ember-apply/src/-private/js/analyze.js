@@ -17,11 +17,12 @@
  *
  */
 import fs from 'fs/promises';
-
-import { analyze } from './analyze.js';
+import path from 'path';
+import jscodeshift from 'jscodeshift';
 
 /**
- * reads a script from source and transforms it with jscodeshift and then writes the file.
+ * reads a script from source and allows analysis via jscodeshift.
+ * This does not write to the file afterwards.
  *
  * The https://astexplorer.net/ REPL can be used to inspect and test out how
  * to transform javascript and typescript files.
@@ -33,13 +34,11 @@ import { analyze } from './analyze.js';
  * ```js
  * import { js } from 'ember-apply';
  *
- * await js.transform('path/to/file.js', ({ root, j }) => {
+ * await js.analyze('path/to/file.js', ({ root, j }) => {
  *   root
- *    .find(j.Identifier)
+ *    .find(j.ImportDeclaration)
  *    .forEach(path => {
- *       j(path).replaceWith(
- *         j.identifier(path.node.name.split('').reverse().join(''))
- *       );
+ *       // do some analysis on the found AST Nodes
  *     })
  *   });
  * ```
@@ -47,10 +46,28 @@ import { analyze } from './analyze.js';
  * @param {string} filePath to the file to transform
  * @param {TransformCallback} callback
  * @param {Options} [options]
- * @returns {Promise<void>}
+ * @returns {Promise<string>} the transformed source
  */
-export async function transform(filePath, callback, options = {}) {
-  let transformed = await analyze(filePath, callback, options);
+export async function analyze(filePath, callback, options = {}) {
+  let code = (await fs.readFile(filePath)).toString();
 
-  await fs.writeFile(filePath, transformed);
+  let j;
+
+  if (options?.parser) {
+    j = jscodeshift.withParser(options.parser);
+  } else {
+    if (path.extname(filePath).endsWith('ts')) {
+      j = jscodeshift.withParser('ts');
+    } else {
+      j = jscodeshift.withParser('babel');
+    }
+  }
+
+  let root = j(code);
+
+  await callback({ root, j });
+
+  let transformed = root.toSource();
+
+  return transformed;
 }
