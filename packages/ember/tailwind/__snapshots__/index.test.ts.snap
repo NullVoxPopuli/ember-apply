@@ -13,7 +13,7 @@ exports[`tailwind > applying to an ember app > works via CLI 2`] = `
 index f1e859b..e2943c0 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,7 +1,10 @@
+@@ -1,6 +1,9 @@
  # See https://help.github.com/ignore-files/ for more about ignoring files.
  
 +
@@ -23,13 +23,11 @@ index f1e859b..e2943c0 100644
  /dist/
  /tmp/
  
- # dependencies
 diff --git a/app/index.html b/app/index.html
 index 90cb9a3..d869700 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -7,8 +7,9 @@
-     <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
+@@ -8,6 +8,7 @@
  
      {{content-for \\"head\\"}}
  
@@ -37,7 +35,6 @@ index 90cb9a3..d869700 100644
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
-     {{content-for \\"head-footer\\"}}
 
 package.json
 {
@@ -116,8 +113,7 @@ diff --git a/tests/index.html b/tests/index.html
 index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -8,8 +8,9 @@
- 
+@@ -9,6 +9,7 @@
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
  
@@ -125,6 +121,5 @@ index e4b2e69..fbdb546 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
- 
 "
 `;
