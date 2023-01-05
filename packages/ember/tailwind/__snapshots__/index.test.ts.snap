@@ -13,7 +13,7 @@ exports[`tailwind > applying to an ember app > works via CLI 2`] = `
 index f1e859b..e2943c0 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,6 +1,9 @@
+@@ -1,7 +1,10 @@
  # See https://help.github.com/ignore-files/ for more about ignoring files.
  
 +
@@ -23,11 +23,13 @@ index f1e859b..e2943c0 100644
  /dist/
  /tmp/
  
+ # dependencies
 diff --git a/app/index.html b/app/index.html
 index 90cb9a3..d869700 100644
 --- a/app/index.html
 +++ b/app/index.html
-@@ -8,6 +8,7 @@
+@@ -7,8 +7,9 @@
+     <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
  
      {{content-for \\"head\\"}}
  
@@ -35,6 +37,7 @@ index 90cb9a3..d869700 100644
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
  
+     {{content-for \\"head-footer\\"}}
 
 package.json
 {
@@ -51,14 +54,14 @@ package.json
   },
   \\"scripts\\": {
     \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
-    \\"lint\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel \\\\\\"lint:!(fix)\\\\\\"\\",
-    \\"lint:fix\\": \\"npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix\\",
+    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\"\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\"\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
     \\"lint:js:fix\\": \\"eslint . --fix\\",
     \\"start\\": \\"ember serve\\",
-    \\"test\\": \\"npm-run-all lint test:*\\",
+    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\"\\",
     \\"test:ember\\": \\"ember test\\",
     \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
     \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
@@ -70,6 +73,7 @@ package.json
     \\"@glimmer/tracking\\",
     \\"babel-eslint\\",
     \\"broccoli-asset-rev\\",
+    \\"concurrently\\",
     \\"ember-auto-import\\",
     \\"ember-cli\\",
     \\"ember-cli-app-version\\",
@@ -95,7 +99,6 @@ package.json
     \\"eslint-plugin-prettier\\",
     \\"eslint-plugin-qunit\\",
     \\"loader.js\\",
-    \\"npm-run-all\\",
     \\"prettier\\",
     \\"qunit\\",
     \\"qunit-dom\\",
@@ -113,7 +116,8 @@ diff --git a/tests/index.html b/tests/index.html
 index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
-@@ -9,6 +9,7 @@
+@@ -8,8 +8,9 @@
+ 
      {{content-for \\"head\\"}}
      {{content-for \\"test-head\\"}}
  
@@ -121,5 +125,6 @@ index e4b2e69..fbdb546 100644
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
      <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
+ 
 "
 `;
