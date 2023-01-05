@@ -1,3 +1,10 @@
+# ember-apply [2.5.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.4.4...ember-apply@2.5.0) (2023-01-05)
+
+
+### Features
+
+* **ember-apply:** add analyze method to JS ([864aa45](https://github.com/NullVoxPopuli/ember-apply/commit/864aa45da7647e1a01120c37102781b27aaab810))
+
 ## ember-apply [2.4.4](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.4.3...ember-apply@2.4.4) (2022-10-05)
 
 
