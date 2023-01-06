@@ -1,3 +1,10 @@
+## ember-apply [2.5.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.5.0...ember-apply@2.5.1) (2023-01-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency fs-extra to v11 ([9cd4742](https://github.com/NullVoxPopuli/ember-apply/commit/9cd4742a3236cb26b527b39d98c3cc8526be028d))
+
 # ember-apply [2.5.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.4.4...ember-apply@2.5.0) (2023-01-05)
 
 
