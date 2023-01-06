@@ -1,3 +1,10 @@
+## ember-apply [2.5.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.5.1...ember-apply@2.5.2) (2023-01-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pacote to v15 ([dedc4a5](https://github.com/NullVoxPopuli/ember-apply/commit/dedc4a5aa6a9fc3a63476da2bd7f30c006bb4e6c))
+
 ## ember-apply [2.5.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.5.0...ember-apply@2.5.1) (2023-01-06)
 
 
