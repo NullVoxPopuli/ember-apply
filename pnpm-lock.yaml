@@ -33,7 +33,7 @@ importers:
       '@types/pacote': ^11.1.3
       '@types/semver': ^7.3.9
       '@types/yargs': ^17.0.8
-      '@vitest/ui': ^0.26.0
+      '@vitest/ui': ^0.27.0
       babel-eslint: ^10.1.0
       c8: ^7.11.0
       chalk: ^5.0.0
@@ -58,7 +58,7 @@ importers:
       typescript: 4.8.4
       unified: ^10.1.1
       vite: ^4.0.0
-      vitest: ^0.26.0
+      vitest: ^0.27.0
       yargs: ^17.3.1
       yarn-workspaces-list: ^0.2.0
     dependencies:
@@ -86,7 +86,7 @@ importers:
       '@types/pacote': 11.1.5
       '@types/semver': 7.3.12
       '@types/yargs': 17.0.13
-      '@vitest/ui': 0.26.3
+      '@vitest/ui': 0.27.0
       babel-eslint: 10.1.0_eslint@7.32.0
       c8: 7.12.0
       eslint: 7.32.0
@@ -99,7 +99,7 @@ importers:
       semantic-release-monorepo: 7.0.5_semantic-release@20.0.0
       typescript: 4.8.4
       vite: 4.0.4_@types+node@18.7.23
-      vitest: 0.26.3_@vitest+ui@0.26.3
+      vitest: 0.27.0_@vitest+ui@0.27.0
 
   packages/docs:
     specifiers:
@@ -118,7 +118,7 @@ importers:
   packages/ember/embroider:
     specifiers:
       '@nullvoxpopuli/eslint-configs': ^2.1.17
-      '@vitest/coverage-c8': ^0.26.0
+      '@vitest/coverage-c8': ^0.27.0
       autoprefixer: ^10.0.0
       babel-eslint: ^10.1.0
       c8: ^7.11.0
@@ -134,12 +134,12 @@ importers:
       semantic-release-monorepo: ^7.0.0
       typescript: 4.8.4
       vite: ^4.0.0
-      vitest: ^0.26.0
+      vitest: ^0.27.0
     dependencies:
       ember-apply: link:../../../ember-apply
     devDependencies:
       '@nullvoxpopuli/eslint-configs': 2.2.58_typescript@4.8.4
-      '@vitest/coverage-c8': 0.26.3
+      '@vitest/coverage-c8': 0.27.0
       autoprefixer: 10.4.12_postcss@8.4.17
       babel-eslint: 10.1.0_eslint@7.32.0
       c8: 7.12.0
@@ -154,7 +154,7 @@ importers:
       semantic-release-monorepo: 7.0.5_semantic-release@20.0.0
       typescript: 4.8.4
       vite: 4.0.4
-      vitest: 0.26.3
+      vitest: 0.27.0
 
   packages/ember/tailwind:
     specifiers:
@@ -172,7 +172,7 @@ importers:
       semantic-release-monorepo: ^7.0.0
       typescript: 4.8.4
       vite: ^4.0.0
-      vitest: ^0.26.0
+      vitest: ^0.27.0
     dependencies:
       ember-apply: link:../../../ember-apply
     devDependencies:
@@ -189,7 +189,7 @@ importers:
       semantic-release-monorepo: 7.0.5_semantic-release@20.0.0
       typescript: 4.8.4
       vite: 4.0.4
-      vitest: 0.26.3
+      vitest: 0.27.0
 
 packages:
 
@@ -2753,11 +2753,11 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitest/coverage-c8/0.26.3:
-    resolution: {integrity: sha512-sjmVYPozajWY2DawzuvhYX6hEe/LD6p2xv9VmPvh1zzDeNNVCAnyLcvXoaSMQD522x9bqciuyPrlrnh2iNkE/w==}
+  /@vitest/coverage-c8/0.27.0:
+    resolution: {integrity: sha512-jO/TAz/qUP1ssfIj6Gg1FxTRkOD5tJBiP3mwKayaqGunMsknCmxWVuFrgF1XH+FGZWLnFzR2InTjYxlyGNSgzQ==}
     dependencies:
       c8: 7.12.0
-      vitest: 0.26.3
+      vitest: 0.27.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@vitest/browser'
@@ -2772,8 +2772,8 @@ packages:
       - terser
     dev: true
 
-  /@vitest/ui/0.26.3:
-    resolution: {integrity: sha512-GekIZekLQVL765LmQObHai7Q3U+BWD0nxJVK1yV8VPcs6H/6EAnNuEZ8tFq87jCxyHEZ3zmOrX6uPmG65gBVrA==}
+  /@vitest/ui/0.27.0:
+    resolution: {integrity: sha512-eQmDfnNBB1c42eVqFSxvkNa+6OWA6O8QRQAp9oK0fdEicqToB+bts95+TrCsO2eXC0N9Q8GplFqRMqPLoJuVlA==}
     dependencies:
       fast-glob: 3.2.12
       flatted: 3.2.7
@@ -3274,6 +3274,11 @@ packages:
       v8-to-istanbul: 9.0.1
       yargs: 16.2.0
       yargs-parser: 20.2.9
+    dev: true
+
+  /cac/6.7.14:
+    resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
+    engines: {node: '>=8'}
     dev: true
 
   /cacache/16.1.3:
@@ -8848,14 +8853,16 @@ packages:
       vfile-message: 3.1.2
     dev: false
 
-  /vite-node/0.26.3_@types+node@18.7.23:
-    resolution: {integrity: sha512-Te2bq0Bfvq6XiO718I+1EinMjpNYKws6SNHKOmVbILAQimKoZKDd+IZLlkaYcBXPpK3HFe2U80k8Zw+m3w/a2w==}
+  /vite-node/0.27.0_@types+node@18.7.23:
+    resolution: {integrity: sha512-O1o9joT0qCGx5Om6W0VNLr7M00ttrnFlfZX2d+oxt2T9oZ9DvYSv8kDRhNJDVhAgNgUm3Tc0h/+jppNf3mVKbA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     dependencies:
+      cac: 6.7.14
       debug: 4.3.4
       mlly: 1.0.0
       pathe: 0.2.0
+      picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
       vite: 4.0.4_@types+node@18.7.23
@@ -8936,8 +8943,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.26.3:
-    resolution: {integrity: sha512-FmHxU9aUCxTi23keF3vxb/Qp0lYXaaJ+jRLGOUmMS3qVTOJvgGE+f1VArupA6pEhaG2Ans4X+zV9dqM5WISMbg==}
+  /vitest/0.27.0:
+    resolution: {integrity: sha512-BnOa7T6CnXVC6UgcAsvFOZ2Dtvqkt+/Nl6CRgh4qVT70vElf65XwEL6zMRyTF+h2QXJziEkxYdrLo5WCxckMLQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -8963,16 +8970,18 @@ packages:
       '@types/node': 18.7.23
       acorn: 8.8.1
       acorn-walk: 8.2.0
+      cac: 6.7.14
       chai: 4.3.7
       debug: 4.3.4
       local-pkg: 0.4.2
+      picocolors: 1.0.0
       source-map: 0.6.1
       strip-literal: 1.0.0
       tinybench: 2.3.1
       tinypool: 0.3.0
       tinyspy: 1.0.2
       vite: 4.0.4_@types+node@18.7.23
-      vite-node: 0.26.3_@types+node@18.7.23
+      vite-node: 0.27.0_@types+node@18.7.23
     transitivePeerDependencies:
       - less
       - sass
@@ -8982,8 +8991,8 @@ packages:
       - terser
     dev: true
 
-  /vitest/0.26.3_@vitest+ui@0.26.3:
-    resolution: {integrity: sha512-FmHxU9aUCxTi23keF3vxb/Qp0lYXaaJ+jRLGOUmMS3qVTOJvgGE+f1VArupA6pEhaG2Ans4X+zV9dqM5WISMbg==}
+  /vitest/0.27.0_@vitest+ui@0.27.0:
+    resolution: {integrity: sha512-BnOa7T6CnXVC6UgcAsvFOZ2Dtvqkt+/Nl6CRgh4qVT70vElf65XwEL6zMRyTF+h2QXJziEkxYdrLo5WCxckMLQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -9007,19 +9016,21 @@ packages:
       '@types/chai': 4.3.4
       '@types/chai-subset': 1.3.3
       '@types/node': 18.7.23
-      '@vitest/ui': 0.26.3
+      '@vitest/ui': 0.27.0
       acorn: 8.8.1
       acorn-walk: 8.2.0
+      cac: 6.7.14
       chai: 4.3.7
       debug: 4.3.4
       local-pkg: 0.4.2
+      picocolors: 1.0.0
       source-map: 0.6.1
       strip-literal: 1.0.0
       tinybench: 2.3.1
       tinypool: 0.3.0
       tinyspy: 1.0.2
       vite: 4.0.4_@types+node@18.7.23
-      vite-node: 0.26.3_@types+node@18.7.23
+      vite-node: 0.27.0_@types+node@18.7.23
     transitivePeerDependencies:
       - less
       - sass
