@@ -1,3 +1,10 @@
+# ember-apply [2.6.0](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.5.2...ember-apply@2.6.0) (2023-01-28)
+
+
+### Features
+
+* add pnpm support to the workspace utilities ([1094210](https://github.com/NullVoxPopuli/ember-apply/commit/1094210c571a256cdedc50733cc2df010a30d974))
+
 ## ember-apply [2.5.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.5.1...ember-apply@2.5.2) (2023-01-06)
 
 
