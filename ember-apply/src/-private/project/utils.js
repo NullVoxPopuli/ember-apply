@@ -5,6 +5,7 @@ import fse from 'fs-extra';
 
 import { execa } from 'execa';
 import { listWorkspaces as listYarnWorkspaces } from 'yarn-workspaces-list';
+import { findUp, findUpMultiple } from 'find-up';
 
 /**
  * Adds an entry to the project's .gitignore file.
@@ -70,10 +71,12 @@ export async function gitIgnore(pattern, heading) {
  * Uses git to return the path to the root of the project.
  * This is the absolute path to the root of the project / repository.
  * Note: git for windows returns POSIX-style paths
+ *
+ * @param {string} [cwd] directory to start in. defaults to process.cwd();
  */
-export async function gitRoot() {
+export async function gitRoot(cwd = process.cwd()) {
   let { stdout } = await execa('git', ['rev-parse', '--show-toplevel'], {
-    cwd: process.cwd(),
+    cwd,
   });
 
   return path.resolve(stdout.trim());
@@ -84,30 +87,51 @@ export async function gitRoot() {
  * that declares which sub-directories are workspaces.
  *
  * For yarn, this is the package.json with a workspaces entry
+ *
+ * @param {string} [cwd] directory to start the search in. defaults to process.cwd();
  */
-export async function workspaceRoot() {
-  let top = await gitRoot();
-  let current = process.cwd();
+export async function workspaceRoot(cwd = process.cwd()) {
+  let lockFile = await getPackageManagerLockfile(cwd);
 
-  let found = '';
+  return path.dirname(lockFile);
+}
 
-  while (!found && current !== top) {
-    let file;
+const yarnLock = 'yarn.lock';
+const pnpmLock = 'pnpm-lock.yaml';
+const npmLock = 'package-lock.json';
 
-    file = await fs.readFile(path.join(current, 'package.json'));
+/**
+ *
+ * returns the package manager used in the project.
+ * will search up from the cwd, stopping at the git-root
+ *
+ * @param {string} [cwd] directory to start the search in. defaults to process.cwd();
+ * @returns {Promise<'yarn'|'pnpm'|'npm'>}
+ */
+export async function getPackageManager(cwd = process.cwd()) {
+  let lockfile = await getPackageManagerLockfile(cwd);
 
-    let json = JSON.parse(file.toString());
+  if (lockfile.endsWith(pnpmLock)) return 'pnpm';
+  if (lockfile.endsWith(yarnLock)) return 'yarn';
+  if (lockfile.endsWith(npmLock)) return 'npm';
 
-    if (json.workspaces) {
-      found = current;
+  throw new Error('Could not determine package manager');
+}
 
-      break;
-    }
+/**
+ * returns the path to the package manager's lockfile.
+ * will search up from the cwd, stopping at the git-root
+ *
+ * @param {string} [cwd] directory to start in. defaults to process.cwd();
+ * @returns {Promise<string>}
+ */
+export async function getPackageManagerLockfile(cwd = process.cwd()) {
+  let [yarn, npm, pnpm] = await findUpMultiple([yarnLock, npmLock, pnpmLock], {
+    cwd,
+    stopAt: await gitRoot(cwd),
+  });
 
-    current = path.dirname(current);
-  }
-
-  return current;
+  return pnpm || yarn || npm;
 }
 
 /**
@@ -120,13 +144,45 @@ export async function workspaceRoot() {
  * - npm workspaces
  * - pnpm workspaces
  *
+ * @param {string} [cwd] directory to start the search in. defaults to process.cwd();
  * @returns {Promise<string[]>} list of workspaces
  */
-export async function getWorkspaces() {
-  const list = await listYarnWorkspaces();
-  const root = await workspaceRoot();
+export async function getWorkspaces(cwd = process.cwd()) {
+  const root = await workspaceRoot(cwd);
 
-  return list.map((workspace) => path.join(root, workspace.location));
+  const packageManager = await getPackageManager(cwd);
+
+  switch (packageManager) {
+    case 'yarn': {
+      const list = await listYarnWorkspaces();
+
+      return list.map((workspace) => path.join(root, workspace.location));
+    }
+    case 'pnpm': {
+      /**
+       * example:
+       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply:ember-apply-monorepo:PRIVATE
+       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/ember-apply:ember-apply@2.5.2
+       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/packages/docs:docs@0.0.0:PRIVATE
+       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/packages/ember/embroider:@ember-apply/embroider@1.0.23
+       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/packages/ember/tailwind:@ember-apply/tailwind@2.0.24
+       */
+      let { stdout } = await execa('pnpm', ['ls', '-r', '--depth', '-1', '--long', '--parseable'], {
+        cwd,
+      });
+
+      let lines = stdout.split('\n');
+
+      return lines.map((line) => line.split(':')[0]);
+    }
+    case 'npm': {
+      throw new Error('npm workspaces are not yet supported');
+    }
+
+    default: {
+      throw new Error(`unknown package manager ${packageManager}`);
+    }
+  }
 }
 
 /**

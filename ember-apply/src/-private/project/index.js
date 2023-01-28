@@ -7,6 +7,8 @@
 export {
   gitRoot,
   gitIgnore,
+  getPackageManager,
+  getPackageManagerLockfile,
   inWorkspace,
   eachWorkspace,
   getWorkspaces,
