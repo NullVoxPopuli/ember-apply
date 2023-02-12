@@ -248,7 +248,7 @@ export async function addScripts(scripts, cwd) {
  * });
  * ```
  *
- * @param {(json: Record<string, any>) => void} callback
+ * @param {(json: Record<string, any>) => void | Promise<void>} callback
  * @param {string} [cwd] override the working directory
  */
 export async function modify(callback, cwd) {
