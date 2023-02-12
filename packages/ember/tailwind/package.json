@@ -1,7 +1,7 @@
 {
   "name": "@ember-apply/tailwind",
   "description": "ember-apply plugin for tailwind",
-  "version": "2.0.25",
+  "version": "2.0.26",
   "type": "module",
   "license": "MIT",
   "preset": "index.js",
@@ -34,7 +34,7 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
-    "ember-apply": "2.6.0"
+    "ember-apply": "2.6.1"
   },
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "^2.1.17",
