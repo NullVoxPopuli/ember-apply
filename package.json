@@ -4,13 +4,13 @@
   "license": "MIT",
   "author": "NullVoxPopuli",
   "scripts": {
-    "prepare": "pnpm --filter '*' build",
+    "prepare": "turbo run build",
     "release": "changeset release",
     "build:docs": "pnpm --filter docs docs:collect",
     "start:docs": "pnpm build:docs --watch",
     "test": "turbo run test",
     "lint:fix": "pnpm --filter '*' lint:fix",
-    "lint": "pnpm --filter '*' lint"
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.7",

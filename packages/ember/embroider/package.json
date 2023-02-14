@@ -24,7 +24,8 @@
     "index.js"
   ],
   "scripts": {
-    "build:types": "tsc --build",
+    "lint:types": "tsc --noEmit",
+    "build": "tsc --build",
     "lint": "yarn lint:js",
     "lint:js": "eslint .",
     "lint:fix": "yarn lint:js --fix",

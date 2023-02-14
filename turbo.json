@@ -19,11 +19,14 @@
     },
     "lint": {
       "dependsOn": [
-        "^lint:js"
+        "^lint:js", "lint:types"
       ]
     },
     "lint:fix": {},
     "lint:js": {},
+    "lint:types": {
+      "dependsOn": ["build"]
+    },
     "test": {},
     "publish": {},
     "publish:dry-run": {}

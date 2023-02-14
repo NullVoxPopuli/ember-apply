@@ -26,7 +26,8 @@
     "files/**/*"
   ],
   "scripts": {
-    "build:types": "tsc --build",
+    "lint:types": "tsc",
+    "build": "tsc --build",
     "lint": "pnpm lint:js",
     "lint:js": "eslint .",
     "lint:fix": "pnpm lint:js --fix",
