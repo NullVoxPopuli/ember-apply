@@ -4,50 +4,21 @@
   "license": "MIT",
   "author": "NullVoxPopuli",
   "scripts": {
+    "prepare": "pnpm --filter '*' build",
+    "release": "changeset release",
     "build:docs": "pnpm --filter docs docs:collect",
     "start:docs": "pnpm build:docs --watch",
-    "publish:release": "multi-semantic-release --ignore-private-packages",
-    "publish:dry-run": "pnpm publish:release --dry-run --debug",
     "test": "turbo run test",
     "lint:fix": "pnpm --filter '*' lint:fix",
     "lint": "pnpm --filter '*' lint"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.0",
-    "@commitlint/config-conventional": "^17.0.0",
-    "@semantic-release/changelog": "^6.0.0",
-    "@semantic-release/git": "^10.0.0",
-    "multi-semantic-release": "^3.0.1",
-    "semantic-release": "^20.0.0",
-    "semantic-release-monorepo": "^7.0.0",
+    "@changesets/changelog-github": "^0.4.7",
+    "@changesets/cli": "^2.25.2",
     "turbo": "1.7.4"
   },
   "volta": {
     "node": "18.14.0"
   },
-  "packageManager": "pnpm@7.27.0",
-  "release": {
-    "branches": [
-      "main"
-    ],
-    "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "preset": "angular",
-          "parserOpts": {
-            "noteKeywords": [
-              "BREAKING CHANGE",
-              "BREAKING CHANGES"
-            ]
-          }
-        }
-      ],
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/github",
-      "@semantic-release/git"
-    ]
-  }
+  "packageManager": "pnpm@7.27.0"
 }

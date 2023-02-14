@@ -32,18 +32,6 @@ jobs:
       - name: Lints
         run: pnpm lint
 
-  commits:
-    name: Commit Messages
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
-    - uses: volta-cli/action@v4
-    - uses: wagoid/commitlint-github-action@v5.3.0
-
   types:
     name: "Type Correctness"
     runs-on: ubuntu-latest
@@ -78,64 +66,88 @@ jobs:
     - name: Tests
       run: pnpm test
 
-  tooling:
-    name: Tooling
-    runs-on: ubuntu-latest
-    if: github.repository == 'NullVoxPopuli/ember-apply' && github.ref != 'refs/heads/main'
-    timeout-minutes: 2
-    needs: [install_dependencies]
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/pnpm
-      - name: Semantic Release
-        run: |
-          echo "Testing release likelihood of success"
-          # atm, dry-run only works on the main branch
-          git checkout -b main
-          pnpm publish:dry-run
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   publish:
     name: Release
     runs-on: ubuntu-latest
     if: github.repository == 'NullVoxPopuli/ember-apply' && github.ref == 'refs/heads/main'
-    needs: [tests]
+    needs:
+      - types
+      - tests
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
       - uses: ./.github/actions/pnpm
-      - name: Release
-        run: pnpm publish:release
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: pnpm release
+          title: "Release Preview"
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_USER: 'semantic-release'
-          GIT_AUTHOR_NAME: '@semantic-release'
-          GIT_COMMITTER_NAME: '@semantic-release'
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            
+  PublishDocstoCloudflarePages:
+    name: Publish Docs to Cloudflare Pages
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      deployments: write
+    outputs:
+      url: ${{ steps.publishStep.outputs.url }}
+      env: ${{ steps.publishStep.outputs.environment }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pnpm
+      - run: |
+          pnpm build:docs
+          cd docs/
+          # cloudflare broke all user's Sites that have a "functions" path.
+          # ... thanks cloudflare. you're usually such a good company :p 
+          #
+          #  - https://github.com/NullVoxPopuli/ember-resources/issues/679
+          #    - https://github.com/TypeStrong/typedoc/issues/2111
+          #    - https://github.com/cloudflare/wrangler2/issues/2240
+          mv dist/functions dist/funcs  
+          find ./dist -type f -name '*.html' | xargs sed -i.bak --regexp-extended 's:(href="[^"]+)functions/:\1funcs/:g' 
+
+      - name: Publish to Cloudflare Pages
+        id: publishStep
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ember-resources
+          directory: ./docs/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
 
-  # deployed with cloudflare pages so we can have deploy previews and such
-  # docs:
-  #   name: Publish Docs
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/main'
-  #   needs: [publish]
 
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         persist-credentials: false
-  #     - uses: volta-cli/action@v1
-  #     - run: yarn install
-  #     - run: |
-  #         cd projects/docs
-  #         yarn docs:collect
+  PostPreviewURLascommenttoPR:
+    name: Post Preview URL as comment to PR
+    runs-on: ubuntu-latest
+    needs: PublishDocstoCloudflarePages
+    if: github.ref != 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pnpm
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: preview-urls 
+          # GH Env: ${{ needs.PublishDocstoCloudflarePages.outputs.env }}
+          message: |+
+            ## Preview URLs
+            readme: ${{ needs.PublishDocstoCloudflarePages.outputs.url }}
+            api docs: ${{ needs.PublishDocstoCloudflarePages.outputs.url }}/modules.html
 
-  #     - name: Deploy 🚀
-  #       uses: JamesIves/github-pages-deploy-action@v4.2.2
-  #       with:
-  #         branch: gh-pages
-  #         folder: projects/docs/dist
+
+
+
