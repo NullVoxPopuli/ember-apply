@@ -154,7 +154,7 @@ export async function getWorkspaces(cwd = process.cwd()) {
 
   switch (packageManager) {
     case 'yarn': {
-      const list = await listYarnWorkspaces();
+      const list = await listYarnWorkspaces({ cwd });
 
       return list.map((workspace) => path.join(root, workspace.location));
     }
