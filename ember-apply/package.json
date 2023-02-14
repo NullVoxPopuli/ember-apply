@@ -1,6 +1,6 @@
 {
   "name": "ember-apply",
-  "version": "2.6.3",
+  "version": "2.6.4",
   "description": "automatic integration and configuration from the community",
   "repository": {
     "url": "https://github.com/NullVoxPopuli/ember-apply",
@@ -21,7 +21,10 @@
   },
   "typesVersions": {
     "*": {
-      "*": ["./declarations/src/*", "./declarations/src/index.d.ts"]
+      "*": [
+        "./declarations/src/*",
+        "./declarations/src/index.d.ts"
+      ]
     }
   },
   "types": "./declarations/src/",
