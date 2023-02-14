@@ -1,3 +1,10 @@
+## ember-apply [2.6.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.6.1...ember-apply@2.6.2) (2023-02-14)
+
+
+### Bug Fixes
+
+* **ember-apply:** use correct type for packageJson.modify callback's return type ([0141322](https://github.com/NullVoxPopuli/ember-apply/commit/0141322f3fbe5d106d463a81f6cfbe2289d86da6))
+
 ## ember-apply [2.6.1](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.6.0...ember-apply@2.6.1) (2023-02-12)
 
 
