@@ -19,6 +19,11 @@
   "bin": {
     "ember-apply": "src/cli/index.js"
   },
+  "typesVersions": {
+    "*": {
+      "*": ["./declarations/src/*"]
+    }
+  },
   "types": "./declarations/src/",
   "files": [
     "src/**/*",
