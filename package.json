@@ -5,7 +5,7 @@
   "author": "NullVoxPopuli",
   "scripts": {
     "prepare": "turbo run build",
-    "release": "changeset release",
+    "release": "changeset publish",
     "build:docs": "pnpm --filter docs docs:collect",
     "start:docs": "pnpm build:docs --watch",
     "test": "turbo run test",
