@@ -49,7 +49,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/pnpm
-      - run: cd ${{ matrix.path }} && pnpm tsc --noEmit
+      - run: cd ${{ matrix.path }} && pnpm tsc
 
   tests:
     strategy:
