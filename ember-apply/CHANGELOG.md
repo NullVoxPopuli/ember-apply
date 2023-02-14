@@ -1,3 +1,10 @@
+## ember-apply [2.6.3](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.6.2...ember-apply@2.6.3) (2023-02-14)
+
+
+### Bug Fixes
+
+* **types:** add typesDeclarations to package.json ([280a11e](https://github.com/NullVoxPopuli/ember-apply/commit/280a11e62a3b612fa556c19407e47cd140a22929))
+
 ## ember-apply [2.6.2](https://github.com/NullVoxPopuli/ember-apply/compare/ember-apply@2.6.1...ember-apply@2.6.2) (2023-02-14)
 
 
