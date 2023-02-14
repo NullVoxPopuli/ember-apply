@@ -21,9 +21,7 @@
   },
   "typesVersions": {
     "*": {
-      "*": [
-        "./declarations/src/*"
-      ]
+      "*": ["./declarations/src/*", "./declarations/src/index.d.ts"]
     }
   },
   "types": "./declarations/src/",

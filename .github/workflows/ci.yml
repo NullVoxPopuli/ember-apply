@@ -44,11 +44,12 @@ jobs:
           - ./ember-apply
           - ./packages/ember/tailwind
           - ./packages/ember/embroider
+          - ./packages/tests
 
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/pnpm
-      - run: cd ${{ matrix.path }} && pnpm tsc --build
+      - run: cd ${{ matrix.path }} && pnpm tsc --noEmit
 
   tests:
     strategy:
