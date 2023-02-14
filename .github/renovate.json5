@@ -10,6 +10,10 @@
   // bump for apps
   // update-lockfile for addons/libraries
   "rangeStrategy": "update-lockfile",
+
+  // Renovate + npm cache can be a bit goofy with monorepo quick-releases
+  // So let's delay until late
+  "schedule": ["after 11pm on sunday"],
   // From the docs:
   // https://docs.renovatebot.com/configuration-options/#packagerules
   // Important to know: Renovate will evaluate all packageRules and not stop once it gets a first match.
