@@ -1,3 +1,5 @@
+# @ember-apply/tailwind
+
 ## @ember-apply/tailwind [2.0.28](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/tailwind@2.0.27...@ember-apply/tailwind@2.0.28) (2023-02-14)
 
 

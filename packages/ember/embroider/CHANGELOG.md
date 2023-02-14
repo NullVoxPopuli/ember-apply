@@ -1,3 +1,5 @@
+# @ember-apply/embroider 
+
 ## @ember-apply/embroider [1.0.27](https://github.com/NullVoxPopuli/ember-apply/compare/@ember-apply/embroider@1.0.26...@ember-apply/embroider@1.0.27) (2023-02-14)
 
 

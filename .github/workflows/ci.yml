@@ -21,8 +21,8 @@ jobs:
     - uses: actions/checkout@v3
     - uses: ./.github/actions/pnpm
 
-  lint_source:
-    name: Lint Source
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     needs: [install_dependencies]
 
@@ -31,36 +31,6 @@ jobs:
       - uses: ./.github/actions/pnpm
       - name: Lints
         run: pnpm lint
-
-  commits:
-    name: Commit Messages
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
-    - uses: volta-cli/action@v4
-    - uses: wagoid/commitlint-github-action@v5.3.0
-
-  types:
-    name: "Type Correctness"
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
-    needs: [install_dependencies]
-    strategy:
-      fail-fast: true
-      matrix:
-        path:
-          - ./ember-apply
-          - ./packages/ember/tailwind
-          - ./packages/ember/embroider
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/pnpm
-      - run: cd ${{ matrix.path }} && pnpm tsc --build
 
   tests:
     strategy:
@@ -78,64 +48,27 @@ jobs:
     - name: Tests
       run: pnpm test
 
-  tooling:
-    name: Tooling
-    runs-on: ubuntu-latest
-    if: github.repository == 'NullVoxPopuli/ember-apply' && github.ref != 'refs/heads/main'
-    timeout-minutes: 2
-    needs: [install_dependencies]
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/pnpm
-      - name: Semantic Release
-        run: |
-          echo "Testing release likelihood of success"
-          # atm, dry-run only works on the main branch
-          git checkout -b main
-          pnpm publish:dry-run
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   publish:
     name: Release
     runs-on: ubuntu-latest
     if: github.repository == 'NullVoxPopuli/ember-apply' && github.ref == 'refs/heads/main'
-    needs: [tests]
+    needs:
+      - lint
+      - tests
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
       - uses: ./.github/actions/pnpm
-      - name: Release
-        run: pnpm publish:release
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: pnpm release
+          title: "Release Preview"
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_USER: 'semantic-release'
-          GIT_AUTHOR_NAME: '@semantic-release'
-          GIT_COMMITTER_NAME: '@semantic-release'
-
-
-  # deployed with cloudflare pages so we can have deploy previews and such
-  # docs:
-  #   name: Publish Docs
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/main'
-  #   needs: [publish]
-
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         persist-credentials: false
-  #     - uses: volta-cli/action@v1
-  #     - run: yarn install
-  #     - run: |
-  #         cd projects/docs
-  #         yarn docs:collect
-
-  #     - name: Deploy 🚀
-  #       uses: JamesIves/github-pages-deploy-action@v4.2.2
-  #       with:
-  #         branch: gh-pages
-  #         folder: projects/docs/dist
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            
