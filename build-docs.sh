@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+echo "For running on Cloudflare builders only"
+
+npm install --location global pnpm
+pnpm i --store=node_modules/.pnpm-store
 
 pnpm build:docs
 cd packages/docs/
