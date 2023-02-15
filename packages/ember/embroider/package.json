@@ -33,7 +33,7 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
-    "ember-apply": "^2.6.4"
+    "ember-apply": "workspace:^"
   },
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "^2.1.17",
