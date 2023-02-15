@@ -139,10 +139,10 @@ export async function getPackageManagerLockfile(cwd = process.cwd()) {
  *
  * Supports:
  * - yarn workspaces
+ * - pnpm workspaces
  *
  * TODO:
  * - npm workspaces
- * - pnpm workspaces
  *
  * @param {string} [cwd] directory to start the search in. defaults to process.cwd();
  * @returns {Promise<string[]>} list of workspaces
