@@ -9,7 +9,10 @@
   },
   "main": "src/index.js",
   "exports": {
-    ".": "./src/index.js",
+    ".": {
+      "import": "./src/index.js",
+      "types": "./declarations/src/index.d.ts"
+    },
     "./test-utils": "./src/test-utils.js"
   },
   "type": "module",
