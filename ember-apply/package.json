@@ -34,7 +34,7 @@
     "README.md"
   ],
   "scripts": {
-    "prepack": "pnpm build:types && cp ../README.md ./",
+    "prepack": "pnpm build && cp ../README.md ./",
     "build": "tsc --build",
     "lint:types": "tsc",
     "lint": "pnpm lint:js",
