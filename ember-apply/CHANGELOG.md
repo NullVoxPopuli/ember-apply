@@ -1,5 +1,11 @@
 # ember-apply
 
+## 2.6.5
+
+### Patch Changes
+
+- fa781fd: Add package.json#exports.types
+
 ## 2.6.4
 
 ### Patch Changes
