@@ -4,7 +4,6 @@
   "license": "MIT",
   "author": "NullVoxPopuli",
   "scripts": {
-    "prepare": "turbo run build",
     "release": "changeset publish",
     "build:docs": "pnpm --filter docs docs:collect",
     "start:docs": "pnpm build:docs --watch",
