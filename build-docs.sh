@@ -3,14 +3,16 @@
 # Dear cloudflare, if you see this,
 # if you support pnpm in your build workers, 
 # I can replace all of this with pnpm build:docs
-echo "For running on Cloudflare builders only"
+echo "==================================================="
+echo "||    For running on Cloudflare builders only    ||"
+echo "==================================================="
 
 npm install --location global pnpm
 pnpm i --ignore-scripts
 pnpm build
+pnpm build:docs
 
 cd packages/docs/
-pnpm typedoc --options typedoc.config.json ../../ember-apply/src/index.js
 # cloudflare broke all user's Sites that have a "functions" path.
 # ... thanks cloudflare. you're usually such a good company :p 
 #
