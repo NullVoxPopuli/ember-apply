@@ -5,7 +5,8 @@ echo "For running on Cloudflare builders only"
 set -a
 
 npm install --location global pnpm
-pnpm i 
+pnpm i --ignore-scripts
+pnpm build
 
 pnpm_location=$(which pnpm)
 export PATH="$PATH:$(dirname $pnpm_location)"
