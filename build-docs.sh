@@ -7,6 +7,8 @@ set -a
 npm install --location global pnpm
 pnpm i --store=node_modules/.pnpm-store
 
+export PATH="$PATH:$(which pnpm)"
+
 pnpm build:docs
 cd packages/docs/
 # cloudflare broke all user's Sites that have a "functions" path.
