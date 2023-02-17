@@ -3,14 +3,14 @@
 /**
  * Public API for the project namespace
  */
-
+export { gitIgnore, gitRoot } from './git.js';
 export {
-  eachWorkspace,
   getPackageManager,
   getPackageManagerLockfile,
+} from './package-manager.js';
+export {
+  eachWorkspace,
   getWorkspaces,
-  gitIgnore,
-  gitRoot,
   inWorkspace,
   workspaceRoot,
-} from './utils.js';
+} from './workspace.js';
