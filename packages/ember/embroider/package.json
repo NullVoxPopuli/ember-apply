@@ -36,7 +36,7 @@
     "ember-apply": "workspace:^"
   },
   "devDependencies": {
-    "@nullvoxpopuli/eslint-configs": "^2.1.17",
+    "@nullvoxpopuli/eslint-configs": "^3.0.0",
     "@vitest/coverage-c8": "^0.28.0",
     "autoprefixer": "^10.0.0",
     "babel-eslint": "^10.1.0",

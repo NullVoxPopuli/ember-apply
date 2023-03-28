@@ -38,7 +38,7 @@
     "ember-apply": "workspace:^"
   },
   "devDependencies": {
-    "@nullvoxpopuli/eslint-configs": "^2.1.17",
+    "@nullvoxpopuli/eslint-configs": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "c8": "^7.11.0",
     "eslint": "^7.0.0",
