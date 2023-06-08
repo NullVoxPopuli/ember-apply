@@ -1,6 +1,6 @@
 // @ts-check
-import fs from "fs/promises";
-import postcss from "postcss";
+import fs from 'fs/promises';
+import postcss from 'postcss';
 
 /**
  *
@@ -13,8 +13,8 @@ export async function analyze(filePath, plugin) {
 
   let processor = postcss([
     {
-      postcssPlugin: "postcss-ember-apply-ephemeral-plugin",
       ...plugin,
+      postcssPlugin: 'postcss-ember-apply-ephemeral-plugin',
     },
   ]);
 
