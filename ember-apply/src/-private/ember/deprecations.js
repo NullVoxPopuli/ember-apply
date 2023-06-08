@@ -67,7 +67,10 @@ export function withAST({ root, j }) {
  */
 export function ensure(id, { root, j, handler = 'throw' }) {
   root
-    .find(j.Property, { key: { name: 'workflow' }, value: { type: 'ArrayExpression' } })
+    .find(j.Property, {
+      key: { name: 'workflow' },
+      value: { type: 'ArrayExpression' },
+    })
     .forEach((path) => {
       if (!('elements' in path.node.value)) return;
 
@@ -80,11 +83,11 @@ export function ensure(id, { root, j, handler = 'throw' }) {
        * @param {string} matchId
        * @param {string} [handler]
        */
-      function has(matchId, handler = 'throw') {
-        let entry = get(matchId);
+      // function has(matchId, handler = 'throw') {
+      //   let entry = get(matchId);
 
-        return handlerIs(entry, handler);
-      }
+      //   return handlerIs(entry, handler);
+      // }
 
       /**
        * @param {Entry} entry
@@ -113,7 +116,8 @@ export function ensure(id, { root, j, handler = 'throw' }) {
             (entry) => {
               let hasId = entry.properties.find(
                 /** @param {any} prop */
-                (prop) => prop.key.name === 'matchId' && prop.value.value === matchId
+                (prop) =>
+                  prop.key.name === 'matchId' && prop.value.value === matchId
               );
 
               return hasId;
@@ -124,8 +128,16 @@ export function ensure(id, { root, j, handler = 'throw' }) {
       let entry = get(id);
 
       if (!entry) {
-        let handler = j.property('init', j.identifier('handler'), j.literal('throw'));
-        let matchId = j.property('init', j.identifier('matchId'), j.literal(id));
+        let handler = j.property(
+          'init',
+          j.identifier('handler'),
+          j.literal('throw')
+        );
+        let matchId = j.property(
+          'init',
+          j.identifier('matchId'),
+          j.literal(id)
+        );
         let newEntry = j.objectExpression([handler, matchId]);
 
         entries.unshift(newEntry);
@@ -140,7 +152,11 @@ export function ensure(id, { root, j, handler = 'throw' }) {
       j(entry)
         .find(j.Property, { key: { name: 'handler' } })
         .forEach((entryPath) => {
-          let replacement = j.property('init', j.identifier('handler'), j.literal(handler));
+          let replacement = j.property(
+            'init',
+            j.identifier('handler'),
+            j.literal(handler)
+          );
 
           j(entryPath).replaceWith(replacement);
         });
@@ -151,7 +167,10 @@ export function ensure(id, { root, j, handler = 'throw' }) {
  * @param {string} id
  * @param {JSTransformArgs} options
  */
-function remove(id, { root, j }) {}
+function remove(id, { root, j }) {
+  console.info({ id, root, j });
+  throw 'Remove not implemented, please open an issue or PR';
+}
 
 /**
  * @param {string} id

@@ -4,4 +4,4 @@
  * Public API for the files namespace
  */
 
-export { copyFileTo, applyFolder } from './utils';
+export { applyFolder, copyFileTo } from './utils.js';

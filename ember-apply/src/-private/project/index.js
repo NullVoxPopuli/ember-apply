@@ -5,12 +5,12 @@
  */
 
 export {
-  gitRoot,
-  gitIgnore,
+  eachWorkspace,
   getPackageManager,
   getPackageManagerLockfile,
-  inWorkspace,
-  eachWorkspace,
   getWorkspaces,
+  gitIgnore,
+  gitRoot,
+  inWorkspace,
   workspaceRoot,
 } from './utils.js';

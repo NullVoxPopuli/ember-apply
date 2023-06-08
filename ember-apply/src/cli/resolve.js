@@ -1,14 +1,13 @@
-import fs from 'fs/promises';
 import assert from 'assert';
+import chalk from 'chalk';
+import { execa } from 'execa';
+import fs from 'fs/promises';
 import os from 'os';
+import pacote from 'pacote';
 import path from 'path';
 
-import pacote from 'pacote';
-import { execa } from 'execa';
-import chalk from 'chalk';
-
-import { spinner } from './progress.js';
 import { isInvalidPackageName, urlFor } from './package.js';
+import { spinner } from './progress.js';
 
 const PACKAGE_INFO_CACHE = new Map();
 const PATH_CACHE = new Map();
@@ -68,7 +67,9 @@ export async function resolvePackageInfo(name) {
       let asString = theFile.toString();
 
       packageJson = JSON.parse(asString);
-    } catch {}
+    } catch {
+      // intentionally empty
+    }
 
     if (!packageJson) {
       return await tryResolveLocalPackageJson(nextTarget, depth + 1);
@@ -104,7 +105,8 @@ export async function resolvePackageInfo(name) {
     // I don't want to write a type for this
     // Where are my F# data providers?
     /** @type {any} */
-    let npmInfo = (await tryNpmInfo(`@ember-apply/${name}`)) || (await tryNpmInfo(name));
+    let npmInfo =
+      (await tryNpmInfo(`@ember-apply/${name}`)) || (await tryNpmInfo(name));
 
     if (!npmInfo) return;
 
@@ -144,8 +146,9 @@ async function downloadFromNpm(options) {
   spinner.info();
 
   let packageName =
-    ((await tryNpmInfo(`@ember-apply/${name}`)) ? `@ember-apply/${name}` : null) ||
-    ((await tryNpmInfo(name)) ? name : null);
+    ((await tryNpmInfo(`@ember-apply/${name}`))
+      ? `@ember-apply/${name}`
+      : null) || ((await tryNpmInfo(name)) ? name : null);
 
   let dir = await fs.mkdtemp(path.join(os.tmpdir(), 'ember-apply-runtime---'));
 
@@ -172,7 +175,9 @@ async function downloadFromNpm(options) {
     url = convertWindowsAbsolutePathToFileUrl(url);
 
     if (options.verbose) {
-      console.info(chalk.gray(`Rewriting as file URL for Windows compatibility --> ${url}`));
+      console.info(
+        chalk.gray(`Rewriting as file URL for Windows compatibility --> ${url}`)
+      );
     }
   }
 
@@ -208,7 +213,10 @@ async function resolvePackage(options) {
   // import emberApplyTailwind from 'https://cdn.skypack.dev/@ember-apply/tailwind';
   return (
     // shorthand
-    (await tryResolve(`https://cdn.skypack.dev/@ember-apply/${name}`, options)) ||
+    (await tryResolve(
+      `https://cdn.skypack.dev/@ember-apply/${name}`,
+      options
+    )) ||
     // if full package is specified
     (await tryResolve(`https://cdn.skypack.dev/${name}`, options))
   );
@@ -253,7 +261,9 @@ async function resolvePath(options) {
   ];
 
   if (os.platform() === 'win32') {
-    potentialLocations = potentialLocations.map(convertWindowsAbsolutePathToFileUrl);
+    potentialLocations = potentialLocations.map(
+      convertWindowsAbsolutePathToFileUrl
+    );
   }
 
   let resolvedModule;

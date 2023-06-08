@@ -1,6 +1,6 @@
 // @ts-check
-import fs from 'fs/promises';
 import recast from 'ember-template-recast';
+import fs from 'fs/promises';
 
 /**
  * Transforms an ember-template file using ember-template-recast.

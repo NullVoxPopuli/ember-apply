@@ -52,6 +52,8 @@ package.json
   \\"scripts\\": {
     \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
     \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\"\\",
+    \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
+    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
     \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\"\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
@@ -64,12 +66,13 @@ package.json
     \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
   },
   \\"devDependencies\\": [
+    \\"@babel/eslint-parser\\",
+    \\"@babel/plugin-proposal-decorators\\",
     \\"@ember/optional-features\\",
     \\"@ember/string\\",
     \\"@ember/test-helpers\\",
     \\"@glimmer/component\\",
     \\"@glimmer/tracking\\",
-    \\"babel-eslint\\",
     \\"broccoli-asset-rev\\",
     \\"concurrently\\",
     \\"ember-auto-import\\",
@@ -84,6 +87,7 @@ package.json
     \\"ember-data\\",
     \\"ember-fetch\\",
     \\"ember-load-initializers\\",
+    \\"ember-modifier\\",
     \\"ember-page-title\\",
     \\"ember-qunit\\",
     \\"ember-resolver\\",
@@ -100,6 +104,9 @@ package.json
     \\"prettier\\",
     \\"qunit\\",
     \\"qunit-dom\\",
+    \\"stylelint\\",
+    \\"stylelint-config-standard\\",
+    \\"stylelint-prettier\\",
     \\"tracked-built-ins\\",
     \\"webpack\\",
     \\"tailwindcss\\"

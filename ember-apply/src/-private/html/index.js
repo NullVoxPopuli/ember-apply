@@ -4,4 +4,4 @@
  * Public API for the html namespace
  */
 
-export { transform, insertText } from './transform.js';
+export { insertText,transform } from './transform.js';
