@@ -1,38 +1,29 @@
 // @ts-check
-/**
- *
- * @callback TransformCallback
- * @param {CallbackApi} callbackApi
- * @return {Promise<void>} return
- *
- * @typedef {object} Options
- * @property {Parameters<JSCodeshift['withParser']>[0]} [parser]
- *
- */
-import path from 'path';
-
-import fs from 'fs/promises';
+import fs from "fs/promises";
 
 import postcss from "postcss";
 
 /**
  *
  * @param {string} filePath to the file to transform
- * @param {TransformCallback} callback
- * @param {Options} [options]
+ * @param {import('postcss').Plugin} plugin
  * @returns {Promise<string>} the transformed source
  */
-export async function analyze(filePath, callback, options = {}) {
+export async function analyze(filePath, plugin) {
   let code = (await fs.readFile(filePath)).toString();
 
-  let plugin = await callback();
+  let processor = postcss([
+    {
+      postcssPlugin: "postcss-ember-apply-ephemeral-plugin",
+      ...plugin,
+    },
+  ]);
 
-  let processor = postcss([{
-    postcssPlugin: 'postcss-ember-apply-ephemeral-plugin',
-    ...plugin,
-  }])
-
-  let transformed = processor.process(code); 
+  let transformed = processor.process(code, {
+    // Explicitly set the `from` option to `undefined` to prevent
+    // sourcemap warnings which aren't relevant to this use case.
+    from: undefined,
+  });
 
   return transformed.css;
 }

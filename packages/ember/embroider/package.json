@@ -36,20 +36,20 @@
     "ember-apply": "workspace:^"
   },
   "devDependencies": {
-    "@nullvoxpopuli/eslint-configs": "^2.1.17",
+    "@nullvoxpopuli/eslint-configs": "^3.1.3",
     "@vitest/coverage-c8": "^0.28.0",
-    "autoprefixer": "^10.0.0",
+    "autoprefixer": "^10.4.14",
     "babel-eslint": "^10.1.0",
     "c8": "^7.11.0",
-    "eslint": "^7.0.0",
-    "eslint-plugin-decorator-position": "^5.0.1",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint": "^8.42.0",
+    "eslint-plugin-decorator-position": "^5.0.2",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "postcss": "^8.0.0",
-    "prettier": "^2.5.1",
+    "postcss": "^8.4.24",
+    "prettier": "^2.8.8",
     "typescript": "4.8.4",
-    "vite": "^4.0.0",
+    "vite": "^4.3.9",
     "vitest": "^0.28.0"
   },
   "engines": {
