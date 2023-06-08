@@ -1,6 +1,7 @@
 // @ts-check
 import fse from 'fs-extra';
 import path from 'path';
+import sortObject from 'sort-object-keys';
 
 import { satisfies } from './semver-satisfies.js';
 
@@ -64,7 +65,7 @@ export async function hasPeerDependency(name, version = '*', cwd) {
  */
 export async function addDevDependencies(packages, cwd) {
   await modify((json) => {
-    json.devDependencies = { ...json.devDependencies, ...packages };
+    json.devDependencies = sortObject({ ...json.devDependencies, ...packages });
   }, cwd);
 }
 
@@ -167,7 +168,7 @@ export async function removePeerDependencies(packages, cwd) {
  */
 export async function addDependencies(packages, cwd) {
   await modify((json) => {
-    json.dependencies = { ...json.dependencies, ...packages };
+    json.dependencies = sortObject({ ...json.dependencies, ...packages });
   }, cwd);
 }
 
@@ -188,7 +189,10 @@ export async function addDependencies(packages, cwd) {
  */
 export async function addPeerDependencies(packages, cwd) {
   await modify((json) => {
-    json.peerDependencies = { ...json.peerDependencies, ...packages };
+    json.peerDependencies = sortObject({
+      ...json.peerDependencies,
+      ...packages,
+    });
   }, cwd);
 }
 

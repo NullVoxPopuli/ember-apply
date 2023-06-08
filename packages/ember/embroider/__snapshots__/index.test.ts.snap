@@ -69,6 +69,9 @@ package.json
     \\"@ember/optional-features\\",
     \\"@ember/string\\",
     \\"@ember/test-helpers\\",
+    \\"@embroider/compat\\",
+    \\"@embroider/core\\",
+    \\"@embroider/webpack\\",
     \\"@glimmer/component\\",
     \\"@glimmer/tracking\\",
     \\"broccoli-asset-rev\\",
@@ -106,10 +109,7 @@ package.json
     \\"stylelint-config-standard\\",
     \\"stylelint-prettier\\",
     \\"tracked-built-ins\\",
-    \\"webpack\\",
-    \\"@embroider/core\\",
-    \\"@embroider/compat\\",
-    \\"@embroider/webpack\\"
+    \\"webpack\\"
   ],
   \\"engines\\": [
     \\"node\\"

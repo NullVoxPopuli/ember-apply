@@ -3,9 +3,9 @@
 exports[`tailwind > applying to an ember app > works via CLI 1`] = `
 " .gitignore       | 3 +++
  app/index.html   | 1 +
- package.json     | 9 ++++++---
+ package.json     | 7 +++++--
  tests/index.html | 1 +
- 4 files changed, 11 insertions(+), 3 deletions(-)"
+ 4 files changed, 10 insertions(+), 2 deletions(-)"
 `;
 
 exports[`tailwind > applying to an ember app > works via CLI 2`] = `
@@ -107,9 +107,9 @@ package.json
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
     \\"stylelint-prettier\\",
+    \\"tailwindcss\\",
     \\"tracked-built-ins\\",
-    \\"webpack\\",
-    \\"tailwindcss\\"
+    \\"webpack\\"
   ],
   \\"engines\\": [
     \\"node\\"
