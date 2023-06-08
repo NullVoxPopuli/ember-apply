@@ -1,5 +1,11 @@
 # ember-apply
 
+## 2.7.1
+
+### Patch Changes
+
+- 8595390: when working with package.json files, the keys will be sorted, similar to what npm/yarn/pnpm do when they modify the package.json file
+
 ## 2.7.0
 
 ### Minor Changes
