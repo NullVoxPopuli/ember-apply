@@ -18,8 +18,7 @@ jobs:
     timeout-minutes: 15
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: ./.github/actions/pnpm
+    - uses: wyvox/action@v1
 
   lint:
     name: Lint
@@ -27,8 +26,7 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/pnpm
+      - uses: wyvox/action@v1
       - name: Lints
         run: pnpm lint
 
@@ -41,8 +39,7 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: ./.github/actions/pnpm
+    - uses: wyvox/action@v1
     - run: |
         pnpm add --global ember-cli
     - name: Tests
@@ -57,10 +54,7 @@ jobs:
       - tests
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-      - uses: ./.github/actions/pnpm
+      - uses: wyvox/action@v1
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
