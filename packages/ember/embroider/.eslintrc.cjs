@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const { configs } = require('@nullvoxpopuli/eslint-configs');
+const { configs } = require("@nullvoxpopuli/eslint-configs");
 
-const config = configs.nodeTS();
+const config = configs.node();
 
 module.exports = {
   ...config,

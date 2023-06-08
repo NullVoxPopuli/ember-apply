@@ -1,8 +1,7 @@
 // @ts-check
+import { js, packageJson } from 'ember-apply';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-
-import { js, packageJson } from 'ember-apply';
 
 const embroiderOptions = `
 staticAddonTestSupportTrees: true,
@@ -16,10 +15,7 @@ packagerOptions: {
 }
 `;
 
-/**
- * @param {string} workingDirectory - the directory `npx ember-apply` was invoked fromm
- */
-export default async function run(workingDirectory) {
+export default async function run() {
   await packageJson.addDevDependencies({
     '@embroider/core': '^1.0.0',
     '@embroider/compat': '^1.0.0',
@@ -35,7 +31,9 @@ export default async function run(workingDirectory) {
 
     // Find out the name of the imported App
     root
-      .find(j.VariableDeclarator, { init: { arguments: [{ value: appLibPath }] } })
+      .find(j.VariableDeclarator, {
+        init: { arguments: [{ value: appLibPath }] },
+      })
       .forEach((path) => {
         // @ts-ignore
         specifierName = path.node.id.name;
@@ -55,7 +53,10 @@ export default async function run(workingDirectory) {
     // While initializing `extraPublicTrees`, if it exists
     root
       .find(j.CallExpression, {
-        callee: { object: { name: instanceName }, property: { name: 'toTree' } },
+        callee: {
+          object: { name: instanceName },
+          property: { name: 'toTree' },
+        },
       })
       .forEach((path) => {
         let node = path.node;
@@ -71,7 +72,9 @@ export default async function run(workingDirectory) {
 
         let compatBuild = j.callExpression(
           j.memberExpression(
-            j.callExpression(j.identifier('require'), [j.literal('@embroider/compat')]),
+            j.callExpression(j.identifier('require'), [
+              j.literal('@embroider/compat'),
+            ]),
             j.identifier('compatBuild')
           ),
           [
@@ -81,14 +84,20 @@ export default async function run(workingDirectory) {
           ]
         );
 
-        let Webpack = j.property('init', j.identifier('Webpack'), j.identifier('Webpack'));
+        let Webpack = j.property(
+          'init',
+          j.identifier('Webpack'),
+          j.identifier('Webpack')
+        );
 
         Webpack.shorthand = true;
 
         let requireWebpack = j.variableDeclaration('const', [
           j.variableDeclarator(
             j.objectPattern([Webpack]),
-            j.callExpression(j.identifier('require'), [j.literal('@embroider/webpack')])
+            j.callExpression(j.identifier('require'), [
+              j.literal('@embroider/webpack'),
+            ])
           ),
         ]);
 
@@ -111,7 +120,9 @@ export default async function run(workingDirectory) {
 }
 
 function trailingComments(j, commentString) {
-  return commentString.split('\n').map((line) => j.commentLine(` ${line}`, false, true));
+  return commentString
+    .split('\n')
+    .map((line) => j.commentLine(` ${line}`, false, true));
 }
 
 // @ts-ignore

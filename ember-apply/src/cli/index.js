@@ -4,13 +4,12 @@
 //
 // ❯ node --experimental-loader ../../NullVoxPopuli/ember-apply/packages/ember-apply/src/cli/node-https-loader.js ../../NullVoxPopuli/ember-apply/packages/ember-apply/src/cli/index.js --verbose tailwind
 import assert from 'assert';
-
-import yargs from 'yargs';
 import chalk from 'chalk';
+import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-import { resolveApplyable, resolvePackageInfo } from './resolve.js';
 import { spinner } from './progress.js';
+import { resolveApplyable, resolvePackageInfo } from './resolve.js';
 
 /**
  * @typedef {import('./types').Options} Options

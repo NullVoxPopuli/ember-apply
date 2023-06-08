@@ -5,15 +5,15 @@
  */
 
 export {
-  read,
-  modify,
+  addDependencies,
+  addDevDependencies,
+  addPeerDependencies,
   addScript,
   addScripts,
   hasDependency,
   hasPeerDependency,
-  addDependencies,
-  addDevDependencies,
-  addPeerDependencies,
+  modify,
+  read,
   removeDependencies,
   removeDevDependencies,
   removePeerDependencies,

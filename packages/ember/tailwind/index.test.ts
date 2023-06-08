@@ -1,7 +1,7 @@
 import { apply, diff, diffSummary, newEmberApp } from 'ember-apply/test-utils';
 import { describe, expect, it } from 'vitest';
 
-import { default as tailwind } from './index';
+import { default as tailwind } from './index.js';
 
 describe('tailwind', () => {
   it('default export exists', () => {
@@ -15,7 +15,9 @@ describe('tailwind', () => {
       await apply(appLocation, tailwind.path);
 
       expect(await diffSummary(appLocation)).toMatchSnapshot();
-      expect(await diff(appLocation, { ignoreVersions: true })).toMatchSnapshot();
+      expect(
+        await diff(appLocation, { ignoreVersions: true })
+      ).toMatchSnapshot();
     });
   });
 });

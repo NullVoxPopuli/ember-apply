@@ -1,6 +1,6 @@
 // @ts-check
-import path from 'path';
 import fse from 'fs-extra';
+import path from 'path';
 
 import { satisfies } from './semver-satisfies.js';
 

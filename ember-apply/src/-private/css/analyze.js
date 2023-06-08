@@ -1,6 +1,5 @@
 // @ts-check
 import fs from "fs/promises";
-
 import postcss from "postcss";
 
 /**

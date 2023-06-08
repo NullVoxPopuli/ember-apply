@@ -1,16 +1,12 @@
 // @ts-check
+import { files, html, packageJson, project } from 'ember-apply';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-
-import { files, project, html, packageJson } from 'ember-apply';
 
 // @ts-ignore
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-/**
- * @param {string} workingDirectory - the directory `npx ember-apply` was invoked fromm
- */
-export default async function run(workingDirectory) {
+export default async function run() {
   await packageJson.addDevDependencies({
     tailwindcss: '^3.0.0',
   });

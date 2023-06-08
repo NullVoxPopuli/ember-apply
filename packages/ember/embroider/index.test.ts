@@ -1,7 +1,7 @@
 import { apply, diff, diffSummary, newEmberApp } from 'ember-apply/test-utils';
 import { describe, expect, it } from 'vitest';
 
-import { default as embroider } from './index';
+import { default as embroider } from './index.js';
 
 describe('embroider', () => {
   it('default export exists', () => {
@@ -15,7 +15,9 @@ describe('embroider', () => {
       await apply(appLocation, embroider.path);
 
       expect(await diffSummary(appLocation)).toMatchSnapshot();
-      expect(await diff(appLocation, { ignoreVersions: true })).toMatchSnapshot();
+      expect(
+        await diff(appLocation, { ignoreVersions: true })
+      ).toMatchSnapshot();
     });
   });
 });

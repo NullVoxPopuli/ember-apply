@@ -1,8 +1,8 @@
-import fs from 'fs/promises';
-import path, { dirname } from 'path';
-import os from 'os';
-import { fileURLToPath } from 'url';
 import { execa } from 'execa';
+import fs from 'fs/promises';
+import os from 'os';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

@@ -17,8 +17,8 @@
  *
  */
 import fs from 'fs/promises';
-import path from 'path';
 import jscodeshift from 'jscodeshift';
+import path from 'path';
 
 /**
  * reads a script from source and allows analysis via jscodeshift.

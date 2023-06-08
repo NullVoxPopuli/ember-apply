@@ -1,11 +1,10 @@
 // @ts-check
-import fs from 'fs/promises';
-import path from 'path';
-import fse from 'fs-extra';
-
 import { execa } from 'execa';
+import { findUpMultiple } from 'find-up';
+import fs from 'fs/promises';
+import fse from 'fs-extra';
+import path from 'path';
 import { listWorkspaces as listYarnWorkspaces } from 'yarn-workspaces-list';
-import { findUp, findUpMultiple } from 'find-up';
 
 /**
  * Adds an entry to the project's .gitignore file.
@@ -167,9 +166,13 @@ export async function getWorkspaces(cwd = process.cwd()) {
        * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/packages/ember/embroider:@ember-apply/embroider@1.0.23
        * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/packages/ember/tailwind:@ember-apply/tailwind@2.0.24
        */
-      let { stdout } = await execa('pnpm', ['ls', '-r', '--depth', '-1', '--long', '--parseable'], {
-        cwd,
-      });
+      let { stdout } = await execa(
+        'pnpm',
+        ['ls', '-r', '--depth', '-1', '--long', '--parseable'],
+        {
+          cwd,
+        }
+      );
 
       let lines = stdout.split('\n');
 
