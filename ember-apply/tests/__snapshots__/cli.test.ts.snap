@@ -99,9 +99,9 @@ package.json
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
     \\"stylelint-prettier\\",
+    \\"tailwindcss\\",
     \\"tracked-built-ins\\",
-    \\"webpack\\",
-    \\"tailwindcss\\"
+    \\"webpack\\"
   ],
   \\"engines\\": [
     \\"node\\"
@@ -128,9 +128,9 @@ index e4b2e69..fbdb546 100644
 exports[`CLI > default command > using Tailwind as an example > local absolute path (with index) 2`] = `
 " .gitignore       | 3 +++
  app/index.html   | 1 +
- package.json     | 9 ++++++---
+ package.json     | 7 +++++--
  tests/index.html | 1 +
- 4 files changed, 11 insertions(+), 3 deletions(-)"
+ 4 files changed, 10 insertions(+), 2 deletions(-)"
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local absolute path 1`] = `
@@ -232,9 +232,9 @@ package.json
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
     \\"stylelint-prettier\\",
+    \\"tailwindcss\\",
     \\"tracked-built-ins\\",
-    \\"webpack\\",
-    \\"tailwindcss\\"
+    \\"webpack\\"
   ],
   \\"engines\\": [
     \\"node\\"
@@ -261,9 +261,9 @@ index e4b2e69..fbdb546 100644
 exports[`CLI > default command > using Tailwind as an example > local absolute path 2`] = `
 " .gitignore       | 3 +++
  app/index.html   | 1 +
- package.json     | 9 ++++++---
+ package.json     | 7 +++++--
  tests/index.html | 1 +
- 4 files changed, 11 insertions(+), 3 deletions(-)"
+ 4 files changed, 10 insertions(+), 2 deletions(-)"
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local relative path (with index) 1`] = `
@@ -365,9 +365,9 @@ package.json
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
     \\"stylelint-prettier\\",
+    \\"tailwindcss\\",
     \\"tracked-built-ins\\",
-    \\"webpack\\",
-    \\"tailwindcss\\"
+    \\"webpack\\"
   ],
   \\"engines\\": [
     \\"node\\"
@@ -394,9 +394,9 @@ index e4b2e69..fbdb546 100644
 exports[`CLI > default command > using Tailwind as an example > local relative path (with index) 2`] = `
 " .gitignore       | 3 +++
  app/index.html   | 1 +
- package.json     | 9 ++++++---
+ package.json     | 7 +++++--
  tests/index.html | 1 +
- 4 files changed, 11 insertions(+), 3 deletions(-)"
+ 4 files changed, 10 insertions(+), 2 deletions(-)"
 `;
 
 exports[`CLI > default command > using Tailwind as an example > local relative path 1`] = `
@@ -498,9 +498,9 @@ package.json
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
     \\"stylelint-prettier\\",
+    \\"tailwindcss\\",
     \\"tracked-built-ins\\",
-    \\"webpack\\",
-    \\"tailwindcss\\"
+    \\"webpack\\"
   ],
   \\"engines\\": [
     \\"node\\"
@@ -527,7 +527,7 @@ index e4b2e69..fbdb546 100644
 exports[`CLI > default command > using Tailwind as an example > local relative path 2`] = `
 " .gitignore       | 3 +++
  app/index.html   | 1 +
- package.json     | 9 ++++++---
+ package.json     | 7 +++++--
  tests/index.html | 1 +
- 4 files changed, 11 insertions(+), 3 deletions(-)"
+ 4 files changed, 10 insertions(+), 2 deletions(-)"
 `;
