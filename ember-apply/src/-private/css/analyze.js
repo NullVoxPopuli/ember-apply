@@ -17,7 +17,7 @@ import postcss from 'postcss';
  *
  * let changedFontSize = false;
  *
- * await css.transform('path/to/file.css', {
+ * await css.analyze('path/to/file.css', {
  *   Once(root) {
  *     root.walkRules(rule => {
  *       if (changedFontSize) return;
