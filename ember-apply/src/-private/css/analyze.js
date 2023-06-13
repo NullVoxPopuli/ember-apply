@@ -13,12 +13,19 @@ import postcss from 'postcss';
  * ```js
  * import { css } from 'ember-apply';
  *
+ * // ...
+ *
+ * let changedFontSize = false;
+ *
  * await css.transform('path/to/file.css', {
  *   Once(root) {
  *     root.walkRules(rule => {
+ *       if (changedFontSize) return;
  *
  *       rule.walkDecls(decl => {
- *         decl.prop = decl.prop.split('').reverse().join('');
+ *         if (decl.prop === 'font-size') {
+ *          changedFontSize = true;
+ *         }
  *       });
  *     });
  *   }
