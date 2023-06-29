@@ -17,7 +17,7 @@
     "turbo": "1.10.3"
   },
   "volta": {
-    "node": "18.14.1",
+    "node": "18.16.1",
     "pnpm": "8.6.1"
   },
   "packageManager": "pnpm@8"
