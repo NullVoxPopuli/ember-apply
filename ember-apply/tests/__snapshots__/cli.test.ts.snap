@@ -2,19 +2,17 @@
 
 exports[`CLI > default command > using Tailwind as an example > local absolute path (with index) 1`] = `
 "diff --git a/.gitignore b/.gitignore
-index f1e859b..e2943c0 100644
+index 2f6fd04..71b53d3 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,6 +1,9 @@
- # See https://help.github.com/ignore-files/ for more about ignoring files.
- 
+@@ -1,4 +1,7 @@
 +
  # compiled output
 +public/assets/tailwind.css
 +
  /dist/
- /tmp/
  
+ # dependencies
 diff --git a/app/index.html b/app/index.html
 index 90cb9a3..d869700 100644
 --- a/app/index.html
@@ -71,6 +69,7 @@ package.json
     \\"ember-cli\\",
     \\"ember-cli-app-version\\",
     \\"ember-cli-babel\\",
+    \\"ember-cli-clean-css\\",
     \\"ember-cli-dependency-checker\\",
     \\"ember-cli-htmlbars\\",
     \\"ember-cli-inject-live-reload\\",
@@ -135,19 +134,17 @@ exports[`CLI > default command > using Tailwind as an example > local absolute p
 
 exports[`CLI > default command > using Tailwind as an example > local absolute path 1`] = `
 "diff --git a/.gitignore b/.gitignore
-index f1e859b..e2943c0 100644
+index 2f6fd04..71b53d3 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,6 +1,9 @@
- # See https://help.github.com/ignore-files/ for more about ignoring files.
- 
+@@ -1,4 +1,7 @@
 +
  # compiled output
 +public/assets/tailwind.css
 +
  /dist/
- /tmp/
  
+ # dependencies
 diff --git a/app/index.html b/app/index.html
 index 90cb9a3..d869700 100644
 --- a/app/index.html
@@ -204,6 +201,7 @@ package.json
     \\"ember-cli\\",
     \\"ember-cli-app-version\\",
     \\"ember-cli-babel\\",
+    \\"ember-cli-clean-css\\",
     \\"ember-cli-dependency-checker\\",
     \\"ember-cli-htmlbars\\",
     \\"ember-cli-inject-live-reload\\",
@@ -268,19 +266,17 @@ exports[`CLI > default command > using Tailwind as an example > local absolute p
 
 exports[`CLI > default command > using Tailwind as an example > local relative path (with index) 1`] = `
 "diff --git a/.gitignore b/.gitignore
-index f1e859b..e2943c0 100644
+index 2f6fd04..71b53d3 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,6 +1,9 @@
- # See https://help.github.com/ignore-files/ for more about ignoring files.
- 
+@@ -1,4 +1,7 @@
 +
  # compiled output
 +public/assets/tailwind.css
 +
  /dist/
- /tmp/
  
+ # dependencies
 diff --git a/app/index.html b/app/index.html
 index 90cb9a3..d869700 100644
 --- a/app/index.html
@@ -337,6 +333,7 @@ package.json
     \\"ember-cli\\",
     \\"ember-cli-app-version\\",
     \\"ember-cli-babel\\",
+    \\"ember-cli-clean-css\\",
     \\"ember-cli-dependency-checker\\",
     \\"ember-cli-htmlbars\\",
     \\"ember-cli-inject-live-reload\\",
@@ -401,19 +398,17 @@ exports[`CLI > default command > using Tailwind as an example > local relative p
 
 exports[`CLI > default command > using Tailwind as an example > local relative path 1`] = `
 "diff --git a/.gitignore b/.gitignore
-index f1e859b..e2943c0 100644
+index 2f6fd04..71b53d3 100644
 --- a/.gitignore
 +++ b/.gitignore
-@@ -1,6 +1,9 @@
- # See https://help.github.com/ignore-files/ for more about ignoring files.
- 
+@@ -1,4 +1,7 @@
 +
  # compiled output
 +public/assets/tailwind.css
 +
  /dist/
- /tmp/
  
+ # dependencies
 diff --git a/app/index.html b/app/index.html
 index 90cb9a3..d869700 100644
 --- a/app/index.html
@@ -470,6 +465,7 @@ package.json
     \\"ember-cli\\",
     \\"ember-cli-app-version\\",
     \\"ember-cli-babel\\",
+    \\"ember-cli-clean-css\\",
     \\"ember-cli-dependency-checker\\",
     \\"ember-cli-htmlbars\\",
     \\"ember-cli-inject-live-reload\\",

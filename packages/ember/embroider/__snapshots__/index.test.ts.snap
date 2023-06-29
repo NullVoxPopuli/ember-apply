@@ -80,6 +80,7 @@ package.json
     \\"ember-cli\\",
     \\"ember-cli-app-version\\",
     \\"ember-cli-babel\\",
+    \\"ember-cli-clean-css\\",
     \\"ember-cli-dependency-checker\\",
     \\"ember-cli-htmlbars\\",
     \\"ember-cli-inject-live-reload\\",
