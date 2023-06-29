@@ -1,5 +1,11 @@
 # ember-apply
 
+## 2.8.0
+
+### Minor Changes
+
+- 3e04b19: Support passing jscodeshift options to toSource, for support double vs single quotes during the transform
+
 ## 2.7.1
 
 ### Patch Changes
