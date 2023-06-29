@@ -14,6 +14,7 @@
  *
  * @typedef {object} Options
  * @property {Parameters<JSCodeshift['withParser']>[0]} [parser]
+ * @property {'single' | 'double'} [quote]
  *
  */
 import fs from 'fs/promises';
@@ -67,7 +68,9 @@ export async function analyze(filePath, callback, options = {}) {
 
   await callback({ root, j });
 
-  let transformed = root.toSource();
+  delete options.parser;
+
+  let transformed = root.toSource(options);
 
   return transformed;
 }
