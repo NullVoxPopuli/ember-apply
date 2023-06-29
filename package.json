@@ -14,7 +14,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.7",
     "@changesets/cli": "^2.25.2",
-    "turbo": "1.10.3"
+    "turbo": "1.10.6"
   },
   "volta": {
     "node": "18.16.1",
