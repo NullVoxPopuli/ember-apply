@@ -154,8 +154,8 @@ importers:
         specifier: ^3.11.11
         version: 3.13.6(typedoc@0.23.15)
       typedoc-plugin-mdn-links:
-        specifier: ^2.0.0
-        version: 2.0.0(typedoc@0.23.15)
+        specifier: ^3.0.0
+        version: 3.0.0(typedoc@0.23.15)
       typedoc-plugin-merge-modules:
         specifier: ^4.0.1
         version: 4.0.1(typedoc@0.23.15)
@@ -9036,10 +9036,10 @@ packages:
       typedoc: 0.23.15(typescript@4.8.4)
     dev: true
 
-  /typedoc-plugin-mdn-links@2.0.0(typedoc@0.23.15):
-    resolution: {integrity: sha512-IGLuelXPOenGdmklr5DHgPPf/MfZj7aEYCxCMtPN8C1D0lA7w0YLahd0jhDDcOMU7zL1EPcM5pPnhZHltDhqGQ==}
+  /typedoc-plugin-mdn-links@3.0.0(typedoc@0.23.15):
+    resolution: {integrity: sha512-X3IVDY/ZdrVM1MOPNMNPavy3TNh9XteLMzfSbfh0ibxxr7LqfTUJUBukDHTkmht0coaWIP5kglE7ZtopZx9O/Q==}
     peerDependencies:
-      typedoc: 0.22.x || 0.23.x
+      typedoc: '>= 0.23.14 || 0.24.x'
     dependencies:
       typedoc: 0.23.15(typescript@4.8.4)
     dev: true
