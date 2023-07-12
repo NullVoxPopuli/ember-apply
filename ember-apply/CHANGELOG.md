@@ -1,5 +1,12 @@
 # ember-apply
 
+## 2.9.0
+
+### Minor Changes
+
+- 577e031: Add renovate lite tool for projects to mass update deps
+- 702895f: Add new utils to files for diffing production assets
+
 ## 2.8.0
 
 ### Minor Changes
