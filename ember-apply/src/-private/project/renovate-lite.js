@@ -43,7 +43,7 @@ export async function renovateLite(options) {
     } else {
       assert(
         typeof version === 'string',
-        `version for ${depName} must either be a semver version string, or the LATEST symbol`,
+        `version for ${depName} must either be a semver version string, or the 'latest' string`,
       );
       resolvedVersion = version;
     }
