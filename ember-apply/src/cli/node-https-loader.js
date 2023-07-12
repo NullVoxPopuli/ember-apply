@@ -47,7 +47,7 @@ export function load(url, context, defaultLoad) {
             // code.
             format: 'module',
             source: data,
-          })
+          }),
         );
       }).on('error', (err) => reject(err));
     });

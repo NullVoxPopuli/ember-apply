@@ -3,7 +3,12 @@ import path from 'path';
 import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 
 import { project } from '../src';
-import { newEmberApp, newMonorepo, newTmpDir, readFile } from '../src/test-utils';
+import {
+  newEmberApp,
+  newMonorepo,
+  newTmpDir,
+  readFile,
+} from '../src/test-utils';
 
 let it = test.skip;
 // Snapshot testing is broken in concurrent tests
@@ -118,7 +123,9 @@ describe('project', () => {
       }
 
       expect(workspaces).toEqual(
-        ['', '/packages/a', '/packages/b', '/packages/c', '/d'].map((p) => path.resolve(root + p))
+        ['', '/packages/a', '/packages/b', '/packages/c', '/d'].map((p) =>
+          path.resolve(root + p),
+        ),
       );
     });
   });
@@ -135,7 +142,7 @@ describe('project', () => {
           '/packages/docs',
           '/packages/ember/embroider',
           '/packages/ember/tailwind',
-        ].map((p) => path.resolve(root + p))
+        ].map((p) => path.resolve(root + p)),
       );
     });
   });

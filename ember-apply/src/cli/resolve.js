@@ -176,7 +176,9 @@ async function downloadFromNpm(options) {
 
     if (options.verbose) {
       console.info(
-        chalk.gray(`Rewriting as file URL for Windows compatibility --> ${url}`)
+        chalk.gray(
+          `Rewriting as file URL for Windows compatibility --> ${url}`,
+        ),
       );
     }
   }
@@ -215,7 +217,7 @@ async function resolvePackage(options) {
     // shorthand
     (await tryResolve(
       `https://cdn.skypack.dev/@ember-apply/${name}`,
-      options
+      options,
     )) ||
     // if full package is specified
     (await tryResolve(`https://cdn.skypack.dev/${name}`, options))
@@ -262,7 +264,7 @@ async function resolvePath(options) {
 
   if (os.platform() === 'win32') {
     potentialLocations = potentialLocations.map(
-      convertWindowsAbsolutePathToFileUrl
+      convertWindowsAbsolutePathToFileUrl,
     );
   }
 

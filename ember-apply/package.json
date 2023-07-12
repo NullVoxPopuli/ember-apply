@@ -40,9 +40,11 @@
     "prepack": "pnpm build && cp ../README.md ./",
     "build": "tsc --build",
     "lint:types": "tsc",
-    "lint": "pnpm lint:js",
+    "lint": "concurrently \"npm:lint:*(!fix)\" --names \"lint:\"",
+    "lint:fix": "concurrently \"npm:lint:*:fix\" --names \"fix:\"",
     "lint:js": "eslint .",
-    "lint:fix": "pnpm lint:js --fix",
+    "lint:prettier": "prettier --check .",
+    "lint:prettier:fix": "prettier --write .",
     "test": "vitest --coverage --no-watch --no-threads",
     "test:watch": "vitest --watch --no-threads"
   },
@@ -83,6 +85,7 @@
     "@typescript-eslint/parser": "^5.59.9",
     "@vitest/ui": "^0.28.0",
     "c8": "^8.0.0",
+    "concurrently": "^8.2.0",
     "eslint": "^8.42.0",
     "eslint-plugin-decorator-position": "^5.0.2",
     "eslint-plugin-import": "^2.27.5",
@@ -97,7 +100,6 @@
     "node": ">=16.0.0"
   },
   "volta": {
-    "node": "18.16.1",
-    "yarn": "1.22.19"
+    "extends": "../package.json"
   }
 }

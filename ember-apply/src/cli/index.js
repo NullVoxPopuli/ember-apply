@@ -45,7 +45,7 @@ yargs(hideBin(process.argv))
         spinner.fail(e.message);
         console.error(e);
       }
-    }
+    },
   )
   .option('verbose', {
     alias: 'v',
@@ -64,7 +64,10 @@ async function run(options) {
 
   const applyable = await getApplyable(options);
 
-  assert(applyable, 'Could not find an applyable feature. Does it have a default export?');
+  assert(
+    applyable,
+    'Could not find an applyable feature. Does it have a default export?',
+  );
   assert(typeof applyable === 'function', 'applyable must be a function');
 
   spinner.text = `Applying: ${options.name}`;
@@ -85,10 +88,13 @@ async function getApplyable(options) {
 
   assert(
     typeof applyableModule === 'object',
-    `applyable feature must be a object. got: ${typeof applyableModule}`
+    `applyable feature must be a object. got: ${typeof applyableModule}`,
   );
   assert(applyableModule, 'Could not find an applyable feature.');
-  assert('default' in applyableModule, 'Module found, but it does not have a default export');
+  assert(
+    'default' in applyableModule,
+    'Module found, but it does not have a default export',
+  );
 
   return applyableModule.default;
 }
@@ -104,7 +110,8 @@ async function showInfo(name) {
   if (!info) return;
 
   let message =
-    `If there are any bugs with this applyable, ` + `feel free to report at ${info.url}`;
+    `If there are any bugs with this applyable, ` +
+    `feel free to report at ${info.url}`;
 
   spinner.text = message;
   spinner.info();

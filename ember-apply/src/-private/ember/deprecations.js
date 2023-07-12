@@ -96,7 +96,7 @@ export function ensure(id, { root, j, handler = 'throw' }) {
       function handlerIs(entry, handler = 'throw') {
         let currentHandler = entry.properties.find(
           /** @param {any} prop */
-          (prop) => prop.key.name === 'handler'
+          (prop) => prop.key.name === 'handler',
         ).value.value;
 
         return currentHandler === handler;
@@ -109,7 +109,7 @@ export function ensure(id, { root, j, handler = 'throw' }) {
         return entries
           .filter(
             /** @param {Entry} entry */
-            (entry) => entry.type === 'ObjectExpression'
+            (entry) => entry.type === 'ObjectExpression',
           )
           .find(
             /** @param {any} entry */
@@ -117,11 +117,11 @@ export function ensure(id, { root, j, handler = 'throw' }) {
               let hasId = entry.properties.find(
                 /** @param {any} prop */
                 (prop) =>
-                  prop.key.name === 'matchId' && prop.value.value === matchId
+                  prop.key.name === 'matchId' && prop.value.value === matchId,
               );
 
               return hasId;
-            }
+            },
           );
       }
 
@@ -131,12 +131,12 @@ export function ensure(id, { root, j, handler = 'throw' }) {
         let handler = j.property(
           'init',
           j.identifier('handler'),
-          j.literal('throw')
+          j.literal('throw'),
         );
         let matchId = j.property(
           'init',
           j.identifier('matchId'),
-          j.literal(id)
+          j.literal(id),
         );
         let newEntry = j.objectExpression([handler, matchId]);
 
@@ -155,7 +155,7 @@ export function ensure(id, { root, j, handler = 'throw' }) {
           let replacement = j.property(
             'init',
             j.identifier('handler'),
-            j.literal(handler)
+            j.literal(handler),
           );
 
           j(entryPath).replaceWith(replacement);

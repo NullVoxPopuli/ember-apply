@@ -35,7 +35,9 @@ describe('files', () => {
         let tmpDir = await newTmpDir();
 
         await fs.writeFile(path.join(tmpDir, 'a.txt'), 'a');
-        await files.copyFileTo(path.join(tmpDir, 'b.txt'), { source: path.join(tmpDir, 'a.txt') });
+        await files.copyFileTo(path.join(tmpDir, 'b.txt'), {
+          source: path.join(tmpDir, 'a.txt'),
+        });
 
         expect(await fs.readFile(path.join(tmpDir, 'b.txt'), 'utf8')).toBe('a');
       });

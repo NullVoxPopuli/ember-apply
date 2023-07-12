@@ -7,7 +7,9 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export async function newTmpDir() {
-  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), `ember-apply-${Date.now()}-`));
+  const tmpDir = await fs.mkdtemp(
+    path.join(os.tmpdir(), `ember-apply-${Date.now()}-`),
+  );
 
   return tmpDir;
 }
@@ -40,7 +42,9 @@ export async function newEmberAddon() {
  */
 export async function apply(appPath, applyablePath) {
   let cli = path.join(__dirname, 'cli/index.js');
-  let target = applyablePath.startsWith('@') ? applyablePath : path.resolve(applyablePath);
+  let target = applyablePath.startsWith('@')
+    ? applyablePath
+    : path.resolve(applyablePath);
 
   await execa('node', [cli, '--verbose', target], {
     cwd: appPath,
@@ -67,7 +71,9 @@ export async function diffSummary(appPath) {
  * @param {DiffOptions} [options]
  */
 export async function diff(appPath, options = {}) {
-  let { stdout } = await execa('git', ['diff', '--name-only'], { cwd: appPath });
+  let { stdout } = await execa('git', ['diff', '--name-only'], {
+    cwd: appPath,
+  });
 
   let files = stdout.split('\n');
 
@@ -107,7 +113,9 @@ export async function diff(appPath, options = {}) {
     //   `| sed -n '/^@@/!p' ` +
     //   `| sed -n '/^index /!p'`;
 
-    let { stdout: fullDiff } = await execa(`git`, ['diff', filePath], { cwd: appPath });
+    let { stdout: fullDiff } = await execa(`git`, ['diff', filePath], {
+      cwd: appPath,
+    });
 
     let shortDiff = fullDiff
       .replace(/^---.+$/, '')
@@ -159,7 +167,7 @@ export async function newMonorepo(workspaces) {
 
   await fs.writeFile(
     path.join(root, 'package.json'),
-    `{ "workspaces": [${workspaces.map((w) => `"${w}"`)}], "private": true }`
+    `{ "workspaces": [${workspaces.map((w) => `"${w}"`)}], "private": true }`,
   );
 
   for (let workspace of workspaces) {
@@ -168,7 +176,7 @@ export async function newMonorepo(workspaces) {
     await fs.mkdir(path.join(root, `${workspace}`), { recursive: true });
     await fs.writeFile(
       path.join(root, `${workspace}/package.json`),
-      `{ "name": "test-${safeName}" , "dependencies": {}, "version": "0.0.0" }`
+      `{ "name": "test-${safeName}" , "dependencies": {}, "version": "0.0.0" }`,
     );
   }
 
