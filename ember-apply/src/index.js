@@ -6,7 +6,7 @@
 
 export * as css from './-private/css/index.js';
 export * as ember from './-private/ember/index.js';
-export * as files from './-private/files/utils.js';
+export * as files from './-private/files/index.js';
 export * as html from './-private/html/index.js';
 export * as js from './-private/js/index.js';
 export * as packageJson from './-private/package-json/index.js';
