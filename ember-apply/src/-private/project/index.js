@@ -8,6 +8,7 @@ export {
   getPackageManager,
   getPackageManagerLockfile,
 } from './package-manager.js';
+export { renovateLite } from './renovate-lite.js';
 export {
   eachWorkspace,
   getWorkspaces,
