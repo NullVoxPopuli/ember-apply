@@ -54,7 +54,9 @@ export async function renovateLite(options) {
   const root = await workspaceRoot();
   const workspaces = await getWorkspaces();
 
-  console.info(`Running over ${workspaces.length} workspaces...`);
+  if (!silent) {
+    console.info(`Running over ${workspaces.length} workspaces...`);
+  }
 
   for (const workspace of workspaces) {
     const relativePath = path.relative(root, workspace);
