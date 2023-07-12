@@ -5,6 +5,7 @@
   "author": "NullVoxPopuli",
   "scripts": {
     "release": "changeset publish",
+    "build": "pnpm --filter ember-apply build",
     "build:docs": "pnpm --filter docs docs:collect",
     "start:docs": "pnpm build:docs --watch",
     "test": "turbo run test",
