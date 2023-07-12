@@ -50,6 +50,17 @@ jobs:
     - name: Tests
       run: pnpm test
 
+
+##############################################################
+##############################################################
+#
+# These jobs won't run on pull requests.
+# They would fail anyway because secrets are not exposed.
+#
+##############################################################
+##############################################################
+
+
   publish:
     name: Release
     runs-on: ubuntu-latest
@@ -71,3 +82,57 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
             
+
+  PrepareDeployProduction:
+    name: "Prepare Deploy"
+    if: github.repository == 'NullVoxPopuli/ember-apply' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs:
+      - lint
+      - tests
+
+    steps:
+      - uses: wyvox/action@v1
+      - run: ./build-docs.sh 
+      # Used for faster deploy so we don't need to checkout the repo
+      - uses: actions/upload-artifact@v3
+        with:
+          name: deploy-prep-dist
+          if-no-files-found: error
+          path: | 
+            ./packages/docs/dist/**/*
+            !node_modules/
+            !./**/node_modules/
+
+
+
+  DeployProduction:
+    name: "Deploy: Production"
+    if: github.repository == 'NullVoxPopuli/ember-apply' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: ["PrepareDeployProduction"]
+    strategy: 
+      matrix:
+        app: 
+        - { path: "./packages/docs/dist", cloudflareName: "ember-apply" }
+          
+    permissions:
+      contents: read
+      deployments: write
+    outputs:
+      limberUrl: ${{ steps.limber.outputs.url }}
+      tutorialUrl: ${{ steps.tutorial.outputs.url }}
+    steps:
+      - uses: actions/download-artifact@v3
+        name: deploy-prep-dist
+      - name: Publish ${{ matrix.app.id }}
+        uses: cloudflare/pages-action@v1.5.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ matrix.app.cloudflareName }}
+          directory: ./deploy-prep-dist/${{ matrix.app.path }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
