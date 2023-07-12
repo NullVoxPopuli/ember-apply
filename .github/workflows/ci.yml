@@ -133,6 +133,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ matrix.app.cloudflareName }}
-          directory: ./deploy-prep-dist/${{ matrix.app.path }}
+          directory: ./deploy-prep-dist/
+          # directory: ./deploy-prep-dist/${{ matrix.app.path }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
