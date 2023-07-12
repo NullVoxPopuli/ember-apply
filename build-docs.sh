@@ -4,11 +4,11 @@
 # if you support pnpm in your build workers, 
 # I can replace all of this with pnpm build:docs
 echo "==================================================="
-echo "||    For running on Cloudflare builders only    ||"
+echo "||            For running on CI  only            ||"
 echo "==================================================="
 
-npm install --location global pnpm
-pnpm i --ignore-scripts
+# npm install --location global pnpm
+# pnpm i --ignore-scripts
 pnpm build
 pnpm build:docs
 

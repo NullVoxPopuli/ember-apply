@@ -74,7 +74,9 @@ describe('ember', () => {
         };
       });
 
-      expect(await fs.readFile(path.join(dir, 'file.hbs'), 'utf8')).toBe('<1h>Hello World</1h>');
+      expect(await fs.readFile(path.join(dir, 'file.hbs'), 'utf8')).toBe(
+        '<1h>Hello World</1h>',
+      );
     });
   });
 });

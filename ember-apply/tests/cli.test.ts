@@ -16,7 +16,9 @@ describe('CLI', () => {
 
         await apply(appLocation, '@ember-apply/tailwind');
 
-        expect(await diff(appLocation, { ignoreVersions: true })).toMatchSnapshot();
+        expect(
+          await diff(appLocation, { ignoreVersions: true }),
+        ).toMatchSnapshot();
         expect(await diffSummary(appLocation)).toMatchSnapshot();
       }, 60_000);
 
@@ -25,7 +27,9 @@ describe('CLI', () => {
 
         await apply(appLocation, '../packages/ember/tailwind');
 
-        expect(await diff(appLocation, { ignoreVersions: true })).toMatchSnapshot();
+        expect(
+          await diff(appLocation, { ignoreVersions: true }),
+        ).toMatchSnapshot();
         expect(await diffSummary(appLocation)).toMatchSnapshot();
       });
 
@@ -34,7 +38,9 @@ describe('CLI', () => {
 
         await apply(appLocation, '../packages/ember/tailwind/index.js');
 
-        expect(await diff(appLocation, { ignoreVersions: true })).toMatchSnapshot();
+        expect(
+          await diff(appLocation, { ignoreVersions: true }),
+        ).toMatchSnapshot();
         expect(await diffSummary(appLocation)).toMatchSnapshot();
       });
 
@@ -44,7 +50,9 @@ describe('CLI', () => {
 
         await apply(appLocation, target);
 
-        expect(await diff(appLocation, { ignoreVersions: true })).toMatchSnapshot();
+        expect(
+          await diff(appLocation, { ignoreVersions: true }),
+        ).toMatchSnapshot();
         expect(await diffSummary(appLocation)).toMatchSnapshot();
       });
 
@@ -54,7 +62,9 @@ describe('CLI', () => {
 
         await apply(appLocation, target);
 
-        expect(await diff(appLocation, { ignoreVersions: true })).toMatchSnapshot();
+        expect(
+          await diff(appLocation, { ignoreVersions: true }),
+        ).toMatchSnapshot();
         expect(await diffSummary(appLocation)).toMatchSnapshot();
       });
     });

@@ -5,6 +5,7 @@
   "author": "NullVoxPopuli",
   "scripts": {
     "release": "changeset publish",
+    "build": "pnpm --filter ember-apply build",
     "build:docs": "pnpm --filter docs docs:collect",
     "start:docs": "pnpm build:docs --watch",
     "test": "turbo run test",
@@ -18,7 +19,7 @@
   },
   "volta": {
     "node": "18.16.1",
-    "pnpm": "8.6.1"
+    "pnpm": "8.6.7"
   },
   "packageManager": "pnpm@8"
 }

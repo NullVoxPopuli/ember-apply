@@ -16,9 +16,14 @@ jobs:
     name: Install Dependencies
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      pending: ${{ steps.set-pending.outputs.pending }}
 
     steps:
     - uses: wyvox/action@v1
+    - id: set-pending
+      run: echo "pending=$(./cache-status.sh)" >> $GITHUB_OUTPUT
+    - run:  echo ${{ github.event.number }} > ./pr-number.txt
 
   lint:
     name: Lint

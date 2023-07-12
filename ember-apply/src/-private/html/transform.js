@@ -102,7 +102,11 @@ export async function insertText(filePath, { beforeFirst, text }) {
             let parts = previousNode.split('\n');
             let indentation = parts[parts.length - 1];
 
-            return { tag: false, content: [text, indentation, node], attrs: {} };
+            return {
+              tag: false,
+              content: [text, indentation, node],
+              attrs: {},
+            };
           }
 
           return { tag: false, content: [text, node], attrs: {} };

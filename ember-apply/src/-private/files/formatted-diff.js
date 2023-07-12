@@ -14,8 +14,8 @@ import { mktmp } from './tmp.js';
  *
  *  @param {string} originalFilePath the path to the original file on disk
  *  @param {string} modifiedFilePath the path to the modified file on disk
-  *
-  * @returns {Promise<{ directory: string, diff: string, diffCommand: string }>} the return value contains the path to the directory for further inspection, the terminal-printable diff (output of git diff) which can be printed to the console, and the diffCommand to generate the diff for use in other tooling
+ *
+ * @returns {Promise<{ directory: string, diff: string, diffCommand: string }>} the return value contains the path to the directory for further inspection, the terminal-printable diff (output of git diff) which can be printed to the console, and the diffCommand to generate the diff for use in other tooling
  */
 export async function formattedDiff(originalFilePath, modifiedFilePath) {
   let originalFile = await fs.readFile(originalFilePath);
@@ -33,8 +33,14 @@ export async function formattedDiff(originalFilePath, modifiedFilePath) {
 
   let tmpDir = await mktmp();
 
-  let formattedOriginalPath = path.join(tmpDir, path.basename(originalFilePath));
-  let formattedModifiedPath = path.join(tmpDir, path.basename(modifiedFilePath));
+  let formattedOriginalPath = path.join(
+    tmpDir,
+    path.basename(originalFilePath),
+  );
+  let formattedModifiedPath = path.join(
+    tmpDir,
+    path.basename(modifiedFilePath),
+  );
 
   await fs.writeFile(formattedOriginalPath, originalFormatted);
   await fs.writeFile(formattedModifiedPath, modifiedFormatted);
@@ -46,12 +52,12 @@ export async function formattedDiff(originalFilePath, modifiedFilePath) {
     directory: tmpDir,
     diff,
     diffCommand,
-  }
+  };
 }
 
 /**
-  * @param {string} command 
-  */
+ * @param {string} command
+ */
 async function captureOutput(command) {
   try {
     let { stdout } = await execaCommand(command);
@@ -80,9 +86,13 @@ async function captureOutput(command) {
  * @param {string} modifiedStr the modified string to diff
  * @param {string} extension the extension to use for the tmp files, used for formatting
  *
-  * @returns {Promise<{ directory: string, diff: string, diffCommand: string }>} the return value contains the path to the directory for further inspection, the terminal-printable diff (output of git diff) which can be printed to the console, and the diffCommand to generate the diff for use in other tooling
+ * @returns {Promise<{ directory: string, diff: string, diffCommand: string }>} the return value contains the path to the directory for further inspection, the terminal-printable diff (output of git diff) which can be printed to the console, and the diffCommand to generate the diff for use in other tooling
  */
-export async function formattedDiffStrings(originalStr, modifiedStr, extension) {
+export async function formattedDiffStrings(
+  originalStr,
+  modifiedStr,
+  extension,
+) {
   let tmpDir = await mktmp('file.formatted.diff.string');
 
   let originalPath = path.join(tmpDir, `original.${extension}`);

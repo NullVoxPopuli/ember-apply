@@ -61,7 +61,7 @@ export async function getWorkspaces(cwd = process.cwd()) {
         ['ls', '-r', '--depth', '-1', '--long', '--parseable'],
         {
           cwd,
-        }
+        },
       );
 
       let lines = stdout.split('\n');
