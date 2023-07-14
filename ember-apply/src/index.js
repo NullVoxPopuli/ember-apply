@@ -10,4 +10,5 @@ export * as files from './-private/files/index.js';
 export * as html from './-private/html/index.js';
 export * as js from './-private/js/index.js';
 export * as packageJson from './-private/package-json/index.js';
+export * as automation from './-private/project/automation/index.js';
 export * as project from './-private/project/index.js';
