@@ -1,5 +1,11 @@
 # ember-apply
 
+## 2.10.0
+
+### Minor Changes
+
+- b0ce38a: Support specifying default ranges across dependencies in renovate-lite
+
 ## 2.9.0
 
 ### Minor Changes

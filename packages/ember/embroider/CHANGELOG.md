@@ -1,5 +1,12 @@
 # @ember-apply/embroider
 
+## 1.0.33
+
+### Patch Changes
+
+- Updated dependencies [b0ce38a]
+  - ember-apply@2.10.0
+
 ## 1.0.32
 
 ### Patch Changes
