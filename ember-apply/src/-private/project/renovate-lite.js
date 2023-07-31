@@ -12,6 +12,8 @@ import { getWorkspaces, inWorkspace, workspaceRoot } from './workspace.js';
 const LATEST = 'latest';
 const DEP_TYPES = ['devDependencies', 'dependencies'];
 
+const RANGES = ['^', '~', '>='];
+
 /**
  * Modifies the package.json files in your project, updating versions to what is specified in the `deps` map.
  * The dep-types can be specified, if the default of `[devDependencies, dependencies]` is not desired.
@@ -19,6 +21,7 @@ const DEP_TYPES = ['devDependencies', 'dependencies'];
  * Additionally, you may use the version `'latest'` to use the latest version published to npm.
  *
  * @typedef {object} RenovateLiteOptions
+ * @property {'^' | '~' | '>=' | ''} [range] what SemVer range to use -- default: `^`. `^` = every version until the next major. `~` = every version until the next minor (patches only), `>=` = every version above the specified minimum is valid. `''` is _pinning_ to a specific version _or_ specified by `deps`.
  * @property {string[]} [depTypes]
  * @property {{ [depName: string]: string | 'latest' }} deps representing an object-map of dependency names to apply to all projects in your (mono)repo.
  * @property {boolean} [silent] do not log while running
@@ -26,7 +29,7 @@ const DEP_TYPES = ['devDependencies', 'dependencies'];
  * @param {RenovateLiteOptions} options
  */
 export async function renovateLite(options) {
-  let { deps, depTypes = DEP_TYPES, silent } = options;
+  let { deps, depTypes = DEP_TYPES, silent, range = '^' } = options;
 
   assert(deps, 'deps must be provided');
   assert(typeof deps === 'object', 'deps must be an object');
@@ -96,7 +99,11 @@ export async function renovateLite(options) {
               continue;
             }
 
-            liveManifest[depType][dep] = version;
+            let fullVersion = RANGES.some((range) => version.startsWith(range))
+              ? version
+              : `${range}${version}`;
+
+            liveManifest[depType][dep] = fullVersion;
           }
         }
       });
