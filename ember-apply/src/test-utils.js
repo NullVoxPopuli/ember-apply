@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import { packageJson, project } from './index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const EMBER_CLI_VERSION = '5.3'; // We can't install ember-cli as a devDependency since it then assumes we're an ember project and refuses to run generators.
 
 export async function newTmpDir() {
   const tmpDir = await fs.mkdtemp(
@@ -19,10 +20,13 @@ export async function newTmpDir() {
 export async function newEmberApp() {
   let dir = await newTmpDir();
 
-  await execa('ember', ['-v'], { cwd: dir });
-  await execa('ember', ['new', 'test-app', '--skip-npm'], {
-    cwd: dir,
-  });
+  await execa(
+    'pnpm',
+    ['dlx', `ember-cli@${EMBER_CLI_VERSION}`, 'new', 'test-app', '--skip-npm'],
+    {
+      cwd: dir,
+    },
+  );
 
   return path.join(dir, 'test-app');
 }
@@ -30,10 +34,19 @@ export async function newEmberApp() {
 export async function newEmberAddon() {
   let dir = await newTmpDir();
 
-  await execa('ember', ['-v'], { cwd: dir });
-  await execa('ember', ['addon', 'test-addon', '--skip-npm'], {
-    cwd: dir,
-  });
+  await execa(
+    'pnpm',
+    [
+      'dlx',
+      `ember-cli@${EMBER_CLI_VERSION}`,
+      'addon',
+      'test-addon',
+      '--skip-npm',
+    ],
+    {
+      cwd: dir,
+    },
+  );
 
   return path.join(dir, 'test-addon');
 }
