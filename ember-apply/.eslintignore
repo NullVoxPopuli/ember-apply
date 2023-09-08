@@ -1,2 +1,4 @@
 declarations/
 node_modules/
+
+src/-private/automation/

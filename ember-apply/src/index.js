@@ -4,6 +4,7 @@
 // Each of these re-exported modules points at an index.js file which
 // defines the Public API for each namespace
 
+export * as automation from './-private/automation/index.js';
 export * as css from './-private/css/index.js';
 export * as ember from './-private/ember/index.js';
 export * as files from './-private/files/index.js';

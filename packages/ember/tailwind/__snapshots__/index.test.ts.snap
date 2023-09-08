@@ -10,7 +10,7 @@ exports[`tailwind > applying to an ember app > works via CLI 1`] = `
 
 exports[`tailwind > applying to an ember app > works via CLI 2`] = `
 "diff --git a/.gitignore b/.gitignore
-index 2f6fd04..71b53d3 100644
+index 71ad79d..f63b80e 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -1,4 +1,7 @@
@@ -19,8 +19,8 @@ index 2f6fd04..71b53d3 100644
 +public/assets/tailwind.css
 +
  /dist/
+ /declarations/
  
- # dependencies
 diff --git a/app/index.html b/app/index.html
 index 90cb9a3..d869700 100644
 --- a/app/index.html
@@ -64,6 +64,7 @@ package.json
     \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
   },
   \\"devDependencies\\": [
+    \\"@babel/core\\",
     \\"@babel/eslint-parser\\",
     \\"@babel/plugin-proposal-decorators\\",
     \\"@ember/optional-features\\",
