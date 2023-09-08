@@ -1,9 +1,9 @@
 import { execaCommand } from 'execa';
 
 /**
-  * @param {string} branchName
-  * @param {{ cwd?: string; fromBranch?: string }} [userOptions]
-  */
+ * @param {string} branchName
+ * @param {{ cwd?: string; fromBranch?: string }} [userOptions]
+ */
 export async function switchTo(branchName, userOptions) {
   let { cwd, fromBranch } = userOptions || {};
   let options = compact({ cwd });
@@ -18,9 +18,9 @@ export async function switchTo(branchName, userOptions) {
 }
 
 /**
-  * @param {string} remoteName
-  * @param {string} [cwd]
-  */
+ * @param {string} remoteName
+ * @param {string} [cwd]
+ */
 export async function fetchRemote(remoteName, cwd) {
   let options = compact({ cwd });
 
@@ -28,10 +28,10 @@ export async function fetchRemote(remoteName, cwd) {
 }
 
 /**
-  * @param {string} [cwd]
-  */
+ * @param {string} [cwd]
+ */
 export async function isClean(cwd) {
- let options = compact({ cwd });
+  let options = compact({ cwd });
 
   let { stdout } = await execaCommand(`git status --porcelain`, options);
 
@@ -41,8 +41,8 @@ export async function isClean(cwd) {
 }
 
 /**
-  * @param {Record<string, string | undefined | null>} options
-  */
+ * @param {Record<string, string | undefined | null>} options
+ */
 function compact(options) {
   /** @type {Record<string, string>} */
   let result = {};
@@ -51,6 +51,7 @@ function compact(options) {
     if (value !== undefined && value !== null) {
       result[key] = value;
     }
+  }
 
   return result;
 }
