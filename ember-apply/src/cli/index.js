@@ -20,6 +20,7 @@ process.on('uncaughtException', function (err) {
 });
 
 yargs(hideBin(process.argv))
+  .scriptName('ember-apply')
   .command(
     '$0 <name>',
     'Apply a feature to the current project',
@@ -52,6 +53,21 @@ yargs(hideBin(process.argv))
     type: 'boolean',
     description: 'Run with verbose logging',
   })
+  .command(
+    'run', 
+    'Run a utility from within ember-apply via module path', 
+    (yargs) => yargs.positional('identifier', { describe: 'the path and method to run', type: 'string', required: true }).example('ember-apply run ember#stats', 'Runs stats() on the ember namespace'),
+    async (argv) => {
+      let methodPath = argv._[1];
+      let parts = `${ methodPath }`.split('#');
+
+      assert(parts.length === 2, `module#method identifier must be a string separated by a #`);
+
+      let indexModule = await import('../index.js');
+      let chosenModule = indexModule[parts[0]];
+
+      await chosenModule[parts[1]]();
+    })
   .demandCommand(1)
   .parse();
 

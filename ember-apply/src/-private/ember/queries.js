@@ -1,4 +1,8 @@
 // @ts-check
+import path from 'node:path';
+
+import { globby } from 'globby';
+
 import { read } from '../package-json/index.js';
 
 /**
@@ -148,12 +152,45 @@ export async function isV2Addon(dir) {
   * @param {string} [dir] optionally override the directory to read from -- defaults to the current working directory
   */
 export async function stats(dir) {
-  let isEmber = await isEmberProject(dir);
+  let current = dir || process.cwd();
+  let isEmber = await isEmberProject(current);
 
   if (!isEmber) {
-    throw new Error(`project is not an ember project`);
+    throw new Error(`project is not an ember project. Checked in ${current}`);
   }
 
+  let files = await globby('**/*.{js,ts,hbs,html,gjs,gts}', { cwd: current, gitignore: true });
 
+  /** @type {Record<string, Set<String>>} */
+  let fileGroups = {
+    js: new Set(),
+    ts: new Set(),
+    hbs: new Set(),
+    html: new Set(),
+    gjs: new Set(),
+    gts: new Set(),
+  };
+
+  for (let file of files) {
+    // includes the '.'
+    let extName = path.extname(file); 
+    let ext = extName.slice(1);
+
+    if (!(ext in fileGroups)) continue;
+
+    fileGroups[ext].add(file);
+  }
+
+  console.info(
+    `
+  Files:
+    js: ${fileGroups.js.size}
+    ts: ${fileGroups.ts.size}
+    gjs: ${fileGroups.gjs.size}
+    gts: ${fileGroups.gts.size}
+    hbs: ${fileGroups.hbs.size}
+    html: ${fileGroups.html.size}
+    `
+  );
 
 }
