@@ -186,12 +186,12 @@ export async function stats(dir) {
   };
 
   let usage = {
-    js: { total: 0, ember: 0, platform: 0 },
-    ts: { total: 0, ember: 0, platform: 0 },
-    hbs: { total: 0, ember: 0, platform: 0 },
-    html: { total: 0, ember: 0, platform: 0 },
-    gjs: { total: 0, ember: 0, platform: 0 },
-    gts: { total: 0, ember: 0, platform: 0 },
+    js: { total: 0, ember: 0, platform: 0, '% ember': 0, '% platform': 0 },
+    ts: { total: 0, ember: 0, platform: 0, '% ember': 0, '% platform': 0 },
+    hbs: { total: 0, ember: 0, platform: 0, '% ember': 0, '% platform': 0 },
+    html: { total: 0, ember: 0, platform: 0, '% ember': 0, '% platform': 0 },
+    gjs: { total: 0, ember: 0, platform: 0, '% ember': 0, '% platform': 0 },
+    gts: { total: 0, ember: 0, platform: 0, '% ember': 0, '% platform': 0 },
   };
 
   const folders = Object.keys(folderGroups);
@@ -223,10 +223,28 @@ export async function stats(dir) {
     usage.hbs.ember += totalLength - platformLength;
   }
 
+  for (let hbs of fileGroups.html) {
+    let totalLength = await templateLength(hbs);
+    let platformLength = await trimmedTemplate(hbs);
+
+    usage.html.total += totalLength;
+    usage.html.platform += platformLength;
+    usage.html.ember += totalLength - platformLength;
+  }
+
+  /**
+   * Once all the usages are calculated, we can calculate percentages
+   */
+  usage.hbs['% ember'] = percent(usage.hbs.ember, usage.hbs.total);
+  usage.hbs['% platform'] = percent(usage.hbs.platform, usage.hbs.total);
+  usage.html['% ember'] = percent(usage.html.ember, usage.html.total);
+  usage.html['% platform'] = percent(usage.html.platform, usage.html.total);
+
   if (!isConsoleEnabled()) {
     return {
       fileGroups,
       folderGroups,
+      usage,
     };
   }
 
@@ -268,9 +286,8 @@ function objectOfSetsToArray(objectOfSets, name) {
 
 function removeFromTemplate(node, info) {
   switch (info.parentKey) {
-    case 'body':
-    case 'parts':
     case 'modifiers':
+    case 'parts':
     case 'children': {
       info.parent.node[info.parentKey] = info.parent.node[
         info.parentKey
@@ -278,9 +295,15 @@ function removeFromTemplate(node, info) {
 
       break;
     }
+    case 'body':
+      // root template
+      break;
+    case 'value':
+      // attr values
+      break;
 
     default: {
-      console.info('Unknown template key: ', info.parentKey);
+      console.info('Unknown template key: ', info.parentKey, info.parent.node);
     }
   }
 }
@@ -319,4 +342,8 @@ async function templateLength(filePath) {
   });
 
   return transformed.code.length;
+}
+
+function percent(num, total) {
+  return Math.round((num / total) * 100);
 }
