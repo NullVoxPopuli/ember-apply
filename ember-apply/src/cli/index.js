@@ -10,6 +10,7 @@ import { hideBin } from 'yargs/helpers';
 
 import { spinner } from './progress.js';
 import { resolveApplyable, resolvePackageInfo } from './resolve.js';
+import { runMethodPath } from './run-module-path.js';
 
 /**
  * @typedef {import('./types').Options} Options
@@ -54,20 +55,25 @@ yargs(hideBin(process.argv))
     description: 'Run with verbose logging',
   })
   .command(
-    'run', 
-    'Run a utility from within ember-apply via module path', 
-    (yargs) => yargs.positional('identifier', { describe: 'the path and method to run', type: 'string', required: true }).example('ember-apply run ember#stats', 'Runs stats() on the ember namespace'),
+    'run',
+    'Run a utility from within ember-apply via module path',
+    (yargs) =>
+      yargs
+        .positional('identifier', {
+          describe: 'the path and method to run',
+          type: 'string',
+          required: true,
+        })
+        .example(
+          'ember-apply run ember#stats',
+          'Runs stats() on the ember namespace',
+        ),
     async (argv) => {
       let methodPath = argv._[1];
-      let parts = `${ methodPath }`.split('#');
 
-      assert(parts.length === 2, `module#method identifier must be a string separated by a #`);
-
-      let indexModule = await import('../index.js');
-      let chosenModule = indexModule[parts[0]];
-
-      await chosenModule[parts[1]]();
-    })
+      await runMethodPath(methodPath);
+    },
+  )
   .demandCommand(1)
   .parse();
 
