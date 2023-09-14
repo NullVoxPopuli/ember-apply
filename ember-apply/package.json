@@ -67,6 +67,7 @@
     "prettier": "^2.0.0 || ^3.0.0",
     "semver": "^7.5.1",
     "sort-object-keys": "^1.1.3",
+    "table-string": "^1.2.1",
     "unified": "^11.0.0",
     "yargs": "^17.7.2",
     "yarn-workspaces-list": "^0.2.0"

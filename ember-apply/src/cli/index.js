@@ -10,6 +10,7 @@ import { hideBin } from 'yargs/helpers';
 
 import { spinner } from './progress.js';
 import { resolveApplyable, resolvePackageInfo } from './resolve.js';
+import { runMethodPath } from './run-module-path.js';
 
 /**
  * @typedef {import('./types').Options} Options
@@ -20,6 +21,7 @@ process.on('uncaughtException', function (err) {
 });
 
 yargs(hideBin(process.argv))
+  .scriptName('ember-apply')
   .command(
     '$0 <name>',
     'Apply a feature to the current project',
@@ -52,6 +54,26 @@ yargs(hideBin(process.argv))
     type: 'boolean',
     description: 'Run with verbose logging',
   })
+  .command(
+    'run',
+    'Run a utility from within ember-apply via module path',
+    (yargs) =>
+      yargs
+        .positional('identifier', {
+          describe: 'the path and method to run',
+          type: 'string',
+          required: true,
+        })
+        .example(
+          'ember-apply run ember#stats',
+          'Runs stats() on the ember namespace',
+        ),
+    async (argv) => {
+      let methodPath = argv._[1];
+
+      await runMethodPath(methodPath);
+    },
+  )
   .demandCommand(1)
   .parse();
 
