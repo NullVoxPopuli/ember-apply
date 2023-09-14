@@ -1,11 +1,13 @@
 // @ts-check
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { globby } from 'globby';
-import Table from 'table-layout';
+import { tableString } from 'table-string';
 
 import { isConsoleEnabled } from '../../cli/env.js';
 import { read } from '../package-json/index.js';
+import { analyzeTemplate } from './templates.js';
 
 /**
  *
@@ -183,6 +185,15 @@ export async function stats(dir) {
     templates: new Set(),
   };
 
+  let usage = {
+    js: { total: 0, ember: 0, platform: 0 },
+    ts: { total: 0, ember: 0, platform: 0 },
+    hbs: { total: 0, ember: 0, platform: 0 },
+    html: { total: 0, ember: 0, platform: 0 },
+    gjs: { total: 0, ember: 0, platform: 0 },
+    gts: { total: 0, ember: 0, platform: 0 },
+  };
+
   const folders = Object.keys(folderGroups);
   /** @param {string} filePath */
   const folder = (filePath) => folders.find((f) => filePath.includes(`${f}/`));
@@ -203,6 +214,15 @@ export async function stats(dir) {
     }
   }
 
+  for (let hbs of fileGroups.hbs) {
+    let totalLength = await templateLength(hbs);
+    let platformLength = await trimmedTemplate(hbs);
+
+    usage.hbs.total += totalLength;
+    usage.hbs.platform += platformLength;
+    usage.hbs.ember += totalLength - platformLength;
+  }
+
   if (!isConsoleEnabled()) {
     return {
       fileGroups,
@@ -210,39 +230,93 @@ export async function stats(dir) {
     };
   }
 
-  let fileTable = new Table(objectToArray(fileGroups), {
-    maxWidth: 80,
-    columns: setColumns(),
-  });
-  let folderTable = new Table(objectToArray(folderGroups), {
-    maxWidth: 80,
-    columns: setColumns(),
-  });
+  let fileTable = tableString(objectOfSetsToArray(fileGroups, 'ext'));
+  let folderTable = tableString(objectOfSetsToArray(folderGroups, 'group'));
+  let usageTable = tableString(usage);
 
-  console.info(fileTable.toString());
-  console.info(folderTable.toString());
+  console.info(fileTable);
+  console.info(folderTable);
+  console.info(usageTable);
 }
 
 /**
- * @param {Record<string, Set<unknown>>} objectOfSets
+ * @param {Record<string, Record<string, unknown>>} objectOfObjects
  */
-function objectToArray(objectOfSets) {
+function objectOfObjectsToArray(objectOfObjects) {
   let result = [];
 
-  for (let [key, value] of Object.entries(objectOfSets)) {
-    result.push({ key, value });
+  for (let [name, value] of Object.entries(objectOfObjects)) {
+    result.push({ name, ...value });
   }
 
   return result;
 }
 
-function setColumns() {
-  return [
-    { name: 'key' },
-    {
-      name: 'value',
-      /** @param {Set<unknown>} cell */
-      get: (cell) => cell.size,
-    },
-  ];
+/**
+ * @param {Record<string, Set<unknown>>} objectOfSets
+ * @param {string} name
+ */
+function objectOfSetsToArray(objectOfSets, name) {
+  let result = [];
+
+  for (let [key, value] of Object.entries(objectOfSets)) {
+    result.push({ [name]: key, '#': value.size });
+  }
+
+  return result;
+}
+
+function removeFromTemplate(node, info) {
+  switch (info.parentKey) {
+    case 'body':
+    case 'parts':
+    case 'modifiers':
+    case 'children': {
+      info.parent.node[info.parentKey] = info.parent.node[
+        info.parentKey
+      ].filter((n) => n !== node);
+
+      break;
+    }
+
+    default: {
+      console.info('Unknown template key: ', info.parentKey);
+    }
+  }
+}
+
+/**
+ * @param {string} filePath
+ */
+async function trimmedTemplate(filePath) {
+  let transformed = await analyzeTemplate(filePath, (env) => {
+    return {
+      MustacheStatement(node, info) {
+        removeFromTemplate(node, info);
+      },
+      ElementModifierStatement(node, info) {
+        removeFromTemplate(node, info);
+      },
+      TextNode(node, info) {
+        removeFromTemplate(node, info);
+      },
+    };
+  });
+
+  return transformed.code.length;
+}
+
+/**
+ * @param {string} filePath
+ */
+async function templateLength(filePath) {
+  let transformed = await analyzeTemplate(filePath, (env) => {
+    return {
+      TextNode(node, info) {
+        removeFromTemplate(node, info);
+      },
+    };
+  });
+
+  return transformed.code.length;
 }
