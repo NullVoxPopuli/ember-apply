@@ -14,8 +14,11 @@ export default async function run() {
   for (let workspace of workspaces) {
     let manifest = await packageJson.read(workspace);
 
-    if (workspace === root && !manifest.volta) {
-      await execa('volta', ['pin', 'node'], { cwd: root }); 
+    if (workspace === root) {
+      if (!manifest.volta) {
+        await execa('volta', ['pin', 'node'], { cwd: root }); 
+      }
+
       continue;
     }
 

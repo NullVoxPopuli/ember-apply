@@ -27,6 +27,28 @@ describe('volta', () => {
       expect(manifest.volta).not.toBeUndefined();
       expect(manifest.volta.node).toBeTypeOf('string');
     });
+
+    it('handles pre-existing volta version', async () => {
+      let appLocation = await newEmberApp();
+
+      await packageJson.modify((json) => {
+        json.volta = { node: '16.17.0' };
+      }, appLocation);
+
+      await execa('pnpm', ['install'], { cwd: appLocation });
+
+      let manifest = await packageJson.read(appLocation);
+
+      expect(manifest.volta).not.toBeUndefined();
+      expect(manifest.volta.node).toBe('16.17.0');
+
+      await apply(appLocation, volta.path);
+
+      manifest = await packageJson.read(appLocation);
+
+      expect(manifest.volta).not.toBeUndefined();
+      expect(manifest.volta.node).toBe('16.17.0');
+    });
   });
 
   describe('applying over a monorepo', () => {
