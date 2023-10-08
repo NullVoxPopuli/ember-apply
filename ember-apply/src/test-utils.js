@@ -4,6 +4,8 @@ import os from 'os';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
+import { packageJson, project } from './index.js';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export async function newTmpDir() {
@@ -169,6 +171,10 @@ export async function newMonorepo(workspaces) {
     path.join(root, 'package.json'),
     `{ "workspaces": [${workspaces.map((w) => `"${w}"`)}], "private": true }`,
   );
+  await fs.writeFile(
+    path.join(root, 'pnpm-workspace.yaml'),
+    `packages:\n` + workspaces.map((w) => `- ${w}\n`).join(''),
+  );
 
   for (let workspace of workspaces) {
     let safeName = workspace.replaceAll('/', '-');
@@ -181,4 +187,19 @@ export async function newMonorepo(workspaces) {
   }
 
   return root;
+}
+
+export async function readAllPackageJson(root) {
+  let workspaces = await project.getWorkspaces(root);
+
+  let manifests = [];
+
+  // done serially, so order is consistent
+  for (let workspace of workspaces) {
+    let manifest = await packageJson.read(workspace);
+
+    manifests.push(manifest);
+  }
+
+  return manifests;
 }

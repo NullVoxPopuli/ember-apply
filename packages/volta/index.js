@@ -19,10 +19,10 @@ export default async function run() {
       continue;
     }
 
-    let extendsTarget = path.relative(root, workspace);
+    let extendsTarget = path.relative(workspace, root);
 
     await packageJson.modify(json => {
-      json.volta = { extends: extendsTarget };
+      json.volta = { extends: path.join(extendsTarget, 'package.json') };
     }, workspace);
   }
 }
