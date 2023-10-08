@@ -52,6 +52,8 @@ jobs:
         curl https://get.volta.sh | bash
     - name: Tests
       run: pnpm test
+      env:
+        DEBUG: 'true'
 
 
 ##############################################################
