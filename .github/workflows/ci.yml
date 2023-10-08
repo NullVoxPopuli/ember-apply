@@ -47,6 +47,9 @@ jobs:
     - uses: wyvox/action@v1
     - run: |
         pnpm add --global ember-cli
+    - name: Setup dependant tools
+      run: |
+        curl https://get.volta.sh | bash
     - name: Tests
       run: pnpm test
 
