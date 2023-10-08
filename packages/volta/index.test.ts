@@ -1,0 +1,50 @@
+import { packageJson } from 'ember-apply';
+import { apply, newEmberApp, newMonorepo, readAllPackageJson } from 'ember-apply/test-utils';
+import { execa } from 'execa';
+import { describe, expect, it } from 'vitest';
+
+import { default as volta } from './index.js';
+
+describe('volta', () => {
+  it('default export exists', () => {
+    expect(typeof volta).toEqual('function');
+  });
+
+  describe('applying to an ember app', () => {
+    it('works via CLI', async () => {
+      let appLocation = await newEmberApp();
+
+      await execa('pnpm', ['install'], { cwd: appLocation });
+
+      let manifest = await packageJson.read(appLocation);
+
+      expect(manifest.volta).toBeUndefined();
+
+      await apply(appLocation, volta.path);
+
+      manifest = await packageJson.read(appLocation);
+
+      expect(manifest.volta).not.toBeUndefined();
+      expect(manifest.volta.node).toBeTypeOf('string');
+    });
+  });
+
+  describe('applying over a monorepo', () => {
+    it('works via CLI', async () => {
+      let root = await newMonorepo(['foo', 'bar', 'nested/baz']);
+
+      await execa('pnpm', ['install'], { cwd: root });
+
+      expect((await readAllPackageJson(root)).map(m => m.volta).filter(Boolean)).to.deep.equal([]);
+
+      await apply(root, volta.path);
+
+      expect((await readAllPackageJson(root)).map(m => m.volta).filter(Boolean)).to.deep.equal([
+        { node: '18.18.0' },
+        { 'extends': '../package.json' },
+        { 'extends': '../package.json' },
+        { 'extends': '../../package.json' },
+      ]);
+    });
+  });
+});

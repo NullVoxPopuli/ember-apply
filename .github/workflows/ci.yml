@@ -38,7 +38,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        platform: [ubuntu-latest, windows-latest]
+        platform: [ubuntu-latest]
     name: "Tests"
     runs-on: "${{ matrix.platform }}"
     needs: [install_dependencies]
@@ -48,7 +48,14 @@ jobs:
     - run: |
         pnpm add --global ember-cli
     - name: Tests
-      run: pnpm test
+      run: |
+        curl https://get.volta.sh | bash
+        export VOLTA_FEATURE_PNPM=1
+        export VOLTA_HOME="$HOME/.volta"
+        export PATH="$VOLTA_HOME/bin:$PATH"
+        pnpm test
+      env:
+        DEBUG: 'true'
 
 
 ##############################################################

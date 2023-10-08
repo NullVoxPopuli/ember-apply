@@ -245,7 +245,7 @@ export async function addScripts(scripts, cwd) {
  * ```js
  * import { packageJson } from 'ember-apply';
  *
- * await packageJson.modify(packgeJson => {
+ * await packageJson.modify(packageJson => {
  *   packageJson.volta = {
  *     node: '16.3.0'
  *   }

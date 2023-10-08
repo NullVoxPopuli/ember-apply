@@ -41,6 +41,16 @@ where `<feature-name>` is one of the options under [#Features](#features)
 
 ## Features
 
+### `volta`
+
+```shell
+npx ember-apply tailwind
+```
+
+_Automates setting up [volta](https://volta.sh/) in a project, monorepo or solorepo_.
+- root package.json defines node version
+- if monorepo, all other packages extend from the root package.json
+
 ### `tailwind`
 
 ```shell
