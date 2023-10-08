@@ -1,7 +1,8 @@
+import assert from 'node:assert';
 import path from 'node:path';
 import url from 'node:url';
-import assert from 'node:assert';
-import { project, packageJson } from 'ember-apply';
+
+import { packageJson,project } from 'ember-apply';
 import { execa } from 'execa';
 
 export default async function run() {

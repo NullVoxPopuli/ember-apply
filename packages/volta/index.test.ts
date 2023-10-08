@@ -1,5 +1,5 @@
-import { apply, newEmberApp } from 'ember-apply/test-utils';
 import { packageJson } from 'ember-apply';
+import { apply, newEmberApp } from 'ember-apply/test-utils';
 import { describe, expect, it } from 'vitest';
 
 import { default as volta } from './index.js';
