@@ -189,6 +189,9 @@ export async function newMonorepo(workspaces) {
   return root;
 }
 
+/**
+ * @param {string} root
+ */
 export async function readAllPackageJson(root) {
   let workspaces = await project.getWorkspaces(root);
 
