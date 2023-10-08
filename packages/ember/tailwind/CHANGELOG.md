@@ -1,5 +1,12 @@
 # @ember-apply/tailwind
 
+## 2.0.35
+
+### Patch Changes
+
+- Updated dependencies [73eaf6e]
+  - ember-apply@2.10.1
+
 ## 2.0.34
 
 ### Patch Changes
