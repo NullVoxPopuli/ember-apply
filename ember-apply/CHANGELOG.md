@@ -1,5 +1,11 @@
 # ember-apply
 
+## 2.10.1
+
+### Patch Changes
+
+- 73eaf6e: Fix typo in JSDoc
+
 ## 2.10.0
 
 ### Minor Changes
