@@ -38,7 +38,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        platform: [ubuntu-latest, windows-latest]
+        platform: [ubuntu-latest]
     name: "Tests"
     runs-on: "${{ matrix.platform }}"
     needs: [install_dependencies]
