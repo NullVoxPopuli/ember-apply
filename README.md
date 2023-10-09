@@ -44,7 +44,7 @@ where `<feature-name>` is one of the options under [#Features](#features)
 ### `volta`
 
 ```shell
-npx ember-apply tailwind
+npx ember-apply volta
 ```
 
 _Automates setting up [volta](https://volta.sh/) in a project, monorepo or solorepo_.
