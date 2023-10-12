@@ -62,7 +62,7 @@ describe('volta', () => {
       await apply(root, volta.path);
 
       expect((await readAllPackageJson(root)).map(m => m.volta).filter(Boolean)).to.deep.equal([
-        { node: '18.18.0' },
+        { node: '18.18.1' },
         { 'extends': '../package.json' },
         { 'extends': '../package.json' },
         { 'extends': '../../package.json' },

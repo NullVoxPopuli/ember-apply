@@ -12,7 +12,7 @@ describe('package-json', () => {
     });
 
     test('version is specified', async () => {
-      let hasTs = await packageJson.hasDependency('typescript', '^4.0.0');
+      let hasTs = await packageJson.hasDependency('typescript', '^5.0.0');
 
       expect(hasTs).toBe(true);
     });

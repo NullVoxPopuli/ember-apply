@@ -7,6 +7,6 @@
   },
   "devDependencies": {
     "ember-apply": "workspace:*",
-    "typescript": "4.8.4"
+    "typescript": "5.2.2"
   }
 }

@@ -2,7 +2,7 @@
   "compilerOptions": {
     // Path resolution
     "baseUrl": "./src",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     // We only use tsc for type checking
     "declaration": true,
     "noEmit": true,

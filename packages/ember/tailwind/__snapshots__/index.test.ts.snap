@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`tailwind > applying to an ember app > works via CLI 1`] = `
 " .gitignore       | 3 +++

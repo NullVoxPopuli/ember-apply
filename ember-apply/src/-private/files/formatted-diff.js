@@ -57,6 +57,7 @@ export async function formattedDiff(originalFilePath, modifiedFilePath) {
 
 /**
  * @param {string} command
+ * @returns {Promise<string>}
  */
 async function captureOutput(command) {
   try {
