@@ -1,5 +1,11 @@
 # ember-apply
 
+## 2.10.2
+
+### Patch Changes
+
+- 05a30f5: Fix declarations by using moduleResolution=bundler during generation
+
 ## 2.10.1
 
 ### Patch Changes
