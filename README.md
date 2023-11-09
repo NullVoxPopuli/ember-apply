@@ -110,7 +110,7 @@ npx ember-apply ../../path/to/some/script.mjs
 ## Adding a new applyable to this repository
 
 - clone this repository
-- create a `packages/<ecosystem>/<feature>index.js` file
+- create a `packages/<ecosystem>/<feature>/index.js` file
   examples:
    - `packages/ember/tailwind/index.js`
    - `packages/sveltekit/tailwind/index.js`
