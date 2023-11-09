@@ -68,6 +68,17 @@ Known working capabilities:
 - entrypoint for your tests is located at `tests/index.html`
 - tailwind files are placed in `config/tailwind/`
 
+### `tailwind-webpack`
+
+```shell
+npm ember-apply tailwind-webpack
+```
+
+_Automates the official [Tailwind + Ember.js guide](https://tailwindcss.com/docs/guides/emberjs)_
+
+- Instead of placing `postcss.config.js` and `tailwind.config.js` into the project root, it places them to `config/` directory.
+- Does not need any special command for building tailwind styles they will be built (and watched) together with `npm start`.
+
 ### `embroider`
 
 ```shell
