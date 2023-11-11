@@ -1,9 +1,11 @@
 // @ts-check
-import { files, html, packageJson, js } from 'ember-apply';
+import { files, html, js,packageJson } from 'ember-apply';
+// eslint-disable-next-line n/no-unpublished-import
+import { execa } from 'execa';
+// eslint-disable-next-line n/no-unpublished-import
+import fse from 'fs-extra';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import fse from 'fs-extra';
-import { execa } from 'execa';
 
 // @ts-ignore
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -24,7 +26,7 @@ export default async function run() {
         module: {
           rules: [
             {
-              test: /\.css$/i,
+              test: /.css$/i,
               use: [
                 {
                   loader: 'postcss-loader',
