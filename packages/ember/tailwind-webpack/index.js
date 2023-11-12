@@ -1,5 +1,5 @@
 // @ts-check
-import { files, html, js,packageJson } from 'ember-apply';
+import { files, html, js, packageJson } from 'ember-apply';
 // eslint-disable-next-line n/no-unpublished-import
 import { execa } from 'execa';
 // eslint-disable-next-line n/no-unpublished-import
@@ -20,29 +20,51 @@ export default async function run() {
 
   await files.applyFolder(path.join(__dirname, 'files/config'), 'config');
 
-  await html.insertText('ember-cli-build.js', {
-    text: `packagerOptions: {
-      webpackConfig: {
-        module: {
-          rules: [
-            {
-              test: /.css$/i,
-              use: [
+  // Standard embroider setup has following line in `ember-cli-build.js`.
+  //   `return require("@embroider/compat").compatBuild(app, Webpack, {`
+  // We are trying to find the third argument of `compatBuild` and append our `packagerOptions` there.
+  await js.transform('ember-cli-build.js', ({ root, j }) => {
+    const compatBuild = root
+      .find(j.Identifier)
+      .filter(path => path.node.name === 'compatBuild');
+
+    if(compatBuild.length === 0) {
+      throw new Error(`This appliable works only in embroider enabled projects. Make sure there is 'return require("@embroider/compat").compatBuild...' in your 'ember-cli-build.js`);
+    }
+
+    compatBuild.forEach(path => {
+      const properties = path.parent.parent.value.arguments[2].properties;
+
+      const packagerOptions = properties.filter(prop => prop.key.name === 'packagerOptions');
+
+      if(packagerOptions.length !== 0) {
+        throw new Error(`This appliable can't work if you alrady have 'packagerOptions' in your 'ember-cli-build.js. Try commenting it out and merging the result manually.`);
+      }
+      
+      properties.push(`
+        packagerOptions: {
+          webpackConfig: {
+            module: {
+              rules: [
                 {
-                  loader: 'postcss-loader',
-                  options: {
-                    postcssOptions: {
-                      config: 'config/postcss.config.js',
+                  test: /.css$/i,
+                  use: [
+                    {
+                      loader: 'postcss-loader',
+                      options: {
+                        postcssOptions: {
+                          config: 'config/postcss.config.js',
+                        },
+                      },
                     },
-                  },
+                  ],
                 },
               ],
             },
-          ],
-        },
-      },
-    },`,
-    beforeFirst: 'skipBabel: [',
+          },
+        }
+      `);
+    });
   });
 
   const appFile = (await fse.pathExists('app/app.ts')) ? 'app/app.ts' : 'app/app.js';
