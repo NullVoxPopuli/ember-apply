@@ -32,7 +32,7 @@ export default async function run() {
                   loader: 'postcss-loader',
                   options: {
                     postcssOptions: {
-                      config: 'app/config/postcss.config.js',
+                      config: 'config/postcss.config.js',
                     },
                   },
                 },
