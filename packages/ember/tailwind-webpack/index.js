@@ -71,10 +71,12 @@ export default async function run() {
 
   await js.transform(appFile, ({ root, j }) => {
     root
-      .find(j.ImportSpecifier)
-      .filter(path => path.node.imported.name === 'config')
-      .insertAfter(j.template.expression`import './app.css'`)
-  });
+      .find(j.ImportDefaultSpecifier)
+      .filter(path => path.node.local?.name === 'config' )
+      .forEach((path) => {
+        path.parent.insertAfter(`import './app.css'`)
+      })
+    });
 
   await execa('git', ['add', '.', '-N']);
 }
