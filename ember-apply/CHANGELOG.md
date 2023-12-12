@@ -1,5 +1,11 @@
 # ember-apply
 
+## 2.10.3
+
+### Patch Changes
+
+- 9dbe7fa: Dep maintenance
+
 ## 2.10.2
 
 ### Patch Changes

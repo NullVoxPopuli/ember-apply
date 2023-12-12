@@ -1,5 +1,14 @@
 # @ember-apply/tailwind-webpack
 
+## 1.0.2
+
+### Patch Changes
+
+- d46a51c: Copy over the app directory files
+- 9dbe7fa: Dep maintenance
+- Updated dependencies [9dbe7fa]
+  - ember-apply@2.10.3
+
 ## 1.0.1
 
 ### Patch Changes
