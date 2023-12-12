@@ -93,7 +93,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.0.0",
-    "typescript": "5.2.2",
+    "typescript": "5.3.3",
     "vite": "^5.0.0",
     "vitest": "^0.34.6"
   },
