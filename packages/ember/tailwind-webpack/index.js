@@ -1,46 +1,52 @@
 // @ts-check
-import { files, js, packageJson } from 'ember-apply';
+import { files, js, packageJson } from "ember-apply";
 // eslint-disable-next-line n/no-unpublished-import
-import { execa } from 'execa';
+import { execa } from "execa";
 // eslint-disable-next-line n/no-unpublished-import
-import fse from 'fs-extra';
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import fse from "fs-extra";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 // @ts-ignore
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default async function run() {
   await packageJson.addDevDependencies({
-    'tailwindcss': '^3.0.0',
-    'postcss': '^8.0.0',
-    'postcss-loader': '^7.0.0',
-    'autoprefixer': '^10.0.0'
+    tailwindcss: "^3.0.0",
+    postcss: "^8.0.0",
+    "postcss-loader": "^7.0.0",
+    autoprefixer: "^10.0.2",
   });
 
-  await files.applyFolder(path.join(__dirname, 'files/config'), 'config');
+  await files.applyFolder(path.join(__dirname, "files/config"), "config");
 
   // Standard embroider setup has following line in `ember-cli-build.js`.
   //   `return require("@embroider/compat").compatBuild(app, Webpack, {`
   // We are trying to find the third argument of `compatBuild` and append our `packagerOptions` there.
-  await js.transform('ember-cli-build.js', ({ root, j }) => {
+  await js.transform("ember-cli-build.js", ({ root, j }) => {
     const compatBuild = root
       .find(j.Identifier)
-      .filter(path => path.node.name === 'compatBuild');
+      .filter((path) => path.node.name === "compatBuild");
 
-    if(compatBuild.length === 0) {
-      throw new Error(`This appliable works only in embroider enabled projects. Make sure there is 'return require("@embroider/compat").compatBuild...' in your 'ember-cli-build.js`);
+    if (compatBuild.length === 0) {
+      throw new Error(
+        `This appliable works only in embroider enabled projects. Make sure there is 'return require("@embroider/compat").compatBuild...' in your 'ember-cli-build.js`,
+      );
     }
 
-    compatBuild.forEach(path => {
+    compatBuild.forEach((path) => {
       const properties = path.parent.parent.value.arguments[2].properties;
 
-      const packagerOptions = properties.filter(prop => prop.key.name === 'packagerOptions');
+      const packagerOptions = properties.filter(
+        (prop) => prop.key.name === "packagerOptions",
+      );
 
-      if(packagerOptions.length !== 0) {
-        throw new Error(`This appliable can't work if you alrady have 'packagerOptions' in your 'ember-cli-build.js. Try commenting it out and merging the result manually.`);
+      if (packagerOptions.length !== 0) {
+        throw new Error(
+          `This appliable can't work if you alrady have 'packagerOptions' in your 'ember-cli-build.js. Try commenting it out and merging the result manually.`,
+        );
       }
-      
+
       properties.push(`
         packagerOptions: {
           webpackConfig: {
@@ -67,18 +73,22 @@ export default async function run() {
     });
   });
 
-  const appFile = (await fse.pathExists('app/app.ts')) ? 'app/app.ts' : 'app/app.js';
+  const appFile = (await fse.pathExists("app/app.ts"))
+    ? "app/app.ts"
+    : "app/app.js";
 
   await js.transform(appFile, ({ root, j }) => {
     root
       .find(j.ImportDefaultSpecifier)
-      .filter(path => path.node.local?.name === 'config' )
+      .filter((path) => path.node.local?.name === "config")
       .forEach((path) => {
-        path.parent.insertAfter(`import './app.css'`)
-      })
-    });
+        path.parent.insertAfter(`import './app.css'`);
+      });
+  });
 
-  await execa('git', ['add', '.', '-N']);
+  await files.applyFolder(path.join(__dirname, "files/app"), "app");
+
+  await execa("git", ["add", ".", "-N"]);
 }
 
 run.path = __dirname;
