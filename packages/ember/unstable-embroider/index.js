@@ -1,8 +1,8 @@
 // @ts-check
 import { packageJson, project } from 'ember-apply';
+import latestVersion from 'latest-version';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import latestVersion from 'latest-version';
 
 export default async function run() {
   await useUnstableEmbroider();
@@ -56,6 +56,7 @@ async function useUnstableEmbroider() {
     }
   });
 }
+
 // @ts-ignore
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
