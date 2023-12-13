@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`unstable-embroider > applying to an ember app > works via CLI 1`] = `""`;
+
+exports[`unstable-embroider > applying to an ember app > works via CLI 2`] = `""`;
