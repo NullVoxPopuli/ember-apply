@@ -1,5 +1,11 @@
 # @ember-apply/embroider
 
+## 1.0.1
+
+### Patch Changes
+
+- bc190b0: Initial release
+
 ## 1.0.36
 
 ### Patch Changes
