@@ -1,0 +1,124 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`embroider > applying to an ember app > works via CLI 1`] = `
+" ember-cli-build.js | 19 ++++++++++++++++++-
+ package.json       |  5 ++++-
+ 2 files changed, 22 insertions(+), 2 deletions(-)"
+`;
+
+exports[`embroider > applying to an ember app > works via CLI 2`] = `
+"diff --git a/ember-cli-build.js b/ember-cli-build.js
+index ed991bd..49d4e1a 100644
+--- a/ember-cli-build.js
++++ b/ember-cli-build.js
+@@ -7,5 +7,22 @@ module.exports = function (defaults) {
+     // Add options here
+   });
+ 
+-  return app.toTree();
++  const {
++    Webpack
++  } = require(\\"@embroider/webpack\\");
++
++  return require(\\"@embroider/compat\\").compatBuild(app, Webpack, {
++    // 
++    // staticAddonTestSupportTrees: true,
++    // staticAddonTrees: true,
++    // staticHelpers: true,
++    // staticModifiers: true,
++    // staticComponents: true,
++    // splitAtRoutes: ['route.name'], // can also be a RegExp
++    // packagerOptions: {
++    //    webpackConfig: { }
++    // }
++    // 
++    extraPublicTrees: []
++  });
+ };
+
+package.json
+{
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
+  \\"license\\": \\"MIT\\",
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
+  },
+  \\"scripts\\": {
+    \\"build\\": \\"ember build --environment=production\\",
+    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\"\\",
+    \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
+    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\"\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\"\\",
+    \\"test:ember\\": \\"ember test\\"
+  },
+  \\"devDependencies\\": [
+    \\"@babel/core\\",
+    \\"@babel/eslint-parser\\",
+    \\"@babel/plugin-proposal-decorators\\",
+    \\"@ember/optional-features\\",
+    \\"@ember/string\\",
+    \\"@ember/test-helpers\\",
+    \\"@embroider/compat\\",
+    \\"@embroider/core\\",
+    \\"@embroider/webpack\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
+    \\"broccoli-asset-rev\\",
+    \\"concurrently\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-clean-css\\",
+    \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
+    \\"ember-data\\",
+    \\"ember-fetch\\",
+    \\"ember-load-initializers\\",
+    \\"ember-modifier\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
+    \\"eslint\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
+    \\"eslint-plugin-n\\",
+    \\"eslint-plugin-prettier\\",
+    \\"eslint-plugin-qunit\\",
+    \\"loader.js\\",
+    \\"prettier\\",
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"stylelint\\",
+    \\"stylelint-config-standard\\",
+    \\"stylelint-prettier\\",
+    \\"tracked-built-ins\\",
+    \\"webpack\\"
+  ],
+  \\"engines\\": [
+    \\"node\\"
+  ],
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  }
+}
+"
+`;
