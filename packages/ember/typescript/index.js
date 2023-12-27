@@ -74,6 +74,9 @@ async function appToTypeScript() {
   await setupESLint();
   await configureDependencies();
 
+  // Grrr GlimmerVM
+  await fixPre1dot0GlimmerAndPnpm();
+
   let manager = await project.getPackageManager();
 
   console.info(`
@@ -98,6 +101,24 @@ async function addonToTypeScript() {
   await adjustAddonScripts();
   await setupESLint();
   await configureDependencies();
+}
+
+/**
+ * Without this we get a super old copy of manager/validator in the 0.4x range
+ */
+async function fixPre1dot0GlimmerAndPnpm() {
+  let manager = await project.getPackageManager();
+
+  if (manager !== 'pnpm') return;
+
+  let root = await project.workspaceRoot();
+
+  await packageJson.modify((json) => {
+    json.pnpm ||= {};
+    json.pnpm.overrides ||= {};
+    json.pnpm.overrides['@glimmer/manager'] ||= '>= 0.84.3';
+    json.pnpm.overrides['@glimmer/validator'] ||= '>= 0.84.3';
+  }, root);
 }
 
 // @ts-ignore
