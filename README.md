@@ -41,6 +41,17 @@ where `<feature-name>` is one of the options under [#Features](#features)
 
 ## Features
 
+### `typescript`
+
+```shell
+npx ember-apply typescript
+```
+
+_Automates setting up TypeScript for your V1 Addon or App._
+- correct dependencies
+- correct types 
+- correct configs
+
 ### `volta`
 
 ```shell
