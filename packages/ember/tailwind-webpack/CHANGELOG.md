@@ -1,5 +1,13 @@
 # @ember-apply/tailwind-webpack
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [c0fe99c]
+- Updated dependencies [c0fe99c]
+  - ember-apply@2.11.0
+
 ## 1.0.2
 
 ### Patch Changes
