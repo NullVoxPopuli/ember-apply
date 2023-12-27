@@ -23,7 +23,7 @@ describe('typescript', () => {
       await packageJson.removeDevDependencies(['ember-data', 'ember-welcome-page'], appLocation);
       expect((await getManifest()).devDependencies).to.not.toHaveProperty('ember-data');
       expect((await getManifest()).devDependencies).to.not.toHaveProperty('ember-welcome-page');
-      await execa('pnpm', ['install'], { cwd: appLocation });
+      await execa('pnpm', ['install', '--force'], { cwd: appLocation });
 
       // ember-page-title doesn't have types yet
       //   https://github.com/ember-cli/ember-page-title/pull/275
@@ -37,7 +37,7 @@ describe('typescript', () => {
         await diff(appLocation, { ignoreVersions: true })
       ).toMatchSnapshot();
 
-      let install = await execa('pnpm', ['install'], { cwd: appLocation });
+      let install = await execa('pnpm', ['install', '--force'], { cwd: appLocation });
 
       expect(install.exitCode, 'pnpm install').toBe(0);
 
