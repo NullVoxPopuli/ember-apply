@@ -1,5 +1,12 @@
 # ember-apply
 
+## 2.11.0
+
+### Minor Changes
+
+- c0fe99c: Add ember.isV2Addon() to the ember family of methods/queries
+- c0fe99c: New module, npm. Only one function so far -- pass an array of dependencies and get back an object with the latest version as the value for each dependency as the key
+
 ## 2.10.3
 
 ### Patch Changes
