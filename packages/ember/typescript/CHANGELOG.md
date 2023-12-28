@@ -1,5 +1,11 @@
 # @ember-apply/typescript
 
+## 1.2.0
+
+### Minor Changes
+
+- ae27097: Add support for ember-data-using apps
+
 ## 1.1.0
 
 ### Minor Changes
