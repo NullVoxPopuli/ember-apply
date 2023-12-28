@@ -1,7 +1,9 @@
+import path from 'node:path';
+
 import { stripIndent } from 'common-tags';
 import fse from 'fs-extra';
 
-import { canUseBuiltInTypes } from './queries.js';
+import { canUseBuiltInTypes, isEmberDataPresent } from './queries.js';
 
 export async function createAppTypesDirectory() {
   await fse.ensureDir('types');
@@ -12,6 +14,24 @@ export async function createAppTypesDirectory() {
       stripIndent`
         // Declare the @ember/* packages brought in from ember-source
         import 'ember-source/types';
+      `,
+    );
+  }
+
+  if (await isEmberDataPresent()) {
+    let edRegistries = 'types/ember-data/registries';
+
+    await fse.ensureDir(edRegistries);
+    await fse.writeFile(
+      path.join(edRegistries, 'model.d.ts'),
+      stripIndent`
+        /**
+         * Catch-all for ember-data.
+         */
+        export default interface ModelRegistry {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          [key: string]: any;
+        }
       `,
     );
   }

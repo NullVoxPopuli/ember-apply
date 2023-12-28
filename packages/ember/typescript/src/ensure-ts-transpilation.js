@@ -3,23 +3,8 @@ import { js } from 'ember-apply';
 
 export async function enableTSInECBuild() {
   await js.transform('ember-cli-build.js', async ({ root, j }) => {
-    let emberAppName = '';
-
-    // find const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-    root
-      .find(j.VariableDeclarator, {
-        init: {
-          callee: { name: 'require' },
-          arguments: [{ value: 'ember-cli/lib/broccoli/ember-app' }],
-        },
-      })
-      .forEach((path) => {
-        let node = path.node;
-
-        if (node.id.type === 'Identifier') {
-          emberAppName = node.id.name;
-        }
-      });
+    let utils = buildUtils(root, j);
+    let emberAppName = utils.getRequireName('ember-cli/lib/broccoli/ember-app');
 
     if (!emberAppName) {
       return couldNot();
@@ -97,6 +82,42 @@ function couldNot() {
       `Could not determine where to enable TypeScripts in ember-cli-build.js. Please refer to the docs: https://github.com/emberjs/ember-cli-babel#enabling-typescript-transpilation`,
     ),
   );
+}
+
+/**
+ * @typedef {import('jscodeshift')} JSCodeshift
+ * @typedef {ReturnType<JSCodeshift>} jAST
+ *
+ * @param {jAST} root
+ * @param {JSCodeshift} j
+ */
+function buildUtils(root, j) {
+  return {
+    /**
+     * @param {string} requirePath
+     */
+    getRequireName(requirePath) {
+      let name = '';
+
+      // find const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+      root
+        .find(j.VariableDeclarator, {
+          init: {
+            callee: { name: 'require' },
+            arguments: [{ value: requirePath }],
+          },
+        })
+        .forEach((path) => {
+          let node = path.node;
+
+          if (node.id.type === 'Identifier') {
+            name = node.id.name;
+          }
+        });
+
+      return name;
+    },
+  };
 }
 
 export async function enableTSInAddonIndex() {}

@@ -31,8 +31,8 @@ describe('typescript', () => {
 
       // Don't currently support ember-data
       await app.removeDevDep(['ember-data', 'ember-welcome-page']);
-      expect(await app.devDeps()).to.not.toHaveProperty('ember-data');
-      expect(await app.devDeps()).to.not.toHaveProperty('ember-welcome-page');
+      expect(await app.devDeps()).not.toHaveProperty('ember-data');
+      expect(await app.devDeps()).not.toHaveProperty('ember-welcome-page');
       await app.install();
 
       // ember-page-title doesn't have types yet
@@ -41,11 +41,14 @@ describe('typescript', () => {
 
       await apply(appLocation, typescript.path);
 
-      expect(await app.scripts()).to.toHaveProperty('lint:types');
-      expect(await diffSummary(appLocation)).toMatchSnapshot();
-      expect(await app.diff()).toMatchSnapshot();
+      expect(await app.scripts()).toHaveProperty('lint:types');
+      expect(await app.devDeps()).not.toHaveProperty('@types/ember');
+      expect(await app.devDeps()).not.toHaveProperty('@types/ember-data');
       expect((await app.install()).exitCode, 'pnpm install').toBe(0);
       expect((await app.run('pnpm lint:types')).exitCode, 'lint:types').toBe(0);
+
+      expect(await diffSummary(appLocation)).toMatchSnapshot();
+      expect(await app.diff()).toMatchSnapshot();
     });
 
     it('works with the default app blueprint', async () => {
@@ -58,12 +61,14 @@ describe('typescript', () => {
 
       await apply(appLocation, typescript.path);
 
-      expect(await app.scripts()).to.toHaveProperty('lint:types');
-      expect(await diffSummary(appLocation)).toMatchSnapshot();
-      expect(await app.diff()).toMatchSnapshot();
+      expect(await app.scripts()).toHaveProperty('lint:types');
+      expect(await app.devDeps()).toHaveProperty('@types/ember');
+      expect(await app.devDeps()).toHaveProperty('@types/ember-data');
       expect((await app.install()).exitCode, 'pnpm install').toBe(0);
       expect((await app.run('pnpm lint:types')).exitCode, 'lint:types').toBe(0);
 
+      expect(await diffSummary(appLocation)).toMatchSnapshot();
+      expect(await app.diff()).toMatchSnapshot();
     });
   });
 });

@@ -22,16 +22,49 @@ const standardDeps = [
 ];
 
 export async function configureDependencies() {
-  let depsWithVersions = await npm.getLatest(standardDeps);
+  if (await canUseBuiltInTypes()) {
+    let depsWithVersions = await npm.getLatest(standardDeps);
+
+    await packageJson.addDevDependencies(depsWithVersions);
+
+    return;
+  }
+
+  const extraDeps = [
+    '@types/ember',
+    '@types/ember__application',
+    '@types/ember__array',
+    '@types/ember__component',
+    '@types/ember__controller',
+    '@types/ember__debug',
+    '@types/ember__destroyable',
+    '@types/ember__engine',
+    '@types/ember__error',
+    '@types/ember__helper',
+    '@types/ember__modifier',
+    '@types/ember__object',
+    '@types/ember__owner',
+    '@types/ember__polyfills',
+    '@types/ember__routing',
+    '@types/ember__runloop',
+    '@types/ember__service',
+    '@types/ember__string',
+    '@types/ember__template',
+    '@types/ember__test',
+    '@types/ember__utils',
+  ];
+
+  if (await isEmberDataPresent()) {
+    extraDeps.push(
+      '@types/ember-data',
+      '@types/ember-data__adapter',
+      '@types/ember-data__model',
+      '@types/ember-data__serializer',
+      '@types/ember-data__store',
+    );
+  }
+
+  let depsWithVersions = await npm.getLatest([...standardDeps, ...extraDeps]);
 
   await packageJson.addDevDependencies(depsWithVersions);
-
-  if (await canUseBuiltInTypes()) {
-    /* nothing to do, types are built in to ember-source and ember-data */
-    return;
-  } else {
-    if (await isEmberDataPresent()) {
-      throw new Error(`Ember data isn't yet supported. PR's welcome!`);
-    }
-  }
 }
