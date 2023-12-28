@@ -1,5 +1,12 @@
 # @ember-apply/typescript
 
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [0123d40]
+  - ember-apply@2.11.1
+
 ## 1.2.0
 
 ### Minor Changes

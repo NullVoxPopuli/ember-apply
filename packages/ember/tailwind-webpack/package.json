@@ -1,7 +1,7 @@
 {
   "name": "@ember-apply/tailwind-webpack",
   "description": "ember-apply plugin for tailwind-webpack",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "license": "MIT",
   "preset": "index.js",

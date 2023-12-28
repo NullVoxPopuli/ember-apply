@@ -1,5 +1,11 @@
 # ember-apply
 
+## 2.11.1
+
+### Patch Changes
+
+- 0123d40: Update messaging to not mention skypack, which has never worked
+
 ## 2.11.0
 
 ### Minor Changes
