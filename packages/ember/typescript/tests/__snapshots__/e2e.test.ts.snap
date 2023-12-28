@@ -137,3 +137,169 @@ package.json
 }
 "
 `;
+
+exports[`typescript > applying to an ember app > works with the default app blueprint 1`] = `
+" app/templates/application.hbs |  8 +-------
+ ember-cli-build.js            |  4 +++-
+ package.json                  | 45 ++++++++++++++++++++++++++++++++++++++++++-
+ 3 files changed, 48 insertions(+), 9 deletions(-)"
+`;
+
+exports[`typescript > applying to an ember app > works with the default app blueprint 2`] = `
+"diff --git a/app/templates/application.hbs b/app/templates/application.hbs
+index 0eacef7..b6fc4c6 100644
+--- a/app/templates/application.hbs
++++ b/app/templates/application.hbs
+@@ -1,7 +1 @@
+-{{page-title \\"TestApp\\"}}
+-
+-{{! The following component displays Ember's default welcome message. }}
+-<WelcomePage />
+-{{! Feel free to remove this! }}
+-
+-{{outlet}}
+\\\\ No newline at end of file
++hello
+\\\\ No newline at end of file
+diff --git a/ember-cli-build.js b/ember-cli-build.js
+index ed991bd..8557327 100644
+--- a/ember-cli-build.js
++++ b/ember-cli-build.js
+@@ -4,7 +4,9 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+ 
+ module.exports = function (defaults) {
+   const app = new EmberApp(defaults, {
+-    // Add options here
++    \\"ember-cli-babel\\": {
++      enableTypeScriptTransform: true
++    }
+   });
+ 
+   return app.toTree();
+
+package.json
+{
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
+  \\"license\\": \\"MIT\\",
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
+  },
+  \\"scripts\\": {
+    \\"build\\": \\"ember build --environment=production\\",
+    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\"\\",
+    \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
+    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\"\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\"\\",
+    \\"test:ember\\": \\"ember test\\",
+    \\"lint:types\\": \\"glint\\"
+  },
+  \\"devDependencies\\": [
+    \\"@babel/core\\",
+    \\"@babel/eslint-parser\\",
+    \\"@babel/plugin-proposal-decorators\\",
+    \\"@ember/optional-features\\",
+    \\"@ember/string\\",
+    \\"@ember/test-helpers\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
+    \\"@glint/core\\",
+    \\"@glint/environment-ember-loose\\",
+    \\"@glint/environment-ember-template-imports\\",
+    \\"@glint/template\\",
+    \\"@tsconfig/ember\\",
+    \\"@types/ember\\",
+    \\"@types/ember-data\\",
+    \\"@types/ember-data__adapter\\",
+    \\"@types/ember-data__model\\",
+    \\"@types/ember-data__serializer\\",
+    \\"@types/ember-data__store\\",
+    \\"@types/ember__application\\",
+    \\"@types/ember__array\\",
+    \\"@types/ember__component\\",
+    \\"@types/ember__controller\\",
+    \\"@types/ember__debug\\",
+    \\"@types/ember__destroyable\\",
+    \\"@types/ember__engine\\",
+    \\"@types/ember__error\\",
+    \\"@types/ember__helper\\",
+    \\"@types/ember__modifier\\",
+    \\"@types/ember__object\\",
+    \\"@types/ember__owner\\",
+    \\"@types/ember__polyfills\\",
+    \\"@types/ember__routing\\",
+    \\"@types/ember__runloop\\",
+    \\"@types/ember__service\\",
+    \\"@types/ember__string\\",
+    \\"@types/ember__template\\",
+    \\"@types/ember__test\\",
+    \\"@types/ember__utils\\",
+    \\"@types/qunit\\",
+    \\"@types/rsvp\\",
+    \\"@typescript-eslint/eslint-plugin\\",
+    \\"@typescript-eslint/parser\\",
+    \\"broccoli-asset-rev\\",
+    \\"concurrently\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-clean-css\\",
+    \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
+    \\"ember-data\\",
+    \\"ember-fetch\\",
+    \\"ember-load-initializers\\",
+    \\"ember-modifier\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
+    \\"eslint\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
+    \\"eslint-plugin-n\\",
+    \\"eslint-plugin-prettier\\",
+    \\"eslint-plugin-qunit\\",
+    \\"loader.js\\",
+    \\"prettier\\",
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"stylelint\\",
+    \\"stylelint-config-standard\\",
+    \\"stylelint-prettier\\",
+    \\"tracked-built-ins\\",
+    \\"typescript\\",
+    \\"webpack\\"
+  ],
+  \\"engines\\": [
+    \\"node\\"
+  ],
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  },
+  \\"pnpm\\": {
+    \\"overrides\\": {
+      \\"@glimmer/manager\\": \\">= 0.84.3\\",
+      \\"@glimmer/validator\\": \\">= 0.84.3\\"
+    }
+  }
+}
+"
+`;

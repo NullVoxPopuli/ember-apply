@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import { packageJson } from 'ember-apply';
 import { apply, diff, diffSummary, newEmberApp } from 'ember-apply/test-utils';
-import { execa } from 'execa';
+import { execaCommand } from 'execa';
 import { describe, expect, it } from 'vitest';
 
 import { default as typescript } from '../index.js';
@@ -13,37 +13,62 @@ describe('typescript', () => {
     expect(typeof typescript).toEqual('function');
   });
 
+  let appLocation: string;
+  const app = {
+    manifest: () => packageJson.read(appLocation),
+    devDeps: async () => (await app.manifest()).devDependencies,
+    scripts: async () => (await app.manifest()).scripts,
+    run: (command: string) => execaCommand(command, { cwd: appLocation }),
+    install: () => app.run('pnpm install --no-frozen-lockfile'),
+    removeDevDep: (deps: string[]) => packageJson.removeDevDependencies(deps, appLocation),
+    diff: () => diff(appLocation, { ignoreVersions: true }),
+  };
+
   describe('applying to an ember app', () => {
     it('works via CLI', async () => {
-      let appLocation = await newEmberApp();
+      appLocation = await newEmberApp();
 
-      let getManifest = () => packageJson.read(appLocation);
 
       // Don't currently support ember-data
-      await packageJson.removeDevDependencies(['ember-data', 'ember-welcome-page'], appLocation);
-      expect((await getManifest()).devDependencies).to.not.toHaveProperty('ember-data');
-      expect((await getManifest()).devDependencies).to.not.toHaveProperty('ember-welcome-page');
-      await execa('pnpm', ['install', '--no-frozen-lockfile'], { cwd: appLocation });
+      await app.removeDevDep(['ember-data', 'ember-welcome-page']);
+      expect(await app.devDeps()).not.toHaveProperty('ember-data');
+      expect(await app.devDeps()).not.toHaveProperty('ember-welcome-page');
+      await app.install();
 
       // ember-page-title doesn't have types yet
       //   https://github.com/ember-cli/ember-page-title/pull/275
       await fs.writeFile(path.join(appLocation, 'app/templates/application.hbs'), `hello`);
 
       await apply(appLocation, typescript.path);
-      expect((await getManifest()).scripts).to.toHaveProperty('lint:types');
+
+      expect(await app.scripts()).toHaveProperty('lint:types');
+      expect(await app.devDeps()).not.toHaveProperty('@types/ember');
+      expect(await app.devDeps()).not.toHaveProperty('@types/ember-data');
+      expect((await app.install()).exitCode, 'pnpm install').toBe(0);
+      expect((await app.run('pnpm lint:types')).exitCode, 'lint:types').toBe(0);
 
       expect(await diffSummary(appLocation)).toMatchSnapshot();
-      expect(
-        await diff(appLocation, { ignoreVersions: true })
-      ).toMatchSnapshot();
+      expect(await app.diff()).toMatchSnapshot();
+    });
 
-      let install = await execa('pnpm', ['install', '--no-frozen-lockfile'], { cwd: appLocation });
+    it('works with the default app blueprint', async () => {
+      appLocation = await newEmberApp();
+      await app.install();
 
-      expect(install.exitCode, 'pnpm install').toBe(0);
+      // ember-page-title doesn't have types yet
+      //   https://github.com/ember-cli/ember-page-title/pull/275
+      await fs.writeFile(path.join(appLocation, 'app/templates/application.hbs'), `hello`);
 
-      let lintTypes = await execa('pnpm', ['lint:types'], { cwd: appLocation });
+      await apply(appLocation, typescript.path);
 
-      expect(lintTypes.exitCode, 'lint:types').toBe(0);
+      expect(await app.scripts()).toHaveProperty('lint:types');
+      expect(await app.devDeps()).toHaveProperty('@types/ember');
+      expect(await app.devDeps()).toHaveProperty('@types/ember-data');
+      expect((await app.install()).exitCode, 'pnpm install').toBe(0);
+      expect((await app.run('pnpm lint:types')).exitCode, 'lint:types').toBe(0);
+
+      expect(await diffSummary(appLocation)).toMatchSnapshot();
+      expect(await app.diff()).toMatchSnapshot();
     });
   });
 });
