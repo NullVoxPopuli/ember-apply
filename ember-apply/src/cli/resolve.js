@@ -142,7 +142,7 @@ async function downloadFromNpm(options) {
     return;
   }
 
-  spinner.text = `Skypack unavailable, downloading from npm`;
+  spinner.text = `Downloading from npm...`;
   spinner.info();
 
   let packageName =
