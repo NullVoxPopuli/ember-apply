@@ -1,5 +1,12 @@
 # @ember-apply/volta
 
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies [0123d40]
+  - ember-apply@2.11.1
+
 ## 2.0.4
 
 ### Patch Changes

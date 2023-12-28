@@ -1,7 +1,7 @@
 {
   "name": "@ember-apply/unstable-embroider",
   "description": "ember-apply plugin for setting your embroider deps to the latest unstable version",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "license": "MIT",
   "preset": "index.js",
