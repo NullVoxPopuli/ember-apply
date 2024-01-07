@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
-    "turbo": "1.11.2"
+    "turbo": "1.11.3"
   },
   "volta": {
     "node": "18.19.0",
