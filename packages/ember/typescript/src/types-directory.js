@@ -56,6 +56,8 @@ export async function createAppTypesDirectory() {
 }
 
 export async function createAddonTypesDirectory() {
+  await fse.ensureDir('types');
+
   if (await canUseBuiltInTypes()) {
     await fse.writeFile(
       'types/global.d.ts',
@@ -66,6 +68,7 @@ export async function createAddonTypesDirectory() {
     );
   }
 
+  await fse.ensureDir('unpublished-development-types');
   await fse.writeFile(
     `unpublished-development-types/glint.d.ts`,
     stripIndent`

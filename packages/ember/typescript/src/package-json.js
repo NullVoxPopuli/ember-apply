@@ -7,7 +7,7 @@ export async function adjustAppScripts() {
 import { canUseBuiltInTypes, isEmberDataPresent } from './queries.js';
 
 export async function adjustAddonScripts() {
-  throw new Error(`Addons are not yet supported. PR's welcome!`);
+  await adjustAppScripts();
 }
 
 const standardDeps = [
