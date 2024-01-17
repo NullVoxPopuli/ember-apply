@@ -1,24 +1,29 @@
 {
   "name": "ember-apply-monorepo",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:NullVoxPopuli/ember-apply.git"
+  },
   "license": "MIT",
   "author": "NullVoxPopuli",
   "scripts": {
-    "release": "changeset publish",
     "build": "pnpm --filter ember-apply build",
     "build:docs": "pnpm --filter docs docs:collect",
-    "start:docs": "pnpm build:docs --watch",
-    "test": "turbo run test",
+    "lint": "turbo run lint",
     "lint:fix": "pnpm --filter '*' lint:fix",
-    "lint": "turbo run lint"
+    "release": "changeset publish",
+    "start:docs": "pnpm build:docs --watch",
+    "test": "turbo run test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
+    "release-plan": "^0.6.0",
     "turbo": "1.11.3"
   },
+  "packageManager": "pnpm@8",
   "volta": {
     "node": "18.19.0",
     "pnpm": "8.12.1"
-  },
-  "packageManager": "pnpm@8"
+  }
 }
