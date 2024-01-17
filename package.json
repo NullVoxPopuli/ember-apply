@@ -12,12 +12,10 @@
     "build:docs": "pnpm --filter docs docs:collect",
     "lint": "turbo run lint",
     "lint:fix": "pnpm --filter '*' lint:fix",
-    "release": "changeset publish",
     "start:docs": "pnpm build:docs --watch",
     "test": "turbo run test"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
     "release-plan": "^0.6.0",
     "turbo": "1.11.3"
   },
