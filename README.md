@@ -82,7 +82,7 @@ Known working capabilities:
 ### `tailwind-webpack`
 
 ```shell
-npm ember-apply tailwind-webpack
+npx ember-apply tailwind-webpack
 ```
 
 _Automates the official [Tailwind + Ember.js guide](https://tailwindcss.com/docs/guides/emberjs)_
