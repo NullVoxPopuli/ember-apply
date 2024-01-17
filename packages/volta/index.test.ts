@@ -61,12 +61,15 @@ describe('volta', () => {
 
       await apply(root, volta.path);
 
-      expect((await readAllPackageJson(root)).map(m => m.volta).filter(Boolean)).to.deep.equal([
-        { node: '20.10.0' },
+      let [rootManifest, ...others] = (await readAllPackageJson(root)).map(m => m.volta).filter(Boolean);
+
+      expect(others).to.deep.equal([
         { 'extends': '../package.json' },
         { 'extends': '../package.json' },
         { 'extends': '../../package.json' },
       ]);
+      // this can change frequently
+      expect(rootManifest.node).toBeTypeOf('string');
     });
   });
 });
