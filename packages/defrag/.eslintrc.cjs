@@ -6,5 +6,13 @@ const config = configs.node();
 
 module.exports = {
   ...config,
-  overrides: [...config.overrides],
+  overrides: [
+    ...config.overrides,
+    {
+      files: ["**/*.test.*"],
+      rules: {
+        "n/no-unpublished-import": "off",
+      },
+    },
+  ],
 };

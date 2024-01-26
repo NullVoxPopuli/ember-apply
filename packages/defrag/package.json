@@ -28,6 +28,7 @@
   },
   "files": [
     "index.js",
+    "src/**",
     "bin.js"
   ],
   "scripts": {
@@ -40,15 +41,16 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
+    "@manypkg/get-packages": "^2.2.0",
     "cosmiconfig": "^9.0.0",
     "debug": "^4.3.4",
     "ember-apply": "workspace:^",
     "latest-version": "^7.0.0",
+    "minimatch": "^9.0.3",
     "semver": "^7.5.4"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
-    "@manypkg/get-packages": "^2.2.0",
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
