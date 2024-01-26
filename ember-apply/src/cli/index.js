@@ -76,7 +76,11 @@ async function run(options) {
   await showInfo(options.name);
   await applyable();
 
-  spinner.succeed(`Applied feature: ${options.name}`);
+  if (applyable.tool) {
+    spinner.succeed(`Applied feature: ${options.name}`);
+  } else {
+    spinner.succeed(`${options.name} finished!`);
+  }
 }
 
 /**
