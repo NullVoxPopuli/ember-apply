@@ -73,17 +73,38 @@ describe('toWrittenVersion', () => {
 });
 
 describe('getVersionForConfig', () => {
+  let defaultConfig = c();
 
-  it('pinned', () => {
-    let config = c();
-
-    function verify(name: string, current: string, available: string[]) {
+  function withConfig(config = defaultConfig) {
+    return function verify(name: string, current: string, available: string[]) {
       setDetectedDeps(name, available);
 
       return getVersionForConfig(name, current, config);
     }
+  }
+
+  it('pinned', () => {
+    const verify = withConfig();
 
     expect(verify('eslint', '^8.0.0', ['^8.0.0', '^7.0.0', '^8.9.0'])).toBe('8.9.0');
+  });
+
+  it('patches', () => {
+    const verify = withConfig(c({ 'write-as': 'patches' }));
+
+    expect(verify('eslint', '^8.0.0', ['^8.0.0', '^7.0.0', '^8.9.0'])).toBe('~8.9.0');
+  });
+
+  it('minors', () => {
+    const verify = withConfig(c({ 'write-as': 'minors' }));
+
+    expect(verify('eslint', '^8.0.0', ['^8.0.0', '^7.0.0', '^8.9.0'])).toBe('^8.9.0');
+  });
+
+  it('pre-release', () => {
+    const verify = withConfig();
+
+    expect(verify('ember-data', '^5.4.0-beta.1', ['^4.12.5', '^5.4.0-beta.1', '^5.3.0'])).toBe('5.4.0-beta.1');
   });
 });
 

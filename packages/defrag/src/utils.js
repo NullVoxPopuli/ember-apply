@@ -55,15 +55,9 @@ export function getVersionForConfig(dep, currentVersion, config) {
     return currentVersion;
   }
 
-  let plainCurrentVersion = semver.coerce(currentVersion);
+  let plainCurrentVersion = clean(currentVersion);
 
   if (!plainCurrentVersion) {
-    return toWrittenVersion(currentVersion, config);
-  }
-
-  let cleaned = semver.clean(currentVersion);
-
-  if (cleaned && semver.neq(cleaned, plainCurrentVersion)) {
     return toWrittenVersion(currentVersion, config);
   }
 
@@ -90,6 +84,23 @@ function isNonVersion(version) {
 }
 
 /**
+ * 
+ * @param {string} version 
+ */
+function clean(version) {
+  let coerced = semver.coerce(version);
+
+  if (!coerced) {
+    return version;
+  }
+
+  let [, tail] = version.split(`${coerced}`);
+  let rebuilt = `${coerced}${tail}`;
+
+  return rebuilt;
+}
+
+/**
  *
  * @param {string} version
  * @param {import('./types').Config} config
@@ -100,22 +111,15 @@ export function toWrittenVersion(version, config) {
   }
 
   let writeAS = config['write-as'];
-  let coerced = semver.coerce(version);
-
-  if (!coerced) {
-    return version;
-  }
-
-  let [, tail] = version.split(`${coerced}`);
-  let rebuilt = `${coerced}${tail}`;
+  let cleaned = clean(version);
 
   switch (writeAS) {
     case 'pinned':
-      return `${rebuilt}`;
+      return `${cleaned}`;
     case 'patches':
-      return `~${rebuilt}`;
+      return `~${cleaned}`;
     case 'minors':
-      return `^${rebuilt}`;
+      return `^${cleaned}`;
     default:
       throw new Error(
         `Unknown 'write-as' config: ${writeAS}. Allowed: 'pinned', 'patches', and 'minors'`,
@@ -131,11 +135,11 @@ export function toWrittenVersion(version, config) {
  */
 export function getNearest(current, { versions, strategy }) {
   assert(
-    semver.clean(current) === current,
+    clean(current) === current,
     `current version passed to getNearest must be cleaned (semver.clean)`,
   );
 
-  let versionList = [...versions].map((version) => `${semver.coerce(version)}`);
+  let versionList = [...versions].map((version) => `${clean(version)}`);
   let currentRange = `${strategy}${current}`;
   let result = semver.maxSatisfying(versionList, currentRange);
 
