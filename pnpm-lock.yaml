@@ -181,6 +181,9 @@ importers:
       '@nullvoxpopuli/eslint-configs':
         specifier: ^3.2.2
         version: 3.2.2(@babel/core@7.23.6)(@babel/eslint-parser@7.23.3)(@typescript-eslint/eslint-plugin@6.15.0)(@typescript-eslint/parser@6.15.0)(eslint@8.56.0)(prettier@3.1.1)(typescript@5.3.3)
+      '@types/semver':
+        specifier: ^7.5.5
+        version: 7.5.6
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.11.0
         version: 6.15.0(@typescript-eslint/parser@6.15.0)(eslint@8.56.0)(typescript@5.3.3)

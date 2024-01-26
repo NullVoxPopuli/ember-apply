@@ -1,3 +1,5 @@
+import assert from 'node:assert';
+
 import { minimatch } from 'minimatch';
 import semver from 'semver';
 
@@ -7,7 +9,7 @@ const DEFAULT_BUMP = '^';
 const DEPS = new Map();
 
 /**
- * @private
+ * @private for testing only
  *
  * @param {string} name
  * @param {string[]} list
@@ -78,6 +80,8 @@ export function getVersionForConfig(dep, currentVersion, config) {
  */
 function isNonVersion(version) {
   return (
+    version === '*' ||
+    version.startsWith('$') ||
     version.startsWith('workspace:') ||
     version.startsWith('github:') ||
     version.includes('/') ||
@@ -98,13 +102,20 @@ export function toWrittenVersion(version, config) {
   let writeAS = config['write-as'];
   let coerced = semver.coerce(version);
 
+  if (!coerced) {
+    return version;
+  }
+
+  let [, tail] = version.split(`${coerced}`);
+  let rebuilt = `${coerced}${tail}`;
+
   switch (writeAS) {
     case 'pinned':
-      return `${coerced}`;
+      return `${rebuilt}`;
     case 'patches':
-      return `~${coerced}`;
+      return `~${rebuilt}`;
     case 'minors':
-      return `^${coerced}`;
+      return `^${rebuilt}`;
     default:
       throw new Error(
         `Unknown 'write-as' config: ${writeAS}. Allowed: 'pinned', 'patches', and 'minors'`,
@@ -114,11 +125,17 @@ export function toWrittenVersion(version, config) {
 
 /**
  *
- * @param {string} current
+ * @param {string} current an already cleaned current version
  * @param {{ versions: Set<string>, strategy: '~' | `^` }} options
+ * @returns {string} a cleaned version of the highest satisfying range
  */
 export function getNearest(current, { versions, strategy }) {
-  let versionList = [...versions];
+  assert(
+    semver.clean(current) === current,
+    `current version passed to getNearest must be cleaned (semver.clean)`,
+  );
+
+  let versionList = [...versions].map((version) => `${semver.coerce(version)}`);
   let currentRange = `${strategy}${current}`;
   let result = semver.maxSatisfying(versionList, currentRange);
 
@@ -181,4 +198,3 @@ export function injestDeps(manifest) {
     maybeAdd(dep, version);
   }
 }
-
