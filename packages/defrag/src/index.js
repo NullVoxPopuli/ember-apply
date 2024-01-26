@@ -9,7 +9,6 @@ import { packageJson, project } from 'ember-apply';
 
 import { injestDeps, updateManifestFor } from './utils.js';
 
-
 const d = debug('defrag');
 const configExplorer = cosmiconfig('defrag');
 
@@ -24,7 +23,7 @@ export default async function run() {
   const projectResult = await getPackages(root);
 
   /**
-   * @type {import('./types').Config
+   * @type {import('./types').Config}
    */
   const config = {
     'write-as': 'semver',
@@ -44,20 +43,19 @@ export default async function run() {
 
   let paths = [
     projectResult.rootPackage?.dir,
-    ...projectResult.packages.map(p => p.dir),
+    ...projectResult.packages.map((p) => p.dir),
   ].filter(Boolean);
 
   d(`Found ${paths.length} paths`);
 
   for (let projectPath of paths) {
-    await packageJson.modify(manifest => {
+    await packageJson.modify((manifest) => {
       updateManifestFor(manifest.devDependencies, config);
       updateManifestFor(manifest.dependencies, config);
       updateManifestFor(manifest.pnpm?.overrides, config);
     }, projectPath);
   }
 }
-
 
 // @ts-ignore
 const __dirname = dirname(fileURLToPath(import.meta.url));
