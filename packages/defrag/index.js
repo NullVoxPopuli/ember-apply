@@ -4,7 +4,10 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getPackages } from '@manypkg/get-packages';
 import { cosmiconfig } from 'cosmiconfig';
+import semver from 'semver';
+import debug from 'debug';
 
+const d = debug('defrag');
 const configExplorer = cosmiconfig('defrag');
 
 /** @type {Map<string, Set<string>>} */
@@ -19,15 +22,24 @@ export default async function run() {
   const configResult = await configExplorer.search();
   const projectResult = await getPackages(root);
 
-  console.log(configResult);
+  /**
+   * @type {import('./types').Config
+   */
+  const config = {
+    'write-as': 'semver',
+    ...(configResult?.config || {}),
+  };
 
-  if (projectResult.rootPackage) {
-    injestDeps(projectResult.rootPackage?.packageJson);
-  }
+  d(`Resolved config:`);
+  d(config);
 
-  for (let pkg of projectResult.packages) {
-    injestDeps(pkg.packageJson);
-  }
+  let manifests = [
+    projectResult.rootPackage?.packageJson,
+    ...projectResult.packages.map((p) => p.packageJson),
+  ].filter(Boolean);
+
+  d(`Found ${manifests.length} packages`);
+  manifests.forEach((p) => p && injestDeps(p));
 
   console.log(DEPS);
 }
@@ -36,7 +48,20 @@ export default async function run() {
  * @param {import('./types').Manifest} manifest
  */
 function injestDeps(manifest) {
-  for (let [dep, version] of Object.entries(manifest.dependencies || {})) {
+  /**
+   * @param {string} dep
+   * @param {string} version
+   */
+  function maybeAdd(dep, version) {
+    // We can't do anything about "invalid versions", so we'll ignore them.
+    // These include:
+    // - file/github/git/etc protocol
+    // - workspaces
+    // - https URLs
+    if (!semver.valid(version)) {
+      return;
+    }
+
     let versions = DEPS.get(dep);
     if (!versions) {
       versions = new Set();
@@ -46,14 +71,12 @@ function injestDeps(manifest) {
     versions.add(version);
   }
 
-  for (let [dep, version] of Object.entries(manifest.devDependencies || {})) {
-    let versions = DEPS.get(dep);
-    if (!versions) {
-      versions = new Set();
-      DEPS.set(dep, versions);
-    }
+  for (let [dep, version] of Object.entries(manifest.dependencies || {})) {
+    maybeAdd(dep, version);
+  }
 
-    versions.add(version);
+  for (let [dep, version] of Object.entries(manifest.devDependencies || {})) {
+    maybeAdd(dep, version);
   }
 }
 

@@ -156,12 +156,18 @@ importers:
       cosmiconfig:
         specifier: ^9.0.0
         version: 9.0.0(typescript@5.3.3)
+      debug:
+        specifier: ^4.3.4
+        version: 4.3.4
       ember-apply:
         specifier: workspace:^
         version: link:../../ember-apply
       latest-version:
         specifier: ^7.0.0
         version: 7.0.0
+      semver:
+        specifier: ^7.5.4
+        version: 7.5.4
     devDependencies:
       '@babel/eslint-parser':
         specifier: ^7.23.3
