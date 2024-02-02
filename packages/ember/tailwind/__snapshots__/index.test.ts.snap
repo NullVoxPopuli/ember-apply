@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`tailwind > applying to an ember app > works via CLI 1`] = `
-" .gitignore       | 3 +++
- app/index.html   | 1 +
- package.json     | 7 +++++--
- tests/index.html | 1 +
- 4 files changed, 10 insertions(+), 2 deletions(-)"
+" .gitignore       |  3 +++
+ app/index.html   |  1 +
+ package.json     | 10 +++++++---
+ tests/index.html |  1 +
+ 4 files changed, 12 insertions(+), 3 deletions(-)"
 `;
 
 exports[`tailwind > applying to an ember app > works via CLI 2`] = `
@@ -57,11 +57,12 @@ package.json
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
     \\"lint:js:fix\\": \\"eslint . --fix\\",
-    \\"start\\": \\"ember serve\\",
+    \\"start\\": \\"concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'\\",
     \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\"\\",
     \\"test:ember\\": \\"ember test\\",
     \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
-    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\"
+    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\",
+    \\"start:ember\\": \\"ember serve\\"
   },
   \\"devDependencies\\": [
     \\"@babel/core\\",

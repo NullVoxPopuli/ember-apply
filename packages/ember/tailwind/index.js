@@ -34,6 +34,8 @@ export default async function run() {
       ' -o ./public/assets/tailwind.css' +
       ' --watch',
     build: 'npm run tailwind:build && ember build --environment=production',
+    start: `concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'`,
+    'start:ember': 'ember serve',
   });
 
   await project.gitIgnore('public/assets/tailwind.css', '# compiled output');
