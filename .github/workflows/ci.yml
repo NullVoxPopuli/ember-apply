@@ -81,7 +81,7 @@ jobs:
       - uses: wyvox/action@v1
       - run: ./build-docs.sh 
       # Used for faster deploy so we don't need to checkout the repo
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: deploy-prep-dist
           if-no-files-found: error
