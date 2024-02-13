@@ -52,6 +52,8 @@ async function useUnstableEmbroider() {
   // Handle transient dependencies
   await packageJson.modify((json) => {
     for (let [name, version] of withVersions) {
+      json.pnpm ||= {};
+      json.pnpm.overrides ||= {};
       json.pnpm.overrides[name] = version;
     }
   });
