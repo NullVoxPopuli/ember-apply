@@ -1,31 +1,13 @@
 {
   "solution": {
     "ember-apply": {
-      "impact": "minor",
-      "oldVersion": "2.11.1",
-      "newVersion": "2.12.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        }
-      ],
-      "pkgJSONPath": "./ember-apply/package.json"
+      "oldVersion": "2.12.0"
     },
     "@ember-apply/embroider": {
       "oldVersion": "1.0.38"
     },
     "@ember-apply/tailwind": {
-      "impact": "minor",
-      "oldVersion": "2.0.39",
-      "newVersion": "2.1.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/tailwind/package.json"
+      "oldVersion": "2.1.0"
     },
     "@ember-apply/tailwind-webpack": {
       "oldVersion": "1.0.4"
@@ -34,20 +16,20 @@
       "oldVersion": "1.2.1"
     },
     "@ember-apply/unstable-embroider": {
-      "oldVersion": "1.0.3"
-    },
-    "@ember-apply/volta": {
       "impact": "patch",
-      "oldVersion": "2.0.5",
-      "newVersion": "2.0.6",
+      "oldVersion": "1.0.3",
+      "newVersion": "1.0.4",
       "constraints": [
         {
           "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
-      "pkgJSONPath": "./packages/volta/package.json"
+      "pkgJSONPath": "./packages/ember/unstable-embroider/package.json"
+    },
+    "@ember-apply/volta": {
+      "oldVersion": "2.0.6"
     }
   },
-  "description": "## Release (2024-02-02)\n\nember-apply 2.12.0 (minor)\n@ember-apply/tailwind 2.1.0 (minor)\n@ember-apply/volta 2.0.6 (patch)\n\n#### :rocket: Enhancement\n* `ember-apply`, `@ember-apply/tailwind`\n  * [#535](https://github.com/NullVoxPopuli/ember-apply/pull/535) Use one command to start ember and tailwind ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :bug: Bug Fix\n* [#531](https://github.com/NullVoxPopuli/ember-apply/pull/531) docs: Typo in README.md ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :house: Internal\n* `@ember-apply/volta`\n  * [#532](https://github.com/NullVoxPopuli/ember-apply/pull/532) Setup release plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 2\n- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2024-02-13)\n\n@ember-apply/unstable-embroider 1.0.4 (patch)\n\n#### :bug: Bug Fix\n* `@ember-apply/unstable-embroider`\n  * [#541](https://github.com/NullVoxPopuli/ember-apply/pull/541) Fix unstable embroider applyable that sets the pnpm.overrides ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }

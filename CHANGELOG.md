@@ -1,4 +1,14 @@
 # Changelog
+## Release (2024-02-13)
+
+@ember-apply/unstable-embroider 1.0.4 (patch)
+
+#### :bug: Bug Fix
+* `@ember-apply/unstable-embroider`
+  * [#541](https://github.com/NullVoxPopuli/ember-apply/pull/541) Fix unstable embroider applyable that sets the pnpm.overrides ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
 ## Release (2024-02-02)
 
 ember-apply 2.12.0 (minor)
