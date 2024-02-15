@@ -1,4 +1,14 @@
 # Changelog
+## Release (2024-02-15)
+
+@ember-apply/embroider 1.0.39 (patch)
+
+#### :bug: Bug Fix
+* `@ember-apply/embroider`
+  * [#542](https://github.com/NullVoxPopuli/ember-apply/pull/542) update starting versions of embroider dependencies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
 ## Release (2024-02-13)
 
 @ember-apply/unstable-embroider 1.0.4 (patch)

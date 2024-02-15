@@ -4,7 +4,16 @@
       "oldVersion": "2.12.0"
     },
     "@ember-apply/embroider": {
-      "oldVersion": "1.0.38"
+      "impact": "patch",
+      "oldVersion": "1.0.38",
+      "newVersion": "1.0.39",
+      "constraints": [
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
+        }
+      ],
+      "pkgJSONPath": "./packages/ember/embroider/package.json"
     },
     "@ember-apply/tailwind": {
       "oldVersion": "2.1.0"
@@ -16,20 +25,11 @@
       "oldVersion": "1.2.1"
     },
     "@ember-apply/unstable-embroider": {
-      "impact": "patch",
-      "oldVersion": "1.0.3",
-      "newVersion": "1.0.4",
-      "constraints": [
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/unstable-embroider/package.json"
+      "oldVersion": "1.0.4"
     },
     "@ember-apply/volta": {
       "oldVersion": "2.0.6"
     }
   },
-  "description": "## Release (2024-02-13)\n\n@ember-apply/unstable-embroider 1.0.4 (patch)\n\n#### :bug: Bug Fix\n* `@ember-apply/unstable-embroider`\n  * [#541](https://github.com/NullVoxPopuli/ember-apply/pull/541) Fix unstable embroider applyable that sets the pnpm.overrides ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2024-02-15)\n\n@ember-apply/embroider 1.0.39 (patch)\n\n#### :bug: Bug Fix\n* `@ember-apply/embroider`\n  * [#542](https://github.com/NullVoxPopuli/ember-apply/pull/542) update starting versions of embroider dependencies ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
