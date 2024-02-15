@@ -17,10 +17,10 @@ packagerOptions: {
 
 export default async function run() {
   await packageJson.addDevDependencies({
-    '@embroider/core': '^1.0.0',
-    '@embroider/compat': '^1.0.0',
-    '@embroider/webpack': '^1.0.0',
-    webpack: '^5.67.0',
+    '@embroider/core': '^3.4.4',
+    '@embroider/compat': '^3.4.4',
+    '@embroider/webpack': '^3.2.2',
+    webpack: '^5.90.2',
   });
 
   // https://astexplorer.net/#/gist/2dc571cc44c3028eebda3a3956e9e68b/cc4664bee2d84a482cb55be54259d31ece6c9f7d
