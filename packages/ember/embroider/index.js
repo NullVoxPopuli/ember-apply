@@ -17,9 +17,9 @@ packagerOptions: {
 
 export default async function run() {
   await packageJson.addDevDependencies({
-    '@embroider/core': '^1.0.0',
-    '@embroider/compat': '^1.0.0',
-    '@embroider/webpack': '^1.0.0',
+    '@embroider/core': '^3.0.0',
+    '@embroider/compat': '^3.0.0',
+    '@embroider/webpack': '^3.0.0',
     webpack: '^5.67.0',
   });
 
