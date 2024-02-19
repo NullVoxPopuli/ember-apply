@@ -11,6 +11,8 @@ export default async function run() {
 const EMBROIDER_PACKAGES = [
   '@embroider/addon-dev',
   '@embroider/addon-shim',
+  '@embroider/babel-loader-9',
+  '@embroider/broccoli-side-watch',
   '@embroider/core',
   '@embroider/compat',
   '@embroider/macros',
