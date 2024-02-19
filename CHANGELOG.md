@@ -1,4 +1,14 @@
 # Changelog
+## Release (2024-02-19)
+
+@ember-apply/unstable-embroider 1.1.0 (minor)
+
+#### :rocket: Enhancement
+* `@ember-apply/unstable-embroider`
+  * [#547](https://github.com/NullVoxPopuli/ember-apply/pull/547) Add broccoli-side-watch and babel-loader-9 to the "try unstable embro… ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
 ## Release (2024-02-15)
 
 @ember-apply/embroider 1.0.39 (patch)
