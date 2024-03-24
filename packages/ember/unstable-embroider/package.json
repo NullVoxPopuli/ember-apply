@@ -39,11 +39,11 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
     "@nullvoxpopuli/eslint-configs": "^3.2.2",
-    "@typescript-eslint/eslint-plugin": "^6.11.0",
-    "@typescript-eslint/parser": "^6.11.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
     "@vitest/coverage-c8": "^0.33.0",
-    "@vitest/coverage-v8": "^0.34.6",
-    "c8": "^8.0.1",
+    "@vitest/coverage-v8": "^1.0.0",
+    "c8": "^9.0.0",
     "eslint": "^8.54.0",
     "eslint-plugin-decorator-position": "^5.0.2",
     "eslint-plugin-import": "^2.29.0",
@@ -52,7 +52,7 @@
     "prettier": "^3.1.0",
     "typescript": "5.3.3",
     "vite": "^5.0.0",
-    "vitest": "^0.34.6"
+    "vitest": "^1.0.0"
   },
   "engines": {
     "node": ">=16.0.0"
