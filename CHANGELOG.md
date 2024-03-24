@@ -1,4 +1,8 @@
 # Changelog
+
+
+
+
 ## Release (2024-02-19)
 
 @ember-apply/unstable-embroider 1.1.0 (minor)

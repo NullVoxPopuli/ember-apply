@@ -16,20 +16,11 @@
       "oldVersion": "1.2.1"
     },
     "@ember-apply/unstable-embroider": {
-      "impact": "minor",
-      "oldVersion": "1.0.4",
-      "newVersion": "1.1.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/unstable-embroider/package.json"
+      "oldVersion": "1.1.0"
     },
     "@ember-apply/volta": {
       "oldVersion": "2.0.6"
     }
   },
-  "description": "## Release (2024-02-19)\n\n@ember-apply/unstable-embroider 1.1.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember-apply/unstable-embroider`\n  * [#547](https://github.com/NullVoxPopuli/ember-apply/pull/547) Add broccoli-side-watch and babel-loader-9 to the \"try unstable embro… ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "\n\n\n\n"
 }
