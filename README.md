@@ -128,6 +128,9 @@ npx ember-apply ../../path/to/some/script.js # ESM required
 npx ember-apply ../../path/to/some/script.mjs
 ```
 
+## External apply-ables
+
+- [apply-gts](https://github.com/tcarterjr/apply-gts) - Automates the steps for adding gjs/gts & Glint to an existing Ember app.
 
 ## Adding a new applyable to this repository
 
