@@ -39,7 +39,7 @@ where `<feature-name>` is one of the options under [#Features](#features)
 * Node 16 +
 * ESM
 
-## Features
+## Internal applyables
 
 ### `typescript`
 
@@ -110,7 +110,11 @@ npx ember-apply ssr
 Known working capabilities:
  - tbd
 
-### any package with as ESM with a default export
+## External applyables
+
+- [apply-gts](https://github.com/tcarterjr/apply-gts) - Automates the steps for adding gjs/gts & Glint to an existing Ember app.
+
+## Any package with as ESM with a default export
 
 when using a package name for the `<feature-name>`, an ESM version of the package
 will attempt to be loaded and used, invoking the default export.
@@ -127,10 +131,6 @@ npx ember-apply ../../path/to/some/script.js # ESM required
 # or
 npx ember-apply ../../path/to/some/script.mjs
 ```
-
-## External apply-ables
-
-- [apply-gts](https://github.com/tcarterjr/apply-gts) - Automates the steps for adding gjs/gts & Glint to an existing Ember app.
 
 ## Adding a new applyable to this repository
 
