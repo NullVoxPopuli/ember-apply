@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { npm, packageJson } from 'ember-apply';
 
 const standardDeps = [
@@ -11,4 +12,9 @@ export async function setupESLint() {
   await packageJson.addDevDependencies(depsWithVersions);
 
   // TODO: append an overrides entry
+  console.warn(
+    chalk.yellow(
+      `Updating the .eslintrc.js file to support TypeScript hasn't been automated yet.`,
+    ),
+  );
 }
