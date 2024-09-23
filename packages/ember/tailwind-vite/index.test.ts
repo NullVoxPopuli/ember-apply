@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import { default as tailwindVite } from "./index.js";
 
-describe("tailwind-webpack", () => {
+describe("tailwind-vite", () => {
   it("default export exists", () => {
     expect(typeof tailwindVite).toEqual("function");
   });
