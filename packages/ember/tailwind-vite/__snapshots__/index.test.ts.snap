@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`tailwind-webpack > applying to an ember app > works via CLI 1`] = `
+exports[`tailwind-vite > applying to an ember app > works via CLI 1`] = `
 " app/app.ts               | 2 ++
  app/styles/app.css       | 3 +++
  package.json             | 3 +++
@@ -9,7 +9,7 @@ exports[`tailwind-webpack > applying to an ember app > works via CLI 1`] = `
  5 files changed, 25 insertions(+)"
 `;
 
-exports[`tailwind-webpack > applying to an ember app > works via CLI 2`] = `
+exports[`tailwind-vite > applying to an ember app > works via CLI 2`] = `
 "diff --git a/app/app.ts b/app/app.ts
 index 1ba9342..daff0cc 100644
 --- a/app/app.ts
