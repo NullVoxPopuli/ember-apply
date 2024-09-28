@@ -1,5 +1,5 @@
 // @ts-check
-import { files, js, css, packageJson } from "ember-apply";
+import { css, js, packageJson } from "ember-apply";
 // eslint-disable-next-line n/no-unpublished-import
 import { execa } from "execa";
 // eslint-disable-next-line n/no-unpublished-import
