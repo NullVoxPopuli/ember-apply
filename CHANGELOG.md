@@ -1,4 +1,27 @@
 # Changelog
+
+## Release (2025-01-22)
+
+ember-apply 2.13.0 (minor)
+@ember-apply/embroider 1.1.0 (minor)
+@ember-apply/tailwind 2.2.0 (minor)
+@ember-apply/tailwind-webpack 1.1.0 (minor)
+@ember-apply/typescript 1.3.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-apply`, `docs`, `@ember-apply/embroider`, `@ember-apply/tailwind-webpack`, `@ember-apply/tailwind`, `@ember-apply/typescript`
+  * [#581](https://github.com/NullVoxPopuli/ember-apply/pull/581) Add tsconfig utilities ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :memo: Documentation
+* [#560](https://github.com/NullVoxPopuli/ember-apply/pull/560) docs: Applyable organisation ([@MichalBryxi](https://github.com/MichalBryxi))
+* [#556](https://github.com/NullVoxPopuli/ember-apply/pull/556) docs: Create new README section for external apply-ables ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### :house: Internal
+* [#584](https://github.com/NullVoxPopuli/ember-apply/pull/584) npx create-release-plan-setup@latest --update ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 2
+- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
 ## Release (2024-02-19)
 
 @ember-apply/unstable-embroider 1.1.0 (minor)
