@@ -34,11 +34,13 @@ RENAMED_FUNCTIONS_DIRECTORY="$DOCS_DIRECTORY/$RENAMED_FUNCTIONS"
 
 mv $FUNCTIONS_DIRECTORY $RENAMED_FUNCTIONS_DIRECTORY
 
-if [[ $(uname) == 'Linux' ]]; then
-  sed -i "s|$FUNCTIONS/|$RENAMED_FUNCTIONS/|g" $DOCS_DIRECTORY/**/*.html
-elif [[ $(uname) == 'Darwin' ]]; then
-  sed -i '' "s|$FUNCTIONS/|$RENAMED_FUNCTIONS/|g" $DOCS_DIRECTORY/**/*.html
-fi
+echo $PWD
+echo $DOCS_DIRECTORY
+find $DOCS_DIRECTORY \
+  -type f \
+  -name "*.html" \
+  -exec \
+    sed -i -e "s/${FUNCTIONS}/${RENAMED_FUNCTIONS}/g" "{}" +
 
 echo "Renamed $FUNCTIONS_DIRECTORY to $RENAMED_FUNCTIONS_DIRECTORY"
 
