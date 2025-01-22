@@ -25,5 +25,5 @@ cd packages/docs/
 #    - https://github.com/TypeStrong/typedoc/issues/2111
 #    - https://github.com/cloudflare/wrangler2/issues/2240
 mv dist/functions dist/funcs  
-sed -i'.bak' 's/href=\"functions/href=\"funcs/g' docs/*.html
+sed -i'.bak' 's/href=\"functions/href=\"funcs/g' dist/*.html
 
