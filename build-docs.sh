@@ -40,7 +40,7 @@ find $DOCS_DIRECTORY \
   -type f \
   -name "*.html" \
   -exec \
-    sed -i -e "s/${FUNCTIONS}/${RENAMED_FUNCTIONS}/g" "{}" +
+    sed -i -e "s/${FUNCTIONS}/${RENAMED_FUNCTIONS}/g" {} +
 
 echo "Renamed $FUNCTIONS_DIRECTORY to $RENAMED_FUNCTIONS_DIRECTORY"
 
