@@ -18,12 +18,29 @@ pnpm build
 pnpm build:docs
 
 cd packages/docs/
+
 # cloudflare broke all user's Sites that have a "functions" path.
 # ... thanks cloudflare. you're usually such a good company :p 
 #
 #  - https://github.com/NullVoxPopuli/ember-resources/issues/679
-#    - https://github.com/TypeStrong/typedoc/issues/2111
-#    - https://github.com/cloudflare/wrangler2/issues/2240
-mv dist/functions dist/funcs  
-sed -i'.bak' 's/href=\"functions/href=\"funcs/g' dist/*.html
+#  - https://github.com/TypeStrong/typedoc/issues/2111
+#  - https://github.com/cloudflare/wrangler2/issues/2240
+#  - https://community.cloudflare.com/t/functions-dir-is-ignored-in-deploy/438211
+DOCS_DIRECTORY='dist'
+FUNCTIONS='functions'
+RENAMED_FUNCTIONS='funcs'
+FUNCTIONS_DIRECTORY="$DOCS_DIRECTORY/$FUNCTIONS"
+RENAMED_FUNCTIONS_DIRECTORY="$DOCS_DIRECTORY/$RENAMED_FUNCTIONS"
+
+mv $FUNCTIONS_DIRECTORY $RENAMED_FUNCTIONS_DIRECTORY
+
+if [[ $(uname) == 'Linux' ]]; then
+  sed -i "s|$FUNCTIONS/|$RENAMED_FUNCTIONS/|g" $DOCS_DIRECTORY/**/*.html
+elif [[ $(uname) == 'Darwin' ]]; then
+  sed -i '' "s|$FUNCTIONS/|$RENAMED_FUNCTIONS/|g" $DOCS_DIRECTORY/**/*.html
+fi
+
+echo "Renamed $FUNCTIONS_DIRECTORY to $RENAMED_FUNCTIONS_DIRECTORY"
+
+
 
