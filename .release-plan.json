@@ -1,21 +1,42 @@
 {
   "solution": {
     "ember-apply": {
-      "oldVersion": "2.12.0"
+      "impact": "minor",
+      "oldVersion": "2.12.0",
+      "newVersion": "2.13.0",
+      "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        }
+      ],
+      "pkgJSONPath": "./ember-apply/package.json"
     },
     "@ember-apply/embroider": {
-      "oldVersion": "1.0.39"
+      "impact": "minor",
+      "oldVersion": "1.0.39",
+      "newVersion": "1.1.0",
+      "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        }
+      ],
+      "pkgJSONPath": "./packages/ember/embroider/package.json"
     },
     "@ember-apply/tailwind": {
-      "oldVersion": "2.1.0"
+      "impact": "minor",
+      "oldVersion": "2.1.0",
+      "newVersion": "2.2.0",
+      "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        }
+      ],
+      "pkgJSONPath": "./packages/ember/tailwind/package.json"
     },
     "@ember-apply/tailwind-webpack": {
-      "oldVersion": "1.0.4"
-    },
-    "@ember-apply/typescript": {
-      "oldVersion": "1.2.1"
-    },
-    "@ember-apply/unstable-embroider": {
       "impact": "minor",
       "oldVersion": "1.0.4",
       "newVersion": "1.1.0",
@@ -25,11 +46,26 @@
           "reason": "Appears in changelog section :rocket: Enhancement"
         }
       ],
-      "pkgJSONPath": "./packages/ember/unstable-embroider/package.json"
+      "pkgJSONPath": "./packages/ember/tailwind-webpack/package.json"
+    },
+    "@ember-apply/typescript": {
+      "impact": "minor",
+      "oldVersion": "1.2.1",
+      "newVersion": "1.3.0",
+      "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        }
+      ],
+      "pkgJSONPath": "./packages/ember/typescript/package.json"
+    },
+    "@ember-apply/unstable-embroider": {
+      "oldVersion": "1.1.0"
     },
     "@ember-apply/volta": {
       "oldVersion": "2.0.6"
     }
   },
-  "description": "## Release (2024-02-19)\n\n@ember-apply/unstable-embroider 1.1.0 (minor)\n\n#### :rocket: Enhancement\n* `@ember-apply/unstable-embroider`\n  * [#547](https://github.com/NullVoxPopuli/ember-apply/pull/547) Add broccoli-side-watch and babel-loader-9 to the \"try unstable embro… ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2025-01-22)\n\nember-apply 2.13.0 (minor)\n@ember-apply/embroider 1.1.0 (minor)\n@ember-apply/tailwind 2.2.0 (minor)\n@ember-apply/tailwind-webpack 1.1.0 (minor)\n@ember-apply/typescript 1.3.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-apply`, `docs`, `@ember-apply/embroider`, `@ember-apply/tailwind-webpack`, `@ember-apply/tailwind`, `@ember-apply/typescript`\n  * [#581](https://github.com/NullVoxPopuli/ember-apply/pull/581) Add tsconfig utilities ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :memo: Documentation\n* [#560](https://github.com/NullVoxPopuli/ember-apply/pull/560) docs: Applyable organisation ([@MichalBryxi](https://github.com/MichalBryxi))\n* [#556](https://github.com/NullVoxPopuli/ember-apply/pull/556) docs: Create new README section for external apply-ables ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :house: Internal\n* [#584](https://github.com/NullVoxPopuli/ember-apply/pull/584) npx create-release-plan-setup@latest --update ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 2\n- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
