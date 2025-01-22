@@ -9,17 +9,17 @@ exports[`typescript > applying to an ember app > works via CLI 1`] = `
 
 exports[`typescript > applying to an ember app > works via CLI 2`] = `
 "diff --git a/app/templates/application.hbs b/app/templates/application.hbs
-index 0eacef7..b6fc4c6 100644
+index d6565bb..b6fc4c6 100644
 --- a/app/templates/application.hbs
 +++ b/app/templates/application.hbs
 @@ -1,7 +1 @@
 -{{page-title \\"TestApp\\"}}
 -
+-{{outlet}}
+-
 -{{! The following component displays Ember's default welcome message. }}
 -<WelcomePage />
 -{{! Feel free to remove this! }}
--
--{{outlet}}
 \\\\ No newline at end of file
 +hello
 \\\\ No newline at end of file
@@ -54,16 +54,16 @@ package.json
   },
   \\"scripts\\": {
     \\"build\\": \\"ember build --environment=production\\",
-    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\"\\",
+    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
     \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
     \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\"\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
     \\"lint:js:fix\\": \\"eslint . --fix\\",
     \\"start\\": \\"ember serve\\",
-    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\"\\",
+    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
     \\"test:ember\\": \\"ember test\\",
     \\"lint:types\\": \\"glint\\"
   },
@@ -74,6 +74,7 @@ package.json
     \\"@ember/optional-features\\",
     \\"@ember/string\\",
     \\"@ember/test-helpers\\",
+    \\"@eslint/js\\",
     \\"@glimmer/component\\",
     \\"@glimmer/tracking\\",
     \\"@glint/core\\",
@@ -104,6 +105,7 @@ package.json
     \\"ember-qunit\\",
     \\"ember-resolver\\",
     \\"ember-source\\",
+    \\"ember-template-imports\\",
     \\"ember-template-lint\\",
     \\"eslint\\",
     \\"eslint-config-prettier\\",
@@ -111,8 +113,10 @@ package.json
     \\"eslint-plugin-n\\",
     \\"eslint-plugin-prettier\\",
     \\"eslint-plugin-qunit\\",
+    \\"globals\\",
     \\"loader.js\\",
     \\"prettier\\",
+    \\"prettier-plugin-ember-template-tag\\",
     \\"qunit\\",
     \\"qunit-dom\\",
     \\"stylelint\\",
@@ -147,17 +151,17 @@ exports[`typescript > applying to an ember app > works with the default app blue
 
 exports[`typescript > applying to an ember app > works with the default app blueprint 2`] = `
 "diff --git a/app/templates/application.hbs b/app/templates/application.hbs
-index 0eacef7..b6fc4c6 100644
+index d6565bb..b6fc4c6 100644
 --- a/app/templates/application.hbs
 +++ b/app/templates/application.hbs
 @@ -1,7 +1 @@
 -{{page-title \\"TestApp\\"}}
 -
+-{{outlet}}
+-
 -{{! The following component displays Ember's default welcome message. }}
 -<WelcomePage />
 -{{! Feel free to remove this! }}
--
--{{outlet}}
 \\\\ No newline at end of file
 +hello
 \\\\ No newline at end of file
@@ -192,16 +196,16 @@ package.json
   },
   \\"scripts\\": {
     \\"build\\": \\"ember build --environment=production\\",
-    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\"\\",
+    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
     \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
     \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\"\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
     \\"lint:js:fix\\": \\"eslint . --fix\\",
     \\"start\\": \\"ember serve\\",
-    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\"\\",
+    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
     \\"test:ember\\": \\"ember test\\",
     \\"lint:types\\": \\"glint\\"
   },
@@ -212,6 +216,7 @@ package.json
     \\"@ember/optional-features\\",
     \\"@ember/string\\",
     \\"@ember/test-helpers\\",
+    \\"@eslint/js\\",
     \\"@glimmer/component\\",
     \\"@glimmer/tracking\\",
     \\"@glint/core\\",
@@ -269,6 +274,7 @@ package.json
     \\"ember-qunit\\",
     \\"ember-resolver\\",
     \\"ember-source\\",
+    \\"ember-template-imports\\",
     \\"ember-template-lint\\",
     \\"ember-welcome-page\\",
     \\"eslint\\",
@@ -277,8 +283,10 @@ package.json
     \\"eslint-plugin-n\\",
     \\"eslint-plugin-prettier\\",
     \\"eslint-plugin-qunit\\",
+    \\"globals\\",
     \\"loader.js\\",
     \\"prettier\\",
+    \\"prettier-plugin-ember-template-tag\\",
     \\"qunit\\",
     \\"qunit-dom\\",
     \\"stylelint\\",
