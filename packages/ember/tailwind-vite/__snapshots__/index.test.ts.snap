@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`tailwind-vite > applying to an ember app > works via CLI 1`] = `
-" package.json | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)"
+" package.json | 3 +++
+ 1 file changed, 3 insertions(+)"
 `;
 
 exports[`tailwind-vite > applying to an ember app > works via CLI 2`] = `
@@ -21,78 +21,53 @@ package.json
     \\"test\\": \\"tests\\"
   },
   \\"scripts\\": {
-    \\"build\\": \\"vite build\\",
-    \\"lint\\": \\"concurrently \\\\\\"pnpm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
+    \\"build\\": \\"ember build --environment=production\\",
+    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
     \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
-    \\"lint:css:fix\\": \\"concurrently \\\\\\"pnpm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"pnpm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
+    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
     \\"lint:js:fix\\": \\"eslint . --fix\\",
-    \\"lint:types\\": \\"glint\\",
-    \\"start\\": \\"vite\\",
-    \\"test\\": \\"concurrently \\\\\\"pnpm:lint\\\\\\" \\\\\\"pnpm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
-    \\"test:ember\\": \\"vite build --mode test && ember test --path dist\\"
+    \\"start\\": \\"ember serve\\",
+    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
+    \\"test:ember\\": \\"ember test\\"
   },
   \\"devDependencies\\": [
     \\"@babel/core\\",
     \\"@babel/eslint-parser\\",
-    \\"@babel/plugin-transform-runtime\\",
-    \\"@babel/plugin-transform-typescript\\",
-    \\"@babel/runtime\\",
-    \\"@ember-data/adapter\\",
-    \\"@ember-data/graph\\",
-    \\"@ember-data/json-api\\",
-    \\"@ember-data/legacy-compat\\",
-    \\"@ember-data/model\\",
-    \\"@ember-data/request\\",
-    \\"@ember-data/request-utils\\",
-    \\"@ember-data/serializer\\",
-    \\"@ember-data/store\\",
-    \\"@ember-data/tracking\\",
+    \\"@babel/plugin-proposal-decorators\\",
     \\"@ember/optional-features\\",
     \\"@ember/string\\",
     \\"@ember/test-helpers\\",
-    \\"@embroider/compat\\",
-    \\"@embroider/config-meta-loader\\",
-    \\"@embroider/core\\",
-    \\"@embroider/test-setup\\",
-    \\"@embroider/vite\\",
-    \\"@embroider/webpack\\",
     \\"@eslint/js\\",
     \\"@glimmer/component\\",
     \\"@glimmer/tracking\\",
-    \\"@glint/core\\",
-    \\"@glint/environment-ember-loose\\",
-    \\"@glint/environment-ember-template-imports\\",
-    \\"@glint/template\\",
-    \\"@rollup/plugin-babel\\",
-    \\"@tsconfig/ember\\",
-    \\"@types/eslint__js\\",
-    \\"@types/qunit\\",
-    \\"@types/rsvp\\",
-    \\"@typescript-eslint/eslint-plugin\\",
-    \\"@typescript-eslint/parser\\",
-    \\"@warp-drive/core-types\\",
     \\"autoprefixer\\",
-    \\"babel-plugin-ember-template-compilation\\",
+    \\"broccoli-asset-rev\\",
     \\"concurrently\\",
-    \\"decorator-transforms\\",
     \\"ember-auto-import\\",
     \\"ember-cli\\",
+    \\"ember-cli-app-version\\",
     \\"ember-cli-babel\\",
+    \\"ember-cli-clean-css\\",
+    \\"ember-cli-dependency-checker\\",
     \\"ember-cli-htmlbars\\",
+    \\"ember-cli-inject-live-reload\\",
+    \\"ember-cli-sri\\",
+    \\"ember-cli-terser\\",
     \\"ember-data\\",
+    \\"ember-fetch\\",
     \\"ember-load-initializers\\",
     \\"ember-modifier\\",
     \\"ember-page-title\\",
     \\"ember-qunit\\",
     \\"ember-resolver\\",
-    \\"ember-route-template\\",
     \\"ember-source\\",
     \\"ember-template-imports\\",
     \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
     \\"eslint\\",
     \\"eslint-config-prettier\\",
     \\"eslint-plugin-ember\\",
@@ -111,23 +86,13 @@ package.json
     \\"stylelint-prettier\\",
     \\"tailwindcss\\",
     \\"tracked-built-ins\\",
-    \\"typescript\\",
-    \\"typescript-eslint\\",
-    \\"vite\\"
+    \\"webpack\\"
   ],
   \\"engines\\": [
     \\"node\\"
   ],
   \\"ember\\": {
     \\"edition\\": \\"octane\\"
-  },
-  \\"ember-addon\\": {
-    \\"type\\": \\"app\\",
-    \\"version\\": 2
-  },
-  \\"exports\\": {
-    \\"./tests/*\\": \\"./tests/*\\",
-    \\"./*\\": \\"./app/*\\"
   }
 }
 "
