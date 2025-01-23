@@ -19,6 +19,9 @@ export default async function run() {
 
   await execa("npx", ["tailwindcss", "init", "-p"]);
 
+  await fse.rename("tailwind.config.js", "tailwind.config.cjs");
+  await fse.rename("postcss.config.js", "postcss.config.cjs");
+
   await css.transform("app/styles/app.css", {
     Once(root) {
       root.append({ name: "tailwind", params: "base" });
@@ -27,7 +30,7 @@ export default async function run() {
     },
   });
 
-  await js.transform("tailwind.config.js", async ({ root, j }) => {
+  await js.transform("tailwind.config.cjs", async ({ root, j }) => {
     root
       .find(j.AssignmentExpression, {
         left: {
@@ -46,7 +49,7 @@ export default async function run() {
       });
   });
 
-  await js.transform("postcss.config.js", async ({ root, j }) => {
+  await js.transform("postcss.config.cjs", async ({ root, j }) => {
     root
       .find(j.AssignmentExpression, {
         left: {
