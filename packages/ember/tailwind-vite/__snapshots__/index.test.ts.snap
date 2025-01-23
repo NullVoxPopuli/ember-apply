@@ -1,38 +1,12 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`tailwind-vite > applying to an ember app > works via CLI 1`] = `
-" app/app.ts               | 2 ++
- app/styles/app.css       | 3 +++
- package.json             | 3 +++
- postcss.config.js (new)  | 8 ++++++++
- tailwind.config.js (new) | 9 +++++++++
- 5 files changed, 25 insertions(+)"
+" package.json | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)"
 `;
 
 exports[`tailwind-vite > applying to an ember app > works via CLI 2`] = `
-"diff --git a/app/app.ts b/app/app.ts
-index 1ba9342..daff0cc 100644
---- a/app/app.ts
-+++ b/app/app.ts
-@@ -3,6 +3,8 @@ import Resolver from 'ember-resolver';
- import loadInitializers from 'ember-load-initializers';
- import config from 'test-app/config/environment';
- 
-+import './styles/app.css'
-+
- export default class App extends Application {
-   modulePrefix = config.modulePrefix;
-   podModulePrefix = config.podModulePrefix;
-diff --git a/app/styles/app.css b/app/styles/app.css
-index 2763afa..192268f 100644
---- a/app/styles/app.css
-+++ b/app/styles/app.css
-@@ -1 +1,4 @@
- /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
-+@tailwind base;
-+@tailwind components;
-+@tailwind utilities
-
+"
 package.json
 {
   \\"name\\": \\"test-app\\",
@@ -47,82 +21,77 @@ package.json
     \\"test\\": \\"tests\\"
   },
   \\"scripts\\": {
-    \\"build\\": \\"ember build --environment=production\\",
-    \\"lint\\": \\"concurrently \\\\\\"pnpm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\"\\",
+    \\"build\\": \\"vite build\\",
+    \\"lint\\": \\"concurrently \\\\\\"pnpm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
     \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
     \\"lint:css:fix\\": \\"concurrently \\\\\\"pnpm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"pnpm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\"\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"pnpm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
     \\"lint:js:fix\\": \\"eslint . --fix\\",
-    \\"lint:types\\": \\"tsc --noEmit\\",
-    \\"start\\": \\"ember serve\\",
-    \\"test\\": \\"concurrently \\\\\\"pnpm:lint\\\\\\" \\\\\\"pnpm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\"\\",
-    \\"test:ember\\": \\"ember test\\"
+    \\"lint:types\\": \\"glint\\",
+    \\"start\\": \\"vite\\",
+    \\"test\\": \\"concurrently \\\\\\"pnpm:lint\\\\\\" \\\\\\"pnpm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
+    \\"test:ember\\": \\"vite build --mode test && ember test --path dist\\"
   },
   \\"devDependencies\\": [
     \\"@babel/core\\",
+    \\"@babel/eslint-parser\\",
+    \\"@babel/plugin-transform-runtime\\",
+    \\"@babel/plugin-transform-typescript\\",
+    \\"@babel/runtime\\",
+    \\"@ember-data/adapter\\",
+    \\"@ember-data/graph\\",
+    \\"@ember-data/json-api\\",
+    \\"@ember-data/legacy-compat\\",
+    \\"@ember-data/model\\",
+    \\"@ember-data/request\\",
+    \\"@ember-data/request-utils\\",
+    \\"@ember-data/serializer\\",
+    \\"@ember-data/store\\",
+    \\"@ember-data/tracking\\",
     \\"@ember/optional-features\\",
     \\"@ember/string\\",
     \\"@ember/test-helpers\\",
     \\"@embroider/compat\\",
+    \\"@embroider/config-meta-loader\\",
     \\"@embroider/core\\",
+    \\"@embroider/test-setup\\",
+    \\"@embroider/vite\\",
     \\"@embroider/webpack\\",
+    \\"@eslint/js\\",
     \\"@glimmer/component\\",
     \\"@glimmer/tracking\\",
+    \\"@glint/core\\",
     \\"@glint/environment-ember-loose\\",
+    \\"@glint/environment-ember-template-imports\\",
     \\"@glint/template\\",
+    \\"@rollup/plugin-babel\\",
     \\"@tsconfig/ember\\",
-    \\"@types/ember\\",
-    \\"@types/ember-data\\",
-    \\"@types/ember-data__adapter\\",
-    \\"@types/ember-data__model\\",
-    \\"@types/ember-data__serializer\\",
-    \\"@types/ember-data__store\\",
-    \\"@types/ember__application\\",
-    \\"@types/ember__array\\",
-    \\"@types/ember__component\\",
-    \\"@types/ember__controller\\",
-    \\"@types/ember__debug\\",
-    \\"@types/ember__destroyable\\",
-    \\"@types/ember__engine\\",
-    \\"@types/ember__error\\",
-    \\"@types/ember__helper\\",
-    \\"@types/ember__modifier\\",
-    \\"@types/ember__object\\",
-    \\"@types/ember__owner\\",
-    \\"@types/ember__polyfills\\",
-    \\"@types/ember__routing\\",
-    \\"@types/ember__runloop\\",
-    \\"@types/ember__service\\",
-    \\"@types/ember__string\\",
-    \\"@types/ember__template\\",
-    \\"@types/ember__test\\",
-    \\"@types/ember__utils\\",
+    \\"@types/eslint__js\\",
     \\"@types/qunit\\",
     \\"@types/rsvp\\",
     \\"@typescript-eslint/eslint-plugin\\",
     \\"@typescript-eslint/parser\\",
+    \\"@warp-drive/core-types\\",
     \\"autoprefixer\\",
-    \\"broccoli-asset-rev\\",
+    \\"babel-plugin-ember-template-compilation\\",
     \\"concurrently\\",
+    \\"decorator-transforms\\",
     \\"ember-auto-import\\",
     \\"ember-cli\\",
-    \\"ember-cli-app-version\\",
     \\"ember-cli-babel\\",
-    \\"ember-cli-clean-css\\",
-    \\"ember-cli-dependency-checker\\",
     \\"ember-cli-htmlbars\\",
-    \\"ember-cli-inject-live-reload\\",
     \\"ember-data\\",
-    \\"ember-fetch\\",
     \\"ember-load-initializers\\",
     \\"ember-modifier\\",
     \\"ember-page-title\\",
     \\"ember-qunit\\",
     \\"ember-resolver\\",
+    \\"ember-route-template\\",
     \\"ember-source\\",
+    \\"ember-template-imports\\",
     \\"ember-template-lint\\",
     \\"eslint\\",
     \\"eslint-config-prettier\\",
@@ -130,9 +99,11 @@ package.json
     \\"eslint-plugin-n\\",
     \\"eslint-plugin-prettier\\",
     \\"eslint-plugin-qunit\\",
+    \\"globals\\",
     \\"loader.js\\",
     \\"postcss\\",
     \\"prettier\\",
+    \\"prettier-plugin-ember-template-tag\\",
     \\"qunit\\",
     \\"qunit-dom\\",
     \\"stylelint\\",
@@ -141,43 +112,23 @@ package.json
     \\"tailwindcss\\",
     \\"tracked-built-ins\\",
     \\"typescript\\",
-    \\"webpack\\"
+    \\"typescript-eslint\\",
+    \\"vite\\"
   ],
   \\"engines\\": [
     \\"node\\"
   ],
   \\"ember\\": {
     \\"edition\\": \\"octane\\"
+  },
+  \\"ember-addon\\": {
+    \\"type\\": \\"app\\",
+    \\"version\\": 2
+  },
+  \\"exports\\": {
+    \\"./tests/*\\": \\"./tests/*\\",
+    \\"./*\\": \\"./app/*\\"
   }
 }
-diff --git a/postcss.config.js b/postcss.config.js
-new file mode 100644
-index 0000000..39468d6
---- /dev/null
-+++ b/postcss.config.js
-@@ -0,0 +1,8 @@
-+module.exports = {
-+  plugins: {
-+    tailwindcss: {
-+      config: \\"tailwind.config.js\\"
-+    },
-+    autoprefixer: {},
-+  },
-+}
-diff --git a/tailwind.config.js b/tailwind.config.js
-new file mode 100644
-index 0000000..884a52d
---- /dev/null
-+++ b/tailwind.config.js
-@@ -0,0 +1,9 @@
-+/** @type {import('tailwindcss').Config} */
-+module.exports = {
-+  content: [\\"app/**/*.{js,ts,hbs,gjs,gts,html}\\"],
-+  theme: {
-+    extend: {},
-+  },
-+  plugins: [],
-+}
-+
 "
 `;
