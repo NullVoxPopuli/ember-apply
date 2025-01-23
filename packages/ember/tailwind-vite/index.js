@@ -22,7 +22,8 @@ export default async function run() {
   await fse.rename("tailwind.config.js", "tailwind.config.cjs");
   await fse.rename("postcss.config.js", "postcss.config.cjs");
 
-  await css.transform("app/styles/app.css", {
+  await fse.ensureFile("app/app.css");
+  await css.transform("app/app.css", {
     Once(root) {
       root.append({ name: "tailwind", params: "base" });
       root.append({ name: "tailwind", params: "components" });
@@ -85,7 +86,7 @@ export default async function run() {
       .find(j.ImportDefaultSpecifier)
       .filter((path) => path.node.local?.name === "config")
       .forEach((path) => {
-        path.parent.insertAfter(`import './styles/app.css'`);
+        path.parent.insertAfter(`import './app.css'`);
       });
   });
 
