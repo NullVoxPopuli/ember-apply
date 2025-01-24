@@ -70,18 +70,14 @@ export function indent(msg, chars = '    ') {
  * @param {number} [ offset ]
  */
 export function centeredText(text, offset = 0) {
-  let maxWidth = process.stdout.columns - offset;
-  let spaces = '';
-  let textLength = characterLength(text);
-  let centerSpaces = (maxWidth - textLength) / 2;
+  const maxWidth = process.stdout.columns - offset;
+  const textLength = characterLength(text);
+  const centerSpaces = (maxWidth - textLength) / 2;
+  const padding = spaces(Math.floor(centerSpaces));
 
-  for (let i = 0; i < Math.floor(centerSpaces); i++) {
-    spaces += ' ';
-  }
+  const oddFix = centerSpaces % 2 !== 0 ? ' ' : '';
 
-  let oddFix = centerSpaces % 2 !== 0 ? ' ' : '';
-
-  return spaces + text + spaces + oddFix;
+  return padding + text + padding + oddFix;
 }
 
 /**
