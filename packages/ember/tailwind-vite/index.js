@@ -1,13 +1,10 @@
 // @ts-check
-import { css, js, packageJson } from "ember-apply";
-// eslint-disable-next-line n/no-unpublished-import
+import { js, packageJson } from "ember-apply";
 import { execa } from "execa";
-// eslint-disable-next-line n/no-unpublished-import
 import fse from "fs-extra";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-// @ts-ignore
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default async function run() {
@@ -17,19 +14,16 @@ export default async function run() {
     autoprefixer: "^10.0.0",
   });
 
-  await execa("npx", ["tailwindcss", "init", "-p"]);
+  await execa("npx", ["tailwindcss@^3.4.17", "init", "-p"], { preferLocal: true, shell: true });
 
   await fse.rename("tailwind.config.js", "tailwind.config.cjs");
   await fse.rename("postcss.config.js", "postcss.config.cjs");
 
-  await fse.ensureFile("app/app.css");
-  await css.transform("app/app.css", {
-    Once(root) {
-      root.append({ name: "tailwind", params: "base" });
-      root.append({ name: "tailwind", params: "components" });
-      root.append({ name: "tailwind", params: "utilities" });
-    },
-  });
+  await fse.writeFile("app/app.css", [
+    '@tailwind base',
+    '@tailwind components',
+    '@tailwind utilities'
+  ].join('\n'));
 
   await js.transform("tailwind.config.cjs", async ({ root, j }) => {
     root
