@@ -17,7 +17,7 @@ export async function newTmpDir() {
 }
 
 /**
- * @param {string} args additional command line arguments for `ember new` command
+ * @param {string[]} args additional command line arguments for `ember new` command
  */
 export async function newEmberApp(args = []) {
   let dir = await newTmpDir();
