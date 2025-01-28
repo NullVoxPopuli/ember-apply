@@ -1,0 +1,60 @@
+{
+  "name": "@ember-apply/tailwind4-vite",
+  "version": "1.0.0",
+  "description": "ember-apply plugin for tailwind4-vite",
+  "main": "index.js",
+  "scripts": {
+    "lint:types": "tsc",
+    "build": "tsc --build",
+    "lint": "pnpm lint:js",
+    "lint:js": "eslint .",
+    "lint:fix": "pnpm lint:js --fix",
+    "test": "vitest --coverage --no-watch",
+    "test:watch": "vitest --watch"
+  },
+  "keywords": [
+    "ember",
+    "tailwind",
+    "css",
+    "ember-apply",
+    "blueprint"
+  ],
+  "author": "Michal Bryxí",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "import": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "files/**/*"
+  ],
+  "dependencies": {
+    "execa": "^8.0.1",
+    "fs-extra": "^11.2.0",
+    "ember-apply": "workspace:^"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.23.3",
+    "@nullvoxpopuli/eslint-configs": "^3.2.2",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "@vitest/coverage-v8": "^0.34.6",
+    "c8": "^8.0.1",
+    "eslint": "^8.54.0",
+    "eslint-plugin-decorator-position": "^5.0.2",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.1.0",
+    "typescript": "5.3.3",
+    "vite": "^5.0.0",
+    "vitest": "^0.34.6"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "volta": {
+    "node": "20.15.0"
+  }
+}
