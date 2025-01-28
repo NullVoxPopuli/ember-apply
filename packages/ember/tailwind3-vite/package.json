@@ -1,7 +1,7 @@
 {
-  "name": "@ember-apply/tailwind-vite",
+  "name": "@ember-apply/tailwind3-vite",
   "version": "1.0.0",
-  "description": "ember-apply plugin for tailwind-vite",
+  "description": "ember-apply plugin for tailwind3-vite",
   "main": "index.js",
   "scripts": {
     "lint:types": "tsc",
