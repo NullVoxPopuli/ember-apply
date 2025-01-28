@@ -98,6 +98,14 @@ npx ember-apply tailwind3-vite
 
 _Automates the official [Tailwind + Vite guide](https://tailwindcss.com/docs/guides/vite) so that it's compatible with [@embroider/app-blueprint](https://github.com/embroider-build/app-blueprint)_
 
+### `tailwind4-vite`
+
+```shell
+npx ember-apply tailwind4-vite
+```
+
+_Automates the official [Tailwind + Vite guide](https://tailwindcss.com/docs/installation/using-vite) so that it's compatible with [@embroider/app-blueprint](https://github.com/embroider-build/app-blueprint)_
+
 ### `embroider`
 
 ```shell

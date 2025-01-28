@@ -16,11 +16,14 @@ export async function newTmpDir() {
   return tmpDir;
 }
 
-export async function newEmberApp() {
+/**
+ * @param {string[]} args additional command line arguments for `ember new` command
+ */
+export async function newEmberApp(args = []) {
   let dir = await newTmpDir();
 
   await execa('ember', ['-v'], { cwd: dir });
-  await execa('ember', ['new', 'test-app', '--skip-npm'], {
+  await execa('ember', ['new', 'test-app', '--skip-npm', ...args], {
     cwd: dir,
   });
 
