@@ -96,7 +96,7 @@ _Automates the official [Tailwind + Ember.js guide](https://tailwindcss.com/docs
 npx ember-apply tailwind3-vite
 ```
 
-_Automates the official [Tailwind + Vite guide](https://tailwindcss.com/docs/guides/vite) so that it's compatible with [embroider-build/app-blueprint](https://github.com/embroider-build/app-blueprint)_
+_Automates the official [Tailwind + Vite guide](https://tailwindcss.com/docs/guides/vite) so that it's compatible with [@embroider/app-blueprint](https://github.com/embroider-build/app-blueprint)_
 
 ### `embroider`
 
