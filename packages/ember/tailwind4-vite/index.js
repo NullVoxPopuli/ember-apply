@@ -1,5 +1,5 @@
 // @ts-check
-import { js, packageJson } from "ember-apply";
+import { css, html, js, packageJson } from "ember-apply";
 import { execa } from "execa";
 import fse from "fs-extra";
 import { dirname } from "path";
@@ -7,82 +7,149 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export default async function run() {
-  await packageJson.addDevDependencies({
-    tailwindcss: "^3.0.0",
-    postcss: "^8.0.0",
-    autoprefixer: "^10.0.0",
-  });
+async function getViteConfig() {
+  if (await fse.pathExists("vite.config.ts")) {
+    return "vite.config.ts";
+  }
 
-  await execa("npx", ["tailwindcss@^3.4.17", "init", "-p"], { preferLocal: true, shell: true });
+  if (await fse.pathExists("vite.config.mjs")) {
+    return "vite.config.mjs";
+  }
 
-  await fse.rename("tailwind.config.js", "tailwind.config.cjs");
-  await fse.rename("postcss.config.js", "postcss.config.cjs");
+  return null;
+}
 
-  await fse.writeFile("app/app.css", [
-    '@tailwind base',
-    '@tailwind components',
-    '@tailwind utilities'
-  ].join('\n'));
+async function updateViteConfig(viteConfig) {
+  await js.transform(viteConfig, async ({ root, j }) => {
+    // Add import for tailwindcss if it doesn't exist
+    const tailwindImportExists =
+      root
+        .find(j.ImportDeclaration)
+        .filter((path) => path.node.source.value === "@tailwindcss/vite")
+        .size() > 0;
 
-  await js.transform("tailwind.config.cjs", async ({ root, j }) => {
-    root
-      .find(j.AssignmentExpression, {
-        left: {
-          object: { name: "module" },
-          property: { name: "exports" },
-        },
-      })
-      .forEach((path) => {
-        const contentProperty = path.value.right.properties.find(
-          (prop) => prop.key.name === "content"
+    if (!tailwindImportExists) {
+      root
+        .find(j.ImportDeclaration)
+        .at(0) // Insert at the top of imports
+        .insertBefore(
+          j.importDeclaration(
+            [j.importDefaultSpecifier(j.identifier("tailwindcss"))],
+            j.literal("@tailwindcss/vite")
+          )
         );
+    } else {
+      console.info(
+        `Line 'import tailwindcss from "@tailwindcss/vite";' is already present in ${viteConfig}`
+      );
+    }
 
-        contentProperty.value.elements.push(
-          j.literal("app/**/*.{js,ts,hbs,gjs,gts,html}")
-        );
-      });
-  });
-
-  await js.transform("postcss.config.cjs", async ({ root, j }) => {
+    // Locate the plugins array inside defineConfig
     root
-      .find(j.AssignmentExpression, {
-        left: {
-          object: { name: "module" },
-          property: { name: "exports" },
-        },
-      })
+      .find(j.CallExpression)
+      .filter((path) => path.node.callee.name === "defineConfig")
+      .find(j.ObjectExpression)
       .forEach((path) => {
-        const pluginsProperty = path.value.right.properties.find(
+        const pluginsProperty = path.node.properties.find(
           (prop) => prop.key.name === "plugins"
         );
 
-        const tailwindcssProperty = pluginsProperty.value.properties.find(
-          (prop) => prop.key.name === "tailwindcss"
-        );
+        if (
+          pluginsProperty &&
+          pluginsProperty.value.type === "ArrayExpression"
+        ) {
+          const pluginsArray = pluginsProperty.value.elements;
 
-        tailwindcssProperty.value.properties.push(
-          j.property(
-            "init",
-            j.identifier("config"),
-            j.literal("tailwind.config.js")
-          )
-        );
+          const tailwindAlreadyAdded = pluginsArray.some(
+            (element) =>
+              element.type === "CallExpression" &&
+              element.callee.name === "tailwindcss"
+          );
+
+          if (!tailwindAlreadyAdded) {
+            pluginsArray.push(
+              j.callExpression(j.identifier("tailwindcss"), [])
+            );
+          } else {
+            console.info(
+              `Line 'defineConfig({ plugins: [ tailwindcss() ] })' is already present in ${viteConfig}`
+            );
+          }
+        }
       });
   });
+}
 
-  const appFile = (await fse.pathExists("app/app.ts"))
-    ? "app/app.ts"
-    : "app/app.js";
+async function updateHtmlLink(htmlFile) {
+  await html.transform(htmlFile, async (tree) => {
+    tree.match(
+      {
+        tag: "link",
+        attrs: {
+          rel: "stylesheet",
+          href: /^\/assets\/.*\.css$/,
+        },
+      },
+      (node) => {
+        // Update the `href` attribute to point to the new stylesheet
+        node.attrs.href = "/app/styles/app.css";
 
-  await js.transform(appFile, async ({ root, j }) => {
-    root
-      .find(j.ImportDefaultSpecifier)
-      .filter((path) => path.node.local?.name === "config")
-      .forEach((path) => {
-        path.parent.insertAfter(`import './app.css'`);
-      });
+        return node;
+      }
+    );
   });
+}
+
+async function updateAppStyles(appStyles) {
+  await css.transform(appStyles, {
+    Once(root) {
+      // Check if the @import rule already exists
+      const hasTailwindImport = root.some(
+        (node) =>
+          node.type === "atrule" &&
+          node.name === "import" &&
+          node.params === '"tailwindcss"'
+      );
+
+      if (!hasTailwindImport) {
+        // Prepend @import "tailwindcss"; at the top of the file
+        root.append({
+          type: "atrule",
+          name: "import",
+          params: '"tailwindcss"',
+          raws: { after: "\n" },
+        });
+      } else {
+        console.info(
+          `Line '@import "tailwindcss";' already exists in ${appStyles}`
+        );
+      }
+    },
+  });
+}
+
+export default async function run() {
+  const viteConfig = await getViteConfig();
+
+  if (!viteConfig) {
+    console.error(
+      "Error: Neither vite.config.ts nor vite.config.js was found. You probably wanted to create the app via: `ember new my-app --blueprint='@embroider/app-blueprint'`"
+    );
+
+    return;
+  }
+
+  updateViteConfig(viteConfig);
+
+  await packageJson.addDevDependencies({
+    tailwindcss: "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+  });
+
+  updateAppStyles("./app/styles/app.css");
+
+  updateHtmlLink("./index.html");
+  updateHtmlLink("./tests/index.html");
 
   await execa("git", ["add", ".", "-N"]);
 }
