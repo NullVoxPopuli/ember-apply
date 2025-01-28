@@ -1,5 +1,184 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`tailwind4-vite > applying to an ember app > works via CLI 1`] = `""`;
+exports[`tailwind4-vite > applying to an ember app > works via CLI 1`] = `
+" app/styles/app.css |  1 +
+ index.html         |  2 +-
+ package.json       |  2 ++
+ tests/index.html   | 12 ++++++------
+ vite.config.mjs    | 15 ++++++---------
+ 5 files changed, 16 insertions(+), 16 deletions(-)"
+`;
 
-exports[`tailwind4-vite > applying to an ember app > works via CLI 2`] = `""`;
+exports[`tailwind4-vite > applying to an ember app > works via CLI 2`] = `
+"diff --git a/app/styles/app.css b/app/styles/app.css
+index 2763afa..75fb7d1 100644
+--- a/app/styles/app.css
++++ b/app/styles/app.css
+@@ -1 +1,2 @@
+ /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
++@import \\"tailwindcss\\"
+diff --git a/index.html b/index.html
+index 1e85d6e..c39daac 100644
+--- a/index.html
++++ b/index.html
+@@ -9,7 +9,7 @@
+     {{content-for \\"head\\"}}
+ 
+     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/@embroider/virtual/vendor.css\\">
+-    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/assets/test-app.css\\">
++    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/app/styles/app.css\\">
+ 
+     {{content-for \\"head-footer\\"}}
+   </head>
+
+package.json
+{
+  \\"name\\": \\"test-app\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"private\\": true,
+  \\"description\\": \\"Small description for test-app goes here\\",
+  \\"repository\\": \\"\\",
+  \\"license\\": \\"MIT\\",
+  \\"author\\": \\"\\",
+  \\"directories\\": {
+    \\"doc\\": \\"doc\\",
+    \\"test\\": \\"tests\\"
+  },
+  \\"scripts\\": {
+    \\"build\\": \\"vite build\\",
+    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
+    \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
+    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
+    \\"lint:hbs\\": \\"ember-template-lint .\\",
+    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
+    \\"lint:js\\": \\"eslint . --cache\\",
+    \\"lint:js:fix\\": \\"eslint . --fix\\",
+    \\"start\\": \\"vite\\",
+    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
+    \\"test:ember\\": \\"vite build --mode test && ember test --path dist\\"
+  },
+  \\"devDependencies\\": [
+    \\"@babel/core\\",
+    \\"@babel/eslint-parser\\",
+    \\"@babel/plugin-transform-runtime\\",
+    \\"@babel/runtime\\",
+    \\"@ember/optional-features\\",
+    \\"@ember/string\\",
+    \\"@ember/test-helpers\\",
+    \\"@embroider/compat\\",
+    \\"@embroider/config-meta-loader\\",
+    \\"@embroider/core\\",
+    \\"@embroider/test-setup\\",
+    \\"@embroider/vite\\",
+    \\"@eslint/js\\",
+    \\"@glimmer/component\\",
+    \\"@glimmer/tracking\\",
+    \\"@rollup/plugin-babel\\",
+    \\"@tailwindcss/vite\\",
+    \\"babel-plugin-ember-template-compilation\\",
+    \\"concurrently\\",
+    \\"decorator-transforms\\",
+    \\"ember-auto-import\\",
+    \\"ember-cli\\",
+    \\"ember-cli-babel\\",
+    \\"ember-cli-htmlbars\\",
+    \\"ember-data\\",
+    \\"ember-load-initializers\\",
+    \\"ember-modifier\\",
+    \\"ember-page-title\\",
+    \\"ember-qunit\\",
+    \\"ember-resolver\\",
+    \\"ember-source\\",
+    \\"ember-template-imports\\",
+    \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
+    \\"eslint\\",
+    \\"eslint-config-prettier\\",
+    \\"eslint-plugin-ember\\",
+    \\"eslint-plugin-n\\",
+    \\"eslint-plugin-prettier\\",
+    \\"eslint-plugin-qunit\\",
+    \\"globals\\",
+    \\"loader.js\\",
+    \\"prettier\\",
+    \\"prettier-plugin-ember-template-tag\\",
+    \\"qunit\\",
+    \\"qunit-dom\\",
+    \\"stylelint\\",
+    \\"stylelint-config-standard\\",
+    \\"stylelint-prettier\\",
+    \\"tailwindcss\\",
+    \\"tracked-built-ins\\",
+    \\"vite\\"
+  ],
+  \\"engines\\": [
+    \\"node\\"
+  ],
+  \\"ember\\": {
+    \\"edition\\": \\"octane\\"
+  },
+  \\"ember-addon\\": {
+    \\"type\\": \\"app\\",
+    \\"version\\": 2
+  },
+  \\"exports\\": {
+    \\"./tests/*\\": \\"./tests/*\\",
+    \\"./*\\": \\"./app/*\\"
+  }
+}
+diff --git a/tests/index.html b/tests/index.html
+index cbeba0c..71f828a 100644
+--- a/tests/index.html
++++ b/tests/index.html
+@@ -1,16 +1,16 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+-    <meta charset=\\"utf-8\\" />
++    <meta charset=\\"utf-8\\">
+     <title>AppTemplate Tests</title>
+-    <meta name=\\"description\\" content=\\"\\" />
+-    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\" />
++    <meta name=\\"description\\" content=\\"\\">
++    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
+ 
+     {{content-for \\"head\\"}} {{content-for \\"test-head\\"}}
+ 
+-    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/vendor.css\\" />
+-    <link rel=\\"stylesheet\\" href=\\"/assets/test-app.css\\" />
+-    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/test-support.css\\" />
++    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/vendor.css\\">
++    <link rel=\\"stylesheet\\" href=\\"/app/styles/app.css\\">
++    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/test-support.css\\">
+ 
+     {{content-for \\"head-footer\\"}} {{content-for \\"test-head-footer\\"}}
+   </head>
+diff --git a/vite.config.mjs b/vite.config.mjs
+index 219253d..930b8be 100644
+--- a/vite.config.mjs
++++ b/vite.config.mjs
+@@ -1,15 +1,12 @@
++import tailwindcss from \\"@tailwindcss/vite\\";
+ import { defineConfig } from 'vite';
+ import { extensions, classicEmberSupport, ember } from '@embroider/vite';
+ import { babel } from '@rollup/plugin-babel';
+ 
+ export default defineConfig({
+-  plugins: [
+-    classicEmberSupport(),
+-    ember(),
+-    // extra plugins here
+-    babel({
+-      babelHelpers: 'runtime',
+-      extensions,
+-    }),
+-  ],
++  plugins: [classicEmberSupport(), ember(), // extra plugins here
++  babel({
++    babelHelpers: 'runtime',
++    extensions,
++  }), tailwindcss()],
+ });
+"
+`;
