@@ -1,5 +1,5 @@
 // @ts-check
-import { js, packageJson } from "ember-apply";
+import { css, js, packageJson } from "ember-apply";
 import { execa } from "execa";
 import fse from "fs-extra";
 import { dirname } from "path";
@@ -14,16 +14,21 @@ export default async function run() {
     autoprefixer: "^10.0.0",
   });
 
-  await execa("npx", ["tailwindcss@^3.4.17", "init", "-p"], { preferLocal: true, shell: true });
+  await execa("npx", ["tailwindcss@^3.4.17", "init", "-p"], {
+    preferLocal: true,
+    shell: true,
+  });
 
   await fse.rename("tailwind.config.js", "tailwind.config.cjs");
   await fse.rename("postcss.config.js", "postcss.config.cjs");
 
-  await fse.writeFile("app/app.css", [
-    '@tailwind base',
-    '@tailwind components',
-    '@tailwind utilities'
-  ].join('\n'));
+  await css.transform("app/styles/app.css", {
+    Once(root) {
+      root.append({ name: "tailwind", params: "base" });
+      root.append({ name: "tailwind", params: "components" });
+      root.append({ name: "tailwind", params: "utilities" });
+    },
+  });
 
   await js.transform("tailwind.config.cjs", async ({ root, j }) => {
     root
@@ -65,7 +70,7 @@ export default async function run() {
           j.property(
             "init",
             j.identifier("config"),
-            j.literal("tailwind.config.js")
+            j.literal("tailwind.config.cjs")
           )
         );
       });
@@ -80,7 +85,7 @@ export default async function run() {
       .find(j.ImportDefaultSpecifier)
       .filter((path) => path.node.local?.name === "config")
       .forEach((path) => {
-        path.parent.insertAfter(`import './app.css'`);
+        path.parent.insertAfter(`import './styles/app.css'`);
       });
   });
 
