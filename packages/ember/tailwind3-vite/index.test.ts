@@ -10,7 +10,10 @@ describe("tailwind3-vite", () => {
 
   describe("applying to an ember app", () => {
     it("works via CLI", async () => {
-      let appLocation = await newEmberApp();
+      let appLocation = await newEmberApp([
+        "--blueprint",
+        "@embroider/app-blueprint",
+      ]);
 
       await apply(appLocation, tailwindVite.path);
 
