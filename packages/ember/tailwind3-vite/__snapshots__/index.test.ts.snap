@@ -172,13 +172,13 @@ index 0000000..5f067a0
 +}
 diff --git a/tailwind.config.cjs b/tailwind.config.cjs
 new file mode 100644
-index 0000000..884a52d
+index 0000000..e5e907d
 --- /dev/null
 +++ b/tailwind.config.cjs
 @@ -0,0 +1,9 @@
 +/** @type {import('tailwindcss').Config} */
 +module.exports = {
-+  content: [\\"app/**/*.{js,ts,hbs,gjs,gts,html}\\"],
++  content: [\\"index.html\\", \\"app/**/*.{js,ts,hbs,gjs,gts,html}\\"],
 +  theme: {
 +    extend: {},
 +  },

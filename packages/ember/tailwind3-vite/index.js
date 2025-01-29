@@ -44,6 +44,7 @@ export default async function run() {
         );
 
         contentProperty.value.elements.push(
+          j.literal("index.html"),
           j.literal("app/**/*.{js,ts,hbs,gjs,gts,html}")
         );
       });
