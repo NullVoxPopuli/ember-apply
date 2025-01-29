@@ -2,83 +2,55 @@
   "solution": {
     "ember-apply": {
       "impact": "minor",
-      "oldVersion": "2.13.0",
-      "newVersion": "2.14.0",
+      "oldVersion": "2.14.0",
+      "newVersion": "2.15.0",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./ember-apply/package.json"
     },
     "@ember-apply/embroider": {
-      "impact": "minor",
-      "oldVersion": "1.1.0",
-      "newVersion": "1.2.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/embroider/package.json"
+      "oldVersion": "1.2.0"
     },
     "@ember-apply/tailwind": {
-      "impact": "minor",
-      "oldVersion": "2.2.0",
-      "newVersion": "2.3.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/tailwind/package.json"
+      "oldVersion": "2.3.0"
     },
     "@ember-apply/tailwind-webpack": {
+      "oldVersion": "1.2.0"
+    },
+    "@ember-apply/tailwind3-vite": {
+      "impact": "major",
+      "oldVersion": "1.0.0",
+      "newVersion": "2.0.0",
+      "constraints": [
+        {
+          "impact": "major",
+          "reason": "Appears in changelog section :boom: Breaking Change"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
+        }
+      ],
+      "pkgJSONPath": "./packages/ember/tailwind3-vite/package.json"
+    },
+    "@ember-apply/tailwind4-vite": {
       "impact": "minor",
-      "oldVersion": "1.1.0",
-      "newVersion": "1.2.0",
+      "oldVersion": "1.0.0",
+      "newVersion": "1.1.0",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
         }
       ],
-      "pkgJSONPath": "./packages/ember/tailwind-webpack/package.json"
+      "pkgJSONPath": "./packages/ember/tailwind4-vite/package.json"
     },
     "@ember-apply/typescript": {
-      "impact": "minor",
-      "oldVersion": "1.3.0",
-      "newVersion": "1.4.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/typescript/package.json"
+      "oldVersion": "1.4.0"
     },
     "@ember-apply/unstable-embroider": {
       "oldVersion": "1.1.0"
@@ -87,5 +59,5 @@
       "oldVersion": "2.0.6"
     }
   },
-  "description": "## Release (2025-01-22)\n\nember-apply 2.14.0 (minor)\n@ember-apply/embroider 1.2.0 (minor)\n@ember-apply/tailwind 2.3.0 (minor)\n@ember-apply/tailwind-webpack 1.2.0 (minor)\n@ember-apply/typescript 1.4.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-apply`, `docs`, `@ember-apply/embroider`, `@ember-apply/tailwind-webpack`, `@ember-apply/tailwind`, `@ember-apply/typescript`\n  * [#581](https://github.com/NullVoxPopuli/ember-apply/pull/581) Add tsconfig utilities ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :memo: Documentation\n* [#560](https://github.com/NullVoxPopuli/ember-apply/pull/560) docs: Applyable organisation ([@MichalBryxi](https://github.com/MichalBryxi))\n* [#556](https://github.com/NullVoxPopuli/ember-apply/pull/556) docs: Create new README section for external apply-ables ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :house: Internal\n* `ember-apply`, `@ember-apply/embroider`, `@ember-apply/tailwind-webpack`, `@ember-apply/tailwind`, `@ember-apply/typescript`\n  * [#549](https://github.com/NullVoxPopuli/ember-apply/pull/549) Prepare Release ([@github-actions[bot]](https://github.com/apps/github-actions))\n* Other\n  * [#584](https://github.com/NullVoxPopuli/ember-apply/pull/584) npx create-release-plan-setup@latest --update ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 3\n- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n- [@github-actions[bot]](https://github.com/apps/github-actions)\n"
+  "description": "## Release (2025-01-29)\n\nember-apply 2.15.0 (minor)\n@ember-apply/tailwind3-vite 2.0.0 (major)\n@ember-apply/tailwind4-vite 1.1.0 (minor)\n\n#### :boom: Breaking Change\n* `@ember-apply/tailwind3-vite`\n  * [#590](https://github.com/NullVoxPopuli/ember-apply/pull/590) feat: Rename tailwind-vite to tailwind3-vite ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :rocket: Enhancement\n* `ember-apply`, `@ember-apply/tailwind4-vite`\n  * [#591](https://github.com/NullVoxPopuli/ember-apply/pull/591) tailwind4-vite ([@MichalBryxi](https://github.com/MichalBryxi))\n* Other\n  * [#579](https://github.com/NullVoxPopuli/ember-apply/pull/579) feat: Basic tailwind-vite applyable ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :bug: Bug Fix\n* `@ember-apply/tailwind3-vite`\n  * [#594](https://github.com/NullVoxPopuli/ember-apply/pull/594) fix: tailwind3-vite works ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :memo: Documentation\n* [#592](https://github.com/NullVoxPopuli/ember-apply/pull/592) docs: tailwind3-vite reference ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### Committers: 1\n- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))\n"
 }
