@@ -1,5 +1,31 @@
 # Changelog
 
+## Release (2025-01-29)
+
+ember-apply 2.15.0 (minor)
+@ember-apply/tailwind3-vite 2.0.0 (major)
+@ember-apply/tailwind4-vite 1.1.0 (minor)
+
+#### :boom: Breaking Change
+* `@ember-apply/tailwind3-vite`
+  * [#590](https://github.com/NullVoxPopuli/ember-apply/pull/590) feat: Rename tailwind-vite to tailwind3-vite ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### :rocket: Enhancement
+* `ember-apply`, `@ember-apply/tailwind4-vite`
+  * [#591](https://github.com/NullVoxPopuli/ember-apply/pull/591) tailwind4-vite ([@MichalBryxi](https://github.com/MichalBryxi))
+* Other
+  * [#579](https://github.com/NullVoxPopuli/ember-apply/pull/579) feat: Basic tailwind-vite applyable ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### :bug: Bug Fix
+* `@ember-apply/tailwind3-vite`
+  * [#594](https://github.com/NullVoxPopuli/ember-apply/pull/594) fix: tailwind3-vite works ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### :memo: Documentation
+* [#592](https://github.com/NullVoxPopuli/ember-apply/pull/592) docs: tailwind3-vite reference ([@MichalBryxi](https://github.com/MichalBryxi))
+
+#### Committers: 1
+- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))
+
 ## Release (2025-01-22)
 
 ember-apply 2.14.0 (minor)
