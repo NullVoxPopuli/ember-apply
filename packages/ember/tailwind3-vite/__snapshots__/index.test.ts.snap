@@ -1,19 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`tailwind3-vite > applying to an ember app > works via CLI 1`] = `
-" app/app.ts                | 2 ++
+" app/app.js                | 2 ++
  app/styles/app.css        | 3 +++
- package.json              | 5 ++++-
+ package.json              | 3 +++
  postcss.config.cjs (new)  | 8 ++++++++
  tailwind.config.cjs (new) | 9 +++++++++
- 5 files changed, 26 insertions(+), 1 deletion(-)"
+ 5 files changed, 25 insertions(+)"
 `;
 
 exports[`tailwind3-vite > applying to an ember app > works via CLI 2`] = `
-"diff --git a/app/app.ts b/app/app.ts
+"diff --git a/app/app.js b/app/app.js
 index a3c0402..57368f0 100644
---- a/app/app.ts
-+++ b/app/app.ts
+--- a/app/app.js
++++ b/app/app.js
 @@ -4,6 +4,8 @@ import Resolver from 'ember-resolver';
  import loadInitializers from 'ember-load-initializers';
  import config from './config/environment';
@@ -48,35 +48,23 @@ package.json
   },
   \\"scripts\\": {
     \\"build\\": \\"vite build\\",
-    \\"lint\\": \\"concurrently \\\\\\"pnpm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
+    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
     \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
-    \\"lint:css:fix\\": \\"concurrently \\\\\\"pnpm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"pnpm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
+    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
     \\"lint:js:fix\\": \\"eslint . --fix\\",
-    \\"lint:types\\": \\"glint\\",
     \\"start\\": \\"vite\\",
-    \\"test\\": \\"concurrently \\\\\\"pnpm:lint\\\\\\" \\\\\\"pnpm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
+    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
     \\"test:ember\\": \\"vite build --mode test && ember test --path dist\\"
   },
   \\"devDependencies\\": [
     \\"@babel/core\\",
     \\"@babel/eslint-parser\\",
     \\"@babel/plugin-transform-runtime\\",
-    \\"@babel/plugin-transform-typescript\\",
     \\"@babel/runtime\\",
-    \\"@ember-data/adapter\\",
-    \\"@ember-data/graph\\",
-    \\"@ember-data/json-api\\",
-    \\"@ember-data/legacy-compat\\",
-    \\"@ember-data/model\\",
-    \\"@ember-data/request\\",
-    \\"@ember-data/request-utils\\",
-    \\"@ember-data/serializer\\",
-    \\"@ember-data/store\\",
-    \\"@ember-data/tracking\\",
     \\"@ember/optional-features\\",
     \\"@ember/string\\",
     \\"@ember/test-helpers\\",
@@ -85,22 +73,10 @@ package.json
     \\"@embroider/core\\",
     \\"@embroider/test-setup\\",
     \\"@embroider/vite\\",
-    \\"@embroider/webpack\\",
     \\"@eslint/js\\",
     \\"@glimmer/component\\",
     \\"@glimmer/tracking\\",
-    \\"@glint/core\\",
-    \\"@glint/environment-ember-loose\\",
-    \\"@glint/environment-ember-template-imports\\",
-    \\"@glint/template\\",
     \\"@rollup/plugin-babel\\",
-    \\"@tsconfig/ember\\",
-    \\"@types/eslint__js\\",
-    \\"@types/qunit\\",
-    \\"@types/rsvp\\",
-    \\"@typescript-eslint/eslint-plugin\\",
-    \\"@typescript-eslint/parser\\",
-    \\"@warp-drive/core-types\\",
     \\"autoprefixer\\",
     \\"babel-plugin-ember-template-compilation\\",
     \\"concurrently\\",
@@ -115,10 +91,10 @@ package.json
     \\"ember-page-title\\",
     \\"ember-qunit\\",
     \\"ember-resolver\\",
-    \\"ember-route-template\\",
     \\"ember-source\\",
     \\"ember-template-imports\\",
     \\"ember-template-lint\\",
+    \\"ember-welcome-page\\",
     \\"eslint\\",
     \\"eslint-config-prettier\\",
     \\"eslint-plugin-ember\\",
@@ -137,8 +113,6 @@ package.json
     \\"stylelint-prettier\\",
     \\"tailwindcss\\",
     \\"tracked-built-ins\\",
-    \\"typescript\\",
-    \\"typescript-eslint\\",
     \\"vite\\"
   ],
   \\"engines\\": [
