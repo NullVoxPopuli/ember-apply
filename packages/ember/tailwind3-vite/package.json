@@ -29,6 +29,9 @@
     "index.js",
     "files/**/*"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "execa": "^8.0.1",
     "fs-extra": "^11.2.0",
