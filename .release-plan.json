@@ -1,16 +1,7 @@
 {
   "solution": {
     "ember-apply": {
-      "impact": "minor",
-      "oldVersion": "2.14.0",
-      "newVersion": "2.15.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        }
-      ],
-      "pkgJSONPath": "./ember-apply/package.json"
+      "oldVersion": "2.15.0"
     },
     "@ember-apply/embroider": {
       "oldVersion": "1.2.0"
@@ -22,32 +13,10 @@
       "oldVersion": "1.2.0"
     },
     "@ember-apply/tailwind3-vite": {
-      "impact": "major",
-      "oldVersion": "1.0.0",
-      "newVersion": "2.0.0",
-      "constraints": [
-        {
-          "impact": "major",
-          "reason": "Appears in changelog section :boom: Breaking Change"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/tailwind3-vite/package.json"
+      "oldVersion": "2.0.0"
     },
     "@ember-apply/tailwind4-vite": {
-      "impact": "minor",
-      "oldVersion": "1.0.0",
-      "newVersion": "1.1.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/tailwind4-vite/package.json"
+      "oldVersion": "1.1.0"
     },
     "@ember-apply/typescript": {
       "oldVersion": "1.4.0"
@@ -59,5 +28,5 @@
       "oldVersion": "2.0.6"
     }
   },
-  "description": "## Release (2025-01-29)\n\nember-apply 2.15.0 (minor)\n@ember-apply/tailwind3-vite 2.0.0 (major)\n@ember-apply/tailwind4-vite 1.1.0 (minor)\n\n#### :boom: Breaking Change\n* `@ember-apply/tailwind3-vite`\n  * [#590](https://github.com/NullVoxPopuli/ember-apply/pull/590) feat: Rename tailwind-vite to tailwind3-vite ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :rocket: Enhancement\n* `ember-apply`, `@ember-apply/tailwind4-vite`\n  * [#591](https://github.com/NullVoxPopuli/ember-apply/pull/591) tailwind4-vite ([@MichalBryxi](https://github.com/MichalBryxi))\n* Other\n  * [#579](https://github.com/NullVoxPopuli/ember-apply/pull/579) feat: Basic tailwind-vite applyable ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :bug: Bug Fix\n* `@ember-apply/tailwind3-vite`\n  * [#594](https://github.com/NullVoxPopuli/ember-apply/pull/594) fix: tailwind3-vite works ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### :memo: Documentation\n* [#592](https://github.com/NullVoxPopuli/ember-apply/pull/592) docs: tailwind3-vite reference ([@MichalBryxi](https://github.com/MichalBryxi))\n\n#### Committers: 1\n- Michal Bryxí ([@MichalBryxi](https://github.com/MichalBryxi))\n"
+  "description": "\n\n\n\n"
 }
