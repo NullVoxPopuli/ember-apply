@@ -126,10 +126,6 @@ npx ember-apply ssr
 Known working capabilities:
  - tbd
 
-## External applyables
-
-- [apply-gts](https://github.com/tcarterjr/apply-gts) - Automates the steps for adding gjs/gts & Glint to an existing Ember app.
-
 ## Any package with as ESM with a default export
 
 when using a package name for the `<feature-name>`, an ESM version of the package
