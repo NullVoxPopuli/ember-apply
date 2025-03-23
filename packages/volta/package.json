@@ -51,11 +51,11 @@
     "eslint": "^8.54.0",
     "eslint-plugin-decorator-position": "^5.0.2",
     "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-n": "^14.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "postcss": "^8.4.31",
     "prettier": "^3.1.0",
-    "typescript": "5.3.3",
+    "typescript": "5.8.2",
     "vite": "^5.0.0",
     "vitest": "^0.34.6"
   },
