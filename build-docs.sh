@@ -19,6 +19,8 @@ pnpm build:docs
 
 cd packages/docs/
 
+echo '{ "version": 1, "include": [], "exclude": ["/*"] }' >> dist/_routes.json
+
 # cloudflare broke all user's Sites that have a "functions" path.
 # ... thanks cloudflare. you're usually such a good company :p 
 #
