@@ -12,6 +12,8 @@ echo "==================================================="
 echo "||            For running on CI  only            ||"
 echo "==================================================="
 
+echo '{ "version": 1, "include": [], "exclude": ["/*"] }' >> _routes.json
+
 # npm install --location global pnpm
 # pnpm i --ignore-scripts
 pnpm build
