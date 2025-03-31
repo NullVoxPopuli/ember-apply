@@ -12,8 +12,6 @@ echo "==================================================="
 echo "||            For running on CI  only            ||"
 echo "==================================================="
 
-echo '{ "version": 1, "include": [], "exclude": ["/*"] }' >> _routes.json
-
 # npm install --location global pnpm
 # pnpm i --ignore-scripts
 pnpm build
@@ -21,7 +19,7 @@ pnpm build:docs
 
 cd packages/docs/
 
-echo '{ "version": 1, "include": [], "exclude": ["/*"] }' >> dist/_routes.json
+echo '{ "route": { "/*": "/*" } }' >> dist/_routes.json
 
 # cloudflare broke all user's Sites that have a "functions" path.
 # ... thanks cloudflare. you're usually such a good company :p 

@@ -11,6 +11,7 @@
     "build": "pnpm --filter ember-apply build",
     "build:docs": "pnpm --filter docs docs:collect",
     "lint": "turbo run lint",
+    "test:update": "pnpm --filter '*' --sequential --no-bail run test --update ",
     "lint:fix": "pnpm --filter '*' lint:fix",
     "start:docs": "pnpm build:docs --watch",
     "test": "turbo run test"
