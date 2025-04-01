@@ -5,6 +5,7 @@
     "**/cli/",
     "**/node-https-loader.js"
   ],
+  "router": "structure",
   "json": "./docs.json",
   "out": "dist",
   "pretty": true,
