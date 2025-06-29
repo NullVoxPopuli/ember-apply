@@ -87,7 +87,7 @@ async function updateHtmlLink(htmlFile) {
         tag: "link",
         attrs: {
           rel: "stylesheet",
-          href: /^\/assets\/.*\.css$/,
+          href: /^\/assets\/.*\.css|\/@embroider\/virtual\/app\.css$/,
         },
       },
       (node) => {
