@@ -10,7 +10,7 @@ exports[`tailwind > applying to an ember app > works via CLI 1`] = `
 
 exports[`tailwind > applying to an ember app > works via CLI 2`] = `
 "diff --git a/.gitignore b/.gitignore
-index 71ad79d..f63b80e 100644
+index f0dde6d..55fb3af 100644
 --- a/.gitignore
 +++ b/.gitignore
 @@ -1,4 +1,7 @@
@@ -49,10 +49,12 @@ package.json
   },
   \\"scripts\\": {
     \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
+    \\"format\\": \\"prettier . --cache --write\\",
     \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
     \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
     \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto && npm run format\\",
+    \\"lint:format\\": \\"prettier . --cache --check\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
@@ -69,8 +71,8 @@ package.json
     \\"@babel/eslint-parser\\",
     \\"@babel/plugin-proposal-decorators\\",
     \\"@ember/optional-features\\",
-    \\"@ember/string\\",
     \\"@ember/test-helpers\\",
+    \\"@embroider/macros\\",
     \\"@eslint/js\\",
     \\"@glimmer/component\\",
     \\"@glimmer/tracking\\",
@@ -82,6 +84,7 @@ package.json
     \\"ember-cli-babel\\",
     \\"ember-cli-clean-css\\",
     \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-deprecation-workflow\\",
     \\"ember-cli-htmlbars\\",
     \\"ember-cli-inject-live-reload\\",
     \\"ember-cli-sri\\",
@@ -101,7 +104,6 @@ package.json
     \\"eslint-config-prettier\\",
     \\"eslint-plugin-ember\\",
     \\"eslint-plugin-n\\",
-    \\"eslint-plugin-prettier\\",
     \\"eslint-plugin-qunit\\",
     \\"globals\\",
     \\"loader.js\\",
@@ -111,7 +113,6 @@ package.json
     \\"qunit-dom\\",
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
-    \\"stylelint-prettier\\",
     \\"tailwindcss\\",
     \\"tracked-built-ins\\",
     \\"webpack\\"

@@ -8,10 +8,10 @@ exports[`embroider > applying to an ember app > works via CLI 1`] = `
 
 exports[`embroider > applying to an ember app > works via CLI 2`] = `
 "diff --git a/ember-cli-build.js b/ember-cli-build.js
-index ed991bd..49d4e1a 100644
+index 0582fad..3c33269 100644
 --- a/ember-cli-build.js
 +++ b/ember-cli-build.js
-@@ -7,5 +7,22 @@ module.exports = function (defaults) {
+@@ -16,5 +16,22 @@ module.exports = function (defaults) {
      // Add options here
    });
  
@@ -51,10 +51,12 @@ package.json
   },
   \\"scripts\\": {
     \\"build\\": \\"ember build --environment=production\\",
+    \\"format\\": \\"prettier . --cache --write\\",
     \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
     \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
     \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto && npm run format\\",
+    \\"lint:format\\": \\"prettier . --cache --check\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
@@ -68,10 +70,10 @@ package.json
     \\"@babel/eslint-parser\\",
     \\"@babel/plugin-proposal-decorators\\",
     \\"@ember/optional-features\\",
-    \\"@ember/string\\",
     \\"@ember/test-helpers\\",
     \\"@embroider/compat\\",
     \\"@embroider/core\\",
+    \\"@embroider/macros\\",
     \\"@embroider/webpack\\",
     \\"@eslint/js\\",
     \\"@glimmer/component\\",
@@ -84,6 +86,7 @@ package.json
     \\"ember-cli-babel\\",
     \\"ember-cli-clean-css\\",
     \\"ember-cli-dependency-checker\\",
+    \\"ember-cli-deprecation-workflow\\",
     \\"ember-cli-htmlbars\\",
     \\"ember-cli-inject-live-reload\\",
     \\"ember-cli-sri\\",
@@ -103,7 +106,6 @@ package.json
     \\"eslint-config-prettier\\",
     \\"eslint-plugin-ember\\",
     \\"eslint-plugin-n\\",
-    \\"eslint-plugin-prettier\\",
     \\"eslint-plugin-qunit\\",
     \\"globals\\",
     \\"loader.js\\",
@@ -113,7 +115,6 @@ package.json
     \\"qunit-dom\\",
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
-    \\"stylelint-prettier\\",
     \\"tracked-built-ins\\",
     \\"webpack\\"
   ],
