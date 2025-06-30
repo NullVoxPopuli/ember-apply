@@ -1,5 +1,23 @@
 # Changelog
 
+## Release (2025-06-30)
+
+ember-apply 2.15.1 (patch)
+@ember-apply/embroider 1.2.1 (patch)
+@ember-apply/tailwind 2.3.1 (patch)
+@ember-apply/tailwind-webpack 1.2.1 (patch)
+@ember-apply/tailwind3-vite 2.0.1 (patch)
+@ember-apply/tailwind4-vite 1.1.1 (patch)
+@ember-apply/typescript 1.4.1 (patch)
+@ember-apply/volta 2.0.7 (patch)
+
+#### :bug: Bug Fix
+* `ember-apply`, `@ember-apply/embroider`, `@ember-apply/tailwind-webpack`, `@ember-apply/tailwind`, `@ember-apply/tailwind3-vite`, `@ember-apply/tailwind4-vite`, `@ember-apply/typescript`, `@ember-apply/volta`
+  * [#606](https://github.com/NullVoxPopuli/ember-apply/pull/606) Fix for vite tailwind4 ([@evoactivity](https://github.com/evoactivity))
+
+#### Committers: 1
+- Liam Potter ([@evoactivity](https://github.com/evoactivity))
+
 ## Release (2025-01-29)
 
 ember-apply 2.15.0 (minor)

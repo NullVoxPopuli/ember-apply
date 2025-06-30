@@ -1,7 +1,7 @@
 {
   "name": "@ember-apply/typescript",
   "description": "ember-apply plugin for adding typescript to an existing app",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "type": "module",
   "license": "MIT",
   "preset": "index.js",
