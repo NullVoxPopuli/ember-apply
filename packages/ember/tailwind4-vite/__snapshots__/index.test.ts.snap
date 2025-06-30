@@ -18,14 +18,14 @@ index 2763afa..75fb7d1 100644
  /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
 +@import \\"tailwindcss\\"
 diff --git a/index.html b/index.html
-index 1e85d6e..c39daac 100644
+index 35e8565..1d6933e 100644
 --- a/index.html
 +++ b/index.html
 @@ -9,7 +9,7 @@
      {{content-for \\"head\\"}}
  
      <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/@embroider/virtual/vendor.css\\">
--    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/assets/test-app.css\\">
+-    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/@embroider/virtual/app.css\\">
 +    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/app/styles/app.css\\">
  
      {{content-for \\"head-footer\\"}}
@@ -46,10 +46,12 @@ package.json
   },
   \\"scripts\\": {
     \\"build\\": \\"vite build\\",
+    \\"format\\": \\"prettier . --cache --write\\",
     \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
     \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
     \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto\\",
+    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto && npm run format\\",
+    \\"lint:format\\": \\"prettier . --cache --check\\",
     \\"lint:hbs\\": \\"ember-template-lint .\\",
     \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
     \\"lint:js\\": \\"eslint . --cache\\",
@@ -69,7 +71,8 @@ package.json
     \\"@embroider/compat\\",
     \\"@embroider/config-meta-loader\\",
     \\"@embroider/core\\",
-    \\"@embroider/test-setup\\",
+    \\"@embroider/macros\\",
+    \\"@embroider/router\\",
     \\"@embroider/vite\\",
     \\"@eslint/js\\",
     \\"@glimmer/component\\",
@@ -82,6 +85,7 @@ package.json
     \\"ember-auto-import\\",
     \\"ember-cli\\",
     \\"ember-cli-babel\\",
+    \\"ember-cli-deprecation-workflow\\",
     \\"ember-cli-htmlbars\\",
     \\"ember-data\\",
     \\"ember-load-initializers\\",
@@ -97,17 +101,14 @@ package.json
     \\"eslint-config-prettier\\",
     \\"eslint-plugin-ember\\",
     \\"eslint-plugin-n\\",
-    \\"eslint-plugin-prettier\\",
     \\"eslint-plugin-qunit\\",
     \\"globals\\",
-    \\"loader.js\\",
     \\"prettier\\",
     \\"prettier-plugin-ember-template-tag\\",
     \\"qunit\\",
     \\"qunit-dom\\",
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
-    \\"stylelint-prettier\\",
     \\"tailwindcss\\",
     \\"tracked-built-ins\\",
     \\"vite\\"
@@ -128,7 +129,7 @@ package.json
   }
 }
 diff --git a/tests/index.html b/tests/index.html
-index cbeba0c..71f828a 100644
+index ee6675e..833f5ac 100644
 --- a/tests/index.html
 +++ b/tests/index.html
 @@ -1,16 +1,16 @@
@@ -137,7 +138,7 @@ index cbeba0c..71f828a 100644
    <head>
 -    <meta charset=\\"utf-8\\" />
 +    <meta charset=\\"utf-8\\">
-     <title>AppTemplate Tests</title>
+     <title>TestApp Tests</title>
 -    <meta name=\\"description\\" content=\\"\\" />
 -    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\" />
 +    <meta name=\\"description\\" content=\\"\\">
@@ -146,7 +147,7 @@ index cbeba0c..71f828a 100644
      {{content-for \\"head\\"}} {{content-for \\"test-head\\"}}
  
 -    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/vendor.css\\" />
--    <link rel=\\"stylesheet\\" href=\\"/assets/test-app.css\\" />
+-    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/app.css\\" />
 -    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/test-support.css\\" />
 +    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/vendor.css\\">
 +    <link rel=\\"stylesheet\\" href=\\"/app/styles/app.css\\">

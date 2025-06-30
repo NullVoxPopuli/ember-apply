@@ -1,11 +1,13 @@
 import { execa } from 'execa';
 import fs from 'fs/promises';
+import { createRequire } from 'module';
 import os from 'os';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import { packageJson, project } from './index.js';
 
+const require = createRequire(import.meta.url);
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export async function newTmpDir() {
@@ -22,8 +24,12 @@ export async function newTmpDir() {
 export async function newEmberApp(args = []) {
   let dir = await newTmpDir();
 
-  await execa('ember', ['-v'], { cwd: dir });
-  await execa('ember', ['new', 'test-app', '--skip-npm', ...args], {
+  let localEmberCli = require.resolve('ember-cli');
+
+  let emberCliBin = path.join(localEmberCli, '../../../bin/ember');
+
+  await execa(emberCliBin, ['-v'], { cwd: dir });
+  await execa(emberCliBin, ['new', 'test-app', '--skip-npm', ...args], {
     cwd: dir,
   });
 
