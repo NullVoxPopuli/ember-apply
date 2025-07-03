@@ -1,5 +1,10 @@
 # Changelog
 
+
+
+
+
+
 ## Release (2025-06-30)
 
 ember-apply 2.15.1 (patch)
