@@ -13,4 +13,5 @@ export * as js from './-private/js/index.js';
 export * as npm from './-private/npm/index.js';
 export * as packageJson from './-private/package-json/index.js';
 export * as project from './-private/project/index.js';
+export * as terminal from './-private/terminal/index.js';
 export * as tsconfig from './-private/tsconfig/index.js';
