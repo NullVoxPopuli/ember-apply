@@ -20,4 +20,5 @@ pnpm build:docs
 cd packages/docs/
 
 cp wrangler.json ./dist/
+cp _routes.json ./dist/
 
