@@ -7,10 +7,10 @@
     "docs:watch": "pnpm docs:collect --watch"
   },
   "devDependencies": {
-    "typedoc": "0.27.6",
-    "typedoc-plugin-markdown": "^4.4.1",
-    "typedoc-plugin-mdn-links": "^4.0.9",
-    "typedoc-plugin-merge-modules": "^6.1.0",
+    "typedoc": "0.28.7",
+    "typedoc-plugin-markdown": "^4.7.0",
+    "typedoc-plugin-mdn-links": "^5.0.4",
+    "typedoc-plugin-merge-modules": "^7.0.0",
     "typescript": "5.3.3"
   }
 }
