@@ -21,7 +21,7 @@ cd packages/docs/
 
 # Can I just make "functions" work?
 echo '{ "route": { "/*": "/*" } }' >> dist/_routes.json
-echo '{ "name": "reactiveweb Static Docs",  "compatibility_date": "2025-07-19", "assets": { "directory": "." } }' >> dist/wrangler.json
+echo '{ "name": "ember-apply",  "compatibility_date": "2025-07-19", "assets": { "directory": "." } }' >> dist/wrangler.json
 
 # # cloudflare broke all user's Sites that have a "functions" path.
 # # ... thanks cloudflare. you're usually such a good company :p 
