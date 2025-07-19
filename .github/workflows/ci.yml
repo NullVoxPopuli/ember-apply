@@ -148,12 +148,11 @@ jobs:
       - uses: actions/download-artifact@v4
         name: deploy-prep-dist
       - name: Publish ${{ matrix.app.id }}
-        uses: cloudflare/pages-action@v1.5.0
+        uses: cloudflare/wrangler-action@v3.14.1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ matrix.app.cloudflareName }}
-          directory: ./deploy-prep-dist/
-          # directory: ./deploy-prep-dist/${{ matrix.app.path }}
+          workingDirectory: ./deploy-prep-dist/
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 

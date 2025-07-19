@@ -108,13 +108,13 @@ jobs:
       - uses: actions/download-artifact@v4
         name: deploy-prep-dist
       - id: deploy
-        uses: cloudflare/pages-action@v1.5.0
+        uses: cloudflare/wrangler-action@v3.14.1
         with:
           branch: ${{ github.event.workflow_run.head_branch }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ember-apply
-          directory: ./deploy-prep-dist/
+          workingDirectory: ./deploy-prep-dist/
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
   PostComment:
