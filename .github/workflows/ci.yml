@@ -150,6 +150,7 @@ jobs:
       - name: Publish ${{ matrix.app.id }}
         uses: cloudflare/wrangler-action@v3.14.1
         with:
+          wranglerVersion: "4.25.0"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ matrix.app.cloudflareName }}
