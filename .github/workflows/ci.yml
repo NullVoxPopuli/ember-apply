@@ -151,6 +151,7 @@ jobs:
         uses: cloudflare/wrangler-action@v3.14.1
         with:
           wranglerVersion: "4.25.0"
+          command: pages deploy . --project-name ember-apply
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ matrix.app.cloudflareName }}
