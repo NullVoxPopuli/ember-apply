@@ -2,6 +2,17 @@
 
 ## Release (2025-07-19)
 
+
+
+#### :house: Internal
+* [#612](https://github.com/NullVoxPopuli/ember-apply/pull/612) Try to fix API docs deploy (silly cloudflare) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#610](https://github.com/NullVoxPopuli/ember-apply/pull/610) Split out tests ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2025-07-19)
+
 ember-apply 2.15.2 (patch)
 @ember-apply/tailwind4-vite 1.1.2 (patch)
 
