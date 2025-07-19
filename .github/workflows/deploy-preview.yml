@@ -111,6 +111,8 @@ jobs:
         uses: cloudflare/wrangler-action@v3.14.1
         with:
           branch: ${{ github.event.workflow_run.head_branch }}
+          command: pages deploy . --project-name ember-apply --branch ${{ github.event.workflow_run.head_branch }}
+
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ember-apply
