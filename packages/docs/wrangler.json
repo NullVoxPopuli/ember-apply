@@ -1,6 +1,5 @@
 {
   "name": "ember-apply",  
   "compatibility_date": "2025-07-19", 
-  "assets": { "directory": "." } ,
   "pages_build_output_dir": "."
 }
