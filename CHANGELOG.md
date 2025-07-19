@@ -1,5 +1,17 @@
 # Changelog
 
+## Release (2025-07-19)
+
+ember-apply 2.15.2 (patch)
+@ember-apply/tailwind4-vite 1.1.2 (patch)
+
+#### :bug: Bug Fix
+* `ember-apply`, `@ember-apply/tailwind4-vite`
+  * [#609](https://github.com/NullVoxPopuli/ember-apply/pull/609) Fix tailwind4-vite ([@tcjr](https://github.com/tcjr))
+
+#### Committers: 1
+- Tom Carter ([@tcjr](https://github.com/tcjr))
+
 ## Release (2025-06-30)
 
 ember-apply 2.15.1 (patch)

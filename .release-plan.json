@@ -2,8 +2,8 @@
   "solution": {
     "ember-apply": {
       "impact": "patch",
-      "oldVersion": "2.15.0",
-      "newVersion": "2.15.1",
+      "oldVersion": "2.15.1",
+      "newVersion": "2.15.2",
       "constraints": [
         {
           "impact": "patch",
@@ -13,57 +13,21 @@
       "pkgJSONPath": "./ember-apply/package.json"
     },
     "@ember-apply/embroider": {
-      "impact": "patch",
-      "oldVersion": "1.2.0",
-      "newVersion": "1.2.1",
-      "constraints": [
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/embroider/package.json"
+      "oldVersion": "1.2.1"
     },
     "@ember-apply/tailwind": {
-      "impact": "patch",
-      "oldVersion": "2.3.0",
-      "newVersion": "2.3.1",
-      "constraints": [
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/tailwind/package.json"
+      "oldVersion": "2.3.1"
     },
     "@ember-apply/tailwind-webpack": {
-      "impact": "patch",
-      "oldVersion": "1.2.0",
-      "newVersion": "1.2.1",
-      "constraints": [
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/tailwind-webpack/package.json"
+      "oldVersion": "1.2.1"
     },
     "@ember-apply/tailwind3-vite": {
-      "impact": "patch",
-      "oldVersion": "2.0.0",
-      "newVersion": "2.0.1",
-      "constraints": [
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/tailwind3-vite/package.json"
+      "oldVersion": "2.0.1"
     },
     "@ember-apply/tailwind4-vite": {
       "impact": "patch",
-      "oldVersion": "1.1.0",
-      "newVersion": "1.1.1",
+      "oldVersion": "1.1.1",
+      "newVersion": "1.1.2",
       "constraints": [
         {
           "impact": "patch",
@@ -73,32 +37,14 @@
       "pkgJSONPath": "./packages/ember/tailwind4-vite/package.json"
     },
     "@ember-apply/typescript": {
-      "impact": "patch",
-      "oldVersion": "1.4.0",
-      "newVersion": "1.4.1",
-      "constraints": [
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/typescript/package.json"
+      "oldVersion": "1.4.1"
     },
     "@ember-apply/unstable-embroider": {
       "oldVersion": "1.1.0"
     },
     "@ember-apply/volta": {
-      "impact": "patch",
-      "oldVersion": "2.0.6",
-      "newVersion": "2.0.7",
-      "constraints": [
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
-        }
-      ],
-      "pkgJSONPath": "./packages/volta/package.json"
+      "oldVersion": "2.0.7"
     }
   },
-  "description": "## Release (2025-06-30)\n\nember-apply 2.15.1 (patch)\n@ember-apply/embroider 1.2.1 (patch)\n@ember-apply/tailwind 2.3.1 (patch)\n@ember-apply/tailwind-webpack 1.2.1 (patch)\n@ember-apply/tailwind3-vite 2.0.1 (patch)\n@ember-apply/tailwind4-vite 1.1.1 (patch)\n@ember-apply/typescript 1.4.1 (patch)\n@ember-apply/volta 2.0.7 (patch)\n\n#### :bug: Bug Fix\n* `ember-apply`, `@ember-apply/embroider`, `@ember-apply/tailwind-webpack`, `@ember-apply/tailwind`, `@ember-apply/tailwind3-vite`, `@ember-apply/tailwind4-vite`, `@ember-apply/typescript`, `@ember-apply/volta`\n  * [#606](https://github.com/NullVoxPopuli/ember-apply/pull/606) Fix for vite tailwind4 ([@evoactivity](https://github.com/evoactivity))\n\n#### Committers: 1\n- Liam Potter ([@evoactivity](https://github.com/evoactivity))\n"
+  "description": "## Release (2025-07-19)\n\nember-apply 2.15.2 (patch)\n@ember-apply/tailwind4-vite 1.1.2 (patch)\n\n#### :bug: Bug Fix\n* `ember-apply`, `@ember-apply/tailwind4-vite`\n  * [#609](https://github.com/NullVoxPopuli/ember-apply/pull/609) Fix tailwind4-vite ([@tcjr](https://github.com/tcjr))\n\n#### Committers: 1\n- Tom Carter ([@tcjr](https://github.com/tcjr))\n"
 }
