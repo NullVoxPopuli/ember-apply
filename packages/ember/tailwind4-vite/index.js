@@ -1,5 +1,5 @@
 // @ts-check
-import { css, js, packageJson } from "ember-apply";
+import { css, html, js, packageJson } from "ember-apply";
 import { execa } from "execa";
 import fse from "fs-extra";
 import { dirname } from "path";
@@ -80,18 +80,23 @@ async function updateViteConfig(viteConfig) {
   });
 }
 
-async function addAppCssImport() {
-  const appFile = (await fse.pathExists('app/app.ts'))
-    ? 'app/app.ts'
-    : 'app/app.js';
+async function updateHtmlLink(htmlFile) {
+  await html.transform(htmlFile, async (tree) => {
+    tree.match(
+      {
+        tag: "link",
+        attrs: {
+          rel: "stylesheet",
+          href: /^\/assets\/.*\.css|\/@embroider\/virtual\/app\.css$/,
+        },
+      },
+      (node) => {
+        // Update the `href` attribute to point to the new stylesheet
+        node.attrs.href = "/app/styles/app.css";
 
-  await js.transform(appFile, async ({ root, j }) => {
-    root
-      .find(j.ImportDefaultSpecifier)
-      .filter((path) => path.node.local?.name === 'config')
-      .forEach((path) => {
-        path.parent.insertAfter(`import './styles/app.css'`);
-      });
+        return node;
+      }
+    );
   });
 }
 
@@ -137,13 +142,14 @@ export default async function run() {
   updateViteConfig(viteConfig);
 
   await packageJson.addDevDependencies({
-    tailwindcss: "^4.1.11",
-    "@tailwindcss/vite": "^4.1.11",
+    tailwindcss: "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0",
   });
 
   updateAppStyles("./app/styles/app.css");
 
-  addAppCssImport();
+  updateHtmlLink("./index.html");
+  updateHtmlLink("./tests/index.html");
 
   await execa("git", ["add", ".", "-N"]);
 }

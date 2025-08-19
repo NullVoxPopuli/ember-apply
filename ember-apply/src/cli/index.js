@@ -109,8 +109,9 @@ async function showInfo(name) {
 
   if (!info) return;
 
-  let report = info.url ? `at ${info.url}` : 'to the author.';
-  let message = `If there are any bugs with this applyable, feel free to report ${report}`;
+  let message =
+    `If there are any bugs with this applyable, ` +
+    `feel free to report at ${info.url}`;
 
   spinner.text = message;
   spinner.info();
