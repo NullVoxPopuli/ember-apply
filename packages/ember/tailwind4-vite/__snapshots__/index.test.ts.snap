@@ -1,34 +1,35 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`tailwind4-vite > applying to an ember app > works via CLI 1`] = `
-" app/app.js         |  2 ++
- app/styles/app.css |  1 +
+" app/styles/app.css |  1 +
+ index.html         |  2 +-
  package.json       |  2 ++
+ tests/index.html   | 12 ++++++------
  vite.config.mjs    | 15 ++++++---------
- 4 files changed, 11 insertions(+), 9 deletions(-)"
+ 5 files changed, 16 insertions(+), 16 deletions(-)"
 `;
 
 exports[`tailwind4-vite > applying to an ember app > works via CLI 2`] = `
-"diff --git a/app/app.js b/app/app.js
-index a3c0402..57368f0 100644
---- a/app/app.js
-+++ b/app/app.js
-@@ -4,6 +4,8 @@ import Resolver from 'ember-resolver';
- import loadInitializers from 'ember-load-initializers';
- import config from './config/environment';
- 
-+import './styles/app.css'
-+
- export default class App extends Application {
-   modulePrefix = config.modulePrefix;
-   podModulePrefix = config.podModulePrefix;
-diff --git a/app/styles/app.css b/app/styles/app.css
+"diff --git a/app/styles/app.css b/app/styles/app.css
 index 2763afa..75fb7d1 100644
 --- a/app/styles/app.css
 +++ b/app/styles/app.css
 @@ -1 +1,2 @@
  /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
 +@import \\"tailwindcss\\"
+diff --git a/index.html b/index.html
+index 35e8565..1d6933e 100644
+--- a/index.html
++++ b/index.html
+@@ -9,7 +9,7 @@
+     {{content-for \\"head\\"}}
+ 
+     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/@embroider/virtual/vendor.css\\">
+-    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/@embroider/virtual/app.css\\">
++    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"/app/styles/app.css\\">
+ 
+     {{content-for \\"head-footer\\"}}
+   </head>
 
 package.json
 {
@@ -127,6 +128,33 @@ package.json
     \\"./*\\": \\"./app/*\\"
   }
 }
+diff --git a/tests/index.html b/tests/index.html
+index ee6675e..833f5ac 100644
+--- a/tests/index.html
++++ b/tests/index.html
+@@ -1,16 +1,16 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+-    <meta charset=\\"utf-8\\" />
++    <meta charset=\\"utf-8\\">
+     <title>TestApp Tests</title>
+-    <meta name=\\"description\\" content=\\"\\" />
+-    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\" />
++    <meta name=\\"description\\" content=\\"\\">
++    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
+ 
+     {{content-for \\"head\\"}} {{content-for \\"test-head\\"}}
+ 
+-    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/vendor.css\\" />
+-    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/app.css\\" />
+-    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/test-support.css\\" />
++    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/vendor.css\\">
++    <link rel=\\"stylesheet\\" href=\\"/app/styles/app.css\\">
++    <link rel=\\"stylesheet\\" href=\\"/@embroider/virtual/test-support.css\\">
+ 
+     {{content-for \\"head-footer\\"}} {{content-for \\"test-head-footer\\"}}
+   </head>
 diff --git a/vite.config.mjs b/vite.config.mjs
 index 219253d..930b8be 100644
 --- a/vite.config.mjs
