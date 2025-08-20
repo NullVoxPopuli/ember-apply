@@ -2,8 +2,8 @@
   "solution": {
     "ember-apply": {
       "impact": "patch",
-      "oldVersion": "2.15.1",
-      "newVersion": "2.15.2",
+      "oldVersion": "2.15.2",
+      "newVersion": "2.15.3",
       "constraints": [
         {
           "impact": "patch",
@@ -26,8 +26,8 @@
     },
     "@ember-apply/tailwind4-vite": {
       "impact": "patch",
-      "oldVersion": "1.1.1",
-      "newVersion": "1.1.2",
+      "oldVersion": "1.1.2",
+      "newVersion": "1.1.3",
       "constraints": [
         {
           "impact": "patch",
@@ -46,5 +46,5 @@
       "oldVersion": "2.0.7"
     }
   },
-  "description": "## Release (2025-07-19)\n\nember-apply 2.15.2 (patch)\n@ember-apply/tailwind4-vite 1.1.2 (patch)\n\n#### :bug: Bug Fix\n* `ember-apply`, `@ember-apply/tailwind4-vite`\n  * [#609](https://github.com/NullVoxPopuli/ember-apply/pull/609) Fix tailwind4-vite ([@tcjr](https://github.com/tcjr))\n\n#### Committers: 1\n- Tom Carter ([@tcjr](https://github.com/tcjr))\n"
+  "description": "## Release (2025-08-20)\n\nember-apply 2.15.3 (patch)\n@ember-apply/tailwind4-vite 1.1.3 (patch)\n\n#### :bug: Bug Fix\n* `ember-apply`, `@ember-apply/tailwind4-vite`\n  * [#616](https://github.com/NullVoxPopuli/ember-apply/pull/616) Revert \"move vite tailwind import index.html to app.ts\" ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :house: Internal\n* [#612](https://github.com/NullVoxPopuli/ember-apply/pull/612) Try to fix API docs deploy (silly cloudflare) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n* [#610](https://github.com/NullVoxPopuli/ember-apply/pull/610) Split out tests ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
