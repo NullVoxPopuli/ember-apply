@@ -1,5 +1,21 @@
 # Changelog
 
+## Release (2025-08-20)
+
+ember-apply 2.15.3 (patch)
+@ember-apply/tailwind4-vite 1.1.3 (patch)
+
+#### :bug: Bug Fix
+* `ember-apply`, `@ember-apply/tailwind4-vite`
+  * [#616](https://github.com/NullVoxPopuli/ember-apply/pull/616) Revert "move vite tailwind import index.html to app.ts" ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* [#612](https://github.com/NullVoxPopuli/ember-apply/pull/612) Try to fix API docs deploy (silly cloudflare) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#610](https://github.com/NullVoxPopuli/ember-apply/pull/610) Split out tests ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-07-19)
 
 ember-apply 2.15.2 (patch)
