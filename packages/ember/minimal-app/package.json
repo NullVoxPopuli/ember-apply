@@ -34,13 +34,15 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.11.0",
-    "ember-apply": "workspace:^"
+    "ember-apply": "workspace:^",
+    "eta": "^4.0.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
-    "eta": "^4.0.1",
-    "prettier": "^3.1.0",
-    "typescript": "5.3.3",
+    "@nullvoxpopuli/eslint-configs": "^5.3.4",
+    "eslint": "^9.36.0",
+    "prettier": "^3.6.2",
+    "typescript": "5.9.3",
     "vite": "^7.0.0",
     "vitest": "^3.0.0"
   },

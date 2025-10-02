@@ -1,0 +1,8 @@
+import { configs } from '@nullvoxpopuli/eslint-configs';
+
+export default [
+  ...configs.node(import.meta.dirname),
+  {
+    ignores: ['node_modules', 'files']
+  }
+];
