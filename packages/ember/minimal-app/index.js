@@ -13,7 +13,7 @@ export default async function run() {
 
   // https://github.com/bombshell-dev/clack/tree/main/packages/prompts#readme
   const name = await text({
-    message: 'What is the naem of this app?',
+    message: 'What is the name of this app?',
     initialValue: 'my-app',
   });
 
