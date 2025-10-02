@@ -7,7 +7,9 @@
  * @property {string} [content] the content to copy
  *
  */
-import fs from 'fs/promises';
+import { lstatSync } from 'node:fs';
+
+import fs, { readFile, writeFile } from 'fs/promises';
 import path from 'path';
 
 /**
@@ -35,10 +37,19 @@ import path from 'path';
  *
  *
  * @param {string} folder the location of the folder to copy the contents of
- * @param {string} [to] sub folder within the target project to copy the contents to
+ * @param {string | { to?: string, transform?: (data: { filePath: string, contents: string }) => string | Promise<string>}} [options] sub folder within the target project to copy the contents to
  */
-export async function applyFolder(folder, to) {
+export async function applyFolder(folder, options) {
   let files = await fs.readdir(folder);
+  let to;
+  let transform;
+
+  if (typeof options === 'object') {
+    to = options.to;
+    transform = options.transform;
+  } else {
+    to = options;
+  }
 
   for (let file of files) {
     let filePath = path.join(folder, file);
@@ -49,7 +60,26 @@ export async function applyFolder(folder, to) {
       await fs.mkdir(directory, { recursive: true });
     }
 
-    await copyFileTo(targetPath, { source: filePath });
+    let stat = lstatSync(filePath);
+
+    if (stat.isDirectory()) {
+      await applyFolder(filePath, {
+        to: targetPath,
+        transform,
+      });
+
+      continue;
+    }
+
+    if (transform) {
+      let buffer = await readFile(filePath);
+      let contents = buffer.toString();
+      let different = await transform({ filePath, contents });
+
+      await writeFile(targetPath, different);
+    } else {
+      await copyFileTo(targetPath, { source: filePath });
+    }
   }
 }
 
