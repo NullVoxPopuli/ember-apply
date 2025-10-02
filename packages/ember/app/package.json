@@ -1,0 +1,48 @@
+{
+  "name": "@ember-apply/app",
+  "description": "create a minimal ember app",
+  "type": "module",
+  "license": "MIT",
+  "author": "NullVoxPopuli",
+  "repository": {
+    "url": "https://github.com/NullVoxPopuli/ember-apply",
+    "type": "https",
+    "directory": "packages/ember/app"
+  },
+  "keywords": [
+    "ember",
+    "ember-app",
+    "ember-apply",
+    "ember-blueprint",
+    "blueprint"
+  ],
+  "exports": {
+    "import": "./index.js"
+  },
+  "files": [
+    "files",
+    "index.js"
+  ],
+  "scripts": {
+    "lint:types": "tsc --noEmit",
+    "build": "tsc --build",
+    "lint": "pnpm lint:js",
+    "lint:js": "eslint .",
+    "lint:fix": "pnpm lint:js --fix",
+    "test": "vitest --coverage --no-watch",
+    "test:watch": "vitest --watch"
+  },
+  "dependencies": {
+    "ember-apply": "workspace:^"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.23.3",
+    "prettier": "^3.1.0",
+    "typescript": "5.3.3",
+    "vite": "^7.0.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">= 22.16"
+  }
+}
