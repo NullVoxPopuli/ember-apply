@@ -175,33 +175,7 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
-  packages/ember/app:
-    dependencies:
-      '@clack/prompts':
-        specifier: ^0.11.0
-        version: 0.11.0
-      ember-apply:
-        specifier: workspace:^
-        version: link:../../../ember-apply
-    devDependencies:
-      '@babel/eslint-parser':
-        specifier: ^7.23.3
-        version: 7.24.7(@babel/core@7.28.0)(eslint@8.57.0)
-      eta:
-        specifier: ^4.0.1
-        version: 4.0.1
-      prettier:
-        specifier: ^3.1.0
-        version: 3.3.2
-      typescript:
-        specifier: 5.3.3
-        version: 5.3.3
-      vite:
-        specifier: ^7.0.0
-        version: 7.1.7(@types/node@24.0.15)(yaml@2.8.0)
-      vitest:
-        specifier: ^3.0.0
-        version: 3.2.4(@types/node@24.0.15)(@vitest/ui@3.2.4)(yaml@2.8.0)
+  packages/ember/app: {}
 
   packages/ember/embroider:
     dependencies:
@@ -265,6 +239,36 @@ importers:
         version: 0.34.6(@vitest/ui@3.2.4)
 
   packages/ember/eslint: {}
+
+  packages/ember/github-actions: {}
+
+  packages/ember/minimal-app:
+    dependencies:
+      '@clack/prompts':
+        specifier: ^0.11.0
+        version: 0.11.0
+      ember-apply:
+        specifier: workspace:^
+        version: link:../../../ember-apply
+    devDependencies:
+      '@babel/eslint-parser':
+        specifier: ^7.23.3
+        version: 7.24.7(@babel/core@7.28.0)(eslint@8.57.0)
+      eta:
+        specifier: ^4.0.1
+        version: 4.0.1
+      prettier:
+        specifier: ^3.1.0
+        version: 3.3.2
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+      vite:
+        specifier: ^7.0.0
+        version: 7.1.7(@types/node@24.0.15)(yaml@2.8.0)
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.4(@types/node@24.0.15)(@vitest/ui@3.2.4)(yaml@2.8.0)
 
   packages/ember/prettier: {}
 

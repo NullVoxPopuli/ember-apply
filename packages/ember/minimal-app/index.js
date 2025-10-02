@@ -3,8 +3,9 @@ import {files } from 'ember-apply';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { intro, text } from '@clack/prompts';
-  import { Eta } from "eta/core"
-  const eta = new Eta()
+import { Eta } from "eta/core"
+
+const eta = new Eta()
 
 export default async function run() {
   intro(`Creating minimal app`);
