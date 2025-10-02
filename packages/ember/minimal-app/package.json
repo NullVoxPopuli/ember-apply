@@ -1,5 +1,5 @@
 {
-  "name": "@ember-apply/app",
+  "name": "@ember-apply/minimal-app",
   "description": "create a minimal ember app",
   "type": "module",
   "license": "MIT",
