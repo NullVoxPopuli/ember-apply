@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
+    "eta": "^4.0.1",
     "prettier": "^3.1.0",
     "typescript": "5.3.3",
     "vite": "^7.0.0",

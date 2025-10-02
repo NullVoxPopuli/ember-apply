@@ -187,6 +187,9 @@ importers:
       '@babel/eslint-parser':
         specifier: ^7.23.3
         version: 7.24.7(@babel/core@7.28.0)(eslint@8.57.0)
+      eta:
+        specifier: ^4.0.1
+        version: 4.0.1
       prettier:
         specifier: ^3.1.0
         version: 3.3.2
@@ -4511,6 +4514,10 @@ packages:
   esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
+
+  eta@4.0.1:
+    resolution: {integrity: sha512-0h0oBEsF6qAJU7eu9ztvJoTo8D2PAq/4FvXVIQA1fek3WOTe6KPsVJycekG1+g1N6mfpblkheoGwaUhMtnlH4A==}
+    engines: {node: '>=20'}
 
   etag@1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
@@ -12878,6 +12885,8 @@ snapshots:
       '@types/estree': 1.0.8
 
   esutils@2.0.3: {}
+
+  eta@4.0.1: {}
 
   etag@1.8.1: {}
 

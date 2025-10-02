@@ -30,7 +30,7 @@ commandArgs="$cli --verbose $applyable"
 
 echo ""
 echo ""
-echo "In $target/my-app"
+echo "In $target"
 echo "about to run:"
 echo "  node $commandArgs"
 echo ""
