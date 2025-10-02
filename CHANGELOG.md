@@ -1,5 +1,23 @@
 # Changelog
 
+## Release (2025-10-02)
+
+* ember-apply 2.16.0 (minor)
+* @ember-apply/minimal-app 0.1.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-apply`, `@ember-apply/minimal-app`
+  * [#621](https://github.com/NullVoxPopuli/ember-apply/pull/621) Add minimal ember app, and prepare for layering parts of a blueprint ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* `ember-apply`
+  * [#589](https://github.com/NullVoxPopuli/ember-apply/pull/589) Terminal utils ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* `@ember-apply/minimal-app`
+  * [#622](https://github.com/NullVoxPopuli/ember-apply/pull/622) Set starting version for minimal app ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-08-20)
 
 ember-apply 2.15.3 (patch)
