@@ -33,6 +33,9 @@
     "test": "vitest --coverage --no-watch",
     "test:watch": "vitest --watch"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@clack/prompts": "^0.11.0",
     "ember-apply": "workspace:^",
