@@ -33,6 +33,7 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
+    "@clack/prompts": "^0.11.0",
     "ember-apply": "workspace:^"
   },
   "devDependencies": {
