@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-11-02)
+
+* @ember-apply/minimal-app 0.1.1 (patch)
+
+#### :memo: Documentation
+* `@ember-apply/minimal-app`
+  * [#623](https://github.com/NullVoxPopuli/ember-apply/pull/623) typo ([@johanrd](https://github.com/johanrd))
+
+#### Committers: 1
+- [@johanrd](https://github.com/johanrd)
+
 ## Release (2025-10-02)
 
 * ember-apply 2.16.0 (minor)
