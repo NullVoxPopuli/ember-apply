@@ -69,7 +69,7 @@ jobs:
       - uses: NullVoxPopuli/action-setup-pnpm@v2
       - run: ./build-docs.sh
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: deploy-prep-dist
           if-no-files-found: error
@@ -105,7 +105,7 @@ jobs:
     outputs:
       docsUrl: ${{ steps.deploy.outputs.url }}
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         name: deploy-prep-dist
       - id: deploy
         uses: cloudflare/wrangler-action@v3.14.1
