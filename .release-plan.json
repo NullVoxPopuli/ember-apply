@@ -1,34 +1,20 @@
 {
   "solution": {
     "ember-apply": {
-      "impact": "minor",
-      "oldVersion": "2.15.3",
-      "newVersion": "2.16.0",
-      "tagName": "latest",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        }
-      ],
-      "pkgJSONPath": "./ember-apply/package.json"
+      "oldVersion": "2.16.0"
     },
     "@ember-apply/embroider": {
       "oldVersion": "1.2.1"
     },
     "@ember-apply/minimal-app": {
-      "impact": "minor",
-      "oldVersion": "0.0.0",
-      "newVersion": "0.1.0",
+      "impact": "patch",
+      "oldVersion": "0.1.0",
+      "newVersion": "0.1.1",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
           "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
+          "reason": "Appears in changelog section :memo: Documentation"
         }
       ],
       "pkgJSONPath": "./packages/ember/minimal-app/package.json"
@@ -55,5 +41,5 @@
       "oldVersion": "2.0.7"
     }
   },
-  "description": "## Release (2025-10-02) \n\n* ember-apply 2.16.0 (minor)\n* @ember-apply/minimal-app 0.1.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-apply`, `@ember-apply/minimal-app`\n  * [#621](https://github.com/NullVoxPopuli/ember-apply/pull/621) Add minimal ember app, and prepare for layering parts of a blueprint ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n* `ember-apply`\n  * [#589](https://github.com/NullVoxPopuli/ember-apply/pull/589) Terminal utils ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :house: Internal\n* `@ember-apply/minimal-app`\n  * [#622](https://github.com/NullVoxPopuli/ember-apply/pull/622) Set starting version for minimal app ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2025-12-07)\n\n* @ember-apply/minimal-app 0.1.1 (patch)\n\n#### :memo: Documentation\n* `@ember-apply/minimal-app`\n  * [#623](https://github.com/NullVoxPopuli/ember-apply/pull/623) typo ([@johanrd](https://github.com/johanrd))\n\n#### Committers: 1\n- [@johanrd](https://github.com/johanrd)\n"
 }
