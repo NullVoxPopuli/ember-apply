@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "release-plan": "^0.17.0",
-    "turbo": "1.11.3"
+    "turbo": "2.7.2"
   },
   "packageManager": "pnpm@10.26.2",
   "volta": {
