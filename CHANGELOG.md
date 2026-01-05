@@ -1,5 +1,22 @@
 # Changelog
 
+## Release (2026-01-05)
+
+* ember-apply 2.17.0 (minor)
+* @ember-apply/minimal-app 0.1.1 (patch)
+
+#### :rocket: Enhancement
+* `ember-apply`
+  * [#642](https://github.com/NullVoxPopuli/ember-apply/pull/642) Prettier-the-tsconfig output ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :memo: Documentation
+* `@ember-apply/minimal-app`
+  * [#623](https://github.com/NullVoxPopuli/ember-apply/pull/623) typo ([@johanrd](https://github.com/johanrd))
+
+#### Committers: 2
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+- [@johanrd](https://github.com/johanrd)
+
 ## Release (2025-10-02)
 
 * ember-apply 2.16.0 (minor)
