@@ -37,21 +37,27 @@ import path from 'path';
  *
  *
  * @param {string} folder the location of the folder to copy the contents of
- * @param {string | { to?: string, transform?: (data: { filePath: string, contents: string }) => string | Promise<string>}} [options] sub folder within the target project to copy the contents to
+ * @param {string | { to?: string, exclude?: string[], transform?: (data: { filePath: string, contents: string }) => string | Promise<string>}} [options] sub folder within the target project to copy the contents to
  */
 export async function applyFolder(folder, options) {
   let files = await fs.readdir(folder);
   let to;
   let transform;
+  let exclude = ['node_modules'];
 
   if (typeof options === 'object') {
     to = options.to;
     transform = options.transform;
+    exclude = options.exclude ?? ['node_modules'];
   } else {
     to = options;
   }
 
+  let toExclude = new Set(exclude);
+
   for (let file of files) {
+    if (toExclude.has(file)) continue;
+
     let filePath = path.join(folder, file);
     let targetPath = to ? path.join(to, file) : file;
     let directory = path.dirname(targetPath);
