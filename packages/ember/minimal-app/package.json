@@ -1,6 +1,6 @@
 {
   "name": "@ember-apply/minimal-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "create a minimal ember app",
   "type": "module",
   "license": "MIT",
