@@ -91,7 +91,7 @@
     "@vitest/ui": "^0.34.6",
     "c8": "^8.0.1",
     "concurrently": "^8.2.2",
-    "eslint": "^8.54.0",
+    "eslint": "^9.0.0",
     "eslint-plugin-decorator-position": "^5.0.2",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-node": "^11.1.0",
