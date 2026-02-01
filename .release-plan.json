@@ -1,33 +1,13 @@
 {
   "solution": {
     "ember-apply": {
-      "impact": "minor",
-      "oldVersion": "2.16.0",
-      "newVersion": "2.17.0",
-      "tagName": "latest",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        }
-      ],
-      "pkgJSONPath": "./ember-apply/package.json"
+      "oldVersion": "2.17.0"
     },
     "@ember-apply/embroider": {
       "oldVersion": "1.2.1"
     },
     "@ember-apply/minimal-app": {
-      "impact": "patch",
-      "oldVersion": "0.1.0",
-      "newVersion": "0.1.1",
-      "tagName": "latest",
-      "constraints": [
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :memo: Documentation"
-        }
-      ],
-      "pkgJSONPath": "./packages/ember/minimal-app/package.json"
+      "oldVersion": "0.1.1"
     },
     "@ember-apply/tailwind": {
       "oldVersion": "2.3.1"
@@ -51,5 +31,5 @@
       "oldVersion": "2.0.7"
     }
   },
-  "description": "## Release (2026-01-23)\n\n* ember-apply 2.17.0 (minor)\n* @ember-apply/minimal-app 0.1.1 (patch)\n\n#### :rocket: Enhancement\n* `ember-apply`\n  * [#645](https://github.com/NullVoxPopuli/ember-apply/pull/645) files.applyFolder should allow passing excludes and default to excluding node_modules ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#642](https://github.com/NullVoxPopuli/ember-apply/pull/642) Prettier-the-tsconfig output ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :memo: Documentation\n* `@ember-apply/minimal-app`\n  * [#623](https://github.com/NullVoxPopuli/ember-apply/pull/623) typo ([@johanrd](https://github.com/johanrd))\n\n#### Committers: 2\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n- [@johanrd](https://github.com/johanrd)\n"
+  "description": "\n\n\n\n"
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+
+
+
+
+
 ## Release (2026-01-23)
 
 * ember-apply 2.17.0 (minor)
