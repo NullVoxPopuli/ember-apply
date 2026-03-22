@@ -126,7 +126,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: marocchino/sticky-pull-request-comment@v2
+      - uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: preview-urls
           number: ${{ github.event.workflow_run.pull_requests[0].number }}
