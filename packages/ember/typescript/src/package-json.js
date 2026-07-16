@@ -18,12 +18,18 @@ const standardDeps = [
   '@glint/environment-ember-template-imports',
   '@types/qunit',
   '@types/rsvp',
-  'typescript',
 ];
+
+// The Ember TypeScript tooling (glint) does not support TypeScript 7 yet --
+// TS 7 dropped the language service plugin API that glint relies on -- so cap
+// TypeScript at the latest supported major (v6).
+const TYPESCRIPT_VERSION = '<7';
 
 export async function configureDependencies() {
   if (await canUseBuiltInTypes()) {
     let depsWithVersions = await npm.getLatest(standardDeps);
+
+    depsWithVersions['typescript'] = TYPESCRIPT_VERSION;
 
     await packageJson.addDevDependencies(depsWithVersions);
 
@@ -65,6 +71,8 @@ export async function configureDependencies() {
   }
 
   let depsWithVersions = await npm.getLatest([...standardDeps, ...extraDeps]);
+
+  depsWithVersions['typescript'] = TYPESCRIPT_VERSION;
 
   await packageJson.addDevDependencies(depsWithVersions);
 }

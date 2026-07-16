@@ -28,10 +28,21 @@ export async function newEmberApp(args = []) {
 
   let emberCliBin = path.join(localEmberCli, '../../../bin/ember');
 
+  // ember-cli 6.10+ defaults `ember new` to the Vite-based blueprint, which
+  // uses a different app layout (e.g. no `app/index.html`). Applyables here
+  // operate on the classic layout, so default to the classic blueprint unless
+  // the caller opts into a specific one.
+  let hasBlueprint = args.some((arg) => arg === '--blueprint' || arg === '-b');
+  let blueprintArgs = hasBlueprint
+    ? []
+    : ['--blueprint', '@ember-tooling/classic-build-app-blueprint'];
+
   await execa(emberCliBin, ['-v'], { cwd: dir });
-  await execa(emberCliBin, ['new', 'test-app', '--skip-npm', ...args], {
-    cwd: dir,
-  });
+  await execa(
+    emberCliBin,
+    ['new', 'test-app', '--skip-npm', ...blueprintArgs, ...args],
+    { cwd: dir },
+  );
 
   return path.join(dir, 'test-app');
 }
