@@ -1,54 +1,27 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`typescript > applying to an ember app > works via CLI 1`] = `
-" app/templates/application.hbs |  8 +-------
- ember-cli-build.js            |  8 ++++++--
- package.json                  | 21 ++++++++++++++++++---
- 3 files changed, 25 insertions(+), 12 deletions(-)"
+" ember-cli-build.js |  4 +++-
+ package.json       | 21 ++++++++++++++++++---
+ 2 files changed, 21 insertions(+), 4 deletions(-)"
 `;
 
 exports[`typescript > applying to an ember app > works via CLI 2`] = `
-"diff --git a/app/templates/application.hbs b/app/templates/application.hbs
-index d6565bb..b6fc4c6 100644
---- a/app/templates/application.hbs
-+++ b/app/templates/application.hbs
-@@ -1,7 +1 @@
--{{page-title \\"TestApp\\"}}
--
--{{outlet}}
--
--{{! The following component displays Ember's default welcome message. }}
--<WelcomePage />
--{{! Feel free to remove this! }}
-\\\\ No newline at end of file
-+hello
-\\\\ No newline at end of file
-diff --git a/ember-cli-build.js b/ember-cli-build.js
-index 0582fad..e777cef 100644
+"diff --git a/ember-cli-build.js b/ember-cli-build.js
+index 05ec071..b6a0374 100644
 --- a/ember-cli-build.js
 +++ b/ember-cli-build.js
-@@ -4,6 +4,11 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+@@ -5,7 +5,9 @@ const { setConfig } = require('@warp-drive/core/build-config');
  
  module.exports = function (defaults) {
    const app = new EmberApp(defaults, {
+-    // Add options here
 +    \\"ember-cli-babel\\": {
 +      enableTypeScriptTransform: true
-+    },
-+
-+    // Add options here
-     emberData: {
-       deprecations: {
-         // New projects can safely leave this deprecation disabled.
-@@ -12,8 +17,7 @@ module.exports = function (defaults) {
-         // before upgrading to Ember Data 6.0
-         DEPRECATE_STORE_EXTENDS_EMBER_OBJECT: false,
-       },
--    },
--    // Add options here
 +    }
    });
  
-   return app.toTree();
+   setConfig(app, __dirname, {
 
 package.json
 {
@@ -99,6 +72,10 @@ package.json
     \\"@types/rsvp\\",
     \\"@typescript-eslint/eslint-plugin\\",
     \\"@typescript-eslint/parser\\",
+    \\"@warp-drive/core\\",
+    \\"@warp-drive/json-api\\",
+    \\"@warp-drive/legacy\\",
+    \\"@warp-drive/utilities\\",
     \\"broccoli-asset-rev\\",
     \\"concurrently\\",
     \\"ember-auto-import\\",
@@ -112,7 +89,6 @@ package.json
     \\"ember-cli-inject-live-reload\\",
     \\"ember-cli-sri\\",
     \\"ember-cli-terser\\",
-    \\"ember-fetch\\",
     \\"ember-load-initializers\\",
     \\"ember-modifier\\",
     \\"ember-page-title\\",
@@ -126,6 +102,7 @@ package.json
     \\"eslint-plugin-ember\\",
     \\"eslint-plugin-n\\",
     \\"eslint-plugin-qunit\\",
+    \\"eslint-plugin-warp-drive\\",
     \\"globals\\",
     \\"loader.js\\",
     \\"prettier\\",
@@ -134,7 +111,6 @@ package.json
     \\"qunit-dom\\",
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
-    \\"tracked-built-ins\\",
     \\"typescript\\",
     \\"webpack\\"
   ],
@@ -155,54 +131,27 @@ package.json
 `;
 
 exports[`typescript > applying to an ember app > works with the default app blueprint 1`] = `
-" app/templates/application.hbs |  8 +-------
- ember-cli-build.js            |  8 ++++++--
- package.json                  | 45 ++++++++++++++++++++++++++++++++++++++++++-
- 3 files changed, 51 insertions(+), 10 deletions(-)"
+" ember-cli-build.js |  4 +++-
+ package.json       | 45 ++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 47 insertions(+), 2 deletions(-)"
 `;
 
 exports[`typescript > applying to an ember app > works with the default app blueprint 2`] = `
-"diff --git a/app/templates/application.hbs b/app/templates/application.hbs
-index d6565bb..b6fc4c6 100644
---- a/app/templates/application.hbs
-+++ b/app/templates/application.hbs
-@@ -1,7 +1 @@
--{{page-title \\"TestApp\\"}}
--
--{{outlet}}
--
--{{! The following component displays Ember's default welcome message. }}
--<WelcomePage />
--{{! Feel free to remove this! }}
-\\\\ No newline at end of file
-+hello
-\\\\ No newline at end of file
-diff --git a/ember-cli-build.js b/ember-cli-build.js
-index 0582fad..e777cef 100644
+"diff --git a/ember-cli-build.js b/ember-cli-build.js
+index 05ec071..b6a0374 100644
 --- a/ember-cli-build.js
 +++ b/ember-cli-build.js
-@@ -4,6 +4,11 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+@@ -5,7 +5,9 @@ const { setConfig } = require('@warp-drive/core/build-config');
  
  module.exports = function (defaults) {
    const app = new EmberApp(defaults, {
+-    // Add options here
 +    \\"ember-cli-babel\\": {
 +      enableTypeScriptTransform: true
-+    },
-+
-+    // Add options here
-     emberData: {
-       deprecations: {
-         // New projects can safely leave this deprecation disabled.
-@@ -12,8 +17,7 @@ module.exports = function (defaults) {
-         // before upgrading to Ember Data 6.0
-         DEPRECATE_STORE_EXTENDS_EMBER_OBJECT: false,
-       },
--    },
--    // Add options here
 +    }
    });
  
-   return app.toTree();
+   setConfig(app, __dirname, {
 
 package.json
 {
@@ -279,6 +228,10 @@ package.json
     \\"@types/rsvp\\",
     \\"@typescript-eslint/eslint-plugin\\",
     \\"@typescript-eslint/parser\\",
+    \\"@warp-drive/core\\",
+    \\"@warp-drive/json-api\\",
+    \\"@warp-drive/legacy\\",
+    \\"@warp-drive/utilities\\",
     \\"broccoli-asset-rev\\",
     \\"concurrently\\",
     \\"ember-auto-import\\",
@@ -293,7 +246,6 @@ package.json
     \\"ember-cli-sri\\",
     \\"ember-cli-terser\\",
     \\"ember-data\\",
-    \\"ember-fetch\\",
     \\"ember-load-initializers\\",
     \\"ember-modifier\\",
     \\"ember-page-title\\",
@@ -308,6 +260,7 @@ package.json
     \\"eslint-plugin-ember\\",
     \\"eslint-plugin-n\\",
     \\"eslint-plugin-qunit\\",
+    \\"eslint-plugin-warp-drive\\",
     \\"globals\\",
     \\"loader.js\\",
     \\"prettier\\",
@@ -316,7 +269,6 @@ package.json
     \\"qunit-dom\\",
     \\"stylelint\\",
     \\"stylelint-config-standard\\",
-    \\"tracked-built-ins\\",
     \\"typescript\\",
     \\"webpack\\"
   ],

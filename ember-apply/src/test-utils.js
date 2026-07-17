@@ -24,14 +24,78 @@ export async function newTmpDir() {
 export async function newEmberApp(args = []) {
   let dir = await newTmpDir();
 
-  let localEmberCli = require.resolve('ember-cli');
+  // Resolve `ember-cli` from the consuming package first (its own
+  // devDependency), falling back to this package. This keeps `ember-cli` out of
+  // `ember-apply`'s runtime dependencies -- consumers of `ember-apply/test-utils`
+  // provide it themselves.
+  let localEmberCli = require.resolve('ember-cli', {
+    paths: [process.cwd(), __dirname],
+  });
 
   let emberCliBin = path.join(localEmberCli, '../../../bin/ember');
 
+  // ember-cli 6.10+ defaults `ember new` to the Vite-based blueprint, which
+  // uses a different app layout (e.g. no `app/index.html`). Applyables here
+  // operate on the classic layout, so default to the classic blueprint unless
+  // the caller opts into a specific one.
+  let hasBlueprint = args.some((arg) => arg === '--blueprint' || arg === '-b');
+  let blueprintArgs = hasBlueprint
+    ? []
+    : ['--blueprint', '@ember-tooling/classic-build-app-blueprint'];
+
+  // The Vite/Embroider app blueprint installs its own dependencies -- ignoring
+  // `--skip-npm` -- and pulls in an unpinned `@babel/plugin-transform-runtime`,
+  // which now resolves to v8. v8 is too new for the rest of the toolchain and
+  // breaks generation, so pin it back to v7 via a pnpm workspace override for
+  // the generated app and let it install with pnpm.
+  let isEmbroiderBlueprint = args.includes('@embroider/app-blueprint');
+
   await execa(emberCliBin, ['-v'], { cwd: dir });
-  await execa(emberCliBin, ['new', 'test-app', '--skip-npm', ...args], {
-    cwd: dir,
-  });
+
+  if (isEmbroiderBlueprint) {
+    await fs.writeFile(
+      path.join(dir, 'package.json'),
+      JSON.stringify({ name: 'test-app-workspace', private: true }, null, 2),
+    );
+    await fs.writeFile(
+      path.join(dir, 'pnpm-workspace.yaml'),
+      [
+        'packages:',
+        "  - 'test-app'",
+        'overrides:',
+        "  '@babel/plugin-transform-runtime': '^7.0.0'",
+        '',
+      ].join('\n'),
+    );
+    // `ember new --package-manager pnpm` shells out to `pnpm install`, which
+    // defaults to `--frozen-lockfile` whenever it detects a CI environment. The
+    // override above intentionally diverges from the blueprint's shipped
+    // lockfile, so tell pnpm to regenerate it instead of failing on the
+    // mismatch. `frozen-lockfile` is pnpm-specific and isn't picked up from the
+    // `npm_config_*` env, so set it via `.npmrc`, which pnpm always reads.
+    await fs.writeFile(path.join(dir, '.npmrc'), 'frozen-lockfile=false\n');
+
+    await execa(
+      emberCliBin,
+      [
+        'new',
+        'test-app',
+        '--package-manager',
+        'pnpm',
+        ...blueprintArgs,
+        ...args,
+      ],
+      { cwd: dir },
+    );
+
+    return path.join(dir, 'test-app');
+  }
+
+  await execa(
+    emberCliBin,
+    ['new', 'test-app', '--skip-npm', ...blueprintArgs, ...args],
+    { cwd: dir },
+  );
 
   return path.join(dir, 'test-app');
 }
