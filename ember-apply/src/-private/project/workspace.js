@@ -53,7 +53,7 @@ export async function getWorkspaces(cwd = process.cwd()) {
  */
 export function getRelevantPackageJson(filePath, packages) {
   /**
-   * If the cheapest faster path gives us one result, we can skip the complicated code
+   * If the cheapest, fastest path gives us one result, we can skip the complicated code
    * for finding which package belongs to a file
    *
    * (this is all so we don't need to hit the disk and cause I/O delays for every linted file)
@@ -68,7 +68,7 @@ export function getRelevantPackageJson(filePath, packages) {
     return candidates[0].packageJson;
   }
 
-  // Find with longest matching path
+  // Find the package with the longest matching path
   // (since project directories can nest)
 
   /**
