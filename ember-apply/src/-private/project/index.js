@@ -11,6 +11,7 @@ export {
 export { renovateLite } from './renovate-lite.js';
 export {
   eachWorkspace,
+  getRelevantPackageJson,
   getWorkspaces,
   inWorkspace,
   workspaceRoot,
