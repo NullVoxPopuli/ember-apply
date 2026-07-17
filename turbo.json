@@ -1,6 +1,5 @@
 {
-  "baseBranch": "origin/main",
-  "pipeline": {
+  "tasks": {
     "dev": {
       "dependsOn": [
         "^dev"
