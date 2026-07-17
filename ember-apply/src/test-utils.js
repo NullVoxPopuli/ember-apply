@@ -24,7 +24,13 @@ export async function newTmpDir() {
 export async function newEmberApp(args = []) {
   let dir = await newTmpDir();
 
-  let localEmberCli = require.resolve('ember-cli');
+  // Resolve `ember-cli` from the consuming package first (its own
+  // devDependency), falling back to this package. This keeps `ember-cli` out of
+  // `ember-apply`'s runtime dependencies -- consumers of `ember-apply/test-utils`
+  // provide it themselves.
+  let localEmberCli = require.resolve('ember-cli', {
+    paths: [process.cwd(), __dirname],
+  });
 
   let emberCliBin = path.join(localEmberCli, '../../../bin/ember');
 
@@ -37,7 +43,40 @@ export async function newEmberApp(args = []) {
     ? []
     : ['--blueprint', '@ember-tooling/classic-build-app-blueprint'];
 
+  // The Vite/Embroider app blueprint installs its own dependencies -- ignoring
+  // `--skip-npm` -- and pulls in an unpinned `@babel/plugin-transform-runtime`,
+  // which now resolves to v8. v8 is too new for the rest of the toolchain and
+  // breaks generation, so pin it back to v7 via a pnpm workspace override for
+  // the generated app and let it install with pnpm.
+  let isEmbroiderBlueprint = args.includes('@embroider/app-blueprint');
+
   await execa(emberCliBin, ['-v'], { cwd: dir });
+
+  if (isEmbroiderBlueprint) {
+    await fs.writeFile(
+      path.join(dir, 'package.json'),
+      JSON.stringify({ name: 'test-app-workspace', private: true }, null, 2),
+    );
+    await fs.writeFile(
+      path.join(dir, 'pnpm-workspace.yaml'),
+      [
+        'packages:',
+        "  - 'test-app'",
+        'overrides:',
+        "  '@babel/plugin-transform-runtime': '^7.0.0'",
+        '',
+      ].join('\n'),
+    );
+
+    await execa(
+      emberCliBin,
+      ['new', 'test-app', '--package-manager', 'pnpm', ...blueprintArgs, ...args],
+      { cwd: dir },
+    );
+
+    return path.join(dir, 'test-app');
+  }
+
   await execa(
     emberCliBin,
     ['new', 'test-app', '--skip-npm', ...blueprintArgs, ...args],
