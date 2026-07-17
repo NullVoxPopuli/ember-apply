@@ -28,8 +28,8 @@ import {
  * - Support
  *   - V1 App
  *   - V1 Addon
- *   - ember-data presence forcing the ejection of built in types
- *     (ember-data's types are not compatible with the built in types)
+ *   - ember-data >= 4.0.0 ships its own types and is compatible with the built-in
+ *     ember-source types; older ember-data requires the DefinitelyTyped @types/ember-data* packages
  *
  * - No Support
  *   - V2 Addon

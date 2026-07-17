@@ -4,7 +4,7 @@ export async function adjustAppScripts() {
   await packageJson.addScript('lint:types', 'glint');
 }
 
-import { canUseBuiltInTypes, isEmberDataPresent } from './queries.js';
+import { canUseBuiltInTypes, isEmberDataPresent, isEmberDataWithBuiltInTypes } from './queries.js';
 
 export async function adjustAddonScripts() {
   throw new Error(`Addons are not yet supported. PR's welcome!`);
@@ -60,7 +60,7 @@ export async function configureDependencies() {
     '@types/ember__utils',
   ];
 
-  if (await isEmberDataPresent()) {
+  if ((await isEmberDataPresent()) && !(await isEmberDataWithBuiltInTypes())) {
     extraDeps.push(
       '@types/ember-data',
       '@types/ember-data__adapter',
