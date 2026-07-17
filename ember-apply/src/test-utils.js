@@ -67,10 +67,24 @@ export async function newEmberApp(args = []) {
         '',
       ].join('\n'),
     );
+    // `ember new --package-manager pnpm` shells out to `pnpm install`, which
+    // defaults to `--frozen-lockfile` whenever it detects a CI environment. The
+    // override above intentionally diverges from the blueprint's shipped
+    // lockfile, so tell pnpm to regenerate it instead of failing on the
+    // mismatch. `frozen-lockfile` is pnpm-specific and isn't picked up from the
+    // `npm_config_*` env, so set it via `.npmrc`, which pnpm always reads.
+    await fs.writeFile(path.join(dir, '.npmrc'), 'frozen-lockfile=false\n');
 
     await execa(
       emberCliBin,
-      ['new', 'test-app', '--package-manager', 'pnpm', ...blueprintArgs, ...args],
+      [
+        'new',
+        'test-app',
+        '--package-manager',
+        'pnpm',
+        ...blueprintArgs,
+        ...args,
+      ],
       { cwd: dir },
     );
 
