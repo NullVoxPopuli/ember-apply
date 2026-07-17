@@ -19,7 +19,7 @@
     "babel-plugin-ember-template-compilation": "^2.4.1",
     "decorator-transforms": "^2.3.0",
     "ember-source": "beta",
-    "vite": "^6.3.5"
+    "vite": "^7.3.5"
   },
   "engines": {
     "node": ">= 22.16"
