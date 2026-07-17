@@ -19,104 +19,104 @@ index 90cb9a3..d869700 100644
 +++ b/app/index.html
 @@ -8,6 +8,7 @@
  
-     {{content-for \\"head\\"}}
+     {{content-for "head"}}
  
-+    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
++    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">
+     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/test-app.css">
  
 
 package.json
 {
-  \\"name\\": \\"test-app\\",
-  \\"version\\": \\"0.0.0\\",
-  \\"private\\": true,
-  \\"description\\": \\"Small description for test-app goes here\\",
-  \\"repository\\": \\"\\",
-  \\"license\\": \\"MIT\\",
-  \\"author\\": \\"\\",
-  \\"directories\\": {
-    \\"doc\\": \\"doc\\",
-    \\"test\\": \\"tests\\"
+  "name": "test-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Small description for test-app goes here",
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
   },
-  \\"scripts\\": {
-    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
-    \\"format\\": \\"prettier . --cache --write\\",
-    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
-    \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
-    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto && npm run format\\",
-    \\"lint:format\\": \\"prettier . --cache --check\\",
-    \\"lint:hbs\\": \\"ember-template-lint .\\",
-    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
-    \\"lint:js\\": \\"eslint . --cache\\",
-    \\"lint:js:fix\\": \\"eslint . --fix\\",
-    \\"start\\": \\"concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'\\",
-    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
-    \\"test:ember\\": \\"ember test\\",
-    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
-    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\",
-    \\"start:ember\\": \\"ember serve\\"
+  "scripts": {
+    "build": "npm run tailwind:build && ember build --environment=production",
+    "format": "prettier . --cache --write",
+    "lint": "concurrently \\"npm:lint:*(!fix)\\" --names \\"lint:\\" --prefixColors auto",
+    "lint:css": "stylelint \\"**/*.css\\"",
+    "lint:css:fix": "concurrently \\"npm:lint:css -- --fix\\"",
+    "lint:fix": "concurrently \\"npm:lint:*:fix\\" --names \\"fix:\\" --prefixColors auto && npm run format",
+    "lint:format": "prettier . --cache --check",
+    "lint:hbs": "ember-template-lint .",
+    "lint:hbs:fix": "ember-template-lint . --fix",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "start": "concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'",
+    "test": "concurrently \\"npm:lint\\" \\"npm:test:*\\" --names \\"lint,test:\\" --prefixColors auto",
+    "test:ember": "ember test",
+    "tailwind:build": "npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css",
+    "tailwind:watch": "npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch",
+    "start:ember": "ember serve"
   },
-  \\"devDependencies\\": [
-    \\"@babel/core\\",
-    \\"@babel/eslint-parser\\",
-    \\"@babel/plugin-proposal-decorators\\",
-    \\"@ember/optional-features\\",
-    \\"@ember/test-helpers\\",
-    \\"@embroider/macros\\",
-    \\"@eslint/js\\",
-    \\"@glimmer/component\\",
-    \\"@glimmer/tracking\\",
-    \\"@warp-drive/core\\",
-    \\"@warp-drive/json-api\\",
-    \\"@warp-drive/legacy\\",
-    \\"@warp-drive/utilities\\",
-    \\"broccoli-asset-rev\\",
-    \\"concurrently\\",
-    \\"ember-auto-import\\",
-    \\"ember-cli\\",
-    \\"ember-cli-app-version\\",
-    \\"ember-cli-babel\\",
-    \\"ember-cli-clean-css\\",
-    \\"ember-cli-dependency-checker\\",
-    \\"ember-cli-deprecation-workflow\\",
-    \\"ember-cli-htmlbars\\",
-    \\"ember-cli-inject-live-reload\\",
-    \\"ember-cli-sri\\",
-    \\"ember-cli-terser\\",
-    \\"ember-data\\",
-    \\"ember-load-initializers\\",
-    \\"ember-modifier\\",
-    \\"ember-page-title\\",
-    \\"ember-qunit\\",
-    \\"ember-resolver\\",
-    \\"ember-source\\",
-    \\"ember-template-imports\\",
-    \\"ember-template-lint\\",
-    \\"ember-welcome-page\\",
-    \\"eslint\\",
-    \\"eslint-config-prettier\\",
-    \\"eslint-plugin-ember\\",
-    \\"eslint-plugin-n\\",
-    \\"eslint-plugin-qunit\\",
-    \\"eslint-plugin-warp-drive\\",
-    \\"globals\\",
-    \\"loader.js\\",
-    \\"prettier\\",
-    \\"prettier-plugin-ember-template-tag\\",
-    \\"qunit\\",
-    \\"qunit-dom\\",
-    \\"stylelint\\",
-    \\"stylelint-config-standard\\",
-    \\"tailwindcss\\",
-    \\"webpack\\"
+  "devDependencies": [
+    "@babel/core",
+    "@babel/eslint-parser",
+    "@babel/plugin-proposal-decorators",
+    "@ember/optional-features",
+    "@ember/test-helpers",
+    "@embroider/macros",
+    "@eslint/js",
+    "@glimmer/component",
+    "@glimmer/tracking",
+    "@warp-drive/core",
+    "@warp-drive/json-api",
+    "@warp-drive/legacy",
+    "@warp-drive/utilities",
+    "broccoli-asset-rev",
+    "concurrently",
+    "ember-auto-import",
+    "ember-cli",
+    "ember-cli-app-version",
+    "ember-cli-babel",
+    "ember-cli-clean-css",
+    "ember-cli-dependency-checker",
+    "ember-cli-deprecation-workflow",
+    "ember-cli-htmlbars",
+    "ember-cli-inject-live-reload",
+    "ember-cli-sri",
+    "ember-cli-terser",
+    "ember-data",
+    "ember-load-initializers",
+    "ember-modifier",
+    "ember-page-title",
+    "ember-qunit",
+    "ember-resolver",
+    "ember-source",
+    "ember-template-imports",
+    "ember-template-lint",
+    "ember-welcome-page",
+    "eslint",
+    "eslint-config-prettier",
+    "eslint-plugin-ember",
+    "eslint-plugin-n",
+    "eslint-plugin-qunit",
+    "eslint-plugin-warp-drive",
+    "globals",
+    "loader.js",
+    "prettier",
+    "prettier-plugin-ember-template-tag",
+    "qunit",
+    "qunit-dom",
+    "stylelint",
+    "stylelint-config-standard",
+    "tailwindcss",
+    "webpack"
   ],
-  \\"engines\\": [
-    \\"node\\"
+  "engines": [
+    "node"
   ],
-  \\"ember\\": {
-    \\"edition\\": \\"octane\\"
+  "ember": {
+    "edition": "octane"
   }
 }
 diff --git a/tests/index.html b/tests/index.html
@@ -124,13 +124,13 @@ index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
 @@ -9,6 +9,7 @@
-     {{content-for \\"head\\"}}
-     {{content-for \\"test-head\\"}}
+     {{content-for "head"}}
+     {{content-for "test-head"}}
  
-+    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
++    <link rel="stylesheet" href="{{rootURL}}assets/tailwind.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/test-app.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/test-support.css">
 "
 `;
 
@@ -161,104 +161,104 @@ index 90cb9a3..d869700 100644
 +++ b/app/index.html
 @@ -8,6 +8,7 @@
  
-     {{content-for \\"head\\"}}
+     {{content-for "head"}}
  
-+    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
++    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">
+     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/test-app.css">
  
 
 package.json
 {
-  \\"name\\": \\"test-app\\",
-  \\"version\\": \\"0.0.0\\",
-  \\"private\\": true,
-  \\"description\\": \\"Small description for test-app goes here\\",
-  \\"repository\\": \\"\\",
-  \\"license\\": \\"MIT\\",
-  \\"author\\": \\"\\",
-  \\"directories\\": {
-    \\"doc\\": \\"doc\\",
-    \\"test\\": \\"tests\\"
+  "name": "test-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Small description for test-app goes here",
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
   },
-  \\"scripts\\": {
-    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
-    \\"format\\": \\"prettier . --cache --write\\",
-    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
-    \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
-    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto && npm run format\\",
-    \\"lint:format\\": \\"prettier . --cache --check\\",
-    \\"lint:hbs\\": \\"ember-template-lint .\\",
-    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
-    \\"lint:js\\": \\"eslint . --cache\\",
-    \\"lint:js:fix\\": \\"eslint . --fix\\",
-    \\"start\\": \\"concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'\\",
-    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
-    \\"test:ember\\": \\"ember test\\",
-    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
-    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\",
-    \\"start:ember\\": \\"ember serve\\"
+  "scripts": {
+    "build": "npm run tailwind:build && ember build --environment=production",
+    "format": "prettier . --cache --write",
+    "lint": "concurrently \\"npm:lint:*(!fix)\\" --names \\"lint:\\" --prefixColors auto",
+    "lint:css": "stylelint \\"**/*.css\\"",
+    "lint:css:fix": "concurrently \\"npm:lint:css -- --fix\\"",
+    "lint:fix": "concurrently \\"npm:lint:*:fix\\" --names \\"fix:\\" --prefixColors auto && npm run format",
+    "lint:format": "prettier . --cache --check",
+    "lint:hbs": "ember-template-lint .",
+    "lint:hbs:fix": "ember-template-lint . --fix",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "start": "concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'",
+    "test": "concurrently \\"npm:lint\\" \\"npm:test:*\\" --names \\"lint,test:\\" --prefixColors auto",
+    "test:ember": "ember test",
+    "tailwind:build": "npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css",
+    "tailwind:watch": "npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch",
+    "start:ember": "ember serve"
   },
-  \\"devDependencies\\": [
-    \\"@babel/core\\",
-    \\"@babel/eslint-parser\\",
-    \\"@babel/plugin-proposal-decorators\\",
-    \\"@ember/optional-features\\",
-    \\"@ember/test-helpers\\",
-    \\"@embroider/macros\\",
-    \\"@eslint/js\\",
-    \\"@glimmer/component\\",
-    \\"@glimmer/tracking\\",
-    \\"@warp-drive/core\\",
-    \\"@warp-drive/json-api\\",
-    \\"@warp-drive/legacy\\",
-    \\"@warp-drive/utilities\\",
-    \\"broccoli-asset-rev\\",
-    \\"concurrently\\",
-    \\"ember-auto-import\\",
-    \\"ember-cli\\",
-    \\"ember-cli-app-version\\",
-    \\"ember-cli-babel\\",
-    \\"ember-cli-clean-css\\",
-    \\"ember-cli-dependency-checker\\",
-    \\"ember-cli-deprecation-workflow\\",
-    \\"ember-cli-htmlbars\\",
-    \\"ember-cli-inject-live-reload\\",
-    \\"ember-cli-sri\\",
-    \\"ember-cli-terser\\",
-    \\"ember-data\\",
-    \\"ember-load-initializers\\",
-    \\"ember-modifier\\",
-    \\"ember-page-title\\",
-    \\"ember-qunit\\",
-    \\"ember-resolver\\",
-    \\"ember-source\\",
-    \\"ember-template-imports\\",
-    \\"ember-template-lint\\",
-    \\"ember-welcome-page\\",
-    \\"eslint\\",
-    \\"eslint-config-prettier\\",
-    \\"eslint-plugin-ember\\",
-    \\"eslint-plugin-n\\",
-    \\"eslint-plugin-qunit\\",
-    \\"eslint-plugin-warp-drive\\",
-    \\"globals\\",
-    \\"loader.js\\",
-    \\"prettier\\",
-    \\"prettier-plugin-ember-template-tag\\",
-    \\"qunit\\",
-    \\"qunit-dom\\",
-    \\"stylelint\\",
-    \\"stylelint-config-standard\\",
-    \\"tailwindcss\\",
-    \\"webpack\\"
+  "devDependencies": [
+    "@babel/core",
+    "@babel/eslint-parser",
+    "@babel/plugin-proposal-decorators",
+    "@ember/optional-features",
+    "@ember/test-helpers",
+    "@embroider/macros",
+    "@eslint/js",
+    "@glimmer/component",
+    "@glimmer/tracking",
+    "@warp-drive/core",
+    "@warp-drive/json-api",
+    "@warp-drive/legacy",
+    "@warp-drive/utilities",
+    "broccoli-asset-rev",
+    "concurrently",
+    "ember-auto-import",
+    "ember-cli",
+    "ember-cli-app-version",
+    "ember-cli-babel",
+    "ember-cli-clean-css",
+    "ember-cli-dependency-checker",
+    "ember-cli-deprecation-workflow",
+    "ember-cli-htmlbars",
+    "ember-cli-inject-live-reload",
+    "ember-cli-sri",
+    "ember-cli-terser",
+    "ember-data",
+    "ember-load-initializers",
+    "ember-modifier",
+    "ember-page-title",
+    "ember-qunit",
+    "ember-resolver",
+    "ember-source",
+    "ember-template-imports",
+    "ember-template-lint",
+    "ember-welcome-page",
+    "eslint",
+    "eslint-config-prettier",
+    "eslint-plugin-ember",
+    "eslint-plugin-n",
+    "eslint-plugin-qunit",
+    "eslint-plugin-warp-drive",
+    "globals",
+    "loader.js",
+    "prettier",
+    "prettier-plugin-ember-template-tag",
+    "qunit",
+    "qunit-dom",
+    "stylelint",
+    "stylelint-config-standard",
+    "tailwindcss",
+    "webpack"
   ],
-  \\"engines\\": [
-    \\"node\\"
+  "engines": [
+    "node"
   ],
-  \\"ember\\": {
-    \\"edition\\": \\"octane\\"
+  "ember": {
+    "edition": "octane"
   }
 }
 diff --git a/tests/index.html b/tests/index.html
@@ -266,13 +266,13 @@ index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
 @@ -9,6 +9,7 @@
-     {{content-for \\"head\\"}}
-     {{content-for \\"test-head\\"}}
+     {{content-for "head"}}
+     {{content-for "test-head"}}
  
-+    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
++    <link rel="stylesheet" href="{{rootURL}}assets/tailwind.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/test-app.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/test-support.css">
 "
 `;
 
@@ -303,104 +303,104 @@ index 90cb9a3..d869700 100644
 +++ b/app/index.html
 @@ -8,6 +8,7 @@
  
-     {{content-for \\"head\\"}}
+     {{content-for "head"}}
  
-+    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
++    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">
+     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/test-app.css">
  
 
 package.json
 {
-  \\"name\\": \\"test-app\\",
-  \\"version\\": \\"0.0.0\\",
-  \\"private\\": true,
-  \\"description\\": \\"Small description for test-app goes here\\",
-  \\"repository\\": \\"\\",
-  \\"license\\": \\"MIT\\",
-  \\"author\\": \\"\\",
-  \\"directories\\": {
-    \\"doc\\": \\"doc\\",
-    \\"test\\": \\"tests\\"
+  "name": "test-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Small description for test-app goes here",
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
   },
-  \\"scripts\\": {
-    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
-    \\"format\\": \\"prettier . --cache --write\\",
-    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
-    \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
-    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto && npm run format\\",
-    \\"lint:format\\": \\"prettier . --cache --check\\",
-    \\"lint:hbs\\": \\"ember-template-lint .\\",
-    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
-    \\"lint:js\\": \\"eslint . --cache\\",
-    \\"lint:js:fix\\": \\"eslint . --fix\\",
-    \\"start\\": \\"concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'\\",
-    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
-    \\"test:ember\\": \\"ember test\\",
-    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
-    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\",
-    \\"start:ember\\": \\"ember serve\\"
+  "scripts": {
+    "build": "npm run tailwind:build && ember build --environment=production",
+    "format": "prettier . --cache --write",
+    "lint": "concurrently \\"npm:lint:*(!fix)\\" --names \\"lint:\\" --prefixColors auto",
+    "lint:css": "stylelint \\"**/*.css\\"",
+    "lint:css:fix": "concurrently \\"npm:lint:css -- --fix\\"",
+    "lint:fix": "concurrently \\"npm:lint:*:fix\\" --names \\"fix:\\" --prefixColors auto && npm run format",
+    "lint:format": "prettier . --cache --check",
+    "lint:hbs": "ember-template-lint .",
+    "lint:hbs:fix": "ember-template-lint . --fix",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "start": "concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'",
+    "test": "concurrently \\"npm:lint\\" \\"npm:test:*\\" --names \\"lint,test:\\" --prefixColors auto",
+    "test:ember": "ember test",
+    "tailwind:build": "npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css",
+    "tailwind:watch": "npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch",
+    "start:ember": "ember serve"
   },
-  \\"devDependencies\\": [
-    \\"@babel/core\\",
-    \\"@babel/eslint-parser\\",
-    \\"@babel/plugin-proposal-decorators\\",
-    \\"@ember/optional-features\\",
-    \\"@ember/test-helpers\\",
-    \\"@embroider/macros\\",
-    \\"@eslint/js\\",
-    \\"@glimmer/component\\",
-    \\"@glimmer/tracking\\",
-    \\"@warp-drive/core\\",
-    \\"@warp-drive/json-api\\",
-    \\"@warp-drive/legacy\\",
-    \\"@warp-drive/utilities\\",
-    \\"broccoli-asset-rev\\",
-    \\"concurrently\\",
-    \\"ember-auto-import\\",
-    \\"ember-cli\\",
-    \\"ember-cli-app-version\\",
-    \\"ember-cli-babel\\",
-    \\"ember-cli-clean-css\\",
-    \\"ember-cli-dependency-checker\\",
-    \\"ember-cli-deprecation-workflow\\",
-    \\"ember-cli-htmlbars\\",
-    \\"ember-cli-inject-live-reload\\",
-    \\"ember-cli-sri\\",
-    \\"ember-cli-terser\\",
-    \\"ember-data\\",
-    \\"ember-load-initializers\\",
-    \\"ember-modifier\\",
-    \\"ember-page-title\\",
-    \\"ember-qunit\\",
-    \\"ember-resolver\\",
-    \\"ember-source\\",
-    \\"ember-template-imports\\",
-    \\"ember-template-lint\\",
-    \\"ember-welcome-page\\",
-    \\"eslint\\",
-    \\"eslint-config-prettier\\",
-    \\"eslint-plugin-ember\\",
-    \\"eslint-plugin-n\\",
-    \\"eslint-plugin-qunit\\",
-    \\"eslint-plugin-warp-drive\\",
-    \\"globals\\",
-    \\"loader.js\\",
-    \\"prettier\\",
-    \\"prettier-plugin-ember-template-tag\\",
-    \\"qunit\\",
-    \\"qunit-dom\\",
-    \\"stylelint\\",
-    \\"stylelint-config-standard\\",
-    \\"tailwindcss\\",
-    \\"webpack\\"
+  "devDependencies": [
+    "@babel/core",
+    "@babel/eslint-parser",
+    "@babel/plugin-proposal-decorators",
+    "@ember/optional-features",
+    "@ember/test-helpers",
+    "@embroider/macros",
+    "@eslint/js",
+    "@glimmer/component",
+    "@glimmer/tracking",
+    "@warp-drive/core",
+    "@warp-drive/json-api",
+    "@warp-drive/legacy",
+    "@warp-drive/utilities",
+    "broccoli-asset-rev",
+    "concurrently",
+    "ember-auto-import",
+    "ember-cli",
+    "ember-cli-app-version",
+    "ember-cli-babel",
+    "ember-cli-clean-css",
+    "ember-cli-dependency-checker",
+    "ember-cli-deprecation-workflow",
+    "ember-cli-htmlbars",
+    "ember-cli-inject-live-reload",
+    "ember-cli-sri",
+    "ember-cli-terser",
+    "ember-data",
+    "ember-load-initializers",
+    "ember-modifier",
+    "ember-page-title",
+    "ember-qunit",
+    "ember-resolver",
+    "ember-source",
+    "ember-template-imports",
+    "ember-template-lint",
+    "ember-welcome-page",
+    "eslint",
+    "eslint-config-prettier",
+    "eslint-plugin-ember",
+    "eslint-plugin-n",
+    "eslint-plugin-qunit",
+    "eslint-plugin-warp-drive",
+    "globals",
+    "loader.js",
+    "prettier",
+    "prettier-plugin-ember-template-tag",
+    "qunit",
+    "qunit-dom",
+    "stylelint",
+    "stylelint-config-standard",
+    "tailwindcss",
+    "webpack"
   ],
-  \\"engines\\": [
-    \\"node\\"
+  "engines": [
+    "node"
   ],
-  \\"ember\\": {
-    \\"edition\\": \\"octane\\"
+  "ember": {
+    "edition": "octane"
   }
 }
 diff --git a/tests/index.html b/tests/index.html
@@ -408,13 +408,13 @@ index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
 @@ -9,6 +9,7 @@
-     {{content-for \\"head\\"}}
-     {{content-for \\"test-head\\"}}
+     {{content-for "head"}}
+     {{content-for "test-head"}}
  
-+    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
++    <link rel="stylesheet" href="{{rootURL}}assets/tailwind.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/test-app.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/test-support.css">
 "
 `;
 
@@ -445,104 +445,104 @@ index 90cb9a3..d869700 100644
 +++ b/app/index.html
 @@ -8,6 +8,7 @@
  
-     {{content-for \\"head\\"}}
+     {{content-for "head"}}
  
-+    <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link integrity=\\"\\" rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
++    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/tailwind.css">
+     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/test-app.css">
  
 
 package.json
 {
-  \\"name\\": \\"test-app\\",
-  \\"version\\": \\"0.0.0\\",
-  \\"private\\": true,
-  \\"description\\": \\"Small description for test-app goes here\\",
-  \\"repository\\": \\"\\",
-  \\"license\\": \\"MIT\\",
-  \\"author\\": \\"\\",
-  \\"directories\\": {
-    \\"doc\\": \\"doc\\",
-    \\"test\\": \\"tests\\"
+  "name": "test-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Small description for test-app goes here",
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
   },
-  \\"scripts\\": {
-    \\"build\\": \\"npm run tailwind:build && ember build --environment=production\\",
-    \\"format\\": \\"prettier . --cache --write\\",
-    \\"lint\\": \\"concurrently \\\\\\"npm:lint:*(!fix)\\\\\\" --names \\\\\\"lint:\\\\\\" --prefixColors auto\\",
-    \\"lint:css\\": \\"stylelint \\\\\\"**/*.css\\\\\\"\\",
-    \\"lint:css:fix\\": \\"concurrently \\\\\\"npm:lint:css -- --fix\\\\\\"\\",
-    \\"lint:fix\\": \\"concurrently \\\\\\"npm:lint:*:fix\\\\\\" --names \\\\\\"fix:\\\\\\" --prefixColors auto && npm run format\\",
-    \\"lint:format\\": \\"prettier . --cache --check\\",
-    \\"lint:hbs\\": \\"ember-template-lint .\\",
-    \\"lint:hbs:fix\\": \\"ember-template-lint . --fix\\",
-    \\"lint:js\\": \\"eslint . --cache\\",
-    \\"lint:js:fix\\": \\"eslint . --fix\\",
-    \\"start\\": \\"concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'\\",
-    \\"test\\": \\"concurrently \\\\\\"npm:lint\\\\\\" \\\\\\"npm:test:*\\\\\\" --names \\\\\\"lint,test:\\\\\\" --prefixColors auto\\",
-    \\"test:ember\\": \\"ember test\\",
-    \\"tailwind:build\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css\\",
-    \\"tailwind:watch\\": \\"npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch\\",
-    \\"start:ember\\": \\"ember serve\\"
+  "scripts": {
+    "build": "npm run tailwind:build && ember build --environment=production",
+    "format": "prettier . --cache --write",
+    "lint": "concurrently \\"npm:lint:*(!fix)\\" --names \\"lint:\\" --prefixColors auto",
+    "lint:css": "stylelint \\"**/*.css\\"",
+    "lint:css:fix": "concurrently \\"npm:lint:css -- --fix\\"",
+    "lint:fix": "concurrently \\"npm:lint:*:fix\\" --names \\"fix:\\" --prefixColors auto && npm run format",
+    "lint:format": "prettier . --cache --check",
+    "lint:hbs": "ember-template-lint .",
+    "lint:hbs:fix": "ember-template-lint . --fix",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "start": "concurrently 'npm:start:ember' 'npm:tailwind:watch' --names 'serve,styles'",
+    "test": "concurrently \\"npm:lint\\" \\"npm:test:*\\" --names \\"lint,test:\\" --prefixColors auto",
+    "test:ember": "ember test",
+    "tailwind:build": "npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css",
+    "tailwind:watch": "npx tailwindcss -c ./config/tailwind/tailwind.config.js -i ./config/tailwind/tailwind-input.css -o ./public/assets/tailwind.css --watch",
+    "start:ember": "ember serve"
   },
-  \\"devDependencies\\": [
-    \\"@babel/core\\",
-    \\"@babel/eslint-parser\\",
-    \\"@babel/plugin-proposal-decorators\\",
-    \\"@ember/optional-features\\",
-    \\"@ember/test-helpers\\",
-    \\"@embroider/macros\\",
-    \\"@eslint/js\\",
-    \\"@glimmer/component\\",
-    \\"@glimmer/tracking\\",
-    \\"@warp-drive/core\\",
-    \\"@warp-drive/json-api\\",
-    \\"@warp-drive/legacy\\",
-    \\"@warp-drive/utilities\\",
-    \\"broccoli-asset-rev\\",
-    \\"concurrently\\",
-    \\"ember-auto-import\\",
-    \\"ember-cli\\",
-    \\"ember-cli-app-version\\",
-    \\"ember-cli-babel\\",
-    \\"ember-cli-clean-css\\",
-    \\"ember-cli-dependency-checker\\",
-    \\"ember-cli-deprecation-workflow\\",
-    \\"ember-cli-htmlbars\\",
-    \\"ember-cli-inject-live-reload\\",
-    \\"ember-cli-sri\\",
-    \\"ember-cli-terser\\",
-    \\"ember-data\\",
-    \\"ember-load-initializers\\",
-    \\"ember-modifier\\",
-    \\"ember-page-title\\",
-    \\"ember-qunit\\",
-    \\"ember-resolver\\",
-    \\"ember-source\\",
-    \\"ember-template-imports\\",
-    \\"ember-template-lint\\",
-    \\"ember-welcome-page\\",
-    \\"eslint\\",
-    \\"eslint-config-prettier\\",
-    \\"eslint-plugin-ember\\",
-    \\"eslint-plugin-n\\",
-    \\"eslint-plugin-qunit\\",
-    \\"eslint-plugin-warp-drive\\",
-    \\"globals\\",
-    \\"loader.js\\",
-    \\"prettier\\",
-    \\"prettier-plugin-ember-template-tag\\",
-    \\"qunit\\",
-    \\"qunit-dom\\",
-    \\"stylelint\\",
-    \\"stylelint-config-standard\\",
-    \\"tailwindcss\\",
-    \\"webpack\\"
+  "devDependencies": [
+    "@babel/core",
+    "@babel/eslint-parser",
+    "@babel/plugin-proposal-decorators",
+    "@ember/optional-features",
+    "@ember/test-helpers",
+    "@embroider/macros",
+    "@eslint/js",
+    "@glimmer/component",
+    "@glimmer/tracking",
+    "@warp-drive/core",
+    "@warp-drive/json-api",
+    "@warp-drive/legacy",
+    "@warp-drive/utilities",
+    "broccoli-asset-rev",
+    "concurrently",
+    "ember-auto-import",
+    "ember-cli",
+    "ember-cli-app-version",
+    "ember-cli-babel",
+    "ember-cli-clean-css",
+    "ember-cli-dependency-checker",
+    "ember-cli-deprecation-workflow",
+    "ember-cli-htmlbars",
+    "ember-cli-inject-live-reload",
+    "ember-cli-sri",
+    "ember-cli-terser",
+    "ember-data",
+    "ember-load-initializers",
+    "ember-modifier",
+    "ember-page-title",
+    "ember-qunit",
+    "ember-resolver",
+    "ember-source",
+    "ember-template-imports",
+    "ember-template-lint",
+    "ember-welcome-page",
+    "eslint",
+    "eslint-config-prettier",
+    "eslint-plugin-ember",
+    "eslint-plugin-n",
+    "eslint-plugin-qunit",
+    "eslint-plugin-warp-drive",
+    "globals",
+    "loader.js",
+    "prettier",
+    "prettier-plugin-ember-template-tag",
+    "qunit",
+    "qunit-dom",
+    "stylelint",
+    "stylelint-config-standard",
+    "tailwindcss",
+    "webpack"
   ],
-  \\"engines\\": [
-    \\"node\\"
+  "engines": [
+    "node"
   ],
-  \\"ember\\": {
-    \\"edition\\": \\"octane\\"
+  "ember": {
+    "edition": "octane"
   }
 }
 diff --git a/tests/index.html b/tests/index.html
@@ -550,13 +550,13 @@ index e4b2e69..fbdb546 100644
 --- a/tests/index.html
 +++ b/tests/index.html
 @@ -9,6 +9,7 @@
-     {{content-for \\"head\\"}}
-     {{content-for \\"test-head\\"}}
+     {{content-for "head"}}
+     {{content-for "test-head"}}
  
-+    <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/tailwind.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/vendor.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-app.css\\">
-     <link rel=\\"stylesheet\\" href=\\"{{rootURL}}assets/test-support.css\\">
++    <link rel="stylesheet" href="{{rootURL}}assets/tailwind.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/test-app.css">
+     <link rel="stylesheet" href="{{rootURL}}assets/test-support.css">
 "
 `;
 
