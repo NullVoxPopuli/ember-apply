@@ -20,7 +20,7 @@ jobs:
       pending: ${{ steps.set-pending.outputs.pending }}
 
     steps:
-    - uses: wyvox/action@v1
+    - uses: wyvox/action@v2
     - id: set-pending
       run: echo "pending=$(./cache-status.sh)" >> $GITHUB_OUTPUT
     - run:  echo ${{ github.event.number }} > ./pr-number.txt
@@ -31,7 +31,7 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-      - uses: wyvox/action@v1
+      - uses: wyvox/action@v2
       - name: Lints
         run: pnpm lint
 
@@ -63,7 +63,7 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-    - uses: wyvox/action@v1
+    - uses: wyvox/action@v2
     - run: |
         pnpm add --global ember-cli
     - name: Tests
@@ -78,7 +78,7 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-    - uses: wyvox/action@v1
+    - uses: wyvox/action@v2
     - run: |
         pnpm add --global ember-cli
     - name: Tests
@@ -113,7 +113,7 @@ jobs:
       - tests
 
     steps:
-      - uses: wyvox/action@v1
+      - uses: wyvox/action@v2
       - run: ./build-docs.sh 
       # Used for faster deploy so we don't need to checkout the repo
       - uses: actions/upload-artifact@v7
