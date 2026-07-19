@@ -42,12 +42,12 @@
     "eta": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.23.3",
-    "@nullvoxpopuli/eslint-configs": "^5.3.4",
-    "eslint": "^9.36.0",
+    "@babel/eslint-parser": "^8.0.0",
+    "@nullvoxpopuli/eslint-configs": "^6.0.0",
+    "eslint": "^10.0.0",
     "prettier": "^3.6.2",
-    "typescript": "5.9.3",
-    "vite": "^7.0.0",
+    "typescript": "7.0.2",
+    "vite": "^8.0.0",
     "vitest": "^4.1.10"
   },
   "engines": {
