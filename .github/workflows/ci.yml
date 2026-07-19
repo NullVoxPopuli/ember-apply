@@ -148,7 +148,7 @@ jobs:
       - uses: actions/download-artifact@v8
         name: deploy-prep-dist
       - name: Publish ${{ matrix.app.id }}
-        uses: cloudflare/wrangler-action@v3.14.1
+        uses: cloudflare/wrangler-action@v3.15.0
         with:
           wranglerVersion: "4.25.0"
           command: pages deploy . --project-name ember-apply
