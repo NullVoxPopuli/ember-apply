@@ -132,8 +132,8 @@ package.json
 
 exports[`typescript > applying to an ember app > works with the default app blueprint 1`] = `
 " ember-cli-build.js |  4 +++-
- package.json       | 45 ++++++++++++++++++++++++++++++++++++++++++++-
- 2 files changed, 47 insertions(+), 2 deletions(-)"
+ package.json       | 19 ++++++++++++++++++-
+ 2 files changed, 21 insertions(+), 2 deletions(-)"
 `;
 
 exports[`typescript > applying to an ember app > works with the default app blueprint 2`] = `
@@ -198,32 +198,6 @@ package.json
     "@glint/environment-ember-template-imports",
     "@glint/template",
     "@tsconfig/ember",
-    "@types/ember",
-    "@types/ember-data",
-    "@types/ember-data__adapter",
-    "@types/ember-data__model",
-    "@types/ember-data__serializer",
-    "@types/ember-data__store",
-    "@types/ember__application",
-    "@types/ember__array",
-    "@types/ember__component",
-    "@types/ember__controller",
-    "@types/ember__debug",
-    "@types/ember__destroyable",
-    "@types/ember__engine",
-    "@types/ember__error",
-    "@types/ember__helper",
-    "@types/ember__modifier",
-    "@types/ember__object",
-    "@types/ember__owner",
-    "@types/ember__polyfills",
-    "@types/ember__routing",
-    "@types/ember__runloop",
-    "@types/ember__service",
-    "@types/ember__string",
-    "@types/ember__template",
-    "@types/ember__test",
-    "@types/ember__utils",
     "@types/qunit",
     "@types/rsvp",
     "@typescript-eslint/eslint-plugin",

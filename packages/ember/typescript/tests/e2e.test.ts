@@ -62,8 +62,9 @@ describe('typescript', () => {
       await apply(appLocation, typescript.path);
 
       expect(await app.scripts()).toHaveProperty('lint:types');
-      expect(await app.devDeps()).toHaveProperty('@types/ember');
-      expect(await app.devDeps()).toHaveProperty('@types/ember-data');
+      // ember-data >= 4.0.0 ships its own types, so @types/ember* are not needed
+      expect(await app.devDeps()).not.toHaveProperty('@types/ember');
+      expect(await app.devDeps()).not.toHaveProperty('@types/ember-data');
       expect((await app.install()).exitCode, 'pnpm install').toBe(0);
       expect((await app.run('pnpm lint:types')).exitCode, 'lint:types').toBe(0);
 

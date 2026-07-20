@@ -3,7 +3,7 @@ import path from 'node:path';
 import { stripIndent } from 'common-tags';
 import fse from 'fs-extra';
 
-import { canUseBuiltInTypes, isEmberDataPresent } from './queries.js';
+import { canUseBuiltInTypes, isEmberDataPresent, isEmberDataWithBuiltInTypes } from './queries.js';
 
 export async function createAppTypesDirectory() {
   await fse.ensureDir('types');
@@ -18,7 +18,7 @@ export async function createAppTypesDirectory() {
     );
   }
 
-  if (await isEmberDataPresent()) {
+  if ((await isEmberDataPresent()) && !(await isEmberDataWithBuiltInTypes())) {
     let edRegistries = 'types/ember-data/registries';
 
     await fse.ensureDir(edRegistries);
