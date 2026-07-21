@@ -130,6 +130,60 @@ describe('project', () => {
     });
   });
 
+  describe(project.getRelevantPackageJson.name, () => {
+    const packages = [
+      { dir: '/root/foo', packageJson: { name: 'foo' } },
+      { dir: '/root/foo/tests', packageJson: { name: 'foo-tests' } },
+      { dir: '/root/foo-other', packageJson: { name: 'foo-other' } },
+      { dir: '/root/bar', packageJson: { name: 'bar' } },
+    ];
+
+    test('returns null when no package matches', () => {
+      const result = project.getRelevantPackageJson(
+        '/root/baz/file.js',
+        packages,
+      );
+
+      expect(result).toBeNull();
+    });
+
+    test('returns the single matching package', () => {
+      const result = project.getRelevantPackageJson(
+        '/root/bar/src/index.js',
+        packages,
+      );
+
+      expect(result).toEqual({ name: 'bar' });
+    });
+
+    test('returns the most specific (deepest) package for nested directories', () => {
+      const result = project.getRelevantPackageJson(
+        '/root/foo/tests/unit/some-test.js',
+        packages,
+      );
+
+      expect(result).toEqual({ name: 'foo-tests' });
+    });
+
+    test('does not confuse similarly-named packages (foo vs foo-other)', () => {
+      const result = project.getRelevantPackageJson(
+        '/root/foo-other/src/index.js',
+        packages,
+      );
+
+      expect(result).toEqual({ name: 'foo-other' });
+    });
+
+    test('returns the parent package when file is not in the nested package', () => {
+      const result = project.getRelevantPackageJson(
+        '/root/foo/src/index.js',
+        packages,
+      );
+
+      expect(result).toEqual({ name: 'foo' });
+    });
+  });
+
   describe('getWorkspaces + workspaceRoot', () => {
     it('lists workspaces', async () => {
       let workspaces = await project.getWorkspaces();

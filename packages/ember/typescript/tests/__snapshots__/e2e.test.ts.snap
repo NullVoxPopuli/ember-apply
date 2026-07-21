@@ -121,10 +121,10 @@ package.json
     "edition": "octane"
   },
   "pnpm": {
-    "overrides": {
-      "@glimmer/manager": ">= 0.84.3",
-      "@glimmer/validator": ">= 0.84.3"
-    }
+    "overrides": [
+      "@glimmer/manager",
+      "@glimmer/validator"
+    ]
   }
 }
 "
@@ -253,10 +253,10 @@ package.json
     "edition": "octane"
   },
   "pnpm": {
-    "overrides": {
-      "@glimmer/manager": ">= 0.84.3",
-      "@glimmer/validator": ">= 0.84.3"
-    }
+    "overrides": [
+      "@glimmer/manager",
+      "@glimmer/validator"
+    ]
   }
 }
 "
