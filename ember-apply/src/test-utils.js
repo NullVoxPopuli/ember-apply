@@ -176,6 +176,16 @@ export async function diff(appPath, options = {}) {
         }
       }
 
+      for (let section of ['overrides', 'resolutions']) {
+        if (json.pnpm?.[section]) {
+          json.pnpm[section] = Object.keys(json.pnpm[section]);
+        }
+
+        if (json[section]) {
+          json[section] = Object.keys(json[section]);
+        }
+      }
+
       diff += `\n${filePath}\n${JSON.stringify(json, null, 2)}\n`;
       continue;
     }

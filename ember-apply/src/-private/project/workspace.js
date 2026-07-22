@@ -1,26 +1,17 @@
 // @ts-check
-import path from 'node:path';
 
-import { execa } from 'execa';
-import { listWorkspaces as listYarnWorkspaces } from 'yarn-workspaces-list';
-
-import {
-  getPackageManager,
-  getPackageManagerLockfile,
-} from './package-manager.js';
+import { getPackages } from '@manypkg/get-packages';
 
 /**
  * Crawls up directories (until the git root) to find the directory
  * that declares which sub-directories are workspaces.
  *
- * For yarn, this is the package.json with a workspaces entry
- *
  * @param {string} [cwd] directory to start the search in. defaults to process.cwd();
  */
 export async function workspaceRoot(cwd = process.cwd()) {
-  let lockFile = await getPackageManagerLockfile(cwd);
+  const { rootDir } = await getPackages(cwd);
 
-  return path.dirname(lockFile);
+  return rootDir;
 }
 
 /**
@@ -29,53 +20,154 @@ export async function workspaceRoot(cwd = process.cwd()) {
  * Supports:
  * - yarn workspaces
  * - pnpm workspaces
- *
- * TODO:
  * - npm workspaces
  *
  * @param {string} [cwd] directory to start the search in. defaults to process.cwd();
  * @returns {Promise<string[]>} list of workspaces
  */
 export async function getWorkspaces(cwd = process.cwd()) {
-  const root = await workspaceRoot(cwd);
+  const { rootPackage, packages } = await getPackages(cwd);
 
-  const packageManager = await getPackageManager(cwd);
+  const dirs = packages.map((pkg) => pkg.dir);
 
-  switch (packageManager) {
-    case 'yarn': {
-      const list = await listYarnWorkspaces({ cwd });
+  // In non-monorepo projects, the root package is the only package.
+  // In monorepos, manypkg reports it separately from the workspace packages.
+  if (rootPackage && !dirs.includes(rootPackage.dir)) {
+    dirs.unshift(rootPackage.dir);
+  }
 
-      return list.map((workspace) => path.join(root, workspace.location));
+  return dirs;
+}
+
+/**
+ * Package discovery crawls the disk, and callers of `getRelevantPackageJson`
+ * tend to look up many files under the same directory (e.g. once per linted
+ * file), so discovery results are cached per starting directory.
+ *
+ * The pending promise is cached (rather than its result) so that concurrent
+ * lookups share a single discovery.
+ *
+ * @type {Map<string, ReturnType<typeof getPackages>>}
+ */
+const packageDiscoveryCache = new Map();
+
+/**
+ * Given a file path, returns the `packageJson` of the package that most
+ * relevantly contains the file.
+ *
+ * This is useful for finding which package a file belongs to in a monorepo,
+ * without hitting the disk on every lookup: the workspace packages are
+ * discovered once per `cwd` and cached for subsequent lookups.
+ *
+ * @example
+ * ```js
+ * import { project } from 'ember-apply';
+ *
+ * const pkgJson = await project.getRelevantPackageJson('/path/to/file.js');
+ * ```
+ *
+ * @param {string} filePath absolute path to a file
+ * @param {string} [cwd] directory to discover packages from. defaults to process.cwd();
+ * @returns {Promise<Record<string, any> | null>} the packageJson of the most relevant package, or null if none found
+ */
+export async function getRelevantPackageJson(filePath, cwd = process.cwd()) {
+  let discovery = packageDiscoveryCache.get(cwd);
+
+  if (!discovery) {
+    discovery = getPackages(cwd);
+    packageDiscoveryCache.set(cwd, discovery);
+  }
+
+  const { rootPackage, packages } = await discovery;
+
+  // The root package is a valid owner, too -- for files in the monorepo,
+  // but not in any (nested) workspace package.
+  const candidates = rootPackage ? packages.concat([rootPackage]) : packages;
+
+  return findRelevantPackage(filePath, candidates)?.packageJson ?? null;
+}
+
+/**
+ * @param {string} filePath - absolute path to a file
+ * @param {Array<{dir: string, packageJson: Record<string, any>}>} packages - array of packages with dir and packageJson
+ */
+function findRelevantPackage(filePath, packages) {
+  /**
+   * If the cheapest, fastest path gives us one result, we can skip the complicated code
+   * for finding which package belongs to a file
+   *
+   * (this is all so we don't need to hit the disk and cause I/O delays for every linted file)
+   */
+  const candidates = packages.filter((pkg) => filePath.startsWith(pkg.dir));
+
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  if (candidates.length === 1) {
+    return candidates[0];
+  }
+
+  // Find the package with the longest matching path
+  // (since project directories can nest)
+
+  /**
+   * We can have multiple candidates when project directories nest
+   * e.g.:
+   *   - foo/
+   *       package.json
+   *   - foo/tests/
+   *       package.json
+   *
+   *   If we have a file in foo/tests, we don't want to match foo,
+   *   but it will match in the above.
+   *
+   * We also run in to this situation when we have similarly named projects:
+   * e.g.:
+   *   - foo/
+   *   - foo-other/
+   *
+   *   If we have a file in foo-other, foo will also match
+   */
+  let bestMatch = null;
+  const fParts = filePath.split('/');
+
+  findBestCandidate: for (const pkg of candidates) {
+    const candidateParts = pkg.dir.split('/');
+
+    /**
+     * If the candidate project has a longer path than our file,
+     * our file cannot possibly be within that project
+     */
+    if (candidateParts.length > fParts.length) {
+      continue;
     }
-    case 'pnpm': {
+
+    for (let i = 0; i < candidateParts.length; i++) {
+      const cPart = candidateParts[i];
+      const fPart = fParts[i];
+
       /**
-       * example:
-       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply:ember-apply-monorepo:PRIVATE
-       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/ember-apply:ember-apply@2.5.2
-       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/packages/docs:docs@0.0.0:PRIVATE
-       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/packages/ember/embroider:@ember-apply/embroider@1.0.23
-       * /home/nullvoxpopuli/Development/NullVoxPopuli/ember-apply/packages/ember/tailwind:@ember-apply/tailwind@2.0.24
+       * If a folder/segment of the candidate ever does not match
+       * the filePath part, the whole candidate is not worth checking
        */
-      let { stdout } = await execa(
-        'pnpm',
-        ['ls', '-r', '--depth', '-1', '--long', '--parseable'],
-        {
-          cwd,
-        },
-      );
-
-      let lines = stdout.split('\n');
-
-      return lines.map((line) => line.split(':')[0]);
-    }
-    case 'npm': {
-      throw new Error('npm workspaces are not yet supported');
+      if (cPart !== fPart) {
+        continue findBestCandidate;
+      }
     }
 
-    default: {
-      throw new Error(`unknown package manager ${packageManager}`);
+    /**
+     * If execution makes it past the above loop, the *entire* candidate path is within
+     * the file path.
+     *
+     * If we make it here, we know that we don't have a situation like "foo" vs "foo-other"
+     */
+    if (!bestMatch || bestMatch.dir.length < pkg.dir.length) {
+      bestMatch = pkg;
     }
   }
+
+  return bestMatch;
 }
 
 /**

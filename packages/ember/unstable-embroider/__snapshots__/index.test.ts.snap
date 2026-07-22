@@ -1,5 +1,119 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`unstable-embroider > applying to an ember app > works via CLI 1`] = `""`;
+exports[`unstable-embroider > applying to an ember app > works via CLI 1`] = `
+" package.json | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)"
+`;
 
-exports[`unstable-embroider > applying to an ember app > works via CLI 2`] = `""`;
+exports[`unstable-embroider > applying to an ember app > works via CLI 2`] = `
+"
+package.json
+{
+  "name": "test-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Small description for test-app goes here",
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "ember build --environment=production",
+    "format": "prettier . --cache --write",
+    "lint": "concurrently \\"npm:lint:*(!fix)\\" --names \\"lint:\\" --prefixColors auto",
+    "lint:css": "stylelint \\"**/*.css\\"",
+    "lint:css:fix": "concurrently \\"npm:lint:css -- --fix\\"",
+    "lint:fix": "concurrently \\"npm:lint:*:fix\\" --names \\"fix:\\" --prefixColors auto && npm run format",
+    "lint:format": "prettier . --cache --check",
+    "lint:hbs": "ember-template-lint .",
+    "lint:hbs:fix": "ember-template-lint . --fix",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "start": "ember serve",
+    "test": "concurrently \\"npm:lint\\" \\"npm:test:*\\" --names \\"lint,test:\\" --prefixColors auto",
+    "test:ember": "ember test"
+  },
+  "devDependencies": [
+    "@babel/core",
+    "@babel/eslint-parser",
+    "@babel/plugin-proposal-decorators",
+    "@ember/optional-features",
+    "@ember/test-helpers",
+    "@embroider/macros",
+    "@eslint/js",
+    "@glimmer/component",
+    "@glimmer/tracking",
+    "@warp-drive/core",
+    "@warp-drive/json-api",
+    "@warp-drive/legacy",
+    "@warp-drive/utilities",
+    "broccoli-asset-rev",
+    "concurrently",
+    "ember-auto-import",
+    "ember-cli",
+    "ember-cli-app-version",
+    "ember-cli-babel",
+    "ember-cli-clean-css",
+    "ember-cli-dependency-checker",
+    "ember-cli-deprecation-workflow",
+    "ember-cli-htmlbars",
+    "ember-cli-inject-live-reload",
+    "ember-cli-sri",
+    "ember-cli-terser",
+    "ember-data",
+    "ember-load-initializers",
+    "ember-modifier",
+    "ember-page-title",
+    "ember-qunit",
+    "ember-resolver",
+    "ember-source",
+    "ember-template-imports",
+    "ember-template-lint",
+    "ember-welcome-page",
+    "eslint",
+    "eslint-config-prettier",
+    "eslint-plugin-ember",
+    "eslint-plugin-n",
+    "eslint-plugin-qunit",
+    "eslint-plugin-warp-drive",
+    "globals",
+    "loader.js",
+    "prettier",
+    "prettier-plugin-ember-template-tag",
+    "qunit",
+    "qunit-dom",
+    "stylelint",
+    "stylelint-config-standard",
+    "webpack"
+  ],
+  "engines": [
+    "node"
+  ],
+  "ember": {
+    "edition": "octane"
+  },
+  "pnpm": {
+    "overrides": [
+      "@embroider/addon-dev",
+      "@embroider/addon-shim",
+      "@embroider/babel-loader-9",
+      "@embroider/broccoli-side-watch",
+      "@embroider/core",
+      "@embroider/compat",
+      "@embroider/macros",
+      "@embroider/hbs-loader",
+      "@embroider/reverse-exports",
+      "@embroider/router",
+      "@embroider/shared-internals",
+      "@embroider/test-setup",
+      "@embroider/util",
+      "@embroider/vite",
+      "@embroider/webpack"
+    ]
+  }
+}
+"
+`;
