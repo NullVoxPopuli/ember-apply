@@ -131,56 +131,64 @@ describe('project', () => {
   });
 
   describe(project.getRelevantPackageJson.name, () => {
-    const packages = [
-      { dir: '/root/foo', packageJson: { name: 'foo' } },
-      { dir: '/root/foo/tests', packageJson: { name: 'foo-tests' } },
-      { dir: '/root/foo-other', packageJson: { name: 'foo-other' } },
-      { dir: '/root/bar', packageJson: { name: 'bar' } },
-    ];
+    let root: string;
 
-    test('returns null when no package matches', () => {
-      const result = project.getRelevantPackageJson(
-        '/root/baz/file.js',
-        packages,
+    beforeEach(async () => {
+      root = await newMonorepo(['foo', 'foo/tests', 'foo-other', 'bar']);
+    });
+
+    test('returns null for a file outside the monorepo', async () => {
+      const result = await project.getRelevantPackageJson(
+        '/else/where/file.js',
+        root,
       );
 
       expect(result).toBeNull();
     });
 
-    test('returns the single matching package', () => {
-      const result = project.getRelevantPackageJson(
-        '/root/bar/src/index.js',
-        packages,
+    test('returns the single matching package', async () => {
+      const result = await project.getRelevantPackageJson(
+        path.join(root, 'bar/src/index.js'),
+        root,
       );
 
-      expect(result).toEqual({ name: 'bar' });
+      expect(result).toMatchObject({ name: 'test-bar' });
     });
 
-    test('returns the most specific (deepest) package for nested directories', () => {
-      const result = project.getRelevantPackageJson(
-        '/root/foo/tests/unit/some-test.js',
-        packages,
+    test('returns the most specific (deepest) package for nested directories', async () => {
+      const result = await project.getRelevantPackageJson(
+        path.join(root, 'foo/tests/unit/some-test.js'),
+        root,
       );
 
-      expect(result).toEqual({ name: 'foo-tests' });
+      expect(result).toMatchObject({ name: 'test-foo-tests' });
     });
 
-    test('does not confuse similarly-named packages (foo vs foo-other)', () => {
-      const result = project.getRelevantPackageJson(
-        '/root/foo-other/src/index.js',
-        packages,
+    test('does not confuse similarly-named packages (foo vs foo-other)', async () => {
+      const result = await project.getRelevantPackageJson(
+        path.join(root, 'foo-other/src/index.js'),
+        root,
       );
 
-      expect(result).toEqual({ name: 'foo-other' });
+      expect(result).toMatchObject({ name: 'test-foo-other' });
     });
 
-    test('returns the parent package when file is not in the nested package', () => {
-      const result = project.getRelevantPackageJson(
-        '/root/foo/src/index.js',
-        packages,
+    test('returns the parent package when file is not in the nested package', async () => {
+      const result = await project.getRelevantPackageJson(
+        path.join(root, 'foo/src/index.js'),
+        root,
       );
 
-      expect(result).toEqual({ name: 'foo' });
+      expect(result).toMatchObject({ name: 'test-foo' });
+    });
+
+    test('falls back to the root package for files in no workspace package', async () => {
+      const result = await project.getRelevantPackageJson(
+        path.join(root, 'README.md'),
+        root,
+      );
+
+      expect(result).toMatchObject({ private: true });
     });
   });
 

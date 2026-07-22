@@ -40,26 +40,58 @@ export async function getWorkspaces(cwd = process.cwd()) {
 }
 
 /**
- * Given a file path and an array of packages (e.g., from `@manypkg/get-packages`),
- * returns the `packageJson` of the package that most relevantly contains the file.
+ * Package discovery crawls the disk, and callers of `getRelevantPackageJson`
+ * tend to look up many files under the same directory (e.g. once per linted
+ * file), so discovery results are cached per starting directory.
+ *
+ * The pending promise is cached (rather than its result) so that concurrent
+ * lookups share a single discovery.
+ *
+ * @type {Map<string, ReturnType<typeof getPackages>>}
+ */
+const packageDiscoveryCache = new Map();
+
+/**
+ * Given a file path, returns the `packageJson` of the package that most
+ * relevantly contains the file.
  *
  * This is useful for finding which package a file belongs to in a monorepo,
- * without hitting the disk on every lookup.
+ * without hitting the disk on every lookup: the workspace packages are
+ * discovered once per `cwd` and cached for subsequent lookups.
  *
  * @example
  * ```js
- * import { getPackages } from '@manypkg/get-packages';
  * import { project } from 'ember-apply';
  *
- * const { packages } = await getPackages(process.cwd());
- * const pkgJson = project.getRelevantPackageJson('/path/to/file.js', packages);
+ * const pkgJson = await project.getRelevantPackageJson('/path/to/file.js');
  * ```
  *
+ * @param {string} filePath absolute path to a file
+ * @param {string} [cwd] directory to discover packages from. defaults to process.cwd();
+ * @returns {Promise<Record<string, any> | null>} the packageJson of the most relevant package, or null if none found
+ */
+export async function getRelevantPackageJson(filePath, cwd = process.cwd()) {
+  let discovery = packageDiscoveryCache.get(cwd);
+
+  if (!discovery) {
+    discovery = getPackages(cwd);
+    packageDiscoveryCache.set(cwd, discovery);
+  }
+
+  const { rootPackage, packages } = await discovery;
+
+  // The root package is a valid owner, too -- for files in the monorepo,
+  // but not in any (nested) workspace package.
+  const candidates = rootPackage ? packages.concat([rootPackage]) : packages;
+
+  return findRelevantPackage(filePath, candidates)?.packageJson ?? null;
+}
+
+/**
  * @param {string} filePath - absolute path to a file
  * @param {Array<{dir: string, packageJson: Record<string, any>}>} packages - array of packages with dir and packageJson
- * @returns {Record<string, any> | null} the packageJson of the most relevant package, or null if none found
  */
-export function getRelevantPackageJson(filePath, packages) {
+function findRelevantPackage(filePath, packages) {
   /**
    * If the cheapest, fastest path gives us one result, we can skip the complicated code
    * for finding which package belongs to a file
@@ -73,7 +105,7 @@ export function getRelevantPackageJson(filePath, packages) {
   }
 
   if (candidates.length === 1) {
-    return candidates[0].packageJson;
+    return candidates[0];
   }
 
   // Find the package with the longest matching path
@@ -135,7 +167,7 @@ export function getRelevantPackageJson(filePath, packages) {
     }
   }
 
-  return bestMatch?.packageJson ?? null;
+  return bestMatch;
 }
 
 /**
