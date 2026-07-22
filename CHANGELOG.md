@@ -1,5 +1,40 @@
 # Changelog
 
+## Release (2026-07-22)
+
+* ember-apply 2.18.0 (minor)
+* @ember-apply/embroider 1.3.0 (minor)
+* @ember-apply/minimal-app 0.1.2 (patch)
+* @ember-apply/tailwind 2.4.0 (minor)
+* @ember-apply/tailwind-webpack 1.3.0 (minor)
+* @ember-apply/tailwind3-vite 2.1.0 (minor)
+* @ember-apply/tailwind4-vite 1.2.0 (minor)
+* @ember-apply/typescript 1.5.0 (minor)
+* @ember-apply/unstable-embroider 1.2.0 (minor)
+* @ember-apply/volta 2.1.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-apply`, `@ember-apply/typescript`, `@ember-apply/unstable-embroider`
+  * [#674](https://github.com/NullVoxPopuli/ember-apply/pull/674) Add `project.getRelevantPackageJson`; switch workspace discovery to `@manypkg/get-packages` ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+* `ember-apply`, `@ember-apply/embroider`, `@ember-apply/tailwind-webpack`, `@ember-apply/tailwind`, `@ember-apply/tailwind3-vite`, `@ember-apply/tailwind4-vite`, `@ember-apply/typescript`, `@ember-apply/unstable-embroider`, `@ember-apply/volta`
+  * [#665](https://github.com/NullVoxPopuli/ember-apply/pull/665) Remove unused dependency ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* `@ember-apply/typescript`
+  * [#670](https://github.com/NullVoxPopuli/ember-apply/pull/670) fix: use built-in types when ember-data >= 4.0.0 is present ([@Copilot](https://github.com/apps/copilot-swe-agent))
+
+#### :house: Internal
+* `ember-apply`, `@ember-apply/embroider`, `@ember-apply/minimal-app`, `@ember-apply/tailwind-webpack`, `@ember-apply/tailwind`, `@ember-apply/tailwind3-vite`, `@ember-apply/tailwind4-vite`, `@ember-apply/typescript`, `@ember-apply/unstable-embroider`, `@ember-apply/volta`
+  * [#669](https://github.com/NullVoxPopuli/ember-apply/pull/669) Update vitest ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* Other
+  * [#668](https://github.com/NullVoxPopuli/ember-apply/pull/668) Turbo 2 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#666](https://github.com/NullVoxPopuli/ember-apply/pull/666) Update release plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 3
+- @NullVoxPopuli's reduced-access machine account for AI usage ([@NullVoxPopuli-ai-agent](https://github.com/NullVoxPopuli-ai-agent))
+- Copilot [Bot] ([@copilot-swe-agent](https://github.com/apps/copilot-swe-agent))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2026-01-23)
 
 * ember-apply 2.17.0 (minor)
