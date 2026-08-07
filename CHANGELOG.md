@@ -1,5 +1,18 @@
 # Changelog
 
+## Release (2026-08-07)
+
+* ember-apply 2.18.1 (patch)
+
+#### :house: Internal
+* Other
+  * [#683](https://github.com/NullVoxPopuli/ember-apply/pull/683) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* `ember-apply`
+  * [#682](https://github.com/NullVoxPopuli/ember-apply/pull/682) Revert "Prepare Release" ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2026-07-22)
 
 * ember-apply 2.18.0 (minor)
