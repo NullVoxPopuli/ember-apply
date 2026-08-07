@@ -1,20 +1,5 @@
 # Changelog
 
-## Release (2026-08-07)
-
-* ember-apply 2.19.0 (minor)
-
-#### :rocket: Enhancement
-* `ember-apply`
-  * [#681](https://github.com/NullVoxPopuli/ember-apply/pull/681) Update pacote ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
-
-#### :house: Internal
-* `ember-apply`
-  * [#680](https://github.com/NullVoxPopuli/ember-apply/pull/680) Re-roll lockfile ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
-
-#### Committers: 1
-- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
-
 ## Release (2026-07-22)
 
 * ember-apply 2.18.0 (minor)
