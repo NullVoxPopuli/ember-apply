@@ -63,7 +63,7 @@
     "jsonc": "^2.0.0",
     "latest-version": "^7.0.0",
     "ora": "^7.0.1",
-    "pacote": "^17.0.4",
+    "pacote": "^22.0.0",
     "postcss": "^8.4.31",
     "posthtml": "^0.16.5",
     "posthtml-boolean-attributes": "^0.3.1",
