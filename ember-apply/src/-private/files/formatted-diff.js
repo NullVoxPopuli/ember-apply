@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { execaCommand } from 'execa';
-import * as prettier from 'prettier';
+import { format } from 'prettier';
 
 import { mktmp } from './tmp.js';
 
@@ -24,10 +24,10 @@ export async function formattedDiff(originalFilePath, modifiedFilePath) {
   let originalStr = originalFile.toString();
   let modifiedStr = modifiedFile.toString();
 
-  let originalFormatted = await prettier.format(originalStr, {
+  let originalFormatted = await format(originalStr, {
     filepath: originalFilePath,
   });
-  let modifiedFormatted = await prettier.format(modifiedStr, {
+  let modifiedFormatted = await format(modifiedStr, {
     filepath: modifiedFilePath,
   });
 

@@ -2,7 +2,7 @@ import { join } from 'node:path';
 
 import fse from 'fs-extra';
 import JSON5 from 'json5';
-import * as prettier from 'prettier';
+import { format } from 'prettier';
 
 /**
  * Reads the tsconfig.json at the passed directory
@@ -76,7 +76,7 @@ export async function modify(callback, path = '.') {
     quote: '"',
   });
 
-  let fixed = await prettier.format(jsonString, {
+  let fixed = await format(jsonString, {
     parser: 'jsonc',
     quoteProps: 'consistent',
   });
