@@ -108,7 +108,7 @@ jobs:
       - uses: actions/download-artifact@v8
         name: deploy-prep-dist
       - id: deploy
-        uses: cloudflare/wrangler-action@v3.14.1
+        uses: cloudflare/wrangler-action@v3.15.0
         with:
           branch: ${{ github.event.workflow_run.head_branch }}
           command: pages deploy . --project-name ember-apply --branch ${{ github.event.workflow_run.head_branch }}
