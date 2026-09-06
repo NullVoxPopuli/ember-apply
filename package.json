@@ -16,8 +16,8 @@
     "test": "turbo run test"
   },
   "devDependencies": {
-    "release-plan": "^0.18.0",
-    "turbo": "2.10.5"
+    "release-plan": "^0.20.0",
+    "turbo": "2.10.12"
   },
   "packageManager": "pnpm@10.34.5",
   "volta": {
