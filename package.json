@@ -19,9 +19,9 @@
     "release-plan": "^0.18.0",
     "turbo": "2.10.5"
   },
-  "packageManager": "pnpm@10.34.5",
+  "packageManager": "pnpm@12.3.1",
   "volta": {
     "node": "24.19.0",
-    "pnpm": "10.34.5"
+    "pnpm": "12.3.1"
   }
 }
