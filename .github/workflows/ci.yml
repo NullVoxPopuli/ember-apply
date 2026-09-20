@@ -150,7 +150,7 @@ jobs:
       - name: Publish ${{ matrix.app.id }}
         uses: cloudflare/wrangler-action@v3.15.0
         with:
-          wranglerVersion: "4.25.0"
+          wranglerVersion: "4.134.0"
           command: pages deploy . --project-name ember-apply
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
